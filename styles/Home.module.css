@@ -30,15 +30,16 @@
   list-style-type: none;
 }
 
-.navbar li a {
+.navbar li div {
   display: block;
   color: #ffffff;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  cursor: pointer;
 }
 
-.navbar li a:hover:not(.active) {
+.navbar li div:hover:not(.active) {
   background-color: #111;
 }
 
