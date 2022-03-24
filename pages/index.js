@@ -107,7 +107,7 @@ export default function Home () {
           <div className={styles.aboutWrapSkill}>
             <div className={styles.aboutWho}>
               <div className={styles.aboutWhoImg}>
-                <Image src='/arrow.svg' alt="Arrow" width={22} height={22} />
+                <Image src='/default-image-profile.png' alt="default-image-profile" width={250} height={250} />
               </div>
 
               <span className={styles.aboutWhoTitle}>
@@ -120,9 +120,21 @@ export default function Home () {
             </div>
 
             <div className={styles.aboutSkill}>
-
+              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
             </div>
           </div>
+        </section>
+
+        <section id='portfolio' className={styles.portfolio}>
+          portfolio
+        </section>
+
+        <section id='blog' className={styles.blog}>
+          blog
+        </section>
+
+        <section id='contact' className={styles.contact}>
+          contact
         </section>
       </main>
 

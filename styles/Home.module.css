@@ -1,6 +1,5 @@
 .container {
   background-color: #333;
-  overflow: hidden;
 }
 
 .loading {
@@ -9,14 +8,12 @@
 
 /* ========== NAVBAR [START] ========== */
 .navbar {
-  /* position: fixed;
-  top: 0; */
-
+  position: sticky;
+  top: 0;
   margin: 0;
-  overflow: hidden;
   height: 52px;
   width: 100%;
-
+  animation: popDown 0.5s;
   background-color: lightskyblue;
 }
 
@@ -150,6 +147,7 @@
 .about h1 {
   text-align: center;
   font-size: 40px;
+  margin-top: 70px;
   margin-bottom: 0;
   color: #444649;
 }
@@ -165,6 +163,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  margin-bottom: 50px;
 }
 
 .aboutAbilityCard {
@@ -172,7 +171,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 230px;
+  width: 250px;
   margin: 0 16px;
 }
 
@@ -250,6 +249,39 @@
 
 /* ========== SKILL [START] ========== */
 .aboutWrapSkill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.aboutWho {
+  width: 100%;
+}
+
+.aboutSkill {
+  background-color: brown;
+  width: 100%;
+}
+
+.aboutWho {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.aboutWhoTitle {
+  font-size: 24px;
+  font-weight: 500;
+  color: #444649;
+}
+
+.aboutSkill {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 /* ========== SKILL [END] ========== */
 /* ========== ABOUT [END] ========== */

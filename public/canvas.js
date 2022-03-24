@@ -6,11 +6,11 @@ for (let i = 0; i < 98; i++) {
 }
 
 const canvas = document.querySelector('canvas')
-canvas.width = innerWidth
+canvas.width = innerWidth - 17
 canvas.height = innerHeight
 
 addEventListener('resize', () => {
-  canvas.width = innerWidth
+  canvas.width = innerWidth - 17
   canvas.height = innerHeight
   stars = []
   init()
