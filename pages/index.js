@@ -64,31 +64,31 @@ export default function Home () {
 
               <div className={styles.aboutAbilityTitle}>Fast learning</div>
 
-              <div className={styles.aboutAbilityDetail}>Fast load times and lag free interaction, my highest priority.</div>
+              <div className={styles.aboutAbilityDetail}>I was able to quickly learn.</div>
             </div>
 
             <div className={styles.aboutAbilityCard}>
               <div className={styles.aboutAbilityWrapIcon}>
                 <div className={styles.hexagon}>
-                  <Image src='/handshake-simple-solid.svg' alt="handshake-simple-solid" width={100} height={100} />
+                  <Image src='/people-group-solid.svg' alt="people-group-solid" width={100} height={100} />
                 </div>
               </div>
 
-              <div className={styles.aboutAbilityTitle}>Friendly</div>
+              <div className={styles.aboutAbilityTitle}>Leadership</div>
 
-              <div className={styles.aboutAbilityDetail}>Fast load times and lag free interaction, my highest priority.</div>
+              <div className={styles.aboutAbilityDetail}>Not only can delegate and strategy, but also have to support everyone.</div>
             </div>
 
             <div className={styles.aboutAbilityCard}>
               <div className={styles.aboutAbilityWrapIcon}>
                 <div className={styles.hexagon}>
-                  <Image src='/arrows-spin-solid.svg' alt="arrows-spin-solid" width={100} height={100} />
+                  <Image src='/people-carry-box-solid.svg' alt="people-carry-box-solid" width={100} height={100} />
                 </div>
               </div>
 
-              <div className={styles.aboutAbilityTitle}>Flexible</div>
+              <div className={styles.aboutAbilityTitle}>Teamwork</div>
 
-              <div className={styles.aboutAbilityDetail}>Fast load times and lag free interaction, my highest priority.</div>
+              <div className={styles.aboutAbilityDetail}>I can effective teamwork.</div>
             </div>
 
             <div className={styles.aboutAbilityCard}>
@@ -98,9 +98,9 @@ export default function Home () {
                 </div>
               </div>
 
-              <div className={styles.aboutAbilityTitle}>Problem solver</div>
+              <div className={styles.aboutAbilityTitle}>Problem Solving</div>
 
-              <div className={styles.aboutAbilityDetail}>Fast load times and lag free interaction, my highest priority.</div>
+              <div className={styles.aboutAbilityDetail}>Use my existing programming knowledge to fix bugs.</div>
             </div>
           </div>
 

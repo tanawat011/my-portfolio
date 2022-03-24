@@ -164,7 +164,7 @@
 .aboutAbility {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .aboutAbilityCard {
