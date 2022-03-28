@@ -9,6 +9,7 @@ const nextConfig = {
   images: {
     loader: 'imgix',
     path: 'https://tanawat.web.app/',
+    path: 'http://localhost:3000/',
   },
 }
 

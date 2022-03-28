@@ -1,0 +1,49 @@
+.about {
+}
+
+.about__skill {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.about__skill-who {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.about__skill-who-img {
+}
+
+.about__skill-who-title {
+  font-size: 24px;
+  font-weight: 500;
+  color: #444649;
+}
+
+.about__skill-who-content {
+}
+
+.about__skill-skill {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.about__skill-skill-card {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.about__skill-skill-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #444649;
+  margin-top: 10px;
+}

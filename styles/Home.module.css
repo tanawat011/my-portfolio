@@ -15,6 +15,7 @@
   width: 100%;
   animation: popDown 0.5s;
   background-color: lightskyblue;
+  z-index: 99;
 }
 
 .navbar ul {
@@ -252,7 +253,6 @@
 .aboutWrapSkill {
   display: flex;
   justify-content: center;
-  align-items: center;
   margin-bottom: 50px;
 }
 
@@ -261,8 +261,24 @@
 }
 
 .aboutSkill {
-  background-color: brown;
   width: 100%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.aboutSkillCard {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.aboutSkillCard span {
+  font-size: 16px;
+  font-weight: 600;
+  color: #444649;
+  margin-top: 10px;
 }
 
 .aboutWho {
@@ -276,13 +292,6 @@
   font-size: 24px;
   font-weight: 500;
   color: #444649;
-}
-
-.aboutSkill {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 /* ========== SKILL [END] ========== */
 /* ========== ABOUT [END] ========== */
