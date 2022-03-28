@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Script from 'next/script'
 
+import { Footer } from '../src/components/Footer'
 import { Navbar } from '../src/components/Navbar'
 
 import { About } from '../src/containers/About'
@@ -21,6 +22,7 @@ export default function App () {
   const goToAbout = () => {
     document.getElementById('about').scrollIntoView({ behavior: 'smooth' })
   }
+
   const goToPortfolio = () => {
     document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' })
   }
@@ -59,18 +61,7 @@ export default function App () {
         <Contact />
       </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      <Footer />
     </div>
   )
 }
