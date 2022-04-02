@@ -27,6 +27,70 @@ export const About = () => {
     },
   ]
 
+  const mainSkills = [
+    {
+      title: 'Front-end',
+      detail: 'I like to code things from scratch, and enjoy bringing ideas to life in the browser.',
+      imgName: '/laptop-code-solid.svg',
+      skills: [
+        {
+          label: 'Languages',
+          detail: 'HTML, CSS, Sass, JS, TS',
+        },
+        {
+          label: 'Framework/Libs',
+          detail: 'React, React Native, NextJS, Tailwind, Bootstrap',
+        },
+        {
+          label: 'Dev Tools',
+          detail: 'VSCode, XCode, Android Studio, Github, Gitlab, Figma',
+        },
+      ],
+    },
+    {
+      title: 'Back-end',
+      detail: 'I like to code things from scratch, and enjoy bringing ideas to life in the browser.',
+      imgName: '/laptop-code-solid.svg',
+      skills: [
+        {
+          label: 'Languages',
+          detail: 'JS, TS, Golang, Python, SQL, GraphQL',
+        },
+        {
+          label: 'Framework/Libs',
+          detail: 'NodeJS, Gin',
+        },
+        {
+          label: 'Dev Tools',
+          detail: 'VSCode, Github, Gitlab, Postman, Datagrip',
+        },
+        {
+          label: 'Other',
+          detail: 'MongoDB, Elasticsearch, MySQL, PostgreSQL',
+        },
+      ],
+    },
+    {
+      title: 'Devops',
+      detail: 'I like to code things from scratch, and enjoy bringing ideas to life in the browser.',
+      imgName: '/laptop-code-solid.svg',
+      skills: [
+        {
+          label: 'OS',
+          detail: 'Linux, Macos, Windows',
+        },
+        {
+          label: 'Tools',
+          detail: 'Docker, K8S, RabbitMQ, Redis, Nginx',
+        },
+        {
+          label: 'Dev Tools',
+          detail: 'Len, Docker Desktop, Firebase, GCP, AWS',
+        },
+      ],
+    },
+  ]
+
   return (
     <section id='about' className={styles.about}>
       <h1 className={styles.title}>
@@ -67,18 +131,23 @@ export const About = () => {
         </div>
 
         <div className='about__skill-skill'>
-          <div className='about__skill-skill-card'>
-            <Image src='/laptop-code-solid.svg' alt='/laptop-code-solid.svg' width={50} height={50} />
-            <span className='about__skill-skill-card-title'>Front-end</span>
-          </div>
-          <div className='about__skill-skill-card'>
-            <Image src='/code-solid.svg' alt='/code-solid.svg' width={50} height={50} />
-            <span className='about__skill-skill-card-title'>Back-end</span>
-          </div>
-          <div className='about__skill-skill-card'>
-            <Image src='/terminal-solid.svg' alt='/terminal-solid.svg' width={50} height={50} />
-            <span className='about__skill-skill-card-title'>Devops</span>
-          </div>
+          {mainSkills.map(({ detail, imgName, skills, title }) => (
+            <div key={title} className='about__skill-skill-card'>
+              <Image src={imgName} alt={imgName} width={50} height={50} />
+
+              <span className='about__skill-skill-card-title'>{title}</span>
+
+              <p className='about__skill-skill-card-detail'>{detail}</p>
+
+              {skills.map(({ label, detail }) => (
+                <>
+                  <span className='about__skill-skill-card-label'>{label}</span>
+
+                  <p className='about__skill-skill-card-detail'>{detail}</p>
+                </>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </section>
