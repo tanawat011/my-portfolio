@@ -16,4 +16,15 @@ a {
   box-sizing: border-box;
 }
 
-@import './about.css'
+.no-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  font-size: 25px;
+  color: #444649;
+  font-weight: 600;
+}
+
+@import './about.css';
+@import './portfolio.css';
