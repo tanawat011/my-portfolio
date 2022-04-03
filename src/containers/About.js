@@ -8,7 +8,7 @@ export const About = () => {
     {
       imgPath: '/graduation-cap-solid.svg',
       title: 'Fast learning',
-      detail: 'I was able to quickly learn.',
+      detail: `I'm able to learn new things quickly.`,
     },
     {
       imgPath: '/people-group-solid.svg',
@@ -118,7 +118,7 @@ export const About = () => {
       <div className='about__skill'>
         <div className='about__skill-who'>
           <div className='about__skill-who-img'>
-            <Image src='/default-image-profile.png' alt="default-image-profile" width={250} height={250} />
+            <Image src='/me.jpg' alt="me" width={250} height={250} />
           </div>
 
           <span className='about__skill-who-title'>

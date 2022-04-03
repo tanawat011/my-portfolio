@@ -18,6 +18,10 @@
 .about__skill-who-img {
 }
 
+.about__skill-who-img > span {
+  border-radius: 50%;
+}
+
 .about__skill-who-title {
   font-size: 24px;
   font-weight: 500;
