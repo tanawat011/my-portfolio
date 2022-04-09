@@ -1,8 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import Image from 'next/image'
 
-import styles from '../../styles/Home.module.css'
-
 export const About = () => {
   const abilities = [
     {
@@ -92,25 +90,25 @@ export const About = () => {
   ]
 
   return (
-    <section id='about' className={styles.about}>
-      <h1 className={styles.title}>
+    <section id='about' className='container about'>
+      <h1 className='title-container'>
         ABOUT
       </h1>
 
-      <hr />
+      <hr className='title-decorate-line' />
 
-      <div className={styles.aboutAbility}>
+      <div className='about__ability'>
         {abilities.map(({ detail, imgPath, title }) => (
-          <div key={title} className={styles.aboutAbilityCard}>
-            <div className={styles.aboutAbilityWrapIcon}>
-              <div className={styles.hexagon}>
+          <div key={title} className='about__ability-card'>
+            <div className='about__ability-wrap-icon'>
+              <div className='hexagon'>
                 <Image src={imgPath} alt={imgPath} width={100} height={100} />
               </div>
             </div>
 
-            <div className={styles.aboutAbilityTitle}>{title}</div>
+            <div className='about__ability-title'>{title}</div>
 
-            <div className={styles.aboutAbilityDetail}>{detail}</div>
+            <div className='about__ability-detail'>{detail}</div>
           </div>
         ))}
       </div>
@@ -139,12 +137,12 @@ export const About = () => {
 
               <p className='about__skill-skill-card-detail'>{detail}</p>
 
-              {skills.map(({ label, detail }) => (
-                <>
+              {skills.map(({ label, detail }, index) => (
+                <div key={label + index}>
                   <span className='about__skill-skill-card-label'>{label}</span>
 
                   <p className='about__skill-skill-card-detail'>{detail}</p>
-                </>
+                </div>
               ))}
             </div>
           ))}

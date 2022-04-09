@@ -1,16 +1,11 @@
-/* eslint-disable react/no-unescaped-entities */
-import Image from 'next/image'
-
-import styles from '../../styles/Home.module.css'
-
 export const Portfolio = () => {
   return (
-    <section id='portfolio' className='portfolio'>
-      <h1 className='portfolio__title'>
+    <section id='portfolio' className='container'>
+      <h1 className='title-container'>
         PORTFOLIO
       </h1>
 
-      <hr className='portfolio__decorate-line' />
+      <hr className='title-decorate-line' />
 
       <div className='no-content'>
         Coming Soon

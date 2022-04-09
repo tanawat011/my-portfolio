@@ -16,15 +16,26 @@ a {
   box-sizing: border-box;
 }
 
-.no-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffffff;
-  font-size: 25px;
-  color: #444649;
-  font-weight: 600;
+.wrap-container {
+  background-color: #333;
 }
 
-@import './about.css';
-@import './portfolio.css';
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@import './common.css';
+@import './hexagon.css';
+
+@import './components/footer.css';
+@import './components/navbar.css';
+
+@import './containers/about.css';
+@import './containers/blog.css';
+@import './containers/contact.css';
+@import './containers/home.css';
+@import './containers/portfolio.css';

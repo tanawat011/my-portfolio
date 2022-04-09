@@ -1,5 +1,3 @@
-import styles from '../../styles/Home.module.css'
-
 export const Navbar = ({
   goToHome,
   goToAbout,
@@ -7,7 +5,7 @@ export const Navbar = ({
   goToBlog,
   goToContact,
 }) => (
-  <nav className={styles.navbar}>
+  <nav className='navbar'>
     <ul>
       <li><div href='#' onClick={goToHome}>HOME</div></li>
       <li><div href='#' onClick={goToAbout}>ABOUT</div></li>

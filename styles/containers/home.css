@@ -1,0 +1,58 @@
+.home {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: transparent;
+}
+
+.home__content {
+  position: absolute;
+  color: #fff;
+  text-align: center;
+}
+
+.home__content p {
+  margin: 0;
+}
+
+.home__content span {
+  color: lightskyblue;
+}
+
+.btn-view-profile {
+  position: relative;
+  display: flex;
+  width: 240px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 16px;
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 300;
+  padding: 8px 50px 12px 12px;
+  transition: all 0.5s;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.btn-view-profile:hover {
+  background-color: lightskyblue;
+  border-color: lightskyblue;
+}
+
+.btn-view-profile > span {
+  transition: all 0.2s;
+  position: absolute !important;
+  right: 20px;
+  top: 14px;
+}
+
+.btn-view-profile:hover span {
+  transform: rotate(90deg);
+}

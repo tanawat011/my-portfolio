@@ -1,0 +1,40 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  margin: 0;
+  height: 52px;
+  width: 100%;
+  animation: popDown 0.5s;
+  background-color: lightskyblue;
+  z-index: 99;
+}
+
+.navbar ul {
+  display: flex;
+  justify-content: center;
+
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+
+  background-color: #223;
+  list-style-type: none;
+}
+
+.navbar li div {
+  display: block;
+  color: #ffffff;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navbar li div:hover:not(.active) {
+  background-color: #111;
+}
+
+.navbar .active {
+  background-color: #04aa6d;
+}

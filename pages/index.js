@@ -12,8 +12,6 @@ import { Contact } from '../src/containers/Contact'
 import { Home } from '../src/containers/Home'
 import { Portfolio } from '../src/containers/Portfolio'
 
-import styles from '../styles/Home.module.css'
-
 export default function App () {
   const goToHome = () => {
     document.getElementById('home').scrollIntoView({ behavior: 'smooth' })
@@ -36,13 +34,13 @@ export default function App () {
   }
 
   return (
-    <div className={styles.container}>
+    <div className='wrap-container'>
       <Head>
         <title>Tanawat Pinthongpan</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <main className='main'>
         <Script src='/canvas.js' />
 
         <Home goToAbout={goToAbout} />
