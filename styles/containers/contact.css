@@ -1,0 +1,37 @@
+.contact {
+  background-color: #252934;
+  padding-bottom: 130px;
+}
+
+.contact > span {
+  width: 100% !important;
+  height: 75px !important;
+}
+
+.contact .title-container {
+  color: #ffffff;
+}
+
+.contact .title-decorate-line {
+  border: 2px solid #ffffff;
+  margin-bottom: 40px;
+}
+
+.contact__form {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin: auto;
+}
+
+.contact__send-me {
+  color: lightskyblue;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.contact__form-submit {
+  margin: 10px 0 0 auto
+}

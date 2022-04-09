@@ -29,7 +29,7 @@ export const About = () => {
     {
       title: 'Front-end',
       detail: 'I like to code things from scratch, and enjoy bringing ideas to life in the browser.',
-      imgName: '/laptop-code-solid.svg',
+      imgName: '/code-solid.svg',
       skills: [
         {
           label: 'Languages',
@@ -71,7 +71,7 @@ export const About = () => {
     {
       title: 'Devops',
       detail: 'I like to code things from scratch, and enjoy bringing ideas to life in the browser.',
-      imgName: '/laptop-code-solid.svg',
+      imgName: '/terminal-solid.svg',
       skills: [
         {
           label: 'OS',

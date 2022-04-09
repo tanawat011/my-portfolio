@@ -1,14 +1,45 @@
 import Image from 'next/image'
 
-export const Footer = () => <footer className='footer'>
-  <a
-    href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-    target='_blank'
-    rel='noopener noreferrer'
-  >
-    Powered by{' '}
-    <span className='logo'>
-      <Image src='/vercel.svg' alt='Vercel Logo' width={72} height={16} />
-    </span>
-  </a>
-</footer>
+export const Footer = () => {
+  const icons = [
+    {
+      path: '/icons/github-alt-brands.svg',
+      url: 'https://github.com/tanawat011',
+    },
+    {
+      path: '/icons/linkedin-in-brands.svg',
+      url: 'https://www.linkedin.com/in/tanawat-pinthongpan-683a84167/',
+    },
+    {
+      path: '/icons/facebook-f-brands.svg',
+      url: 'https://www.facebook.com/tanawat.pin',
+    },
+    {
+      path: '/icons/instagram-brands.svg',
+      url: 'https://www.instagram.com/ta.tanawat.pin/',
+    },
+    {
+      path: '/icons/line-brands.svg',
+      url: 'https://line.me/ti/p/zl5L3eSW0B',
+    },
+    {
+      path: '/icons/steam-symbol-brands.svg',
+      url: 'https://steamcommunity.com/id/tanawat_p',
+    },
+  ]
+
+  return (
+    <footer className='footer'>
+      <div className='footer__app'>
+        {icons.map(({ path, url }) => (
+          <a className='btn btn-icon' key={path} href={url} rel="noreferrer" target='_blank'>
+            <Image src={path} alt={path} width={24} height={24} />
+          </a>
+        ))}
+      </div>
+      <div className='footer__me'>
+        TANAWAT PINTHONGPAN <span>©2022</span>
+      </div>
+    </footer>
+  )
+}

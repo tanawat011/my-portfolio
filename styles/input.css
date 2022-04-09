@@ -1,0 +1,23 @@
+input {
+  color: #ffffff;
+  background-color: #1e242c;
+  box-sizing: border-box;
+  outline: none;
+  border: 0;
+  margin-bottom: 3px;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 15px;
+}
+
+textarea {
+  color: #ffffff;
+  background-color: #1e242c;
+  box-sizing: border-box;
+  outline: none;
+  border: 0;
+  margin-bottom: 3px;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 15px;
+}

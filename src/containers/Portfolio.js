@@ -1,6 +1,6 @@
 export const Portfolio = () => {
   return (
-    <section id='portfolio' className='container'>
+    <section id='portfolio' className='container portfolio'>
       <h1 className='title-container'>
         PORTFOLIO
       </h1>

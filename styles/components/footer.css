@@ -1,15 +1,30 @@
 .footer {
   display: flex;
-  flex: 1;
-  padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  background-color: #1b242f;
+  padding: 70px 0 50px;
 }
 
-.footer a {
+.footer__app {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-grow: 1;
+  margin-bottom: 30px;
+}
+
+.footer__app a {
+  margin: 0 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer__me {
+  color: #8f9aa7;
+  font-size: 12px;
+}
+
+.footer__me > span {
+  color: #e31b6d;
 }

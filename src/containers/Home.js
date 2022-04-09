@@ -14,7 +14,7 @@ export const Home = ({ goToAbout }) => {
         <p>Hello, I'm <span>Tanawat Pinthongpan(Ta)</span>.</p>
         <p>I'm a fullstack developer.</p>
 
-        <div dest='about' className='btn-view-profile' onClick={goToAbout}>
+        <div dest='about' className='btn' onClick={goToAbout}>
           View my profile
           <Image src='/arrow.svg' alt="Arrow" width={22} height={22} />
         </div>

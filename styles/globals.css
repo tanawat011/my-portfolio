@@ -28,8 +28,10 @@ a {
   align-items: center;
 }
 
+@import './button.css';
 @import './common.css';
 @import './hexagon.css';
+@import './input.css';
 
 @import './components/footer.css';
 @import './components/navbar.css';

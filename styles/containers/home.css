@@ -22,7 +22,7 @@
   color: lightskyblue;
 }
 
-.btn-view-profile {
+div.btn {
   position: relative;
   display: flex;
   width: 240px;
@@ -30,29 +30,17 @@
   align-items: center;
   margin: auto;
   margin-top: 16px;
-  background-color: transparent;
-  border: 2px solid #fff;
-  color: #fff;
   font-size: 24px;
-  font-weight: 300;
-  padding: 8px 50px 12px 12px;
-  transition: all 0.5s;
-  box-sizing: border-box;
-  cursor: pointer;
+  padding-right: 50px;
 }
 
-.btn-view-profile:hover {
-  background-color: lightskyblue;
-  border-color: lightskyblue;
-}
-
-.btn-view-profile > span {
+div.btn > span {
   transition: all 0.2s;
   position: absolute !important;
   right: 20px;
   top: 14px;
 }
 
-.btn-view-profile:hover span {
+div.btn:hover span {
   transform: rotate(90deg);
 }
