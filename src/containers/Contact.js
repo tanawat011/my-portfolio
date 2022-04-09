@@ -16,7 +16,7 @@ export const Contact = () => {
 
   return (
     <section id='contact' className='container contact'>
-      <Image src='/bg-bottom-arrow-white.svg' alt="bg-bottom-arrow-white" width='100%' height={22} />
+      <Image src='/images/bg-bottom-arrow-white.svg' alt="bg-bottom-arrow-white" width='100%' height={22} />
 
       <h1 className='title-container'>
         CONTACT

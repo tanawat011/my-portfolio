@@ -41,7 +41,7 @@ export default function App () {
       </Head>
 
       <main className='main'>
-        <Script src='/canvas.js' />
+        <Script src='/canvas/home-bg.js' />
 
         <Home goToAbout={goToAbout} />
 

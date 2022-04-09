@@ -4,22 +4,22 @@ import Image from 'next/image'
 export const About = () => {
   const abilities = [
     {
-      imgPath: '/graduation-cap-solid.svg',
+      imgPath: '/icons/graduation-cap-solid.svg',
       title: 'Fast learning',
       detail: `I'm able to learn new things quickly.`,
     },
     {
-      imgPath: '/people-group-solid.svg',
+      imgPath: '/icons/people-group-solid.svg',
       title: 'Leadership',
       detail: 'Not only can delegate and strategy, but also have to support everyone.',
     },
     {
-      imgPath: '/people-carry-box-solid.svg',
+      imgPath: '/icons/people-carry-box-solid.svg',
       title: 'Teamwork',
       detail: 'I can effective teamwork.',
     },
     {
-      imgPath: '/bug-slash-solid.svg',
+      imgPath: '/icons/bug-slash-solid.svg',
       title: 'Problem Solving',
       detail: 'Use my existing programming knowledge to fix bugs.',
     },
@@ -29,7 +29,7 @@ export const About = () => {
     {
       title: 'Front-end',
       detail: 'I like to code things from scratch, and enjoy bringing ideas to life in the browser.',
-      imgName: '/code-solid.svg',
+      imgName: '/icons/code-solid.svg',
       skills: [
         {
           label: 'Languages',
@@ -48,7 +48,7 @@ export const About = () => {
     {
       title: 'Back-end',
       detail: 'I like to code things from scratch, and enjoy bringing ideas to life in the browser.',
-      imgName: '/laptop-code-solid.svg',
+      imgName: '/icons/laptop-code-solid.svg',
       skills: [
         {
           label: 'Languages',
@@ -71,7 +71,7 @@ export const About = () => {
     {
       title: 'Devops',
       detail: 'I like to code things from scratch, and enjoy bringing ideas to life in the browser.',
-      imgName: '/terminal-solid.svg',
+      imgName: '/icons/terminal-solid.svg',
       skills: [
         {
           label: 'OS',
@@ -116,7 +116,7 @@ export const About = () => {
       <div className='about__skill'>
         <div className='about__skill-who'>
           <div className='about__skill-who-img'>
-            <Image src='/me.jpg' alt="me" width={250} height={250} />
+            <Image src='/images/me.jpg' alt="me" width={250} height={250} />
           </div>
 
           <span className='about__skill-who-title'>

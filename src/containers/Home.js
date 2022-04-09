@@ -16,7 +16,7 @@ export const Home = ({ goToAbout }) => {
 
         <div dest='about' className='btn' onClick={goToAbout}>
           View my profile
-          <Image src='/arrow.svg' alt="Arrow" width={22} height={22} />
+          <Image src='/icons/arrow.svg' alt="Arrow" width={22} height={22} />
         </div>
       </h1>
     </section>
