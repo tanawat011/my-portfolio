@@ -144,6 +144,8 @@ export const About = () => {
                   <p className='about__skill-skill-card-detail'>{detail}</p>
                 </div>
               ))}
+
+              <hr className='decorate-line' />
             </div>
           ))}
         </div>

@@ -1,3 +1,7 @@
+.about {
+  padding: 0;
+}
+
 .about__ability {
   display: flex;
   justify-content: center;
@@ -109,4 +113,66 @@
   color: lightskyblue;
   font-weight: 600;
   font-size: 14px;
+}
+
+@media screen and (max-width: 370px) {
+  .about__skill-who-content {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .about .about__ability .about__ability-card {
+    margin: 0 0 24px !important;
+    width: 190px;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .about .about__ability .about__ability-card {
+    margin: 0 16px 24px;
+    width: 190px;
+  }
+
+  .about__ability .about__ability-card .about__ability-wrap-icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .about__ability-wrap-icon span {
+    top: 12px;
+  }
+
+  .about__skill .about__skill-skill {
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: calc(960px - 1px)) {
+  .about__ability {
+    flex-wrap: wrap;
+  }
+
+  .about__ability .about__ability-card {
+    margin: 0 36px 24px;
+  }
+
+  .about__skill {
+    flex-wrap: wrap;
+  }
+
+  .about__skill .about__skill-who {
+    margin-bottom: 24px;
+  }
+
+  .about__skill .about__skill-skill {
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .about {
+    padding: 0 240px;
+  }
 }

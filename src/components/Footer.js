@@ -7,6 +7,10 @@ export const Footer = () => {
       url: 'https://github.com/tanawat011',
     },
     {
+      path: '/icons/medium-brands.svg',
+      url: 'https://medium.com/@tanawat.p',
+    },
+    {
       path: '/icons/linkedin-in-brands.svg',
       url: 'https://www.linkedin.com/in/tanawat-pinthongpan-683a84167/',
     },

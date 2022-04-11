@@ -1,6 +1,5 @@
 .contact {
   background-color: #252934;
-  padding-bottom: 130px;
 }
 
 .contact > span {
@@ -21,8 +20,10 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  width: 500px;
+  max-width: 548px;
   margin: auto;
+  box-sizing: border-box;
+  padding: 0 24px 130px;
 }
 
 .contact__send-me {
@@ -33,5 +34,5 @@
 }
 
 .contact__form-submit {
-  margin: 10px 0 0 auto
+  margin: 10px 0 0 auto;
 }

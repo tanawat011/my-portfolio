@@ -30,3 +30,12 @@
   color: #444649;
   font-weight: 600;
 }
+
+@media screen and (max-width: 660px) {
+  .decorate-line {
+    width: 70px;
+    border: 2px solid #444649;
+    margin-bottom: 24px;
+    opacity: 30%;
+  }
+}

@@ -29,7 +29,7 @@ export const Contact = () => {
         className='contact__form'
         onSubmit={handleSubmit}
       >
-        <span className='contact__send-me'>Send me a message</span>
+        <span className='contact__send-me'>Send me a message (Coming soon)</span>
 
         <input id='name' type='text' placeholder='Name' required />
 

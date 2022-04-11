@@ -11,11 +11,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
 }
 
 .footer__app a {
-  margin: 0 15px;
+  margin: 0 15px 15px;
   display: flex;
   justify-content: center;
 }
