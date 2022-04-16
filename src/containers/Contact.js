@@ -22,7 +22,7 @@ export const Contact = () => {
         CONTACT
       </h1>
 
-      <hr className='title-decorate-line' />
+      <hr className='title-bar' />
 
       <form
         id='contact-form'

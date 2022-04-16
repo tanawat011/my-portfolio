@@ -5,7 +5,7 @@ export const Portfolio = () => {
         PORTFOLIO
       </h1>
 
-      <hr className='title-decorate-line' />
+      <hr className='title-bar' />
 
       <div className='no-content'>
         Coming Soon

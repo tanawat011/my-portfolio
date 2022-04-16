@@ -95,7 +95,7 @@ export const About = () => {
         ABOUT
       </h1>
 
-      <hr className='title-decorate-line' />
+      <hr className='title-bar' />
 
       <div className='about__ability'>
         {abilities.map(({ detail, imgPath, title }) => (
@@ -116,7 +116,7 @@ export const About = () => {
       <div className='about__skill'>
         <div className='about__skill-who'>
           <div className='about__skill-who-img'>
-            <Image src='/images/me.jpg' alt="me" width={250} height={250} />
+            <Image src='/images/me.jpg' alt='me' width={250} height={250} />
           </div>
 
           <span className='about__skill-who-title'>
@@ -145,7 +145,7 @@ export const About = () => {
                 </div>
               ))}
 
-              <hr className='decorate-line' />
+              <hr className='bar' />
             </div>
           ))}
         </div>
