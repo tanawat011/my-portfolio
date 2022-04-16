@@ -11,10 +11,10 @@ const nextConfig = {
   //   contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   // },
   images: {
-    // loader: 'imgix',
-    // path: 'https://tanawat.web.app/',
+    loader: 'imgix',
+    path: 'https://tanawat.web.app/',
     // path: 'http://localhost:3000/',
-    domains: ['cdn-images-1.medium.com', 'medium.com'],
+    // domains: ['cdn-images-1.medium.com', 'medium.com'],
   },
 }
 

@@ -15,32 +15,35 @@ export const Contact = () => {
   }
 
   return (
-    <section id='contact' className='container contact'>
-      <Image src='/images/bg-bottom-arrow-white.svg' alt="bg-bottom-arrow-white" width='100%' height={22} />
+    <>
+      <img className='contact__bg-head' src='/images/bg-bottom-arrow-white.svg' alt="bg-bottom-arrow-white" width='100%' height={75} />
 
-      <h1 className='title-container'>
-        CONTACT
-      </h1>
+      <section id='contact' className='container contact'>
 
-      <hr className='title-bar' />
+        <h1 className='title-container'>
+          CONTACT
+        </h1>
 
-      <form
-        id='contact-form'
-        className='contact__form'
-        onSubmit={handleSubmit}
-      >
-        <span className='contact__send-me'>Send me a message (Coming soon)</span>
+        <hr className='title-bar' />
 
-        <input id='name' type='text' placeholder='Name' required />
+        <form
+          id='contact-form'
+          className='contact__form'
+          onSubmit={handleSubmit}
+        >
+          <span className='contact__send-me'>Send me a message (Coming soon)</span>
 
-        <input id='email' type='email' placeholder='Enter email' required />
+          <input id='name' type='text' placeholder='Name' required />
 
-        <textarea id='message' placeholder='Your Message' rows='6' required />
+          <input id='email' type='email' placeholder='Enter email' required />
 
-        <button className='btn contact__form-submit' type='submit'>
-          SUBMIT
-        </button>
-      </form>
-    </section>
+          <textarea id='message' placeholder='Your Message' rows='6' required />
+
+          <button className='btn contact__form-submit' type='submit'>
+            SUBMIT
+          </button>
+        </form>
+      </section>
+    </>
   )
 }
