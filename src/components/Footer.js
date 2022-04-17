@@ -8,7 +8,7 @@ export const Footer = () => {
     },
     {
       path: '/icons/medium-brands.svg',
-      url: 'https://medium.com/@tanawat.p',
+      url: 'https://medium.com/@tanawat-p',
     },
     {
       path: '/icons/linkedin-in-brands.svg',

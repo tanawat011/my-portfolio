@@ -1,7 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 import Image from 'next/image'
 
+import { diff_years } from '../utils/date'
+
 export const About = () => {
+  const dateBeginOfWorks = new Date('July 24, 2017 00:00:00')
+  const today = new Date()
+  const yearsOfWorks = diff_years(dateBeginOfWorks, today)
+
   const abilities = [
     {
       imgPath: '/icons/graduation-cap-solid.svg',
@@ -123,9 +129,9 @@ export const About = () => {
             Who's this guy?
           </span>
 
-          <span className='about__skill-who-content'>
-            I'm a Fullstack Developer in Bangkok, Thailand.
-          </span>
+          <code className='about__skill-who-content'>
+            I'm a Fullstack Developer in Bangkok, Thailand. And I'm a passionate about programming. I have a experience in programming for more than <b>{yearsOfWorks}</b> years.
+          </code>
         </div>
 
         <div className='about__skill-skill'>

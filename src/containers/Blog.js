@@ -1,23 +1,24 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react'
-import Image from 'next/image'
+// import { parse } from 'rss-to-json'
 
 export const Blog = () => {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-  const mediumUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@tanawat.p'
+  const mediumUrl = 'https://medium.com/feed/@tanawat-p'
+  const rssUrl = `https://api.rss2json.com/v1/api.json?rss_url=${mediumUrl}&api_key=8uxaweddr0gqiqu1jnjgs0cmrbtho6afqrcviclk`
 
   const [blogs, setBlogs] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
-      const rawData = await fetch(mediumUrl)
+      const rawData = await fetch(rssUrl)
       const data = await rawData.json()
-      const items = data.items.filter(item => !item.content.includes('ลองมาทบทวน Dockerfile'))
+      const items = data.items?.filter(item => !item.content.includes('ลองมาทบทวน Dockerfile'))
 
       const temp = []
 
-      items.forEach((item, index) => {
+      items?.forEach((item, index) => {
         const fakeIndex = index + 1
         const { thumbnail, title, pubDate, content, link } = item
 
@@ -40,7 +41,6 @@ export const Blog = () => {
         })
       })
 
-      console.log(temp)
       setBlogs(temp)
     }
 
