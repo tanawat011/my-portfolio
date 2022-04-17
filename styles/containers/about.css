@@ -74,6 +74,7 @@
 }
 
 .about__skill-who-content {
+  /* width: 484px; */
 }
 
 .about__skill-skill {
@@ -127,6 +128,16 @@
     margin: 0 0 24px !important;
     width: 190px;
   }
+
+  .about__skill .about__skill-who .about__skill-who-content {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  .about__skill .about__skill-who .about__skill-who-content {
+    width: 360px;
+  }
 }
 
 @media screen and (max-width: 660px) {
@@ -170,6 +181,22 @@
   .about__skill .about__skill-skill {
     justify-content: center;
   }
+
+  .about__skill-who .about__skill-who-content {
+    width: 484px;
+  }
+}
+
+@media screen and (max-width: 1120px) {
+  .about__skill-who-content {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .about__skill-who-content {
+    width: 484px;
+  }
 }
 
 @media screen and (max-width: 1600px) {
@@ -181,5 +208,17 @@
 @media screen and (min-width: 1601px) {
   .about {
     padding: 0 240px;
+  }
+}
+
+@media screen and (min-width: 1691px) {
+  .about {
+    padding: 0 330px;
+  }
+}
+
+@media screen and (min-width: 1971px) {
+  .about {
+    padding: 0 400px;
   }
 }
