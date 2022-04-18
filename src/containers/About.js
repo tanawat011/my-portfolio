@@ -34,7 +34,7 @@ export const About = () => {
   const mainSkills = [
     {
       title: 'Front-end',
-      detail: 'I like to code things from scratch, and enjoy bringing ideas to life in the browser.',
+      detail: 'I like to Front-end coding and enjoy bringing ideas to life in the browser.',
       imgName: '/icons/code-solid.svg',
       skills: [
         {
@@ -47,13 +47,13 @@ export const About = () => {
         },
         {
           label: 'Dev Tools',
-          detail: 'VSCode, XCode, Android Studio, Github, Gitlab, Figma',
+          detail: 'VSCode, Git, Figma, XCode, Android Studio',
         },
       ],
     },
     {
       title: 'Back-end',
-      detail: 'I like to code things from scratch, and enjoy bringing ideas to life in the browser.',
+      detail: 'I like to Back-end coding because I enjoy to thinking a new logic.',
       imgName: '/icons/laptop-code-solid.svg',
       skills: [
         {
@@ -62,21 +62,21 @@ export const About = () => {
         },
         {
           label: 'Framework/Libs',
-          detail: 'NodeJS, Gin',
+          detail: 'NodeJS, Gin, Fiber',
         },
         {
           label: 'Dev Tools',
-          detail: 'VSCode, Github, Gitlab, Postman, Datagrip',
+          detail: 'VSCode, Git, Postman, Datagrip, Dbeaver',
         },
         {
-          label: 'Other',
-          detail: 'MongoDB, Elasticsearch, MySQL, PostgreSQL',
+          label: 'SQL/NoSQL',
+          detail: 'MySQL, PostgreSQL, MongoDB, Elasticsearch',
         },
       ],
     },
     {
       title: 'Devops',
-      detail: 'I like to code things from scratch, and enjoy bringing ideas to life in the browser.',
+      detail: 'I like Devops because it makes me feel like a server god.',
       imgName: '/icons/terminal-solid.svg',
       skills: [
         {
