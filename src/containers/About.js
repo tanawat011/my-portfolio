@@ -58,11 +58,11 @@ export const About = () => {
       skills: [
         {
           label: 'Languages',
-          detail: 'JS, TS, Golang, Python, SQL, GraphQL',
+          detail: 'JS, TS, Golang, SQL, GraphQL',
         },
         {
           label: 'Framework/Libs',
-          detail: 'NodeJS, Gin, Fiber',
+          detail: 'NodeJS, Express, Fastify, Gin, Fiber',
         },
         {
           label: 'Dev Tools',
