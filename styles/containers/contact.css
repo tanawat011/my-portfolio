@@ -20,6 +20,10 @@
   margin-bottom: 40px;
 }
 
+.contact__bg-head {
+  background-color: #252934;
+}
+
 .contact__form {
   text-align: center;
   display: flex;
