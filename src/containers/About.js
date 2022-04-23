@@ -43,7 +43,7 @@ export const About = () => {
         },
         {
           label: 'Framework/Libs',
-          detail: 'React, React Native, NextJS, Tailwind, Bootstrap',
+          detail: 'React, React Native, NextJS, Tailwind, Bootstrap, Jest',
         },
         {
           label: 'Dev Tools',
@@ -58,11 +58,11 @@ export const About = () => {
       skills: [
         {
           label: 'Languages',
-          detail: 'JS, TS, Golang, SQL, GraphQL',
+          detail: 'JS, TS, Golang, SQL',
         },
         {
           label: 'Framework/Libs',
-          detail: 'NodeJS, Express, Fastify, Gin, Fiber',
+          detail: 'NodeJS, Express, Fastify, Gin, Fiber, Jest',
         },
         {
           label: 'Dev Tools',
