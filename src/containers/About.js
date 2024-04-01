@@ -42,8 +42,8 @@ export const About = () => {
           detail: 'HTML, CSS, Sass, JS, TS',
         },
         {
-          label: 'Framework/Libs',
-          detail: 'React, React Native, NextJS, Tailwind, Bootstrap, Jest',
+          label: 'Technologies',
+          detail: 'React, React Native, NextJS, DaisyUI, NextUI, NextAuth, Auth0, Tailwind, Bootstrap, Jest, Vitest',
         },
         {
           label: 'Dev Tools',
@@ -61,22 +61,18 @@ export const About = () => {
           detail: 'JS, TS, Golang, SQL',
         },
         {
-          label: 'Framework/Libs',
-          detail: 'NodeJS, Express, Fastify, Gin, Fiber, Jest',
+          label: 'Technologies',
+          detail: 'NodeJS, NestJS, Jest, GraphQL, Firebase, Vercel, MySQL, PostgreSQL, MongoDB',
         },
         {
           label: 'Dev Tools',
           detail: 'VSCode, Git, Postman, Datagrip, Dbeaver',
         },
-        {
-          label: 'SQL/NoSQL',
-          detail: 'MySQL, PostgreSQL, MongoDB, Elasticsearch',
-        },
       ],
     },
     {
-      title: 'Devops',
-      detail: 'I like Devops because it makes me feel like a server god.',
+      title: 'Others',
+      detail: 'My Other skills that I have learned and used in my work.',
       imgName: '/icons/terminal-solid.svg',
       skills: [
         {
@@ -84,12 +80,12 @@ export const About = () => {
           detail: 'Linux, Macos, Windows',
         },
         {
-          label: 'Tools',
-          detail: 'Docker, K8S, RabbitMQ, Redis, Nginx',
+          label: 'Technologies',
+          detail: 'Docker, K8S, RabbitMQ, Redis, Nginx, Firebase, GCP, AWS',
         },
         {
           label: 'Dev Tools',
-          detail: 'Len, Docker Desktop, Firebase, GCP, AWS',
+          detail: 'Len, Docker Desktop',
         },
       ],
     },

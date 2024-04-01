@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 export const Blog = () => {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -31,8 +32,13 @@ export const Blog = () => {
 
         pubDate = new Date(pubDate)
 
+        if (!thumbnail) {
+          if (title.toLowerCase().includes('grafana')) thumbnail = '/images/thumbnail-grafana.webp'
+          if (title.toLowerCase().includes('elasticsearch')) thumbnail = '/images/thumbnail-elasticsearch.png'
+        }
+
         temp[temp.length - 1].push({
-          image: thumbnail,
+          image: thumbnail || '/images/thumbnail-default.jpg',
           title,
           date: `${months[pubDate.getMonth()]} ${pubDate.getDate()}, ${pubDate.getFullYear()}`,
           content: content.slice(0, 200),
@@ -62,8 +68,9 @@ export const Blog = () => {
                 {items.map(({ image, title, date, content, url }, j) => {
                   return (
                     <a key={j + title} className='blog__item' href={url} target='_blank' rel='noreferrer'>
-                      <div className='blog__item-img'>
-                        <img src={image} alt={image} />
+                      <div className='blog__item-img' style={{ padding: '8px' }}>
+                        <img src={image} alt={image} style={{width: '100%'}} />
+                        {/* <Image src={image} alt='me' width={400} height={200} /> */}
                       </div>
 
                       <p className='blog__item-title'>{title}</p>

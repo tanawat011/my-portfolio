@@ -13,24 +13,8 @@ import { Home } from '../src/containers/Home'
 import { Portfolio } from '../src/containers/Portfolio'
 
 export default function App () {
-  const goToHome = () => {
-    document.getElementById('home').scrollIntoView({ behavior: 'smooth' })
-  }
-
-  const goToAbout = () => {
-    document.getElementById('about').scrollIntoView({ behavior: 'smooth' })
-  }
-
-  const goToPortfolio = () => {
-    document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' })
-  }
-
-  const goToBlog = () => {
-    document.getElementById('blog').scrollIntoView({ behavior: 'smooth' })
-  }
-
-  const goToContact = () => {
-    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })
+  const handleGoto = (section = 'home') => {
+    document.getElementById(section).scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
@@ -44,14 +28,14 @@ export default function App () {
       <main className='main'>
         <Script src='/canvas/home-bg.js' />
 
-        <Home goToAbout={goToAbout} />
+        <Home goToAbout={() => handleGoto('about')} />
 
         <Navbar
-          goToHome={goToHome}
-          goToAbout={goToAbout}
-          goToPortfolio={goToPortfolio}
-          goToBlog={goToBlog}
-          goToContact={goToContact}
+          goToHome={() => handleGoto('home')}
+          goToAbout={() => handleGoto('about')}
+          goToPortfolio={() => handleGoto('portfolio')}
+          goToBlog={() => handleGoto('blog')}
+          goToContact={() => handleGoto('contact')}
         />
 
         <About />
