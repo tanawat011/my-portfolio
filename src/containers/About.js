@@ -43,7 +43,7 @@ export const About = () => {
         },
         {
           label: 'Technologies',
-          detail: 'React, React Native, NextJS, DaisyUI, NextUI, NextAuth, Auth0, Tailwind, Bootstrap, Jest, Vitest',
+          detail: 'React, React Native, NextJS, RedwoodJS, DaisyUI, NextUI, NextAuth, Auth0, Tailwind, Bootstrap, Jest, Vitest',
         },
         {
           label: 'Dev Tools',
@@ -62,7 +62,7 @@ export const About = () => {
         },
         {
           label: 'Technologies',
-          detail: 'NodeJS, NestJS, Jest, GraphQL, Firebase, Vercel, MySQL, PostgreSQL, MongoDB',
+          detail: 'NodeJS, NestJS, Jest, GraphQL, Restful API, Firebase, Vercel, MySQL, PostgreSQL, MongoDB, Prisma',
         },
         {
           label: 'Dev Tools',
