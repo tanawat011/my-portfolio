@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🌐 My Portfolio
 
-## Getting Started
+> *"I write code, break things, fix them, and ship it. Repeat."*
 
-First, run the development server:
+Personal portfolio website built with modern web tech — and a little help from my AI friends 🤖
 
-```bash
-yarn dev
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/tanawat011/my-portfolio)
+
+## ✨ Features
+
+- 🎨 Dark theme with glassmorphism & gradient effects
+- ⚡ Smooth scroll-triggered animations (Framer Motion)
+- 📱 Fully responsive (mobile → desktop)
+- 📄 Download CV button
+- 📊 GitHub Stats & Streak cards
+- 🎮 Fun Facts with developer humor
+- 🚀 Live project showcase
+- 🔗 Social links (GitHub, LinkedIn, Facebook, Steam, Telegram, Line, Email)
+
+## 🛠 Tech Stack
+
+| Category | Tech |
+|----------|------|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS 4 |
+| Animations | Framer Motion 11 |
+| Deployment | Vercel |
+
+## 📁 Project Structure
+
+```
+├── app/
+│   ├── layout.tsx          # Root layout + SEO metadata
+│   ├── page.tsx            # Main page (all sections)
+│   └── globals.css         # Design tokens & global styles
+├── components/
+│   ├── Navbar.tsx           # Sticky glassmorphic navbar
+│   ├── Footer.tsx           # Social links & credits
+│   ├── ScrollToTop.tsx      # Floating scroll button
+│   ├── AnimatedSection.tsx  # Reusable scroll animation
+│   └── sections/
+│       ├── Hero.tsx         # Intro + CTA buttons
+│       ├── About.tsx        # Profile, abilities & skills
+│       ├── Portfolio.tsx    # GitHub projects
+│       ├── Showcase.tsx     # Live production projects
+│       ├── GitHubStats.tsx  # GitHub stats cards
+│       └── FunFacts.tsx     # Developer humor stats
+└── public/
+    ├── icons/               # SVG icons
+    ├── images/              # Profile image
+    └── resume.pdf           # Downloadable CV
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Getting Started
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```bash
+# Install dependencies
+bun install
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+# Run dev server
+bun dev
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Open [http://localhost:3000](http://localhost:3000)
 
-## Learn More
+## 📦 Deploy
 
-To learn more about Next.js, take a look at the following resources:
+Push to `main` branch → Vercel auto-deploys. That's it. 🎯
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📄 CV Setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Place your resume PDF at `public/resume.pdf` — the download button in Hero links to it.
 
-### My inspired
-http://findmatthew.com/
-https://coryhughart.com/
+## 🤝 Credits
 
-### Future Features
-- Button download CV
-- Button scroll to top
-- Portfolio
-- Function send email from contact form
+Built with ❤️ by [Tanawat Pinthongpan](https://github.com/tanawat011)
+
+AI-assisted development — because transparency is cool 🤖
+
+## 📝 License
+
+MIT
