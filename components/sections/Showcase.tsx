@@ -12,6 +12,14 @@ const liveProjects = [
     gradient: 'from-violet-500 to-purple-600',
     emoji: '🧪',
   },
+  {
+    title: 'My Portfolio',
+    desc: 'My personal developer portfolio — showcasing projects, skills, and experience. Built with Next.js 15, Tailwind CSS, and Framer Motion.',
+    url: 'https://tanawat.dev',
+    tags: ['Next.js', 'TypeScript', 'Tailwind', 'Framer Motion', 'Vercel'],
+    gradient: 'from-cyan-500 to-blue-600',
+    emoji: '🌐',
+  },
 ];
 
 export function Showcase() {

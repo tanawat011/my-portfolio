@@ -20,6 +20,14 @@ const projects = [
     gradient: 'from-emerald-500 to-green-400',
   },
   {
+    title: 'NestJS Boilerplate',
+    desc: 'Production-ready NestJS 11 boilerplate with TypeORM, PostgreSQL, JWT auth, Swagger, and Docker.',
+    tags: ['NestJS', 'TypeScript', 'TypeORM', 'PostgreSQL', 'JWT', 'Docker', 'Swagger'],
+    github: 'https://github.com/tanawat011/nestjs-boilerplate',
+    icon: '🔴',
+    gradient: 'from-red-500 to-rose-400',
+  },
+  {
     title: 'My Portfolio',
     desc: 'This very website you\'re looking at right now. Built with Next.js 15, Tailwind CSS, and a little help from AI friends. 🤖',
     tags: ['Next.js', 'TypeScript', 'Tailwind', 'Framer Motion', 'Vercel'],
