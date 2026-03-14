@@ -5,7 +5,7 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains' });
 
-const siteUrl = 'https://tanawat-portfolio.vercel.app';
+const siteUrl = 'https://tanawat.dev';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
