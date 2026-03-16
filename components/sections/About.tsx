@@ -17,7 +17,7 @@ const skills = [
     desc: 'AI is part of my daily workflow — coding, reviewing, and shipping with it.',
     color: '#facc15',
     items: [
-      { label: 'Models', value: 'Claude Opus, Claude Sonnet, Gemini, GPT' },
+      { label: 'Models', value: 'Claude, Gemini, GPT' },
       { label: 'Tools', value: 'OpenClaw, Cursor, Antigravity' },
     ],
   },
@@ -27,7 +27,7 @@ const skills = [
     desc: 'My daily driver — what I\'m actively building with right now. 🔥',
     color: '#f97316',
     items: [
-      { label: 'Frontend', value: 'Next.js, React, React Native, Flutter, Swift, Tailwind' },
+      { label: 'Frontend', value: 'Next.js, React, React Native, Flutter, Swift, Tailwind, Shadcn/UI, Ant Design' },
       { label: 'Backend & Infra', value: 'Supabase, PostgreSQL, Vercel, Bun, Docker' },
     ],
   },
@@ -92,7 +92,7 @@ const skills = [
     items: [
       { label: 'Containers', value: 'Docker, Nginx' },
       { label: 'Package & Runtime', value: 'Git, npm, Yarn, Bun' },
-      { label: 'Dev Tools', value: 'Xcode' },
+      { label: 'Dev Tools', value: 'Antigravity, Cursor, Xcode' },
       { label: 'Services', value: 'Sentry, Resend, ngrok, Line OA' },
     ],
   },
@@ -139,24 +139,24 @@ export function About() {
           <div className="lg:sticky lg:top-24 lg:self-start">
             <AnimatedSection>
               <div className="gradient-border-card p-8 text-center">
-              <div className="relative w-40 h-40 mx-auto mb-6">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-indigo-500 to-cyan-500 blur-md opacity-40" />
-                <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-primary/30">
-                  <Image src="/images/me.jpg" alt="Tanawat" width={160} height={160} className="object-cover" />
+                <div className="relative w-40 h-40 mx-auto mb-6">
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-indigo-500 to-cyan-500 blur-md opacity-40" />
+                  <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-primary/30">
+                    <Image src="/images/me.jpg" alt="Tanawat" width={160} height={160} className="object-cover" />
+                  </div>
                 </div>
-              </div>
-              <h3 className="text-xl font-bold mb-3">Hey, that&apos;s me! 👋</h3>
-              <p className="text-sm text-text-secondary leading-relaxed">
-                A Fullstack Developer with{' '}
-                <span className="gradient-text font-bold">{yearsOfWork}+ years</span>{' '}
-                of turning coffee into code. Been a Senior Dev, tried being a Lead — 
-                but meetings aren&apos;t my love language. Coding is. So here I am, happily typing away. ⌨️
-              </p>
-              <p className="text-sm text-text-secondary leading-relaxed mt-3">
-                Open source contributor by passion.
-                My English speaking? Let&apos;s just say I&apos;m better at writing code than writing essays.
-                But I&apos;m working on it — one awkward conversation at a time. 😅
-              </p>
+                <h3 className="text-xl font-bold mb-3">Hey, that&apos;s me! 👋</h3>
+                <p className="text-sm text-text-secondary leading-relaxed">
+                  A Fullstack Developer with{' '}
+                  <span className="gradient-text font-bold">{yearsOfWork}+ years</span>{' '}
+                  of turning coffee into code. Been a Senior Dev, tried being a Lead —
+                  but meetings aren&apos;t my love language. Coding is. So here I am, happily typing away. ⌨️
+                </p>
+                <p className="text-sm text-text-secondary leading-relaxed mt-3">
+                  Open source contributor by passion.
+                  My English speaking? Let&apos;s just say I&apos;m better at writing code than writing essays.
+                  But I&apos;m working on it — one awkward conversation at a time. 😅
+                </p>
               </div>
             </AnimatedSection>
           </div>
