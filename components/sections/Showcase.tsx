@@ -20,6 +20,14 @@ const liveProjects = [
     gradient: 'from-cyan-500 to-blue-600',
     emoji: '🌐',
   },
+  {
+    title: 'CraftCV',
+    desc: 'AI-powered resume builder — ATS-friendly templates, AI writing assistant, instant PDF export, and public resume URL. No paywalls.',
+    url: 'https://craftcv.vtxlabs.app',
+    tags: ['Next.js', 'React', 'Tailwind', 'AI', 'Supabase'],
+    gradient: 'from-amber-500 to-orange-600',
+    emoji: '📄',
+  },
 ];
 
 export function Showcase() {
