@@ -105,11 +105,11 @@ export function Hero() {
             Who am I?
           </button>
           <a
-            href="/resume.pdf"
-            download
+            href="#resume"
+            onClick={(e) => { e.preventDefault(); document.getElementById('resume')?.scrollIntoView({ behavior: 'smooth' }); }}
             className="px-8 py-3 rounded-full border border-primary/30 text-primary-light font-medium hover:bg-primary/10 hover:scale-105 transition-all duration-200"
           >
-            📄 Download CV
+            📄 My Resume
           </a>
           <a
             href="#portfolio"
