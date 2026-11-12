@@ -22,9 +22,9 @@ const desktop: DesktopApp[] = [
   { id: 'ignis', name: 'Ignis', element: 'Fire', job: 'Dev tools', hue: 35, line: 'Paste anything and it knows what it is: JSON, JWT, Base64, timestamps, cron, cURL. Nothing leaves your Mac.' },
   { id: 'aqua', name: 'Aqua', element: 'Water', job: 'Mac cleaning', hue: 245, line: "Knows a developer's disk: build folders, tool caches, simulators, Docker. Says why each item is safe to remove." },
   { id: 'cuprum', name: 'Cuprum', element: 'Copper', job: 'Code editor', hue: 54, line: 'Traces where your data goes across a codebase, and opens a repo already knowing its stack.', note: 'Personal build' },
-  { id: 'lux', name: 'Lux', element: 'Light', job: 'Video', hue: 85, line: 'Short videos made from a script, with a live preview of the scene, the characters, the shots and the voices.' },
-  { id: 'mercurius', name: 'Mercurius', element: 'Quicksilver', job: 'Mail', hue: 262, line: 'Every Gmail account in one inbox, stored on your Mac. A send is held for ten seconds, just in case.' },
-  { id: 'crystallum', name: 'Crystallum', element: 'Crystal', job: 'Remote desktop', hue: 236, line: "Your Mac to a Windows PC, mouse and keyboard included. The PC's certificate is checked before you sign in." },
+  { id: 'lux', name: 'Lux', element: 'Light', job: 'Video', hue: 85, line: 'Short videos made from a script, with a live preview of the scene, the characters, the shots and the voices.', note: 'Personal build' },
+  { id: 'mercurius', name: 'Mercurius', element: 'Quicksilver', job: 'Mail', hue: 262, line: 'Every Gmail account in one inbox, stored on your Mac. A send is held for ten seconds, just in case.', note: 'Personal build' },
+  { id: 'crystallum', name: 'Crystallum', element: 'Crystal', job: 'Remote desktop', hue: 236, line: "Your Mac to a Windows PC, mouse and keyboard included. The PC's certificate is checked before you sign in.", note: 'Personal build' },
   { id: 'ros', name: 'Ros', element: 'Dew', job: 'Notes', hue: 172, line: 'Notes as plain Markdown files in a folder you own. The other apps write into it, and a note can hand work back to them.' },
 ];
 
