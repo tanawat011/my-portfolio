@@ -11,11 +11,11 @@ const siteUrl = 'https://tanawat.dev';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Tanawat Pinthongpan — Fullstack Developer',
+    default: 'Tanawat Pinthongpan — Fullstack & Desktop Developer',
     template: '%s | Tanawat',
   },
   description:
-    'Fullstack Developer with 8+ years of experience. Building with Next.js, React, TypeScript, Go, and cloud tech. Open source lover. AI-assisted workflow.',
+    'Fullstack developer. Maker of the VTX family: 11 desktop apps in Rust + Tauri, built solo. Next.js, React and TypeScript on the web.',
   keywords: [
     'Tanawat Pinthongpan',
     'fullstack developer',
@@ -24,6 +24,10 @@ export const metadata: Metadata = {
     'typescript',
     'node.js',
     'golang',
+    'rust',
+    'tauri',
+    'desktop apps',
+    'vtx',
     'open source',
     'portfolio',
     'developer portfolio',
@@ -36,24 +40,24 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: siteUrl,
     siteName: 'Tanawat Portfolio',
-    title: 'Tanawat Pinthongpan — Fullstack Developer',
+    title: 'Tanawat Pinthongpan — Fullstack & Desktop Developer',
     description:
-      'Fullstack Developer with 8+ years of experience. Open source lover. AI-assisted workflow.',
+      'Fullstack developer. Maker of the VTX family: 11 desktop apps in Rust + Tauri, built solo.',
     images: [
       {
         url: '/images/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Tanawat Pinthongpan — Fullstack Developer',
+        alt: 'Tanawat Pinthongpan — Fullstack & Desktop Developer',
       },
     ],
   },
 
   twitter: {
     card: 'summary_large_image',
-    title: 'Tanawat Pinthongpan — Fullstack Developer',
+    title: 'Tanawat Pinthongpan — Fullstack & Desktop Developer',
     description:
-      'Fullstack Developer with 8+ years of experience. Open source lover. AI-assisted workflow.',
+      'Fullstack developer. Maker of the VTX family: 11 desktop apps in Rust + Tauri, built solo.',
     images: ['/images/og-image.png'],
   },
 

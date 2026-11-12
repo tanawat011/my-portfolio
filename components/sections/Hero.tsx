@@ -3,6 +3,9 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 
+/** Years since the first job (the same start date About uses). */
+const YEARS = Math.floor((Date.now() - new Date('2017-07-24').getTime()) / (365.25 * 24 * 60 * 60 * 1000));
+
 interface Particle {
   left: number;
   top: number;
@@ -80,16 +83,17 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-lg md:text-xl text-text-secondary mb-3 max-w-xl mx-auto"
         >
-          Fullstack Developer · Open Source Lover · Coffee Addict
+          Fullstack developer. I build the tools I use.
         </motion.p>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-sm text-text-secondary/60 font-mono mb-8"
+          className="text-sm md:text-base text-text-secondary/80 mb-8 max-w-2xl mx-auto leading-relaxed"
         >
-          I write code, mass break things, mass fix them, and mass ship it. Repeat. 🔁
+          {YEARS} years of shipping web apps. Lately:{' '}
+          <span className="text-text-primary">11 desktop apps in Rust + Tauri</span>, built solo.
         </motion.p>
 
         <motion.div
@@ -98,9 +102,16 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
+          <a
+            href="#vtx"
+            onClick={(e) => { e.preventDefault(); document.getElementById('vtx')?.scrollIntoView({ behavior: 'smooth' }); }}
+            className="px-8 py-3 rounded-full bg-primary text-white font-medium hover:bg-primary-dark hover:scale-105 transition-all duration-200 shadow-lg shadow-primary/25"
+          >
+            Meet the VTX family
+          </a>
           <button
             onClick={scrollToAbout}
-            className="px-8 py-3 rounded-full bg-primary text-white font-medium hover:bg-primary-dark hover:scale-105 transition-all duration-200 shadow-lg shadow-primary/25"
+            className="px-8 py-3 rounded-full border border-white/10 text-text-primary font-medium hover:bg-white/5 hover:scale-105 transition-all duration-200"
           >
             Who am I?
           </button>
@@ -110,12 +121,6 @@ export function Hero() {
             className="px-8 py-3 rounded-full border border-primary/30 text-primary-light font-medium hover:bg-primary/10 hover:scale-105 transition-all duration-200"
           >
             📄 My Resume
-          </a>
-          <a
-            href="#portfolio"
-            className="px-8 py-3 rounded-full border border-white/10 text-text-primary font-medium hover:bg-white/5 hover:scale-105 transition-all duration-200"
-          >
-            See My Code
           </a>
         </motion.div>
       </div>

@@ -6,9 +6,9 @@ import { AnimatedSection } from '@/components/AnimatedSection';
 const liveProjects = [
   {
     title: 'VTX Labs',
-    desc: 'A modular developer utility platform with plug-and-play tools. Built with Next.js, Supabase, and Stripe.',
+    desc: 'Free developer tools in the browser, and the home of the VTX family of desktop apps.',
     url: 'https://vtxlabs.app',
-    tags: ['Next.js', 'React', 'Tailwind', 'Supabase', 'Stripe'],
+    tags: ['Next.js', 'React', 'Tailwind', 'TypeScript', 'Vercel'],
     gradient: 'from-violet-500 to-purple-600',
     emoji: '🧪',
   },

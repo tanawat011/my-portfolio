@@ -27,8 +27,9 @@ const skills = [
     desc: 'My daily driver — what I\'m actively building with right now. 🔥',
     color: '#f97316',
     items: [
-      { label: 'Frontend', value: 'Next.js, React, React Native, Flutter, Swift, Tailwind, Shadcn/UI, Ant Design' },
-      { label: 'Backend & Infra', value: 'Supabase, PostgreSQL, Vercel, Bun, Docker' },
+      { label: 'Desktop', value: 'Rust, Tauri 2, React, TypeScript' },
+      { label: 'Web', value: 'Next.js, React, Tailwind, Shadcn/UI' },
+      { label: 'Backend & Infra', value: 'Supabase, PostgreSQL, SQLite, Vercel, Bun, Docker' },
     ],
   },
   {
@@ -37,9 +38,19 @@ const skills = [
     desc: 'The weapons I fight with.',
     color: '#818cf8',
     items: [
-      { label: 'Primary', value: 'TypeScript, JavaScript' },
-      { label: 'Also speak', value: 'Python, PHP, Swift, Dart' },
+      { label: 'Primary', value: 'TypeScript, Rust' },
+      { label: 'Also speak', value: 'JavaScript, Go, Python, PHP, Swift, Dart' },
       { label: 'Markup & Style', value: 'HTML5, CSS3' },
+    ],
+  },
+  {
+    title: 'Desktop',
+    icon: '/icons/laptop-code-solid.svg',
+    desc: 'Apps that live on your Mac, not in a tab. 🖥️',
+    color: '#f59e0b',
+    items: [
+      { label: 'Core', value: 'Tauri 2, Rust (tokio, sqlx), React' },
+      { label: 'Native bits', value: 'Keychain, URL schemes, SSH, RDP, SwiftUI' },
     ],
   },
   {
@@ -69,7 +80,7 @@ const skills = [
     desc: 'Where the data lives (and sometimes dies).',
     color: '#fb923c',
     items: [
-      { label: 'SQL', value: 'PostgreSQL, MySQL' },
+      { label: 'SQL', value: 'PostgreSQL, MySQL, MariaDB, SQL Server, SQLite' },
       { label: 'NoSQL & Cache', value: 'MongoDB, Redis' },
       { label: 'ORM', value: 'Prisma, TypeORM' },
     ],

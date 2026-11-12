@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/sections/Hero';
+import { VtxFamily } from '@/components/sections/VtxFamily';
 import { About } from '@/components/sections/About';
 import { Resume } from '@/components/sections/Resume';
 import { Portfolio } from '@/components/sections/Portfolio';
@@ -15,6 +16,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <VtxFamily />
         <About />
         <Resume />
         <Portfolio />
