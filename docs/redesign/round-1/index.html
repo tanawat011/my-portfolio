@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link id="pv-fonts" href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Noto+Sans+Thai:wght@400..700&family=Plus+Jakarta+Sans:wght@400..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script id="three-src" src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+<link rel="stylesheet" href="pv.css">
+<style>
+/* VOICE a design review the owner picks from, letter by letter, the same sheet as "Studio Directions"
+   IDEA a pitch wall: five boards of the same two pages (home + the Fulmen case), then the GitHub profile three ways
+   PICTURE the live preview of each direction in three devices at once, switchable home / case, dark / light, motion on / reduced
+   COLOUR the sheet stays neutral (white / ink, one cobalt for choices) so G's graphite, porcelain, ice and periwinkle read on their own
+   TYPE IBM Plex Sans Thai + Inter for the sheet; the previews load G's own pair
+   LAYOUT laptop: title + answer, study, five cards, the viewer (frames, spec), GitHub, questions; phone: one column */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#101114);--panel:light-dark(#f4f5f7,#17191e);--panel2:light-dark(#e9ebf0,#1f2229);--ink:light-dark(#15171c,#e4e6eb);--mute:light-dark(#555b66,#a3a9b5);--line:light-dark(#dfe2e8,#2b2f38);--pick:light-dark(#2448ff,#8ea2ff);--pick-bg:light-dark(#eef1ff,#1c2347)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans Thai",Inter,system-ui,sans-serif;overflow-x:clip;padding-bottom:96px}
+.sheet h1,.sheet h2,.sheet h3{font-family:Inter,"IBM Plex Sans Thai",system-ui,sans-serif;line-height:1.15;letter-spacing:-.015em;margin:0;text-wrap:balance}
+.sheet h1{font-size:clamp(30px,4vw,44px)}.sheet h2{font-size:clamp(24px,2.6vw,30px);margin-bottom:8px}.sheet h3{font-size:18px}
+.sheet p{margin:0 0 12px}.sheet code{font-size:.92em;background:var(--panel);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+.sheet a{color:var(--pick)}
+.band{padding-block:clamp(28px,4vw,56px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+.wrap{max-width:1320px;margin:0 auto}
+.lede{font-size:17px;color:var(--mute);max-width:78ch}
+.top{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px 48px;align-items:end}
+.ansbox{background:var(--panel);border-radius:12px;padding:16px 18px}
+.ansbox b{display:block;font-size:14px;color:var(--mute);font-weight:500}
+.ansbox .code{font:600 17px/1.55 Inter,sans-serif;word-spacing:5px}
+.ansbox small{display:block;margin-top:8px;color:var(--mute);font-size:13.5px}
+.study{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:20px 40px;align-items:start}
+.study ol{margin:0;padding-left:22px}.study li{margin-bottom:10px}
+.facts{width:100%;border-collapse:collapse;font-size:14px}.facts th,.facts td{border-top:1px solid var(--line);padding:7px 6px;text-align:left;vertical-align:top}.facts th{color:var(--mute);font-weight:500;width:34%}
+.note{background:var(--panel);border-radius:12px;padding:14px 18px;font-size:15px}
+.cards5{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:12px;margin-top:18px}
+.dirc{display:flex;flex-direction:column;gap:8px;text-align:left;font:inherit;color:inherit;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;min-height:44px}
+.dirc:hover{border-color:var(--pick)}.dirc[aria-pressed=true]{border-color:var(--pick);background:var(--pick-bg)}
+.dirc .sw{display:flex;gap:3px}.dirc .sw i{flex:1;height:20px;border-radius:4px;border:1px solid var(--line)}
+.dirc b{font:700 16px Inter,"IBM Plex Sans Thai",sans-serif}.dirc span{font-size:13.5px;color:var(--mute)}
+.dirc em{font-style:normal;font-size:12px;font-weight:600;color:var(--pick)}
+.ctrl{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:18px 0 12px;font-size:14px;color:var(--mute)}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.seg button{font:500 14px Inter,"IBM Plex Sans Thai",sans-serif;min-height:42px;padding:6px 14px;border:0;background:var(--bg);color:var(--ink);cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.seg button:focus-visible,.opt:focus-visible,.dirc:focus-visible,.bar button:focus-visible{outline:3px solid var(--pick);outline-offset:2px}
+.ctrl .lbl{font-weight:600;color:var(--ink)}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}
+.screen{border:1px solid var(--line);border-radius:14px;background:var(--panel2);overflow:hidden}
+.chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line);font:500 12px Inter,sans-serif;color:var(--mute);background:var(--panel)}
+.chrome i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.chrome span{margin-left:8px;padding:3px 10px;border-radius:6px;background:var(--bg);flex:1;max-width:360px}
+.win{height:min(820px,80vh);overflow:auto;overscroll-behavior:contain;position:relative}
+.scaler{position:relative}
+.screen:not([data-w="full"]){padding:18px 0;display:flex;flex-direction:column;align-items:center}
+.screen:not([data-w="full"]) .chrome{display:none}
+.screen:not([data-w="full"]) .scaler{overflow:hidden;border-radius:28px;box-shadow:0 0 0 8px var(--ink)}
+.screen[data-kind="tablet"] .scaler{border-radius:22px;box-shadow:0 0 0 12px var(--ink)}
+.screen:not([data-w="full"]) .win{transform-origin:0 0;position:absolute;left:0;top:0}
+.devlabel{font:600 13px Inter,"IBM Plex Sans Thai",sans-serif;color:var(--mute);margin:0 0 10px}
+.devices{display:none;flex-wrap:wrap;gap:24px;align-items:flex-start;justify-content:center;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--panel2)}
+.view-all .devices{display:flex}.view-all #screen{display:none}.view-all .stage{grid-template-columns:minmax(0,1fr)}.view-all .spec{position:static;max-height:none}
+.dev{display:flex;flex-direction:column;align-items:center;gap:8px}
+.dev .frame{position:relative;overflow:hidden;background:#000;box-shadow:0 0 0 6px var(--ink);border-radius:16px}
+.dev[data-kind="desktop"] .frame{border-radius:10px;box-shadow:0 0 0 1px var(--line),0 0 0 6px var(--ink)}
+.dev iframe{position:absolute;left:0;top:0;border:0;transform-origin:0 0;background:#0b0c0f}
+.dev b{font:600 13px Inter,"IBM Plex Sans Thai",sans-serif;color:var(--mute);display:flex;gap:8px;align-items:center}
+.dev .rot{font:600 13px Inter,"IBM Plex Sans Thai",sans-serif;min-height:36px;padding:4px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.devnote{display:none;font-size:14px;color:var(--mute);margin:8px 0 0}
+.spec{border:1px solid var(--line);border-radius:14px;padding:18px;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto;font-size:14px}
+.spec h2{font:700 20px/1.2 Inter,"IBM Plex Sans Thai",sans-serif;margin:0 0 6px}.spec .lead{color:var(--mute);margin:0 0 6px}
+.spec dl{margin:0}.spec dt{color:var(--mute);margin-top:14px;font-size:13px}.spec dd{margin:2px 0 0}
+.pal{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.pal span{display:inline-flex;flex-direction:column;font:500 11px/1.3 Inter,monospace;color:var(--mute);width:58px}.pal span i{width:100%;height:32px;border-radius:7px;border:1px solid var(--line);margin-bottom:3px}
+.spec table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}.spec th,.spec td{border-top:1px solid var(--line);padding:6px 4px;text-align:left;vertical-align:top}.spec th{color:var(--mute);font-weight:500}
+.scroll{overflow-x:auto}
+/* GitHub as GitHub shows it */
+.ghw{display:grid;gap:14px}
+.ghframe{border:1px solid var(--line);border-radius:14px;background:var(--panel2);padding:18px;display:flex;justify-content:center;overflow:hidden}
+.gh{--gbg:#0d1117;--gfg:#e6edf3;--gmu:#9198a1;--gbd:#3d444d;--gln:#4493f8;--gcode:rgba(101,108,118,.2);--gpre:#151b23;--gtr:#151b23;width:100%;max-width:1216px;background:var(--gbg);color:var(--gfg);border-radius:10px;padding:28px 24px;font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif;display:grid;grid-template-columns:260px minmax(0,1fr);gap:24px;box-shadow:0 0 0 1px var(--line)}
+.gh[data-t=light]{--gbg:#ffffff;--gfg:#1f2328;--gmu:#59636e;--gbd:#d1d9e0;--gln:#0969da;--gcode:rgba(129,139,152,.12);--gpre:#f6f8fa;--gtr:#f6f8fa}
+.gh[data-w=phone]{max-width:390px;grid-template-columns:minmax(0,1fr);padding:16px}
+.gh-side{display:flex;flex-direction:column;gap:12px}
+.gh-av{width:100%;max-width:260px;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;font:600 64px/1 -apple-system,sans-serif;color:#f5f6f8;background:radial-gradient(circle at 36% 30%,#3b3f49,#16181d 60%,#07080a);box-shadow:0 0 0 1px var(--gbd)}
+.gh[data-w=phone] .gh-side{flex-direction:row;align-items:center}
+.gh[data-w=phone] .gh-av{width:72px;font-size:24px}
+.gh-name{font-size:24px;font-weight:600;line-height:1.25}.gh-user{font-size:20px;font-weight:300;color:var(--gmu)}
+.gh[data-w=phone] .gh-name{font-size:20px}.gh[data-w=phone] .gh-user{font-size:16px}
+.gh-fol{border:1px solid var(--gbd);border-radius:6px;padding:5px 16px;text-align:center;font-weight:500;color:var(--gfg);background:transparent}
+.gh[data-w=phone] .gh-fol{display:none}
+.gh-box{border:1px solid var(--gbd);border-radius:6px;padding:24px;min-width:0}
+.gh[data-w=phone] .gh-box{padding:16px}
+.gh-path{font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--gmu);margin:-8px 0 16px}
+.md{font-size:16px;line-height:1.5;word-wrap:break-word}
+.md>*:first-child{margin-top:0}
+.md p,.md ul,.md table,.md pre,.md blockquote,.md details{margin:0 0 16px}
+.md a{color:var(--gln);text-decoration:none}.md a:hover{text-decoration:underline}
+.md h2{font-size:1.5em;font-weight:600;padding-bottom:.3em;border-bottom:1px solid var(--gbd);margin:24px 0 16px}
+.md h3{font-size:1.25em;font-weight:600;margin:24px 0 16px}
+.md img{max-width:100%;box-sizing:content-box;vertical-align:middle;background:transparent}
+.md code{font:85% ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--gcode);padding:.2em .4em;border-radius:6px}
+.md pre{background:var(--gpre);border-radius:6px;padding:16px;overflow:auto;font-size:85%;line-height:1.45}
+.md pre code{background:none;padding:0;font-size:100%}
+.md blockquote{padding:0 1em;color:var(--gmu);border-left:.25em solid var(--gbd)}
+.md ul{padding-left:2em}.md li+li{margin-top:.25em}
+.md table{display:block;width:max-content;max-width:100%;overflow:auto;border-spacing:0;border-collapse:collapse}
+.md td,.md th{padding:6px 13px;border:1px solid var(--gbd)}
+.md th{font-weight:600}
+.md tr:nth-child(2n){background:var(--gtr)}
+.md table tr{background:var(--gbg);border-top:1px solid var(--gbd)}
+.md details summary{cursor:pointer}
+.md sub{font-size:75%}
+.md .stand{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px dashed var(--gmu);border-radius:4px;color:var(--gmu);font:11px/1.2 ui-monospace,Menlo,monospace;padding:6px 8px;margin:2px;vertical-align:middle;text-align:center}
+.md .stand.big{display:flex;width:100%;min-height:90px;margin:4px 0}
+.ghsrc{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.ghsrc header{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--panel);font-size:14px;color:var(--mute)}
+.ghsrc pre{margin:0;max-height:360px;overflow:auto;padding:14px;font:12.5px/1.55 ui-monospace,Menlo,monospace;background:var(--bg);white-space:pre}
+.ghsrc button,.gh-c button{font:600 13.5px Inter,"IBM Plex Sans Thai",sans-serif;min-height:38px;padding:4px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.ghnote{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.ghnote div{background:var(--panel);border-radius:12px;padding:14px 16px;font-size:14.5px}
+.ghnote b{display:block;margin-bottom:4px}
+/* questions */
+.q{border-top:1px solid var(--line);padding:22px 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:14px 36px}
+.q h3{display:flex;gap:10px;align-items:baseline}.qn{flex:none;display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--bg);font:700 14px Inter,sans-serif}
+.why{color:var(--mute);font-size:15px;margin-top:6px}
+.opts{display:grid;gap:8px}
+.opt{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;align-items:start;text-align:left;font:inherit;font-size:15px;color:inherit;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px;cursor:pointer;line-height:1.5}
+.opt:hover{border-color:var(--pick)}
+.opt>b{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:6px;border:1px solid var(--line);font-family:Inter,sans-serif}
+.opt em{font-style:normal;font-size:12px;font-weight:600;color:var(--pick);white-space:nowrap}
+.opt[aria-pressed=true]{border-color:var(--pick);background:var(--pick-bg)}.opt[aria-pressed=true]>b{background:var(--pick);color:var(--bg);border-color:var(--pick)}
+.cols2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px 40px}
+.plain ul{margin:6px 0 0;padding-left:20px}.plain li{margin-bottom:8px}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:var(--bg);padding:12px max(5vw,16px);display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;z-index:9}
+.bar #ans{font:600 15px Inter,sans-serif;word-spacing:4px;flex:1}
+.bar small{opacity:.8}
+.bar button{font:600 14px Inter,"IBM Plex Sans Thai",sans-serif;min-height:40px;padding:6px 14px;border-radius:8px;border:1px solid var(--bg);background:var(--bg);color:var(--ink);cursor:pointer}
+.bar button.gh2{background:transparent;color:var(--bg)}
+.toc{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14.5px;margin-top:14px}
+@media(max-width:1000px){.stage{grid-template-columns:minmax(0,1fr)}.spec{position:static;max-height:none}}
+@media(max-width:900px){.top,.q,.cols2,.study{grid-template-columns:minmax(0,1fr)}.gh{grid-template-columns:minmax(0,1fr)}.gh-side{flex-direction:row;align-items:center}.gh-av{width:72px;font-size:24px}.gh-fol{display:none}}
+</style>
+</head>
+<body>
+<div class="sheet">
+<header class="band"><div class="wrap top">
+<div>
+<h1>tanawat.dev กับ GitHub profile: 5 ทางให้เลือก</h1>
+<p class="lede">ทำแบบเดียวกับ Studio: ศึกษาก่อน แล้วทำ 5 ทางที่ต่างกันจริง ทุกทางอยู่ในสีและตัวหนังสือของ Studio ทาง G (Orbit + Daylight type) ที่คุณเลือกไว้ ต่างกันที่ layout, ชิ้นเอกของ hero และการเคลื่อนไหว แต่ละทางกดใช้ได้ 2 หน้า: หน้าแรก และหน้าเคสของ Fulmen ดูพร้อมกัน Desktop · Tablet · Mobile สลับธีมและ Reduce motion ได้ ข้างล่างมี GitHub profile 3 แบบที่แสดงเหมือนบน GitHub แล้วจบด้วยคำถาม 15 ข้อ</p>
+<p class="lede">หน้าจอแอปทุกภาพเป็นของจริงจาก VTX Labs (หน้าจอจริงของแอป ข้อมูลตัวอย่าง ตรวจแล้ว และเผยแพร่อยู่แล้วบน vtxlabs.app) · ยังไม่ได้ push ไม่ได้ deploy และไม่ได้แตะ GitHub profile จริง · source อยู่ใน repo ที่ <code>docs/redesign/round-1/</code></p>
+<nav class="toc" aria-label="ในหน้านี้"><a href="#study">ศึกษาก่อน</a><a href="#dirs">5 ทาง</a><a href="#gh">GitHub profile</a><a href="#qs">คำถาม</a><a href="#build">ตอนสร้างจริง</a></nav>
+</div>
+<div class="ansbox"><b>คำตอบที่แนะนำ</b><div class="code" id="recAns"></div><small>ทุกข้อ A คือที่แนะนำ กดเลือกด้านล่างแล้วก๊อปจากแถบล่าง</small></div>
+</div></header>
+
+<section class="band" id="study" style="background:var(--panel)"><div class="wrap">
+<h2>ศึกษาก่อน: เว็บส่วนตัวต้องมีอะไรมากกว่า Studio</h2>
+<div class="study">
+<div class="plain"><ol>
+<li><b>ตัวคนและเรื่องของเขา</b> Studio ห้ามใช้ชื่อจริง แต่ที่นี่ชื่อจริงคือหัวใจ: ชื่อ หน้า (ถ้าเลือก ข้อ 6) และเส้นทาง 2017 → senior → lead → กลับมาเขียนโค้ด → VTX</li>
+<li><b>งานจริงเป็นพระเอก ไม่ใช่ mock-up</b> แอป VTX 11 ตัว พร้อมไอคอนจริงและหน้าจอจริงจาก Labs ส่วน CraftCV กับ Labs คือเว็บที่เปิดอยู่จริง</li>
+<li><b>ก่อน / หลัง</b> kit <code>ux-motion.md</code> § 5 บอกว่าเว็บ portfolio "โชว์ด้วย demo แบบก่อน / หลัง แทนการบรรยาย" ทุกทางจึงมี slider: คำสั่งใน terminal ที่เคยใช้ → แอปที่ทำขึ้นมาแทน (curl → Fulmen, git → Silva, psql → Lapis, base64 → Ignis)</li>
+<li><b>ความลึกต่อแอป</b> หน้าเคส: ทำไมสร้าง → ก่อน / หลัง → หน้าจอ → ทำอะไรได้ → ไปโหลดที่ Labs ตัวอย่างในพรีวิวคือ Fulmen (ตัวเดียวที่มี build สาธารณะ)</li>
+<li><b>ทางไปต่อสามทาง</b> จ้างงาน → VTX Studio (ยังไม่เปิด จึงติดป้าย "opening soon") · ลองแอป → VTX Labs · HR → Resume 4 แบบบน CraftCV</li>
+<li><b>ตัวเลขจริงเท่านั้น</b> 9 ปี (นับจาก 24 ก.ค. 2017 เว็บจริงคำนวณเอง), 11 แอป, 6 database engines ใน Lapis, 2 เว็บที่เปิดอยู่ · Fun Facts เดิม (∞ กาแฟ, 9,999+ bugs) ขัด checklist § 5 → ข้อ 7</li>
+<li><b>ความเป็นส่วนตัว</b> ฟอนต์ <code>next/font</code> (เว็บเดิมใช้อยู่แล้ว), Google Analytics → Umami ของครอบครัว (ข้อ 8), ลิงก์โซเชียลเท่าที่ใช้ทำงาน (ข้อ 12), ไม่มีข้อมูลหรือชื่อลูกค้าเลย</li>
+</ol></div>
+<div>
+<table class="facts"><caption style="text-align:left;font-weight:600;padding-bottom:6px">ข้อเท็จจริงที่ใช้ และมาจากไหน</caption>
+<tr><th>9 ปี</th><td>วันเริ่มงาน 2017-07-24 ใน <code>Hero.tsx</code> / <code>About.tsx</code></td></tr>
+<tr><th>11 แอป, ธาตุ, หน้าที่</th><td><code>VtxFamily.tsx</code> ของเว็บเดิม และ <code>vtx-labs/content/apps.ts</code></td></tr>
+<tr><th>หน้าจอแอป + คำอธิบายภาพ</th><td><code>vtx-labs/public/apps/shots</code> + <code>content/app-shots.ts</code> (ตรวจตาแล้วว่าไม่มีชื่อ อีเมล host จริง)</td></tr>
+<tr><th>Fulmen v0.57, macOS · Windows · Linux</th><td><code>apps.ts</code> ของ Labs (เว็บจริงอ่านตอน build)</td></tr>
+<tr><th>Senior → Lead → กลับมาเขียนโค้ด</th><td><code>About.tsx</code> (ปีของช่วงกลางไม่มีในเว็บ จึงไม่ใส่ปี)</td></tr>
+<tr><th>VTX เริ่มปี 2026</th><td>commit แรกของ repo ในครอบครัว (พ.ค. 2026)</td></tr>
+<tr><th>Resume 4 แบบ, boilerplate 3 ตัว</th><td><code>Resume.tsx</code>, <code>Portfolio.tsx</code></td></tr>
+</table>
+<p class="note" style="margin-top:14px">ในพรีวิว: รูปคนเป็น monogram TP (ข้อ 6), ลิงก์ออกนอกหน้าไม่เปิดจริง แต่จะบอกปลายทาง, ปุ่ม TH ยังไม่มีหน้าไทย (ข้อ 3) และอีเมล / LINE ไม่แสดงตัวเลขหรือที่อยู่</p>
+</div>
+</div>
+</div></section>
+
+<section class="band" id="dirs" style="padding-top:clamp(28px,4vw,56px)"><div class="wrap">
+<h2>5 ทาง ในสีและตัวหนังสือของ G</h2>
+<p class="lede">พื้น graphite <code>#0b0c0f</code> กลางคืน porcelain <code>#f5f6f8</code> กลางวัน แสง ice <code>#7cc8ff</code> periwinkle <code>#8e97ff</code> frost <code>#eef5ff</code> · หัวข้อ Plus Jakarta Sans + Kanit, เนื้อความ Noto Sans Thai, ป้าย JetBrains Mono · ไอคอนกับหน้าจอแอปคงสีของตัวเอง ด้านขวาของแต่ละทางมี hero, tablet / มือถือ และงบการเคลื่อนไหว (อะไรขยับ เมื่อไร ทำไม)</p>
+<div class="cards5" id="cards" role="group" aria-label="เลือกทาง"></div>
+<div class="ctrl"><span class="lbl">อุปกรณ์</span>
+<div class="seg" id="vSeg"><button data-v="all" aria-pressed="true">▣ ทุกอุปกรณ์: Desktop · Tablet · Mobile</button><button data-v="one" aria-pressed="false">ทีละเครื่อง</button></div>
+<div class="seg" id="wSeg"><button data-v="full" aria-pressed="false">Desktop</button><button data-v="1024" aria-pressed="false">Tablet ↔ 1024</button><button data-v="768" aria-pressed="false">Tablet ↕ 768</button><button data-v="390" aria-pressed="false">Mobile 390</button></div>
+</div>
+<div class="ctrl">
+<span>หน้า</span><div class="seg" id="pSeg"><button data-v="home" aria-pressed="true">หน้าแรก</button><button data-v="case" aria-pressed="false">เคส: Fulmen</button></div>
+<span>ธีม</span><div class="seg" id="mSeg"><button data-v="dark" aria-pressed="true">มืด</button><button data-v="light" aria-pressed="false">สว่าง</button></div>
+<span>การเคลื่อนไหว</span><div class="seg" id="rSeg"><button data-v="full" aria-pressed="true">เต็ม</button><button data-v="reduced" aria-pressed="false">Reduce motion</button></div>
+</div>
+<div class="stage">
+<div class="screen" id="screen" data-w="full" data-kind="desktop"><p class="devlabel" id="devlabel" hidden></p><div class="chrome"><i></i><i></i><i></i><span id="addr">tanawat.dev</span></div><div class="scaler" id="scaler"><div class="win" id="win"><div class="pv" id="pv" data-page="home" data-mode="dark"></div></div></div></div>
+<div class="devices" id="devices" aria-label="ทุกอุปกรณ์"></div>
+<aside class="spec" id="spec" aria-live="polite"></aside>
+</div>
+<p class="devnote" id="devnote">ถ้ากรอบไม่ขึ้น ให้กด "ทีละเครื่อง" แล้วเลือกขนาดแทน</p>
+</div></section>
+
+<section class="band" id="gh" style="background:var(--panel)"><div class="wrap ghw">
+<div><h2>GitHub profile: 3 แบบ แสดงแบบที่ GitHub จะแสดง</h2>
+<p class="lede">GitHub-flavored Markdown ล้วน: รูปและ SVG ไม่มี JavaScript · สลับธีมแบบ GitHub มืด / สว่าง ได้ด้วย <code>&lt;picture&gt;</code> ที่ GitHub รองรับ · SVG เก็บใน repo <code>tanawat011</code> เอง ไม่พึ่งบริการภายนอก (ยกเว้นแบบ C) · ภาพจากบริการภายนอกโหลดในหน้านี้ไม่ได้ จึงแสดงเป็นกรอบเส้นประแทน</p></div>
+<div class="ctrl gh-c" style="margin:0">
+<span class="lbl">แบบ</span><div class="seg" id="gV"><button data-v="a" aria-pressed="true">A · Orbit</button><button data-v="b" aria-pressed="false">B · Cards</button><button data-v="c" aria-pressed="false">C · ของเดิม เปลี่ยนสี</button></div>
+<span>ธีมของ GitHub</span><div class="seg" id="gT"><button data-v="dark" aria-pressed="true">Dark</button><button data-v="light" aria-pressed="false">Light</button></div>
+<span>ขนาด</span><div class="seg" id="gW"><button data-v="desk" aria-pressed="true">Desktop</button><button data-v="phone" aria-pressed="false">มือถือ 390</button></div>
+</div>
+<div class="ghnote" id="gNote"></div>
+<div class="ghframe"><div class="gh" id="ghp" data-t="dark" data-w="desk">
+<div class="gh-side"><div class="gh-av" aria-hidden="true">T</div><div><div class="gh-name">Tanawat Pinthongpan</div><div class="gh-user">tanawat011</div></div><div class="gh-fol">Follow</div></div>
+<div class="gh-box"><p class="gh-path">tanawat011 / README.md</p><div class="md" id="ghmd"></div></div>
+</div></div>
+<div class="ghsrc"><header><span id="gSrcT">README.md</span><button type="button" id="gCopy">ก๊อป Markdown</button></header><pre id="gSrc"></pre></div>
+</div></section>
+
+<section class="band" id="qs"><div class="wrap">
+<h2>คำถาม 15 ข้อ</h2>
+<p class="lede">กดเลือกแล้วแถบล่างต่อคำตอบเป็นแถวเดียว ก๊อปไปวางได้ ข้อ 1–2 คือหน้าตา ข้อ 3–12 คือเนื้อหาของเว็บ ข้อ 13–15 คือ GitHub profile</p>
+<div id="qList"></div>
+</div></section>
+
+<section class="band" id="build" style="background:var(--panel)"><div class="wrap">
+<h2>ตอนสร้างจริง (หลังคุณเลือก)</h2>
+<div class="cols2"><div class="plain"><ul>
+<li><b>ทางที่เลือกกลายเป็นเว็บจริงใน repo นี้</b> ทีละส่วน commit ในเครื่อง ไม่ push ไม่ deploy (repo นี้ push แล้ว Vercel deploy ทันที) จนกว่าคุณสั่ง</li>
+<li><b>ฟอนต์</b> Plus Jakarta Sans, Kanit, Noto Sans Thai, JetBrains Mono ผ่าน <code>next/font</code> ทั้งหมด (พรีวิวนี้โหลดจาก Google Fonts เพราะเป็นหน้าทดลองเท่านั้น)</li>
+<li><b>3D (ถ้าเลือก A)</b> three + @react-three/fiber โหลดหลัง first paint ด้วย <code>next/dynamic</code> ภาพนิ่ง SVG ขึ้นก่อน มือถือแบบเบา และไม่สร้าง WebGL เลยเมื่อ Reduce motion</li>
+<li><b>หน้าจอแอป</b> ใช้ไฟล์ชุดเดียวกับ Labs ขนาด 800 / 1600 แบบ webp มืด / สว่าง</li>
+</ul></div><div class="plain"><ul>
+<li><b>checklist § 4</b> เว็บเดิมยังไม่มี security headers: จะใส่ CSP, HSTS, nosniff, Referrer-Policy, Permissions-Policy ใน <code>next.config</code></li>
+<li><b>checklist § 7</b> repo นี้มี <code>.env.local</code> (GA ID) <code>next build</code> จะโหลดเอง จึง build ใน copy ที่ไม่มี <code>.env*</code> และไม่ได้เปิดอ่านไฟล์นั้น</li>
+<li><b>§ 10 ของ ux-motion</b> ไล่ทั้ง 21 ข้อทั้งธีมมืดและสว่างก่อนบอกว่าเสร็จ และรายงานเป็น "ผ่าน X / Y ข้อ"</li>
+<li><b>GitHub profile</b> แบบที่เลือก: commit ใน repo <code>tanawat011</code> ในเครื่อง แล้ว push เมื่อคุณบอกเท่านั้น</li>
+</ul></div></div>
+</div></section>
+
+<div class="bar" role="region" aria-label="คำตอบของคุณ"><div id="ans"></div><small id="diff"></small><button id="copy" type="button">ก๊อปคำตอบ</button><button class="gh2" id="reset" type="button">คืนค่าที่แนะนำ</button></div>
+</div>
+
+<!-- ======================= A · Constellation ======================= -->
+<template data-dir="a" data-part="pv">
+<section class="page" data-p="home">
+<div data-b="nav"></div>
+<main>
+<section class="a-hero" aria-labelledby="a-h1">
+<div class="p-in">
+<p class="a-who"><b>Tanawat Pinthongpan</b> · fullstack developer, Thailand</p>
+<h1 class="a-h1" id="a-h1">I build the tools I use.</h1>
+<div class="a-hrow"><div><p class="a-sub">Web apps for teams since 2017. This year: <b>the VTX family</b>, eleven desktop apps in Rust + Tauri, built solo.</p><p class="a-sub p-th" lang="th">เขียนเว็บให้ทีมมาตั้งแต่ 2017 ปีนี้ทำเครื่องมือที่ใช้เองทุกวัน 11 ตัว</p></div>
+<div class="a-acts"><a class="p-btn p-btn-ink" href="#a-work">See the apps <span class="p-arr" aria-hidden="true">→</span></a><a class="p-btn p-btn-gh" href="#a-hire">Work with me</a></div></div>
+</div>
+<div class="a-stage">
+<div class="a-stage-in"><div class="a-still" aria-hidden="true"><div class="a-floor"></div><div class="a-glow"></div><svg class="a-ring a-ring-b"></svg><div class="a-orbS"></div><svg class="a-ring a-ring-f"></svg></div></div>
+<div class="a-hit" aria-hidden="true"></div><div class="a-tip" aria-hidden="true"></div>
+<p class="a-cap">11 desktop apps · point at one</p>
+</div>
+<div class="p-in"><div data-b="proof"></div></div>
+</section>
+<section class="p-sec" id="a-work"><div class="p-in"><div data-b="hd" data-k="vtx" data-t="Work" data-h="The VTX family" data-l="Eleven desktop apps in Rust + Tauri, each named after an element. The tools I use every day, built the way I want them." data-m="labs"></div><div data-b="fam"></div></div></section>
+<section class="p-sec" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="before → after" data-t="What they replace" data-h="The terminal I used, and the app I built" data-l="Pick a tool, then drag the handle."></div><div data-b="ba"></div></div></section>
+<section class="p-sec" id="a-about" style="padding-top:0"><div class="p-in"><div data-b="about"></div></div></section>
+<section class="p-sec" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="web" data-t="On the web" data-h="Live today"></div><div data-b="web"></div></div></section>
+<section class="p-sec" id="a-cv" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="cv" data-t="Resume" data-h="Pick a style, pick a length" data-l="Made with CraftCV. View online or take the PDF."></div><div data-b="cv"></div></div></section>
+<section class="p-sec" id="a-hire" style="padding-top:0"><div class="p-in"><div data-b="hire"></div></div></section>
+</main>
+<div data-b="ft"></div>
+</section>
+<section class="page" data-p="case">
+<div data-b="nav"></div>
+<main>
+<section><div class="p-in a-ch">
+<div><a class="c-back" href="#" data-go="home" data-to="a-work"><span aria-hidden="true">←</span> All work</a>
+<p class="p-eye" style="margin:18px 0 0"><span class="p-k">case</span>VTX family · 2 of 11</p>
+<h1>Fulmen</h1><p class="lede">An API client where requests leave from Rust, not a browser.</p><div data-b="meta"></div></div>
+<div class="a-cho" aria-hidden="true"><div class="orbc"></div><svg></svg><img src="assets/icons/fulmen.png" alt=""></div>
+</div></section>
+<section class="p-sec"><div class="p-in"><div data-b="why"></div></div></section>
+<section class="p-sec" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="before → after" data-t="The same checkout" data-h="Two ways to test one flow"></div><div data-b="ba" data-pairs="fulmen"></div></div></section>
+<section class="p-sec" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="screens" data-t="Real screens, sample data" data-h="A look inside"></div><div data-b="gal"></div></div></section>
+<section class="p-sec" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="features" data-t="From the README" data-h="What it does"></div><div data-b="feats"></div></div></section>
+<section class="p-sec" style="padding-top:0"><div class="p-in"><div data-b="getit"></div><div data-b="next"></div></div></section>
+</main>
+<div data-b="ft"></div>
+</section>
+</template>
+<template data-dir="a" data-part="spec">
+<h2>A · Constellation</h2><p class="lead">ลูกแก้วของ Studio G แต่ของที่โคจรรอบคือไอคอนจริงของแอป 11 ตัว: คนอยู่ตรงกลาง แอปของเขาอยู่รอบตัว · หน้าเรียบ แม่น และมีช่วงเดียวที่ทำให้หยุดมอง</p>
+<dl>
+<dt>สี</dt><dd data-pal></dd>
+<dt>Hero</dt><dd>three.js: ลูกแก้ว shader เดียวกับ Studio G (key light ซ้ายบน, rim light, fresnel ice → periwinkle → frost) ไอคอน 11 ตัวหันหน้าเข้ากล้องบนวงโคจรเอียง รอบละ 96 วิ หันตามเมาส์เบา ๆ · <b>ชี้ที่ไอคอน</b>: ป้ายชื่อขึ้น วงโคจรช้าลงเหลือ 18 % ไอคอนนั้นขยาย 1.3 เท่า · <b>คลิก</b>: Fulmen ไปหน้าเคส ตัวอื่นเลื่อนลงไปที่การ์ดของมันแล้วการ์ดเรืองขอบ · ภาพนิ่ง HTML/SVG จาก projection เดียวกันขึ้นก่อน (ชี้แล้วป้ายก็ขึ้นเหมือนกัน)</dd>
+<dt>หน้าเคส</dt><dd>หัวเรื่อง Fulmen กับลูกแก้วเล็กแบบภาพนิ่ง (ไม่มี WebGL ในหน้าที่สอง) → ทำไมสร้าง → slider ก่อน / หลัง → หน้าจอจริง 3 ภาพ → ทำอะไรได้ → ไป Labs</dd>
+<dt>Tablet และมือถือ</dt><dd><b>1024</b>: โครงเดียวกับ desktop การ์ดแอป 3 คอลัมน์ · <b>768</b>: หัวข้อใหญ่ขึ้น ปุ่มลงใต้คำอธิบาย ฉาก 3D สูงขึ้นและกล้องเข้าใกล้ (framing "mid") ตัวเลข 2 × 2 · <b>390</b>: คอลัมน์เดียว ฉาก 3D <b>แบบเบา</b> (DPR 1, ลูกแก้ว 40 × 28, ไม่ตามนิ้ว) แตะไอคอนครั้งแรกเห็นชื่อ แตะซ้ำเพื่อเปิด · ปุ่มทุกตัว ≥ 44 px</dd>
+<dt>งบการเคลื่อนไหว</dt><dd><div class="scroll"><table>
+<tr><th>อะไรขยับ</th><th>เมื่อไร</th><th>ทำไม</th><th>Reduce motion</th></tr>
+<tr><td>วงโคจรของไอคอน + หันตามเมาส์ (ease 1−e<sup>−3t</sup>)</td><td>เฉพาะตอน hero อยู่ในจอและแท็บเปิด</td><td>ช่วงเดียวที่หยุดคนดู และบอกว่า "11 แอป" โดยไม่ต้องอ่าน</td><td>ไม่สร้าง WebGL ภาพนิ่งชุดเดียวกัน ชี้ไอคอนยังเห็นชื่อ</td></tr>
+<tr><td>วงโคจรช้าลง + ไอคอนขยาย</td><td>ชี้ที่ไอคอน</td><td>ให้อ่านชื่อได้ทัน</td><td>ไม่มี</td></tr>
+<tr><td>handle ของ slider เอนซ้ายแล้วกลับ ครั้งเดียว 1.6 วิ</td><td>ครั้งแรกที่ slider เข้าจอ</td><td>บอกว่าลากได้</td><td>ไม่มี</td></tr>
+<tr><td>การ์ดเลื่อนขึ้น 22 px ครั้งเดียว · ขอบแสงหมุนตามเมาส์ + ยก 3 px</td><td>ตอนเลื่อนถึง / hover</td><td>นุ่ม ไม่ซ่อนเนื้อหา / บอกว่ากดได้</td><td>ไม่เลื่อน ไม่ยก เหลือขอบสี</td></tr>
+</table></div></dd>
+<dt>ถ้าสร้างจริงใช้</dt><dd>three + @react-three/fiber + drei (Billboard, useTexture, PerformanceMonitor) โหลดหลัง first paint · ภาพนิ่งเป็น SVG ใน server component · ที่เหลือ CSS ล้วน</dd>
+<dt>เหมาะกับ / ความเสี่ยง</dt><dd>เหมาะ: เป็นครอบครัวเดียวกับ Studio ทันที และ "11 แอป" เห็นได้ในวินาทีแรก · ความเสี่ยง: three ~150 KB gz (lazy-load), หน้าตาใกล้ Studio มาก ถ้าอยากให้ portfolio ต่างจาก Studio ชัด ๆ ดู B, C หรือ E</dd>
+</dl>
+</template>
+
+<!-- ======================= B · Launcher ======================= -->
+<template data-dir="b" data-part="pv">
+<section class="page" data-p="home">
+<div data-b="nav"></div>
+<main>
+<section class="b-hero" aria-labelledby="b-h1"><div class="p-in">
+<div class="b-top"><h1 class="b-h1" id="b-h1"><small>Tanawat Pinthongpan · fullstack developer, Thailand</small>I build the tools I use.</h1>
+<div><p class="b-sub">Web apps for teams since 2017. This year, <b>eleven desktop apps in Rust + Tauri</b>, built solo. Type to find one.</p><p class="b-sub p-th" lang="th">เขียนเว็บให้ทีมมาตั้งแต่ 2017 ปีนี้ทำเครื่องมือที่ใช้เองทุกวัน 11 ตัว</p>
+<div class="b-acts"><a class="p-btn p-btn-ink" href="#b-hire">Work with me <span class="p-arr" aria-hidden="true">→</span></a><a class="p-btn p-btn-gh" href="#b-about">About me</a></div></div></div>
+<div class="b-palw" id="b-work"><div class="b-pal">
+<div class="b-q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input type="text" id="b-q" role="combobox" aria-expanded="true" aria-controls="b-list" aria-autocomplete="list" aria-label="Search the VTX apps" placeholder="Search 11 apps… try “sql” or “git”" autocomplete="off" spellcheck="false"><kbd>esc</kbd></div>
+<div class="b-body"><div class="b-list" id="b-list" role="listbox" aria-label="VTX apps"></div>
+<div class="b-prev"><div class="b-win"><img data-shot="fulmen-1" alt="" data-sizes="(min-width: 900px) 55vw, 100vw"></div><div class="b-info"></div></div></div>
+<div class="b-keys"><span><kbd>↑</kbd><kbd>↓</kbd> move</span><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> clear</span></div>
+</div></div>
+<div style="margin-top:clamp(40px,6cqi,72px)"><div data-b="proof"></div></div>
+</div></section>
+<section class="p-sec"><div class="p-in"><div data-b="hd" data-k="inside" data-t="The parts nobody sees" data-h="What's inside them"></div><div data-b="inside"></div></div></section>
+<section class="p-sec" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="before → after" data-t="What they replace" data-h="The terminal I used, and the app I built" data-l="Pick a tool, then drag the handle."></div><div data-b="ba"></div></div></section>
+<section class="p-sec" id="b-about" style="padding-top:0"><div class="p-in"><div data-b="about"></div></div></section>
+<section class="p-sec" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="web" data-t="On the web" data-h="Live today"></div><div data-b="web"></div></div></section>
+<section class="p-sec" id="b-cv" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="cv" data-t="Resume" data-h="Pick a style, pick a length" data-l="Made with CraftCV. View online or take the PDF."></div><div data-b="cv"></div></div></section>
+<section class="p-sec" id="b-hire" style="padding-top:0"><div class="p-in"><div data-b="hire"></div></div></section>
+</main>
+<div data-b="ft"></div>
+</section>
+<section class="page" data-p="case">
+<div data-b="nav"></div>
+<main>
+<section class="p-sec" style="padding-top:clamp(40px,6cqi,84px)"><div class="p-in b-case">
+<nav class="b-toc" aria-label="On this page"><a href="#b-c-top" class="is-on">Fulmen</a><a href="#b-c-why">Why</a><a href="#b-c-ba">Before → after</a><a href="#b-c-look">A look inside</a><a href="#b-c-what">What it does</a><a href="#b-c-get">Get it</a></nav>
+<div>
+<div class="b-ch" id="b-c-top"><a class="c-back" href="#" data-go="home" data-to="b-work"><span aria-hidden="true">←</span> All apps</a><h1>Fulmen</h1><p class="lede">An API client where requests leave from Rust, not a browser.</p><div data-b="meta"></div><div class="b-win"><img data-shot="fulmen-1" alt="Fulmen: the Checkout flow on its canvas" data-sizes="(min-width: 900px) 60vw, 100vw"></div></div>
+<div class="b-blk" id="b-c-why"><div data-b="why"></div></div>
+<div class="b-blk" id="b-c-ba"><h2>The same checkout, two ways</h2><div data-b="ba" data-pairs="fulmen"></div></div>
+<div class="b-blk" id="b-c-look"><h2>A look inside</h2><div data-b="gal"></div></div>
+<div class="b-blk" id="b-c-what"><h2>What it does</h2><div data-b="feats"></div></div>
+<div class="b-blk" id="b-c-get"><div data-b="getit"></div><div data-b="next"></div></div>
+</div></div></section>
+</main>
+<div data-b="ft"></div>
+</section>
+</template>
+<template data-dir="b" data-part="spec">
+<h2>B · Launcher</h2><p class="lead">หน้าแรกทำตัวเหมือน launcher แบบ Raycast: กล่องค้นหา รายชื่อแอป และหน้าจอจริงข้าง ๆ · คนที่เป็น developer เห็นแล้วรู้ทันทีว่าทำเครื่องมือ และ "ใช้" หน้าแรกได้จริง</p>
+<dl>
+<dt>สี</dt><dd data-pal></dd>
+<dt>Hero</dt><dd>หน้าต่างกระจกขอบแสง ice/periwinkle: ซ้ายคือรายชื่อ 11 แอป + เว็บ 2 ตัว ขวาคือหน้าจอจริงของตัวที่เลือก ชื่อ ธาตุ และปุ่ม · <b>พิมพ์ค้นได้จริง</b> ("sql" เจอ Lapis, "mail" เจอ Mercurius) · ↑ ↓ เลือก, ↵ เปิด, esc ล้าง · hover รายการแล้วหน้าจอเปลี่ยน (ตัดแสงข้ามกัน 150 ms) · หน้าต่างเอียงตามเมาส์ไม่เกิน 3°</dd>
+<dt>หน้าเคส</dt><dd>อ่านเหมือนแอป: สารบัญด้านซ้ายแบบรายการใน launcher ติดอยู่กับที่ และเรืองตามส่วนที่อ่านอยู่ · หน้าจอ Flows เต็มกว้างใต้ชื่อ</dd>
+<dt>Tablet และมือถือ</dt><dd><b>1024</b>: โครงเดียวกับ desktop · <b>768</b>: หัวข้อเต็มแถว รายการแคบลง สารบัญหน้าเคสซ่อน · <b>390</b>: หน้าจอขึ้นก่อน รายการกลายเป็นแถบไอคอนเลื่อนข้าง ไม่มีแถบปุ่มคีย์บอร์ด</dd>
+<dt>งบการเคลื่อนไหว</dt><dd><div class="scroll"><table>
+<tr><th>อะไรขยับ</th><th>เมื่อไร</th><th>ทำไม</th><th>Reduce motion</th></tr>
+<tr><td>หน้าจอจางแล้วขึ้นใหม่ 6 px</td><td>เลือก / hover รายการ</td><td>ให้รู้ว่าเปลี่ยนตัวแล้ว</td><td>เปลี่ยนทันที</td></tr>
+<tr><td>หน้าต่างเอียงตามเมาส์ ≤ 3°</td><td>เมาส์อยู่บนหน้าต่าง</td><td>ความลึกแบบเบา ๆ</td><td>ไม่เอียง</td></tr>
+<tr><td>handle ของ slider เอนครั้งเดียว · การ์ดเลื่อนขึ้นครั้งเดียว · ขอบแสงตามเมาส์</td><td>เข้าจอ / hover</td><td>บอกว่าลากได้ / กดได้</td><td>ไม่มี</td></tr>
+<tr><td colspan="4">ไม่มีอะไรขยับเองตอนไม่มีใครทำอะไร</td></tr>
+</table></div></dd>
+<dt>ถ้าสร้างจริงใช้</dt><dd>React + CSS ล้วน ไม่มี library เพิ่ม (cmdk ไม่จำเป็น รายการแค่ 13 ตัว)</dd>
+<dt>เหมาะกับ / ความเสี่ยง</dt><dd>เหมาะ: เร็วที่สุด (ไม่มี WebGL) หน้าจอจริงเป็นพระเอกแบบ Linear / Raycast · ความเสี่ยง: คนที่ไม่ใช่ developer อาจไม่รู้ว่าพิมพ์ได้ จึงมีรายการให้กดอยู่แล้ว</dd>
+</dl>
+</template>
+
+<!-- ======================= C · Elements ======================= -->
+<template data-dir="c" data-part="pv">
+<section class="page" data-p="home">
+<div data-b="nav"></div>
+<main>
+<section class="c-hero" aria-labelledby="c-h1"><div class="p-in">
+<div class="c-top"><div><p class="p-eye"><span class="p-k">tanawat.dev</span>Tanawat Pinthongpan · fullstack developer</p><h1 class="c-h1" id="c-h1">I build the tools I use.</h1></div>
+<div><p class="c-sub">Web apps for teams since 2017. This year, <b>eleven desktop apps in Rust + Tauri</b>, each named after an element.</p><p class="c-sub p-th" lang="th">เขียนเว็บให้ทีมมาตั้งแต่ 2017 ปีนี้ทำเครื่องมือที่ใช้เองทุกวัน 11 ตัว</p>
+<div class="c-acts"><a class="p-btn p-btn-ink" href="#c-hire">Work with me <span class="p-arr" aria-hidden="true">→</span></a><a class="p-btn p-btn-gh" href="#c-about">About me</a></div></div></div>
+<div class="c-tbl" id="c-work" role="group" aria-label="The VTX family as a table of elements"></div>
+<div class="c-key"><span><i style="background:var(--card)"></i>11 desktop apps in Rust + Tauri</span><span>“personal” marks the four I build for myself</span><span>point to light them, click to open one</span></div>
+<div class="c-det"><figure><img data-shot="fulmen-1" alt=""></figure><div class="tx"></div></div>
+<div style="margin-top:clamp(48px,7cqi,88px)"><div data-b="proof"></div></div>
+</div></section>
+<section class="p-sec"><div class="p-in"><div data-b="hd" data-k="inside" data-t="The parts nobody sees" data-h="What's inside them"></div><div data-b="inside"></div></div></section>
+<section class="p-sec" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="before → after" data-t="What they replace" data-h="The terminal I used, and the app I built" data-l="Pick a tool, then drag the handle."></div><div data-b="ba"></div></div></section>
+<section class="p-sec" id="c-about" style="padding-top:0"><div class="p-in"><div data-b="about"></div></div></section>
+<section class="p-sec" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="web" data-t="On the web" data-h="Live today"></div><div data-b="web"></div></div></section>
+<section class="p-sec" id="c-cv" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="cv" data-t="Resume" data-h="Pick a style, pick a length" data-l="Made with CraftCV. View online or take the PDF."></div><div data-b="cv"></div></div></section>
+<section class="p-sec" id="c-hire" style="padding-top:0"><div class="p-in"><div data-b="hire"></div></div></section>
+</main>
+<div data-b="ft"></div>
+</section>
+<section class="page" data-p="case">
+<div data-b="nav"></div>
+<main>
+<section><div class="p-in c-ch">
+<div class="c-big" aria-hidden="true"><span class="n">02 · Lightning</span><span class="s">Fu</span><span><b>Fulmen</b><span>APIs</span></span><img src="assets/icons/fulmen.png" alt=""></div>
+<div><a class="c-back" href="#" data-go="home" data-to="c-work"><span aria-hidden="true">←</span> The table</a><h1>Fulmen</h1><p class="lede">An API client where requests leave from Rust, not a browser.</p>
+<dl class="c-props"><div><dt>Element</dt><dd>Lightning</dd></div><div><dt>Job</dt><dd>APIs</dd></div><div><dt>Version</dt><dd>v0.57 · preview</dd></div><div><dt>Runs on</dt><dd>macOS · Windows · Linux</dd></div><div><dt>Speaks</dt><dd>HTTP, GraphQL, WebSocket, Socket.IO, SSE, gRPC, SOAP, MCP</dd></div><div><dt>Keeps data</dt><dd>SQLite on your Mac · YAML in Git</dd></div><div><dt>Built with</dt><dd>Rust, Tauri 2, React, TypeScript</dd></div><div><dt>In CI</dt><dd>arccc run</dd></div></dl></div>
+</div></section>
+<section class="p-sec"><div class="p-in"><div data-b="why"></div></div></section>
+<section class="p-sec" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="before → after" data-t="The same checkout" data-h="Two ways to test one flow"></div><div data-b="ba" data-pairs="fulmen"></div></div></section>
+<section class="p-sec" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="screens" data-t="Real screens, sample data" data-h="A look inside"></div><div data-b="gal"></div></div></section>
+<section class="p-sec" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="features" data-t="From the README" data-h="What it does"></div><div data-b="feats"></div></div></section>
+<section class="p-sec" style="padding-top:0"><div class="p-in"><div data-b="getit"></div><div data-b="next"></div></div></section>
+</main>
+<div data-b="ft"></div>
+</section>
+</template>
+<template data-dir="c" data-part="spec">
+<h2>C · Elements</h2><p class="lead">แอปทุกตัวตั้งชื่อตามธาตุอยู่แล้ว ทางนี้จึงจัดเป็นตารางธาตุ 11 ช่อง (+ ช่อง Labs) · ชี้แล้วแสงเย็นไล่ตามเมาส์ข้ามช่อง กดธาตุแล้วเห็นหน้าจอจริงข้างล่างทันที</p>
+<dl>
+<dt>สี</dt><dd data-pal></dd>
+<dt>Hero</dt><dd>หัวข้อเต็มแถว ตารางกว้างเต็มใต้หัวข้อ ช่องละ: ลำดับ สัญลักษณ์ (Lp Fu Sv … Cu กับ Hg ตรงกับธาตุจริงพอดี) ชื่อ ธาตุ งาน และไอคอนเล็ก · <b>spotlight</b>: ช่องใกล้เมาส์เรืองขอบ conic ice/periwinkle ตามระยะ · <b>กดช่อง</b>: แผงใต้ตารางเปลี่ยนเป็นหน้าจอจริง สัญลักษณ์ ชื่อ และปุ่ม (Fulmen มีปุ่มอ่านเคส) · เปิดหน้ามาเลือก Fulmen ไว้แล้ว เนื้อหาครบตั้งแต่โหลด</dd>
+<dt>หน้าเคส</dt><dd>ช่อง "Fu" ขยายใหญ่ข้างตารางคุณสมบัติแบบตารางธาตุ (ธาตุ งาน เวอร์ชัน OS โปรโตคอล ที่เก็บข้อมูล)</dd>
+<dt>Tablet และมือถือ</dt><dd><b>1024</b>: 6 × 2 เหมือน desktop · <b>768</b>: 6 × 2 ช่องเล็กลง แผงรายละเอียดเรียงลง · <b>390</b>: 3 × 4 ไม่มีไอคอนในช่อง (ชัดกว่า) แผงอยู่ใต้ตาราง</dd>
+<dt>งบการเคลื่อนไหว</dt><dd><div class="scroll"><table>
+<tr><th>อะไรขยับ</th><th>เมื่อไร</th><th>ทำไม</th><th>Reduce motion</th></tr>
+<tr><td>แสงขอบไล่ตามเมาส์ทั้งตาราง (ไม่มีอะไรเคลื่อนที่ แค่สว่างขึ้น)</td><td>เมาส์อยู่บนตาราง</td><td>ชวนให้ลองกด</td><td>ยังมี (เป็นแค่ความสว่าง)</td></tr>
+<tr><td>ช่องยก 3 px · หน้าจอในแผงจางสลับ 160 ms</td><td>hover / กด</td><td>บอกว่ากดได้ / เปลี่ยนแล้ว</td><td>ไม่ยก เปลี่ยนทันที</td></tr>
+<tr><td>handle เอนครั้งเดียว · การ์ดเลื่อนขึ้นครั้งเดียว</td><td>เข้าจอ</td><td>บอกว่าลากได้</td><td>ไม่มี</td></tr>
+<tr><td colspan="4">ไม่มีอะไรขยับเองตอนไม่มีใครทำอะไร</td></tr>
+</table></div></dd>
+<dt>ถ้าสร้างจริงใช้</dt><dd>React + CSS ล้วน (mask + conic-gradient) ไม่มี library เพิ่ม</dd>
+<dt>เหมาะกับ / ความเสี่ยง</dt><dd>เหมาะ: ไอเดียของครอบครัว (ธาตุ) กลายเป็นภาพที่จำได้ และเร็ว · ความเสี่ยง: สัญลักษณ์บางตัวคล้ายธาตุจริง (Cy, Sv) คนอาจงงเล็กน้อย</dd>
+</dl>
+</template>
+
+<!-- ======================= D · Story ======================= -->
+<template data-dir="d" data-part="pv">
+<section class="page" data-p="home">
+<div data-b="nav"></div>
+<main>
+<section class="d-hero" aria-labelledby="d-h1"><div class="p-in">
+<div class="d-name"><span class="av" aria-hidden="true">TP</span><span><b>Tanawat Pinthongpan</b>Fullstack developer · Thailand</span></div>
+<h1 class="d-h1" id="d-h1">Nine years of web apps. <em>This year, eleven tools of my own.</em></h1>
+<div class="d-row"><div><p class="d-sub">I've built web apps for teams since July 2017. In 2026 I started VTX: <b>the database, API, Git and SSH tools I use every day</b>, rebuilt in Rust + Tauri, all solo.</p><p class="d-sub p-th" lang="th">เขียนเว็บให้ทีมมาตั้งแต่ 2017 ปีนี้ทำเครื่องมือที่ใช้เองทุกวัน 11 ตัว</p></div>
+<div class="d-acts"><a class="p-btn p-btn-ink" href="#d-about">Read the story <span class="p-arr" aria-hidden="true">↓</span></a><a class="p-btn p-btn-gh" href="#d-hire">Work with me</a></div></div>
+<div class="d-band" role="img" aria-label="A timeline from 2017 to 2026 drawn to scale: web apps for teams from July 2017, then the VTX family of eleven desktop apps in 2026."><div class="d-axis"></div></div>
+</div></section>
+<section class="p-sec" id="d-about"><div class="p-in"><div data-b="hd" data-k="story" data-t="About" data-h="How I got here"></div>
+<div class="d-story"><div class="d-rail" aria-hidden="true"><i class="d-fill"></i><i class="d-dot"></i></div><div class="d-chs">
+<article class="d-chp"><div><span class="y">July 2017</span><h3>First job</h3></div><div><p>I started as a web developer, building web apps for teams.</p></div></article>
+<article class="d-chp"><div><span class="y">the years after</span><h3>Senior, then lead</h3></div><div><p>I became a senior developer, then tried leading a team. Leading meant more meetings than code, so I went back to the keyboard.</p></div></article>
+<article class="d-chp"><div><span class="y">2026</span><h3>VTX</h3></div><div><p>I use a database client, an API client, Git, SSH and a dev toolbox every day. This year I started building my own: eleven desktop apps in Rust + Tauri, each named after an element, sharing one kit.</p></div></article>
+<article class="d-chp"><div><span class="y">now</span><h3>Labs, CraftCV, Studio</h3></div><div><p>VTX Labs puts the family and free web tools in one place, CraftCV builds resumes in the browser, and VTX Studio takes client work.</p><p class="p-th" lang="th">ใช้ AI ทุกวัน ทั้งเขียน รีวิว และส่งงาน</p></div></article>
+</div></div></div></section>
+<section class="p-sec" id="d-work" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="vtx" data-t="Work" data-h="The VTX family" data-m="labs"></div><ul class="d-fam"></ul></div></section>
+<section class="p-sec" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="before → after" data-t="What they replace" data-h="The terminal I used, and the app I built" data-l="Pick a tool, then drag the handle."></div><div data-b="ba"></div></div></section>
+<section class="p-sec" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="web" data-t="On the web" data-h="Live today"></div><div data-b="web"></div></div></section>
+<section class="p-sec" id="d-cv" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="cv" data-t="Resume" data-h="Pick a style, pick a length" data-l="Made with CraftCV. View online or take the PDF."></div><div data-b="cv"></div></div></section>
+<section class="p-sec" id="d-hire" style="padding-top:0"><div class="p-in"><div data-b="hire"></div></div></section>
+</main>
+<div data-b="ft"></div>
+</section>
+<section class="page" data-p="case">
+<div data-b="nav"></div>
+<div class="d-prog" aria-hidden="true"><i></i></div>
+<main>
+<section class="p-sec" style="padding-top:clamp(40px,6cqi,88px)"><div class="p-in">
+<article class="d-art">
+<a class="c-back" href="#" data-go="home" data-to="d-work"><span aria-hidden="true">←</span> All work</a>
+<p class="kick" style="margin-top:14px">VTX family · Lightning · APIs</p>
+<h1>Fulmen, an API client that sends from Rust</h1>
+<p class="stand">I test APIs every day, so I built the client I wanted. What it does, and what it replaced.</p>
+<div class="by"><span class="av" aria-hidden="true">TP</span><span>Tanawat Pinthongpan · v0.57 · macOS, Windows, Linux</span></div>
+<p class="t">Requests leave from Rust, not a browser: no CORS, any header you like, and self-signed certificates work.</p>
+<p class="t">Collections, environments and history live in SQLite on your Mac, and a collection can sit in Git as YAML files. It grew from a request sender into flows, checks without a script, and <code>arccc run</code> for CI.</p>
+<p class="d-pull">The same checkout, before and after.</p>
+</article>
+<div class="d-wide"><div data-b="ba" data-pairs="fulmen"></div></div>
+<article class="d-art"><h2>A look inside</h2></article>
+<div class="d-wide"><div data-b="gal"></div></div>
+<article class="d-art"><h2>What it does</h2></article>
+<div class="d-wide"><div data-b="feats"></div></div>
+<div class="d-wide"><div data-b="getit"></div><div data-b="next"></div></div>
+</div></section>
+</main>
+<div data-b="ft"></div>
+</section>
+</template>
+<template data-dir="d" data-part="spec">
+<h2>D · Story</h2><p class="lead">ตัวคนนำ ไม่ใช่แอป: หัวข้อใหญ่แบบนิตยสาร แล้วแถบปี 2017 → 2026 <b>ตามสเกลเวลาจริง</b> เส้นยาวเงียบ ๆ 9 ปี แล้วไอคอน 11 ตัวพุ่งขึ้นตรงปี 2026 · เรื่องเล่า 4 ตอนมีจุดแสงเดินตาม scroll</p>
+<dl>
+<dt>สี</dt><dd data-pal></dd>
+<dt>Hero</dt><dd>หัวข้อ 2 น้ำหนัก (ประโยคหลังสีเทา) · แถบปีวาดจากวันจริง: ช่วงเว็บ ก.ค. 2017 → 2025 เป็นเส้น ice, ช่วง VTX 2026 → วันนี้เป็นแสง periwinkle และไอคอน 11 ตัวบานขึ้นเหนือมัน · ปีช่วงกลาง (senior, lead) ไม่มีในเว็บเดิม จึงไม่ใส่ปี ถ้าอยากใส่ บอกปีมาได้</dd>
+<dt>หน้าเคส</dt><dd>บทความยาว: kicker, หัวเรื่อง, standfirst, ผู้เขียน, ย่อหน้า, pull quote แล้วรูปกว้างกว่าคอลัมน์ · แถบความคืบหน้าการอ่านบนสุด</dd>
+<dt>Tablet และมือถือ</dt><dd><b>1024 / 768</b>: แถบปีเต็มกว้าง รายการแอปเป็นแถว (ตัดคอลัมน์ธาตุที่ 768) · <b>390</b>: ปีเหลือ ’17 ’19 … ไอคอนบานแคบลง เรื่องเล่ามีราง 28 px</dd>
+<dt>งบการเคลื่อนไหว</dt><dd><div class="scroll"><table>
+<tr><th>อะไรขยับ</th><th>เมื่อไร</th><th>ทำไม</th><th>Reduce motion</th></tr>
+<tr><td>จุดแสงกับเส้นในราง + ตอนที่อ่านอยู่สว่างขึ้น</td><td>ตาม scroll เท่านั้น (ไม่ scroll ไม่ขยับ)</td><td>ให้รู้ว่าอยู่ตอนไหนของเรื่อง</td><td>รางเต็ม ทุกตอนสว่าง ไม่มีจุด</td></tr>
+<tr><td>แถบความคืบหน้าการอ่าน (หน้าเคส)</td><td>ตาม scroll</td><td>บทความยาว</td><td>ยังมี (ไม่ใช่การเคลื่อนที่ของเนื้อหา)</td></tr>
+<tr><td>ไอคอนในแถบปีขยายเมื่อชี้ · handle เอนครั้งเดียว</td><td>hover / เข้าจอ</td><td>ให้รู้ว่าตัวไหน / ลากได้</td><td>ไม่มี</td></tr>
+</table></div></dd>
+<dt>ถ้าสร้างจริงใช้</dt><dd>CSS + scroll listener ที่ทำงานเฉพาะตอนส่วนนั้นอยู่ในจอ (หรือ CSS scroll-driven animations ในเบราว์เซอร์ที่รองรับ)</dd>
+<dt>เหมาะกับ / ความเสี่ยง</dt><dd>เหมาะ: HR และคนที่อยากรู้จักตัวคน · ความเสี่ยง: แอปถูกดันลงไปข้างล่าง คนที่มาดูงานต้องเลื่อนนานขึ้น</dd>
+</dl>
+</template>
+
+<!-- ======================= E · Before → After ======================= -->
+<template data-dir="e" data-part="pv">
+<section class="page" data-p="home">
+<div data-b="nav"></div>
+<main>
+<section class="e-hero" aria-labelledby="e-h1"><div class="p-in">
+<div class="e-top"><div><p class="p-eye"><span class="p-k">tanawat.dev</span>Tanawat Pinthongpan · fullstack developer</p><h1 class="e-h1" id="e-h1">I build the tools I use.</h1></div>
+<div><p class="e-sub">Left, the terminal I used to live in. Right, the app I built to replace it. <b>Drag the handle.</b> Eleven desktop apps in Rust + Tauri, built solo; web apps for teams since 2017.</p><p class="e-sub p-th" lang="th">เขียนเว็บให้ทีมมาตั้งแต่ 2017 ปีนี้ทำเครื่องมือที่ใช้เองทุกวัน 11 ตัว</p>
+<div class="e-acts"><a class="p-btn p-btn-ink" href="#e-work">All eleven <span class="p-arr" aria-hidden="true">↓</span></a><a class="p-btn p-btn-gh" href="#e-hire">Work with me</a></div></div></div>
+<div class="e-stage"><div data-b="ba"></div></div>
+<div style="margin-top:clamp(48px,7cqi,88px)"><div data-b="proof"></div></div>
+</div></section>
+<section class="p-sec" id="e-work"><div class="p-in"><div data-b="hd" data-k="vtx" data-t="Work" data-h="The VTX family" data-l="Eleven desktop apps in Rust + Tauri, each named after an element." data-m="labs"></div><div data-b="fam"></div></div></section>
+<section class="p-sec" id="e-about" style="padding-top:0"><div class="p-in"><div data-b="about"></div></div></section>
+<section class="p-sec" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="web" data-t="On the web" data-h="Live today"></div><div data-b="web"></div></div></section>
+<section class="p-sec" id="e-cv" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="cv" data-t="Resume" data-h="Pick a style, pick a length" data-l="Made with CraftCV. View online or take the PDF."></div><div data-b="cv"></div></div></section>
+<section class="p-sec" id="e-hire" style="padding-top:0"><div class="p-in"><div data-b="hire"></div></div></section>
+</main>
+<div data-b="ft"></div>
+</section>
+<section class="page" data-p="case">
+<div data-b="nav"></div>
+<main>
+<section class="e-ch"><div class="p-in">
+<a class="c-back" href="#" data-go="home" data-to="e-work"><span aria-hidden="true">←</span> All work</a>
+<div class="e-chrow" style="margin-top:14px"><img src="assets/icons/fulmen.png" alt="" width="84" height="84"><div><p class="p-eye" style="margin:0"><span class="p-k">case</span>Lightning · APIs</p><h1>Fulmen</h1></div></div>
+<p class="lede">An API client where requests leave from Rust, not a browser. Drag to compare the same checkout, before and after.</p>
+<div data-b="meta"></div>
+<div class="e-stage"><div data-b="ba" data-pairs="fulmen"></div></div>
+</div></section>
+<section class="p-sec"><div class="p-in"><div data-b="why"></div></div></section>
+<section class="p-sec" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="screens" data-t="Real screens, sample data" data-h="A look inside"></div><div data-b="gal"></div></div></section>
+<section class="p-sec" style="padding-top:0"><div class="p-in"><div data-b="hd" data-k="features" data-t="From the README" data-h="What it does"></div><div data-b="feats"></div></div></section>
+<section class="p-sec" style="padding-top:0"><div class="p-in"><div data-b="getit"></div><div data-b="next"></div></div></section>
+</main>
+<div data-b="ft"></div>
+</section>
+</template>
+<template data-dir="e" data-part="spec">
+<h2>E · Before → After</h2><p class="lead">ตรงกับ kit ux-motion § 5 ที่สุด: hero คือ slider ก่อน / หลัง เต็มกว้าง ซ้ายเป็น terminal ที่ developer ทุกคนเคยเจอ ขวาเป็นแอปที่ทำขึ้นมาแทน 4 คู่ให้เลือก · เล่าว่า "ทำไมถึงสร้าง" โดยไม่ต้องอ่าน</p>
+<dl>
+<dt>สี</dt><dd data-pal></dd>
+<dt>Hero</dt><dd>แท็บ 4 คู่ (curl → Fulmen, git → Silva, psql → Lapis, base64 → Ignis) แล้วกรอบ 16:9: terminal จริงจัง (สีของ G, ไม่มีเขียว) ใต้หน้าจอจริงของแอป · handle เป็นลูกแก้วเล็กขอบ ice/periwinkle ลากด้วยเมาส์ นิ้ว หรือคีย์บอร์ด (← → 5 %, Shift 20 %, Home / End) · คำสั่งใน terminal ใช้ api.example.com และข้อมูลตัวอย่าง</dd>
+<dt>หน้าเคส</dt><dd>slider ของ Fulmen เป็น hero ของหน้าเคสด้วย ใต้ชื่อและไอคอน</dd>
+<dt>Tablet และมือถือ</dt><dd><b>1024 / 768</b>: หัวข้อเต็มแถว slider 16:9 · <b>390</b>: slider สูง 4:5 แท็บเลื่อนข้าง (โชว์แค่ไอคอน + ชื่อ) · ลากด้วยนิ้วในแนวนอนได้ เลื่อนหน้าแนวตั้งยังได้ (touch-action: pan-y)</dd>
+<dt>งบการเคลื่อนไหว</dt><dd><div class="scroll"><table>
+<tr><th>อะไรขยับ</th><th>เมื่อไร</th><th>ทำไม</th><th>Reduce motion</th></tr>
+<tr><td>handle เอนซ้าย 14 % แล้วกลับ ครั้งเดียว 1.6 วิ</td><td>ครั้งแรกที่ slider เข้าจอ</td><td>บอกว่าลากได้ โดยไม่ต้องมีป้าย "drag me"</td><td>ไม่มี</td></tr>
+<tr><td>เส้นแบ่งตามนิ้ว / เมาส์</td><td>ตอนลาก</td><td>คือตัวงาน</td><td>ยังลากได้ (คนเป็นคนขยับ)</td></tr>
+<tr><td>การ์ดเลื่อนขึ้นครั้งเดียว · ขอบแสงตามเมาส์</td><td>เข้าจอ / hover</td><td>นุ่ม / บอกว่ากดได้</td><td>ไม่มี</td></tr>
+<tr><td colspan="4">ไม่มีอะไรขยับเองตอนไม่มีใครทำอะไร</td></tr>
+</table></div></dd>
+<dt>ถ้าสร้างจริงใช้</dt><dd>React + CSS clip-path ล้วน ไม่มี library เพิ่ม</dd>
+<dt>เหมาะกับ / ความเสี่ยง</dt><dd>เหมาะ: developer เข้าใจในวินาทีเดียว และตรงกับกติกาของ kit · ความเสี่ยง: hero เป็นของ "ใช้งาน" มากกว่าของ "สวย" ความรู้สึกพรีเมียมแบบ Lusion น้อยกว่า A</dd>
+</dl>
+</template>
+
+<script type="application/json" id="md-a">"\u003cpicture>\n  \u003csource media=\"(prefers-color-scheme: dark)\" srcset=\"assets/banner-dark.svg\">\n  \u003cimg alt=\"Tanawat Pinthongpan. Fullstack developer. I build the tools I use.\" src=\"assets/banner-light.svg\" width=\"100%\">\n\u003c/picture>\n\n\u003cp align=\"center\">\n  \u003ca href=\"https://tanawat.dev\">\u003cb>tanawat.dev\u003c/b>\u003c/a> &nbsp;·&nbsp;\n  \u003ca href=\"https://vtxlabs.app\">VTX Labs\u003c/a> &nbsp;·&nbsp;\n  \u003ca href=\"https://www.linkedin.com/in/tanawat-pinthongpan-683a84167/\">LinkedIn\u003c/a>\n\u003c/p>\n\nFullstack developer in Thailand, building web apps for teams since 2017. This year I started **VTX**: the tools I use every day, rebuilt the way I want them. Eleven desktop apps in Rust + Tauri, all built solo.\n\nเขียนเว็บให้ทีมมาตั้งแต่ 2017 ปีนี้ทำเครื่องมือที่ใช้เองทุกวัน 11 ตัว\n\n### The VTX family\n\n| | App | What it does |\n|:-:|---|---|\n| \u003cimg src=\"assets/icons/lapis.png\" width=\"28\" alt=\"\"> | **Lapis** · _stone_ | Database client. PostgreSQL, MySQL / MariaDB, SQLite, SQL Server, MongoDB and Redis in one window. |\n| \u003cimg src=\"assets/icons/fulmen.png\" width=\"28\" alt=\"\"> | **Fulmen** · _lightning_ | API client. HTTP, GraphQL, WebSocket, gRPC, SSE and MCP. Requests leave from Rust, not a browser. |\n| \u003cimg src=\"assets/icons/silva.png\" width=\"28\" alt=\"\"> | **Silva** · _wood_ | Git client. Every action can be undone, and it runs your own git: hooks, LFS and signing included. |\n| \u003cimg src=\"assets/icons/ventus.png\" width=\"28\" alt=\"\"> | **Ventus** · _wind_ | SSH client. Reads your `~/.ssh/config` and agent, and checks the host key before sending anything. |\n| \u003cimg src=\"assets/icons/ignis.png\" width=\"28\" alt=\"\"> | **Ignis** · _fire_ | Dev toolbox. Paste anything and it knows what it is: JSON, JWT, Base64, timestamps, cron, cURL. |\n| \u003cimg src=\"assets/icons/aqua.png\" width=\"28\" alt=\"\"> | **Aqua** · _water_ | Mac cleaner that knows a developer's disk: build folders, tool caches, simulators, Docker. |\n| \u003cimg src=\"assets/icons/cuprum.png\" width=\"28\" alt=\"\"> | **Cuprum** · _copper_ | Code editor that traces where your data goes. A personal build. |\n| \u003cimg src=\"assets/icons/lux.png\" width=\"28\" alt=\"\"> | **Lux** · _light_ | Video maker. Short videos from a script, with a live preview of every scene. A personal build. |\n| \u003cimg src=\"assets/icons/mercurius.png\" width=\"28\" alt=\"\"> | **Mercurius** · _quicksilver_ | Mail. Every Gmail account in one inbox, stored on your Mac. A personal build. |\n| \u003cimg src=\"assets/icons/crystallum.png\" width=\"28\" alt=\"\"> | **Crystallum** · _crystal_ | Remote desktop from your Mac to a Windows PC. A personal build. |\n| \u003cimg src=\"assets/icons/ros.png\" width=\"28\" alt=\"\"> | **Ros** · _dew_ | Notes as plain Markdown files that the other apps write into. |\n\n\u003csub>Most of the family is private while it grows. Fulmen's builds are public at \u003ca href=\"https://github.com/tanawat011/fulmen-releases\">fulmen-releases\u003c/a>, and the whole family lives at \u003ca href=\"https://vtxlabs.app\">vtxlabs.app\u003c/a>.\u003c/sub>\n\n### How they're built\n\n- **Your Mac, not my cloud.** Data stays in files and the Keychain on your machine. No account, no server in between.\n- **They show their work.** Silva lists every git command it runs, and Aqua says why each item is safe to remove.\n- **Mistakes come back.** Silva can undo any action, and Lapis keeps the SQL that reverses each write.\n\n### Stack\n\n**Now** &nbsp; Rust · Tauri 2 · React · TypeScript · Next.js · Tailwind · shadcn/ui · PostgreSQL · SQLite · Supabase · Vercel · Bun · Docker\u003cbr>\n**Every day** &nbsp; Claude · Gemini · GPT · Cursor\n\n\u003cdetails>\n\u003csummary>Everything I've shipped with since 2017\u003c/summary>\n\u003cbr>\n\n**Languages** TypeScript, Rust, JavaScript, Go, Python, PHP, Swift, Dart\u003cbr>\n**Web** Next.js, React, NestJS, Node.js, Laravel, RedwoodJS, GraphQL, Tailwind, Bootstrap, DaisyUI, HeroUI, Ant Design, shadcn/ui\u003cbr>\n**Desktop** Tauri, Rust, SwiftUI, macOS\u003cbr>\n**Mobile** React Native, Flutter, Swift\u003cbr>\n**Data** PostgreSQL, MySQL, MariaDB, SQL Server, SQLite, MongoDB, Redis, Prisma, TypeORM\u003cbr>\n**Cloud** GCP, Firebase, Supabase, Vercel, Nginx, WordPress\u003cbr>\n**Tools** Docker, Git, npm, Yarn, Bun, Xcode, Sentry, Resend, ngrok, LINE OA, Cursor, Antigravity\n\n\u003c/details>\n"</script>
+<script type="application/json" id="md-b">"\u003cpicture>\n  \u003csource media=\"(prefers-color-scheme: dark)\" srcset=\"assets/header-dark.svg\">\n  \u003cimg alt=\"Tanawat Pinthongpan. Fullstack developer. The VTX family: 11 desktop apps in Rust + Tauri.\" src=\"assets/header-light.svg\" width=\"100%\">\n\u003c/picture>\n\nI build the tools I use. Web apps for teams since 2017; this year, **eleven desktop apps in Rust + Tauri**, all built solo. See them at **[vtxlabs.app](https://vtxlabs.app)**, or read about me at **[tanawat.dev](https://tanawat.dev)**.\n\n\u003ctable>\n\u003ctr>\n\u003ctd width=\"33%\" valign=\"top\">\u003cimg src=\"assets/icons/lapis.png\" width=\"40\" alt=\"\">\u003cbr>\u003cb>Lapis\u003c/b> \u003csub>Stone · Databases\u003c/sub>\u003cbr>\u003csub>Six database engines in one window. Every write keeps the SQL that reverses it.\u003c/sub>\u003c/td>\n\u003ctd width=\"33%\" valign=\"top\">\u003cimg src=\"assets/icons/fulmen.png\" width=\"40\" alt=\"\">\u003cbr>\u003cb>Fulmen\u003c/b> \u003csub>Lightning · APIs\u003c/sub>\u003cbr>\u003csub>HTTP, GraphQL, WebSocket, gRPC, SSE and MCP, sent from Rust, not a browser.\u003c/sub>\u003c/td>\n\u003ctd width=\"33%\" valign=\"top\">\u003cimg src=\"assets/icons/silva.png\" width=\"40\" alt=\"\">\u003cbr>\u003cb>Silva\u003c/b> \u003csub>Wood · Git\u003c/sub>\u003cbr>\u003csub>A Git graph where every action can be undone.\u003c/sub>\u003c/td>\n\u003c/tr>\n\u003ctr>\n\u003ctd valign=\"top\">\u003cimg src=\"assets/icons/ventus.png\" width=\"40\" alt=\"\">\u003cbr>\u003cb>Ventus\u003c/b> \u003csub>Wind · SSH\u003c/sub>\u003cbr>\u003csub>Reads your SSH config and checks the host key before sending anything.\u003c/sub>\u003c/td>\n\u003ctd valign=\"top\">\u003cimg src=\"assets/icons/ignis.png\" width=\"40\" alt=\"\">\u003cbr>\u003cb>Ignis\u003c/b> \u003csub>Fire · Dev tools\u003c/sub>\u003cbr>\u003csub>Paste anything: JSON, JWT, Base64, cron, cURL.\u003c/sub>\u003c/td>\n\u003ctd valign=\"top\">\u003cimg src=\"assets/icons/aqua.png\" width=\"40\" alt=\"\">\u003cbr>\u003cb>Aqua\u003c/b> \u003csub>Water · Mac cleaning\u003c/sub>\u003cbr>\u003csub>Knows a developer's disk, and says why each item is safe to remove.\u003c/sub>\u003c/td>\n\u003c/tr>\n\u003ctr>\n\u003ctd valign=\"top\">\u003cimg src=\"assets/icons/cuprum.png\" width=\"40\" alt=\"\">\u003cbr>\u003cb>Cuprum\u003c/b> \u003csub>Copper · Editor\u003c/sub>\u003cbr>\u003csub>Traces where your data goes. A personal build.\u003c/sub>\u003c/td>\n\u003ctd valign=\"top\">\u003cimg src=\"assets/icons/lux.png\" width=\"40\" alt=\"\">\u003cbr>\u003cb>Lux\u003c/b> \u003csub>Light · Video\u003c/sub>\u003cbr>\u003csub>Short videos from a script. A personal build.\u003c/sub>\u003c/td>\n\u003ctd valign=\"top\">\u003cimg src=\"assets/icons/mercurius.png\" width=\"40\" alt=\"\">\u003cbr>\u003cb>Mercurius\u003c/b> \u003csub>Quicksilver · Mail\u003c/sub>\u003cbr>\u003csub>Every Gmail account in one inbox. A personal build.\u003c/sub>\u003c/td>\n\u003c/tr>\n\u003ctr>\n\u003ctd valign=\"top\">\u003cimg src=\"assets/icons/crystallum.png\" width=\"40\" alt=\"\">\u003cbr>\u003cb>Crystallum\u003c/b> \u003csub>Crystal · Remote\u003c/sub>\u003cbr>\u003csub>Your Mac to a Windows PC. A personal build.\u003c/sub>\u003c/td>\n\u003ctd valign=\"top\">\u003cimg src=\"assets/icons/ros.png\" width=\"40\" alt=\"\">\u003cbr>\u003cb>Ros\u003c/b> \u003csub>Dew · Notes\u003c/sub>\u003cbr>\u003csub>Plain Markdown notes that the other apps write into.\u003c/sub>\u003c/td>\n\u003ctd valign=\"top\">\u003cimg src=\"assets/icons/labs.png\" width=\"40\" alt=\"\">\u003cbr>\u003cb>\u003ca href=\"https://vtxlabs.app\">All of them →\u003c/a>\u003c/b>\u003cbr>\u003csub>Screens and what ships when, at vtxlabs.app.\u003c/sub>\u003c/td>\n\u003c/tr>\n\u003c/table>\n\n**Stack now** Rust · Tauri 2 · React · TypeScript · Next.js · PostgreSQL · SQLite · Bun &nbsp;·&nbsp; **Before** Go · NestJS · Laravel · React Native · Flutter · Swift\n\n\u003csub>Most of the family is private while it grows · Fulmen's builds: \u003ca href=\"https://github.com/tanawat011/fulmen-releases\">fulmen-releases\u003c/a> · เขียนเว็บให้ทีมมาตั้งแต่ 2017 ปีนี้ทำเครื่องมือที่ใช้เองทุกวัน 11 ตัว\u003c/sub>\n"</script>
+<script type="application/json" id="md-c">"\u003cdiv align=\"center\">\n\n\u003c!-- Header Banner -->\n\u003cimg width=\"100%\" src=\"https://capsule-render.vercel.app/api?type=waving&color=0:0b0c0f,50:15171c,100:1b1e25&height=220&section=header&text=Tanawat&fontSize=80&fontColor=f5f6f8&fontAlignY=35&desc=Solo%20Developer%20In%20the%20Shadow&descSize=20&descColor=8e97ff&descAlignY=55&animation=fadeIn\" />\n\n\u003c!-- Typing SVG -->\n\u003ca href=\"https://git.io/typing-svg\">\n  \u003cimg src=\"https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=22&duration=3000&pause=1000&color=8E97FF&center=true&vCenter=true&multiline=true&repeat=true&width=600&height=100&lines=%F0%9F%8C%91+Crafting+code+in+the+dark...;%F0%9F%A6%80+11+desktop+apps.+Rust+%2B+Tauri.+Built+solo.;%F0%9F%94%A5+Fullstack+%7C+Desktop+%7C+Security\" alt=\"Typing SVG\" />\n\u003c/a>\n\n\u003cbr/>\n\n\u003c!-- Social badges -->\n\u003ca href=\"https://tanawat.dev/\">\n  \u003cimg src=\"https://img.shields.io/badge/Portfolio-0b0c0f?style=for-the-badge&logo=googlechrome&logoColor=8e97ff\" />\n\u003c/a>\n\u003ca href=\"https://vtxlabs.app/\">\n  \u003cimg src=\"https://img.shields.io/badge/VTX_Labs-0b0c0f?style=for-the-badge&logo=rocket&logoColor=8e97ff\" />\n\u003c/a>\n\u003ca href=\"https://www.instagram.com/ta.tanawat.pin/\">\n  \u003cimg src=\"https://img.shields.io/badge/Instagram-0b0c0f?style=for-the-badge&logo=instagram&logoColor=8e97ff\" />\n\u003c/a>\n\u003ca href=\"https://github.com/tanawat011\">\n  \u003cimg src=\"https://img.shields.io/badge/GitHub-0b0c0f?style=for-the-badge&logo=github&logoColor=8e97ff\" />\n\u003c/a>\n\n\u003cbr/>\u003cbr/>\n\n\u003c!-- Profile views -->\n\u003cimg src=\"https://komarev.com/ghpvc/?username=tanawat011&style=for-the-badge&color=0b0c0f&label=PROFILE+VIEWS&labelColor=15171c\" />\n\n\u003c/div>\n\n\u003cbr/>\n\n## 🌑 `> whoami`\n\n```js\nconst tanawat = {\n    alias: \"TanawatDEVz\",\n    location: \"Thailand 🇹🇭\",\n    role: \"Solo Developer In the Shadow\",\n    building: \"VTX — 11 desktop apps, one element each\",\n    focus: [\"Desktop Apps\", \"Fullstack\", \"Web Security\", \"System Design\"],\n    currentWeapon: \"Rust + Tauri + React + TypeScript\",\n    philosophy: \"// The best code is the one no one sees, but everyone relies on.\",\n};\n```\n\n\u003cbr/>\n\n## 🌌 `> ls ~/vtx`\n\n> 🧪 _The tools I use every day, so I built my own. Eleven desktop apps, one element each, all built solo._\n\n| | App | What it does |\n|:-:|---|---|\n| 💎 | **Lapis** · _stone_ | Database client. PostgreSQL, MySQL / MariaDB, SQLite, SQL Server, MongoDB and Redis in one window. |\n| ⚡ | **Fulmen** · _lightning_ | API client. HTTP, GraphQL, WebSocket, gRPC, SSE and MCP. Requests leave from Rust, not a browser. |\n| 🌿 | **Silva** · _wood_ | Git client. Every action can be undone, and it runs your own git: hooks, LFS and signing included. |\n| 🌬️ | **Ventus** · _wind_ | SSH client. Reads your `~/.ssh/config` and agent, and checks the host key before sending anything. |\n| 🔥 | **Ignis** · _fire_ | Dev toolbox. Paste anything and it knows what it is: JSON, JWT, Base64, timestamps, cron, cURL. |\n| 💧 | **Aqua** · _water_ | Mac cleaner that knows a developer's disk: build folders, tool caches, simulators, Docker. |\n| 🟠 | **Cuprum** · _copper_ | Code editor that traces where your data goes. A personal build. |\n| ✨ | **Lux** · _light_ | Video maker. Short videos from a script, with a live preview of every scene. A personal build. |\n| 🪩 | **Mercurius** · _quicksilver_ | Mail. Every Gmail account in one inbox, stored on your Mac. A personal build. |\n| 🔮 | **Crystallum** · _crystal_ | Remote desktop from your Mac to a Windows PC. A personal build. |\n| 🌫️ | **Ros** · _dew_ | Notes as plain Markdown files that the other apps write into. |\n\n\u003cp align=\"center\">\n  \u003cimg src=\"https://img.shields.io/badge/Rust-15171c?style=for-the-badge&logo=rust&logoColor=dea584\" />\n  \u003cimg src=\"https://img.shields.io/badge/Tauri_2-15171c?style=for-the-badge&logo=tauri&logoColor=24c8db\" />\n  \u003cimg src=\"https://img.shields.io/badge/React-15171c?style=for-the-badge&logo=react&logoColor=61dafb\" />\n  \u003cimg src=\"https://img.shields.io/badge/TypeScript-15171c?style=for-the-badge&logo=typescript&logoColor=3178c6\" />\n  \u003cimg src=\"https://img.shields.io/badge/macOS_first-15171c?style=for-the-badge&logo=apple&logoColor=ffffff\" />\n\u003c/p>\n\n- 🔒 **Your Mac, not my cloud.** Data stays in files and the Keychain on your machine. No account, no server in between.\n- 🔍 **They show their work.** Silva lists every git command it runs, and Aqua says why each item is safe to remove.\n- ↩️ **Mistakes come back.** Silva can undo any action, and Lapis keeps the SQL that reverses each write.\n\n> Most of the family is private while it grows. Fulmen's builds are public at [**fulmen-releases**](https://github.com/tanawat011/fulmen-releases), and free web tools plus the whole family live at [**vtxlabs.app**](https://vtxlabs.app/).\n\n\u003cbr/>\n\n## ⚔️ `> weapons --current`\n\n> 🔥 _My daily driver stack — what I'm actively building with right now._\n\n\u003cp align=\"center\">\n  \u003cimg src=\"https://img.shields.io/badge/Rust-15171c?style=for-the-badge&logo=rust&logoColor=dea584\" />\n  \u003cimg src=\"https://img.shields.io/badge/Tauri-15171c?style=for-the-badge&logo=tauri&logoColor=24c8db\" />\n  \u003cimg src=\"https://img.shields.io/badge/TypeScript-15171c?style=for-the-badge&logo=typescript&logoColor=3178c6\" />\n  \u003cimg src=\"https://img.shields.io/badge/React-15171c?style=for-the-badge&logo=react&logoColor=61dafb\" />\n  \u003cimg src=\"https://img.shields.io/badge/Next.js-15171c?style=for-the-badge&logo=next.js&logoColor=ffffff\" />\n  \u003cimg src=\"https://img.shields.io/badge/Tailwind-15171c?style=for-the-badge&logo=tailwindcss&logoColor=38b2ac\" />\n  \u003cimg src=\"https://img.shields.io/badge/shadcn/ui-15171c?style=for-the-badge&logo=shadcnui&logoColor=ffffff\" />\n  \u003cbr/>\n  \u003cimg src=\"https://img.shields.io/badge/PostgreSQL-15171c?style=for-the-badge&logo=postgresql&logoColor=4169e1\" />\n  \u003cimg src=\"https://img.shields.io/badge/SQLite-15171c?style=for-the-badge&logo=sqlite&logoColor=4fa3d1\" />\n  \u003cimg src=\"https://img.shields.io/badge/Supabase-15171c?style=for-the-badge&logo=supabase&logoColor=3fcf8e\" />\n  \u003cimg src=\"https://img.shields.io/badge/Vercel-15171c?style=for-the-badge&logo=vercel&logoColor=ffffff\" />\n  \u003cimg src=\"https://img.shields.io/badge/Bun-15171c?style=for-the-badge&logo=bun&logoColor=fbf0df\" />\n  \u003cimg src=\"https://img.shields.io/badge/Docker-15171c?style=for-the-badge&logo=docker&logoColor=2496ed\" />\n\u003c/p>\n\n\u003cbr/>\n\n## 🤖 `> ai --always-on`\n\n> 🧠 _AI is part of my daily workflow — coding, reviewing, and shipping with it._\n\n\u003cp align=\"center\">\n  \u003cimg src=\"https://img.shields.io/badge/Claude-15171c?style=for-the-badge&logo=anthropic&logoColor=d4a574\" />\n  \u003cimg src=\"https://img.shields.io/badge/Gemini-15171c?style=for-the-badge&logo=googlegemini&logoColor=8e75b2\" />\n  \u003cimg src=\"https://img.shields.io/badge/GPT-15171c?style=for-the-badge&logo=openai&logoColor=00a67e\" />\n  \u003cimg src=\"https://img.shields.io/badge/OpenClaw-15171c?style=for-the-badge&logo=huggingface&logoColor=ffcc00\" />\n  \u003cimg src=\"https://img.shields.io/badge/Cursor-15171c?style=for-the-badge&logo=cursor&logoColor=ffffff\" />\n  \u003cimg src=\"https://img.shields.io/badge/Antigravity-15171c?style=for-the-badge&logo=google&logoColor=8e97ff\" />\n\u003c/p>\n\n\u003cbr/>\n\n## 🗡️ `> weapons --history`\n\n> 🧾 _Everything I've worked with over the years — battle-tested and shipped._\n\n\u003cdetails>\n\u003csummary>🗡️ Languages\u003c/summary>\n\u003cbr/>\n\u003cp align=\"center\">\n  \u003cimg src=\"https://img.shields.io/badge/TypeScript-0b0c0f?style=flat-square&logo=typescript&logoColor=3178c6\" />\n  \u003cimg src=\"https://img.shields.io/badge/Rust-0b0c0f?style=flat-square&logo=rust&logoColor=dea584\" />\n  \u003cimg src=\"https://img.shields.io/badge/JavaScript-0b0c0f?style=flat-square&logo=javascript&logoColor=f7df1e\" />\n  \u003cimg src=\"https://img.shields.io/badge/Go-0b0c0f?style=flat-square&logo=go&logoColor=00add8\" />\n  \u003cimg src=\"https://img.shields.io/badge/Python-0b0c0f?style=flat-square&logo=python&logoColor=3776ab\" />\n  \u003cimg src=\"https://img.shields.io/badge/PHP-0b0c0f?style=flat-square&logo=php&logoColor=777bb4\" />\n  \u003cimg src=\"https://img.shields.io/badge/Swift-0b0c0f?style=flat-square&logo=swift&logoColor=f05138\" />\n  \u003cimg src=\"https://img.shields.io/badge/Dart-0b0c0f?style=flat-square&logo=dart&logoColor=0175c2\" />\n  \u003cimg src=\"https://img.shields.io/badge/HTML5-0b0c0f?style=flat-square&logo=html5&logoColor=e34f26\" />\n  \u003cimg src=\"https://img.shields.io/badge/CSS3-0b0c0f?style=flat-square&logo=css3&logoColor=1572b6\" />\n\u003c/p>\n\u003c/details>\n\n\u003cdetails>\n\u003csummary>🛡️ Web Frameworks & UI\u003c/summary>\n\u003cbr/>\n\u003cp align=\"center\">\n  \u003cimg src=\"https://img.shields.io/badge/Next.js-0b0c0f?style=flat-square&logo=next.js&logoColor=ffffff\" />\n  \u003cimg src=\"https://img.shields.io/badge/React-0b0c0f?style=flat-square&logo=react&logoColor=61dafb\" />\n  \u003cimg src=\"https://img.shields.io/badge/NestJS-0b0c0f?style=flat-square&logo=nestjs&logoColor=e0234e\" />\n  \u003cimg src=\"https://img.shields.io/badge/Node.js-0b0c0f?style=flat-square&logo=node.js&logoColor=6da55f\" />\n  \u003cimg src=\"https://img.shields.io/badge/Laravel-0b0c0f?style=flat-square&logo=laravel&logoColor=ff2d20\" />\n  \u003cimg src=\"https://img.shields.io/badge/Tailwind-0b0c0f?style=flat-square&logo=tailwindcss&logoColor=38b2ac\" />\n  \u003cimg src=\"https://img.shields.io/badge/Bootstrap-0b0c0f?style=flat-square&logo=bootstrap&logoColor=7952b3\" />\n  \u003cimg src=\"https://img.shields.io/badge/DaisyUI-0b0c0f?style=flat-square&logo=daisyui&logoColor=5a0efd\" />\n  \u003cimg src=\"https://img.shields.io/badge/HeroUI-0b0c0f?style=flat-square&logo=heroui&logoColor=ffffff\" />\n  \u003cimg src=\"https://img.shields.io/badge/Ant_Design-0b0c0f?style=flat-square&logo=antdesign&logoColor=0170fe\" />\n  \u003cimg src=\"https://img.shields.io/badge/GraphQL-0b0c0f?style=flat-square&logo=graphql&logoColor=e10098\" />\n  \u003cimg src=\"https://img.shields.io/badge/RedwoodJS-0b0c0f?style=flat-square&logo=redwoodjs&logoColor=bf4722\" />\n  \u003cimg src=\"https://img.shields.io/badge/shadcn/ui-0b0c0f?style=flat-square&logo=shadcnui&logoColor=ffffff\" />\n\u003c/p>\n\u003c/details>\n\n\u003cdetails>\n\u003csummary>🖥️ Desktop\u003c/summary>\n\u003cbr/>\n\u003cp align=\"center\">\n  \u003cimg src=\"https://img.shields.io/badge/Tauri-0b0c0f?style=flat-square&logo=tauri&logoColor=24c8db\" />\n  \u003cimg src=\"https://img.shields.io/badge/Rust-0b0c0f?style=flat-square&logo=rust&logoColor=dea584\" />\n  \u003cimg src=\"https://img.shields.io/badge/SwiftUI-0b0c0f?style=flat-square&logo=swift&logoColor=f05138\" />\n  \u003cimg src=\"https://img.shields.io/badge/macOS-0b0c0f?style=flat-square&logo=apple&logoColor=ffffff\" />\n\u003c/p>\n\u003c/details>\n\n\u003cdetails>\n\u003csummary>📱 Mobile\u003c/summary>\n\u003cbr/>\n\u003cp align=\"center\">\n  \u003cimg src=\"https://img.shields.io/badge/React_Native-0b0c0f?style=flat-square&logo=react&logoColor=61dafb\" />\n  \u003cimg src=\"https://img.shields.io/badge/Flutter-0b0c0f?style=flat-square&logo=flutter&logoColor=02569b\" />\n  \u003cimg src=\"https://img.shields.io/badge/Swift-0b0c0f?style=flat-square&logo=swift&logoColor=f05138\" />\n\u003c/p>\n\u003c/details>\n\n\u003cdetails>\n\u003csummary>🗄️ Databases & ORM\u003c/summary>\n\u003cbr/>\n\u003cp align=\"center\">\n  \u003cimg src=\"https://img.shields.io/badge/PostgreSQL-0b0c0f?style=flat-square&logo=postgresql&logoColor=4169e1\" />\n  \u003cimg src=\"https://img.shields.io/badge/MySQL-0b0c0f?style=flat-square&logo=mysql&logoColor=4479a1\" />\n  \u003cimg src=\"https://img.shields.io/badge/MariaDB-0b0c0f?style=flat-square&logo=mariadb&logoColor=c0765a\" />\n  \u003cimg src=\"https://img.shields.io/badge/SQL_Server-0b0c0f?style=flat-square&logo=microsoftsqlserver&logoColor=cc2927\" />\n  \u003cimg src=\"https://img.shields.io/badge/SQLite-0b0c0f?style=flat-square&logo=sqlite&logoColor=4fa3d1\" />\n  \u003cimg src=\"https://img.shields.io/badge/MongoDB-0b0c0f?style=flat-square&logo=mongodb&logoColor=47a248\" />\n  \u003cimg src=\"https://img.shields.io/badge/Redis-0b0c0f?style=flat-square&logo=redis&logoColor=dc382d\" />\n  \u003cimg src=\"https://img.shields.io/badge/Prisma-0b0c0f?style=flat-square&logo=prisma&logoColor=2d3748\" />\n  \u003cimg src=\"https://img.shields.io/badge/TypeORM-0b0c0f?style=flat-square&logo=typeorm&logoColor=fe0902\" />\n\u003c/p>\n\u003c/details>\n\n\u003cdetails>\n\u003csummary>☁️ Cloud & Platforms\u003c/summary>\n\u003cbr/>\n\u003cp align=\"center\">\n  \u003cimg src=\"https://img.shields.io/badge/GCP-0b0c0f?style=flat-square&logo=googlecloud&logoColor=4285f4\" />\n  \u003cimg src=\"https://img.shields.io/badge/Firebase-0b0c0f?style=flat-square&logo=firebase&logoColor=ffca28\" />\n  \u003cimg src=\"https://img.shields.io/badge/Supabase-0b0c0f?style=flat-square&logo=supabase&logoColor=3fcf8e\" />\n  \u003cimg src=\"https://img.shields.io/badge/Vercel-0b0c0f?style=flat-square&logo=vercel&logoColor=ffffff\" />\n  \u003cimg src=\"https://img.shields.io/badge/Nginx-0b0c0f?style=flat-square&logo=nginx&logoColor=009639\" />\n  \u003cimg src=\"https://img.shields.io/badge/WordPress-0b0c0f?style=flat-square&logo=wordpress&logoColor=21759b\" />\n\u003c/p>\n\u003c/details>\n\n\u003cdetails>\n\u003csummary>🕶️ DevOps & Tools\u003c/summary>\n\u003cbr/>\n\u003cp align=\"center\">\n  \u003cimg src=\"https://img.shields.io/badge/Docker-0b0c0f?style=flat-square&logo=docker&logoColor=2496ed\" />\n  \u003cimg src=\"https://img.shields.io/badge/Nginx-0b0c0f?style=flat-square&logo=nginx&logoColor=009639\" />\n  \u003cimg src=\"https://img.shields.io/badge/Git-0b0c0f?style=flat-square&logo=git&logoColor=f05032\" />\n  \u003cimg src=\"https://img.shields.io/badge/npm-0b0c0f?style=flat-square&logo=npm&logoColor=cb3837\" />\n  \u003cimg src=\"https://img.shields.io/badge/Yarn-0b0c0f?style=flat-square&logo=yarn&logoColor=2c8ebb\" />\n  \u003cimg src=\"https://img.shields.io/badge/Bun-0b0c0f?style=flat-square&logo=bun&logoColor=fbf0df\" />\n  \u003cimg src=\"https://img.shields.io/badge/Xcode-0b0c0f?style=flat-square&logo=xcode&logoColor=147efb\" />\n  \u003cimg src=\"https://img.shields.io/badge/Sentry-0b0c0f?style=flat-square&logo=sentry&logoColor=362d59\" />\n  \u003cimg src=\"https://img.shields.io/badge/Resend-0b0c0f?style=flat-square&logo=resend&logoColor=ffffff\" />\n  \u003cimg src=\"https://img.shields.io/badge/ngrok-0b0c0f?style=flat-square&logo=ngrok&logoColor=1f1e37\" />\n  \u003cimg src=\"https://img.shields.io/badge/Line_OA-0b0c0f?style=flat-square&logo=line&logoColor=00c300\" />\n  \u003cimg src=\"https://img.shields.io/badge/Antigravity-0b0c0f?style=flat-square&logo=google&logoColor=8e97ff\" />\n  \u003cimg src=\"https://img.shields.io/badge/Cursor-0b0c0f?style=flat-square&logo=cursor&logoColor=ffffff\" />\n\u003c/p>\n\u003c/details>\n\n\u003cbr/>\n\n## 📊 `> stats --shadow-mode`\n\n\u003cdiv align=\"center\">\n  \u003cimg width=\"49%\" src=\"https://github-readme-stats.vercel.app/api?username=tanawat011&show_icons=true&bg_color=0b0c0f&hide_border=true&icon_color=7cc8ff&title_color=8e97ff&text_color=d0d4db&ring_color=8e97ff\" />\n  \u003cimg width=\"49%\" src=\"https://github-readme-streak-stats.herokuapp.com?user=tanawat011&hide_border=true&background=0B0C0F&ring=8E97FF&fire=7CC8FF&currStreakLabel=8E97FF&sideLabels=D0D4DB&dates=8D929B\" />\n\u003c/div>\n\n\u003cbr/>\n\n\u003cdiv align=\"center\">\n  \u003cimg width=\"40%\" src=\"https://github-readme-stats.vercel.app/api/top-langs/?username=tanawat011&layout=compact&bg_color=0b0c0f&hide_border=true&title_color=8e97ff&text_color=d0d4db\" />\n\u003c/div>\n\n\u003cbr/>\n\n## 🐍 `> git log --shadow`\n\n\u003cdiv align=\"center\">\n  \u003cimg width=\"100%\" src=\"https://github-readme-activity-graph.vercel.app/graph?username=tanawat011&bg_color=0b0c0f&color=8e97ff&line=7cc8ff&point=eef5ff&area=true&area_color=15171c&hide_border=true\" />\n\u003c/div>\n\n\u003cbr/>\n\n\u003cdiv align=\"center\">\n\n```\n ╔══════════════════════════════════════════════════════════════╗\n ║                                                              ║\n ║   \"I don't work in the dark because I have to.               ║\n ║    I work in the dark because that's where I do my best.\"    ║\n ║                                                              ║\n ║                                    — TanawatDEVz 🌑          ║\n ║                                                              ║\n ╚══════════════════════════════════════════════════════════════╝\n```\n\n\u003c/div>\n\n\u003c!-- Footer -->\n\u003cimg width=\"100%\" src=\"https://capsule-render.vercel.app/api?type=waving&color=0:0b0c0f,50:15171c,100:1b1e25&height=120&section=footer\" />\n"</script>
+<script src="pv.js"></script>
+<script src="sheet.js"></script>
+</body>
+</html>

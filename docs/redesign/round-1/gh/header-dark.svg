@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 200" width="1280" height="200" role="img" aria-labelledby="t d">
+<title id="t">Tanawat Pinthongpan</title><desc id="d">Fullstack developer. The VTX family: eleven desktop apps in Rust and Tauri.</desc>
+<style></style>
+<defs><radialGradient id="orb" cx="36%" cy="30%" r="75%"><stop offset="0" stop-color="#3b3f49"/><stop offset=".52" stop-color="#16181d"/><stop offset="1" stop-color="#07080a"/></radialGradient>
+<radialGradient id="glow"><stop offset="0" stop-color="#a0c8ff" stop-opacity=".22"/><stop offset=".6" stop-color="#8e97ff" stop-opacity=".07"/><stop offset="1" stop-color="#8e97ff" stop-opacity="0"/></radialGradient>
+<linearGradient id="rim" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7cc8ff"/><stop offset=".5" stop-color="#8e97ff"/><stop offset="1" stop-color="#eef5ff"/></linearGradient>
+<radialGradient id="rimfade" cx="46%" cy="44%" r="55%"><stop offset=".78" stop-color="#000"/><stop offset="1" stop-color="#fff"/></radialGradient>
+<mask id="rimmask"><circle cx="1080" cy="98" r="40" fill="url(#rimfade)"/></mask>
+<linearGradient id="ring" x1="0" x2="1"><stop offset="0" stop-color="#7cc8ff"/><stop offset=".35" stop-color="#8e97ff"/><stop offset=".7" stop-color="#eef5ff"/><stop offset="1" stop-color="#8e97ff"/></linearGradient>
+<filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2"/></filter>
+<clipPath id="front"><rect x="0" y="112" width="2000" height="400"/></clipPath>
+<radialGradient id="pool" cx="77%" cy="48%" r="42%"><stop offset="0" stop-color="#8e97ff" stop-opacity=".20"/><stop offset="1" stop-color="#8e97ff" stop-opacity="0"/></radialGradient>
+<radialGradient id="pool2" cx="66%" cy="80%" r="36%"><stop offset="0" stop-color="#7cc8ff" stop-opacity=".12"/><stop offset="1" stop-color="#7cc8ff" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="1280" height="200" rx="24" fill="#0b0c0f"/>
+<rect width="1280" height="200" rx="24" fill="url(#pool)"/><rect width="1280" height="200" rx="24" fill="url(#pool2)"/>
+<rect x=".5" y=".5" width="1279" height="199" rx="23.5" fill="none" stroke="rgba(255,255,255,.08)"/>
+<text x="64" y="98" font-family="'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="44" font-weight="600" letter-spacing="-1.2" fill="#f5f6f8">Tanawat Pinthongpan</text>
+<text x="66" y="140" font-family="'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="21" fill="#8d929b">Fullstack developer · the VTX family, 11 desktop apps in Rust + Tauri</text><ellipse cx="1080" cy="112" rx="128" ry="30" fill="none" stroke="url(#ring)" stroke-width="1.5" opacity=".30"/><g class="still"><circle cx="952.0" cy="111.6" r="6" fill="#eef5ff"/><circle cx="973.3" cy="95.4" r="6" fill="#7cc8ff"/><circle cx="1028.5" cy="84.5" r="6" fill="#8e97ff"/><circle cx="1100.0" cy="82.4" r="6" fill="#eef5ff"/><circle cx="1165.2" cy="89.6" r="6" fill="#7cc8ff"/><circle cx="1203.3" cy="104.0" r="6" fill="#8e97ff"/></g><circle cx="1080" cy="98" r="98.8" fill="url(#glow)"/><circle cx="1080" cy="98" r="38" fill="url(#orb)"/><circle cx="1080" cy="98" r="37" fill="none" stroke="url(#rim)" stroke-width="6.1" opacity=".9" mask="url(#rimmask)"/><ellipse cx="1068.6" cy="79.0" rx="9.1" ry="5.7" fill="#fff" opacity=".85" transform="rotate(-30 1068.6 79.0)" filter="url(#soft)"/><g clip-path="url(#front)"><ellipse cx="1080" cy="112" rx="128" ry="30" fill="none" stroke="url(#ring)" stroke-width="1.6" opacity=".85"/><g class="still"><circle cx="1202.3" cy="120.9" r="6" fill="#7cc8ff"/><circle cx="1162.4" cy="135.0" r="6" fill="#8e97ff"/><circle cx="1096.4" cy="141.8" r="6" fill="#eef5ff"/><circle cx="1025.2" cy="139.1" r="6" fill="#7cc8ff"/><circle cx="971.3" cy="127.9" r="6" fill="#8e97ff"/></g></g>
+</svg>
