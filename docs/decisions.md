@@ -117,3 +117,31 @@ Copilot, Gemini, GPT ไอ่พวกนี้ไม่น่าใช่ Mode
     - Measured by `scripts/night-commits.py` over every VTX repo on his Mac: non-merge commits on any branch, his
       author name only (so "Claude"-authored commits are out), each counted once.
     - 3,099 commits as of 19 Nov 2026. Only that aggregate is committed, in `content/night-commits.json`.
+
+## X1, scroll effects (19 Nov 2026)
+
+The owner, on VTX Studio's motion preview (through VTX Develop): "ดูดีเลยครับ Studio motion 1 2 3 4 5 6". All six, applied
+here the way Studio's preview does them (vtx-studio, branch `motion-preview`, e80e93b), with the same numbers.
+
+1. **Staged fade and rise:** heading, then text, then cards, 70 ms apart (50 on phones). It replaces the old `.rv`
+   fade-up, so there's one entrance, never two.
+2. **Zoom:** the hero recedes as you scroll away from it; a case page's screens (before/after, the gallery) grow from
+   0.92 to full size as they come in. Phones get less of both.
+3. **Parallax:** the hero's light pools, and the glows of the hire card and the Labs card, move slower than the page.
+   The orb drifts. Off on phones.
+4. **Pinned story:** "How I got here" stays put while the page's own scroll moves through its four chapters; the rail
+   and dot follow, and the photo card stays beside it. Only on screens ≥ 1100 px wide with a mouse or trackpad.
+5. **Count-up:** only the four real figures (9 / 11 / 6 / 2), once. Never the Fun Facts.
+6. **Headings word by word:** a Thai phrase and the gradient word are one piece each.
+
+Guards, the same as Studio's:
+- Reduce motion turns all of it off.
+- Text is never hidden if script fails. Only the runtime hides anything, and only what's below the fold. If it
+  never starts, the head script's classes go after 8 s.
+- Native scroll speed: sticky and scroll-driven CSS only; nothing takes over the wheel.
+- Measured in headless Chrome on his Mac (scratch scripts):
+  - CLS while scrolling the whole page: 0.0002 on desktop, 0.0007 on a phone.
+  - Frame time during a full-page scroll gesture: ~16.7 ms mean and ~17.5 ms p95 with all six on, the same as with
+    all off (one frame over 25 ms in ~950).
+- Fixed on the way: the story rail's dot moved by changing `top`, which counted as layout shift (0.007–0.037). It
+  now moves by transform, and the line scales.

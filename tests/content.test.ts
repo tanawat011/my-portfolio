@@ -125,8 +125,8 @@ test("round 3a: the skills he asked for", async () => {
 });
 
 test("a reveal (.rv) element never gets a className that React changes later", () => {
-  // Behaviours adds "is-in" to .rv elements by hand; if React rewrites that className (a state toggle), "is-in" is lost
-  // and the element fades back to opacity 0. Toggle state with a data attribute instead.
+  // The scroll effects (components/motion/run.ts) add classes to .rv boxes by hand while they come in; if React
+  // rewrote that className (a state toggle), they'd be lost mid-entrance. Toggle state with a data attribute instead.
   const dir = join(import.meta.dir, "..", "components");
   for (const f of readdirSync(dir).filter((n) => n.endsWith(".tsx"))) {
     const dynamicRv = [...readFileSync(join(dir, f), "utf8").matchAll(/className=\{`([^`]*)`\}/g)].filter((m) => /(^|\s)rv(\s|$|\$)/.test(m[1]) && /\$\{[^}]*\?/.test(m[1]));
@@ -215,4 +215,64 @@ test("round 3b: one failed release read hides the whole strip; a 404 just means 
   } finally {
     globalThis.fetch = real;
   }
+});
+
+test("X1: the six effects, what turns them off, and the head script that sets them before the first paint", async () => {
+  const { effectsOn, parseMotion, PIN_MEDIA } = await import("../components/motion/config");
+  const { themeScript } = await import("../components/theme-key");
+  expect(effectsOn("", false)).toEqual([1, 2, 3, 4, 5, 6]);
+  expect(effectsOn("?motion=none", false)).toEqual([]);
+  expect(effectsOn("?motion=1,5", false)).toEqual([1, 5]);
+  expect(effectsOn("", true)).toEqual([]); // Reduce motion: none of it
+  expect(parseMotion("banana")).toBeNull();
+  // run the real head script against a pretend page
+  const run = (search: string, media: Record<string, boolean>, live: boolean) => {
+    const cls = new Set<string>();
+    let later: (() => void) | null = null;
+    const html = { dataset: {} as Record<string, string>, classList: { add: (c: string) => cls.add(c), remove: (c: string) => cls.delete(c) } };
+    const win = { matchMedia: (q: string) => ({ matches: !!media[q] }), __mpLive: false };
+    new Function("document", "localStorage", "location", "window", "matchMedia", "setTimeout", themeScript)(
+      { documentElement: html },
+      { getItem: () => null },
+      { search },
+      win,
+      win.matchMedia,
+      (f: () => void) => (later = f),
+    );
+    const first = [...cls].sort();
+    win.__mpLive = live;
+    (later as (() => void) | null)?.();
+    return { first, after: [...cls].sort(), theme: html.dataset.theme };
+  };
+  const desk = run("", { [PIN_MEDIA]: true }, true);
+  expect(desk.first).toEqual(["js", "mp-1", "mp-2", "mp-3", "mp-4", "mp-5", "mp-6", "mp-pin"]);
+  expect(desk.after).toEqual(desk.first);
+  expect(desk.theme).toBe("dark");
+  expect(run("", {}, true).first).not.toContain("mp-pin"); // phones and tablets: no pinned story
+  expect(run("", { "(prefers-reduced-motion: reduce)": true }, true).first).toEqual(["js"]);
+  expect(run("?motion=none", {}, true).first).toEqual(["js"]);
+  // the runtime never started (its script failed): the classes go again, so nothing waits on it
+  expect(run("", { [PIN_MEDIA]: true }, false).after).toEqual(["js"]);
+});
+
+test("X1: the numbers behind the effects", async () => {
+  const { countAt, pinnedState, splitWords, staggerDelays, trackProgress } = await import("../components/motion/math");
+  expect(countAt(11, 0, 1100)).toBe(0);
+  expect(countAt(11, 1100, 1100)).toBe(11);
+  expect(countAt(9, 5000, 1100)).toBe(9);
+  expect(staggerDelays(8, 70)).toEqual([0, 70, 140, 210, 280, 350, 420, 420]);
+  expect(splitWords("Resume ของผม")).toEqual(["Resume", " ", "ของผม"]);
+  expect(splitWords("ครอบครัวVTX")).toEqual(["ครอบครัวVTX"]);
+  const start = pinnedState(0, 4), end = pinnedState(1, 4);
+  expect([start.s, start.on, start.cards[0].opacity, start.cards[1].opacity]).toEqual([0, 0, 1, 0]);
+  expect([end.s, end.on, end.cards[3].opacity]).toEqual([3, 3, 1]);
+  expect(trackProgress(96, 2000, 96, 700)).toBe(0);
+  expect(trackProgress(96 - 1300, 2000, 96, 700)).toBe(1);
+});
+
+test("X1: count-up runs on the four real figures only, never on the Fun Facts", () => {
+  const src = readFileSync(join(import.meta.dir, "..", "components/motion/run.ts"), "utf8");
+  const sel = src.match(/querySelectorAll<HTMLElement>\("([^"]+)"\)\]\.filter\(\(b\) => \/\^\\d\+\$\//)![1];
+  expect(sel).toBe("main .p-proof b");
+  expect(src.slice(src.indexOf("function counts()"))).not.toMatch(/o-fun|o-true/);
 });

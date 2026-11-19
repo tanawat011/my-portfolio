@@ -31,7 +31,8 @@ that every file it points at exists.
 | `content/apps.ts` | the eleven apps, the four case pages, the before → after pairs |
 | `components/Home.tsx`, `CasePage.tsx` | the two page layouts |
 | `components/Motion.tsx` | the moving parts: the story rail, before → after, the gallery, the reading line |
-| `components/Behaviours.tsx` | scroll reveals, the bar's glass, loops that rest off screen |
+| `components/Behaviours.tsx` | starts the scroll effects; the bar's glass, loops that rest off screen |
+| `components/motion/` | the six scroll effects (the same as VTX Studio's); `?motion=none` or `?motion=1,5` turns them off for a test |
 | `components/Cards.tsx`, `HelloTerm.tsx` | the resume and project cards; the terminal behind `> hello_world_` |
 | `lib/github.ts`, `lib/releases.ts` | read at build time only: the project cards' GitHub facts, the "Now shipping" release |
 | `vendor/vtx-kit/analytics.ts` | the kit's analytics module, unchanged (`vendor/vtx-kit/MANIFEST`) |

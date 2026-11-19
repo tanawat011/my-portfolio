@@ -34,8 +34,6 @@ background:var(--bg);color:var(--t2);font:400 16.5px/1.72 var(--fb);-webkit-font
 .pv .p-in{max-width:1240px;margin-inline:auto;padding-inline:var(--pad)}
 .pv .p-sec{padding-block:clamp(64px,9cqi,128px)}
 .pv .p-sec.flush{padding-top:0}
-.js .pv .rv:not(.is-in){opacity:0;transform:translateY(40px)}
-.pv .rv{transition:opacity .6s ease-out var(--d,0s),transform .6s ease-out var(--d,0s)}
 .pv .p-tg{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;color:var(--t2);transition:background-color .16s var(--hov)}
 .pv .p-tg:hover{background-color:var(--hover);color:var(--ink)}
 .pv .p-tg svg{width:18px;height:18px}
@@ -102,8 +100,8 @@ background:var(--bg);color:var(--t2);font:400 16.5px/1.72 var(--fb);-webkit-font
 .pv .d-story{position:relative;display:grid;grid-template-columns:clamp(28px,5cqi,64px) minmax(0,1fr);gap:0 clamp(14px,2.4cqi,32px)}
 .pv .d-rail{position:relative}
 .pv .d-rail::before{content:"";position:absolute;left:50%;top:8px;bottom:8px;width:1.5px;transform:translateX(-50%);background:linear-gradient(transparent,var(--edge2) 6%,var(--edge2) 94%,transparent)}
-.pv .d-fill{position:absolute;left:50%;top:8px;width:2px;transform:translateX(-50%);height:var(--fill,0px);background:linear-gradient(#7cc8ff,#8e97ff,#eef5ff);border-radius:2px}
-.pv .d-dot{position:absolute;left:50%;top:var(--fill,0px);width:18px;height:18px;margin:2px 0 0 -9px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#d9ecff 45%,#8e97ff);box-shadow:0 0 0 6px rgba(124,200,255,.14),0 0 22px rgba(142,151,255,.6)}
+.pv .d-fill{position:absolute;left:50%;top:8px;width:2px;height:calc(100% - 16px);transform:translateX(-50%) scaleY(var(--fillp,0));transform-origin:50% 0;background:linear-gradient(#7cc8ff,#8e97ff,#eef5ff);border-radius:2px}
+.pv .d-dot{position:absolute;left:50%;top:0;transform:translateY(var(--fill,0px));width:18px;height:18px;margin:2px 0 0 -9px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#d9ecff 45%,#8e97ff);box-shadow:0 0 0 6px rgba(124,200,255,.14),0 0 22px rgba(142,151,255,.6)}
 .pv .d-chs{display:grid;gap:clamp(36px,5.5cqi,72px);padding-block:8px}
 .pv .d-chp{display:grid;grid-template-columns:minmax(0,.5fr) minmax(0,1fr);gap:10px clamp(18px,3cqi,44px);transition:opacity .5s var(--out)}
 .pv .d-chp h3{transition:color .5s var(--out)}
@@ -239,8 +237,7 @@ background:var(--bg);color:var(--t2);font:400 16.5px/1.72 var(--fb);-webkit-font
 .pv .hov:active{transform:scale(.985);transition:transform .12s var(--hov)}
 }
 @media (prefers-reduced-motion:reduce){
-.js .pv .rv:not(.is-in){transform:none;opacity:1}
-.pv .rv,.pv .gal-fig img,.pv .d-chp h3{transition:none}
+.pv .gal-fig img,.pv .d-chp h3{transition:none}
 .js .pv .d-story.is-live .d-chp:not(.is-on) h3{color:var(--ink)}
 .pv .d-dot{display:none}
 }
@@ -623,4 +620,63 @@ background:var(--bg);color:var(--t2);font:400 16.5px/1.72 var(--fb);-webkit-font
 @container (max-width:640px){
 .pv .hterm-log{font-size:12.5px}
 .pv .o-ship{border-radius:18px;margin-top:-16px}
+}
+
+/* ── X1: the six scroll effects (components/motion; the same as VTX Studio's). Each reads its class on <html>, set
+   before the first paint by the head script. Only opacity and transforms move (`translate` and `scale`, which add
+   to an element's own transform). 2 and 3 are CSS scroll-driven animations; components/motion/run.ts drives the
+   same numbers from one rAF where a browser has none. ────────────────────────────────────────────────────────── */
+
+/* 1 · fade and rise in stages (heading, text, cards, 70 ms apart; 50 on phones). It replaces the old .rv fade-up. */
+html.mp-1 .pv .mp-arm{opacity:0;translate:0 26px}
+html.mp-1 .pv .mp-arm.mp-in{opacity:1;translate:0 0;transition:opacity .8s cubic-bezier(.22,1,.36,1) var(--mp-d,0ms),translate 1s cubic-bezier(.16,1,.3,1) var(--mp-d,0ms)}
+@media (max-width:640px){
+html.mp-1 .pv .mp-arm{translate:0 14px}
+html.mp-1 .pv .mp-arm.mp-in{transition-duration:.6s,.75s}
+}
+
+/* 6 · headings word by word (a Thai phrase, and the gradient word, are one piece each) */
+html.mp-6 .pv .mp-split .mp-w{display:inline-block;opacity:0;translate:0 .42em}
+html.mp-6 .pv .mp-split.mp-in .mp-w{opacity:1;translate:0 0;transition:opacity .55s ease-out calc(var(--mp-d,0ms) + var(--i) * 70ms),translate .8s cubic-bezier(.16,1,.3,1) calc(var(--mp-d,0ms) + var(--i) * 70ms)}
+
+/* 2 · zoom with scroll: the hero recedes as you leave it; a case page's screens come up to size as they enter */
+@supports (animation-timeline:view()){
+html.mp-2 .pv .o-hi{transform-origin:50% 20%;animation:mp-recede linear both;animation-timeline:scroll(root);animation-range:0 90vh}
+html.mp-2 .pv .gal-fig img,html.mp-2 .pv .ba{animation:mp-screen linear both;animation-timeline:view();animation-range:entry 0% cover 42%}
+}
+@keyframes mp-recede{to{scale:.8;opacity:.2;translate:0 6%}}
+@keyframes mp-screen{from{scale:.92}to{scale:1}}
+@media (max-width:640px){
+@keyframes mp-recede{to{scale:.9;opacity:.4;translate:0 4%}}
+@keyframes mp-screen{from{scale:.96}to{scale:1}}
+}
+
+/* 3 · parallax: the light layers move slower than the page (wider than a phone only) */
+@media (min-width:641px){
+html.mp-3 .pv .p-hire,html.mp-3 .pv .getit{background-image:none;overflow:clip;isolation:isolate}
+html.mp-3 .pv .p-hire::before,html.mp-3 .pv .getit::before{content:"";position:absolute;inset:-18% 0;z-index:-1;pointer-events:none;border-radius:inherit;background-image:radial-gradient(40% 60% at 84% 34%,rgba(124,200,255,.2),transparent 70%),radial-gradient(30% 44% at 70% 78%,rgba(142,151,255,.16),transparent 70%);translate:0 var(--mp-drift,0)}
+@supports (animation-timeline:view()){
+html.mp-3 .pv .o-pools{animation:mp-sink linear both;animation-timeline:scroll(root);animation-range:0 100vh}
+html.mp-3 .pv .p-hire::before,html.mp-3 .pv .getit::before{animation:mp-drift linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+html.mp-3 .pv .orbc{animation:mp-float linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+}
+}
+@keyframes mp-sink{to{translate:0 22vh}}
+@keyframes mp-drift{from{translate:0 -12%}to{translate:0 12%}}
+@keyframes mp-float{from{translate:0 -60px}to{translate:0 60px}}
+
+/* 4 · the story pinned (wide screens with a mouse): its panel stays while the scroll moves through the chapters */
+html.mp-pin .pv .o-story{height:calc(100vh - 128px + 4 * 56vh)}
+html.mp-pin .pv .o-story-pin{position:sticky;top:96px;height:calc(100vh - 128px);display:flex;flex-direction:column}
+html.mp-pin .pv .o-story-pin .d-story{flex:1;min-height:0}
+html.mp-pin .pv .d-chs{position:relative;height:100%}
+html.mp-pin .pv .d-chp{position:absolute;left:0;right:0;top:50%;translate:0 -50%;will-change:opacity,transform}
+html.mp-pin .pv .d-chp:not(:first-child){opacity:0}
+html.mp-pin .pv .d-chp{grid-template-columns:minmax(0,1fr)}
+html.mp-pin .pv .d-chp h3{font-size:clamp(30px,3.4cqi,46px)}
+html.mp-pin .pv .d-chp p{font-size:18.5px}
+
+@media (prefers-reduced-motion:reduce){
+html .pv .mp-arm,html .pv .mp-split .mp-w{opacity:1!important;translate:none!important}
+html .pv .o-hi,html .pv .gal-fig img,html .pv .ba,html .pv .o-pools,html .pv .p-hire::before,html .pv .getit::before,html .pv .orbc{animation:none!important}
 }

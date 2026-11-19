@@ -142,23 +142,25 @@ export async function Home({ lang }: { lang: Lang }) {
                 <p>{ABOUT.p2[lang]}</p>
               </aside>
               <div className="o-story">
-                <h3 className="o-story-h rv">{ABOUT.storyH[lang]}</h3>
-                <div className="d-story">
-                  <StoryRail />
-                  <div className="d-chs">
-                    {STORY.map((c) => (
-                      <article className="d-chp" key={c.h.en}>
-                        <div>
-                          <span className="y">{c.y[lang]}</span>
-                          <h3>{c.h[lang]}</h3>
-                        </div>
-                        <div>
-                          {c.p.map((p) => (
-                            <p key={p.en}>{p[lang]}</p>
-                          ))}
-                        </div>
-                      </article>
-                    ))}
+                <div className="o-story-pin">
+                  <h3 className="o-story-h rv">{ABOUT.storyH[lang]}</h3>
+                  <div className="d-story">
+                    <StoryRail />
+                    <div className="d-chs">
+                      {STORY.map((c) => (
+                        <article className="d-chp" key={c.h.en}>
+                          <div>
+                            <span className="y">{c.y[lang]}</span>
+                            <h3>{c.h[lang]}</h3>
+                          </div>
+                          <div>
+                            {c.p.map((p) => (
+                              <p key={p.en}>{p[lang]}</p>
+                            ))}
+                          </div>
+                        </article>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

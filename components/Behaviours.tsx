@@ -2,33 +2,17 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { startMotion } from "./motion/run";
 
 /**
- * Page-wide behaviours. Reveals: a .rv block fades up once, the first time it scrolls into view, as the old site's
- * AnimatedSection did (CSS only arms it when the head script ran; Reduce motion skips it). The bar turns to glass on
- * scroll; loops rest off screen. Cards: a .hov card's light edge turns with the pointer, on devices that hover.
+ * Page-wide behaviours. The scroll effects (components/motion: X1, the six Studio effects, of which effect 1 replaces
+ * the old .rv fade-up) start on every page. The bar turns to glass on scroll; loops rest off screen. Cards: a .hov
+ * card's light edge turns with the pointer, on devices that hover.
  */
 export function Behaviours() {
   const path = usePathname();
 
-  useEffect(() => {
-    const items = [...document.querySelectorAll<HTMLElement>(".rv:not(.is-in)")];
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
-      items.forEach((el) => el.classList.add("is-in"));
-      return;
-    }
-    const reveal = new IntersectionObserver(
-      (entries) => entries.forEach((en) => {
-        if (en.isIntersecting) {
-          en.target.classList.add("is-in");
-          reveal.unobserve(en.target);
-        }
-      }),
-      { rootMargin: "0px 0px -80px 0px" },
-    );
-    items.forEach((el) => reveal.observe(el));
-    return () => reveal.disconnect();
-  }, [path]);
+  useEffect(() => startMotion(), [path]);
 
   useEffect(() => {
     /* The bar is clear over the hero and turns to glass once you scroll (the old site's navbar). */
