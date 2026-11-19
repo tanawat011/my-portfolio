@@ -76,7 +76,7 @@ export const WEAPONS: { t: Text; d: Text; items: { k: Text; v: string }[] }[] = 
   { t: { en: "Cloud & Platforms", th: "Cloud และ Platform" }, d: { en: "Deploying things to the cloud at 3 AM.", th: "deploy ขึ้น cloud ตอนตีสาม" },
     items: [{ k: { en: "Providers", th: "ผู้ให้บริการ" }, v: "GCP, Firebase, Supabase, Vercel" }, { k: { en: "Infra", th: "Infra" }, v: "Nginx, WordPress" }] },
   { t: { en: "DevOps & Tools", th: "DevOps และเครื่องมือ" }, d: { en: "The toolbox behind the scenes.", th: "กล่องเครื่องมือหลังบ้าน" },
-    items: [{ k: { en: "Containers", th: "Containers" }, v: "Docker, Nginx" }, { k: { en: "Package & Runtime", th: "Package และ Runtime" }, v: "Git, npm, Yarn, Bun" }, { k: { en: "Dev Tools", th: "Dev Tools" }, v: "VS Code, IntelliJ IDEA, Xcode" }, { k: { en: "Services", th: "Services" }, v: "Sentry, Resend, ngrok, Line OA" }] },
+    items: [{ k: { en: "Containers", th: "Containers" }, v: "Docker, Nginx" }, { k: { en: "Package & Runtime", th: "Package และ Runtime" }, v: "Git, npm, pnpm, Yarn, Bun, Homebrew" }, { k: { en: "Dev Tools", th: "Dev Tools" }, v: "VS Code, IntelliJ IDEA, Xcode" }, { k: { en: "Services", th: "Services" }, v: "Sentry, Resend, ngrok, Line OA" }] },
 ];
 
 export const VTX = {

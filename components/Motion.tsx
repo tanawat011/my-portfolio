@@ -2,20 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Shot } from "./Shot";
-import { PIN_MEDIA } from "./motion/config";
-import { pinnedState, trackProgress } from "./motion/math";
 
 const reduced = () => typeof window !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /**
  * The story's rail (D): the line fills and a lit dot travels as the story scrolls past the middle of the screen, and
  * the chapter being read lights up. It moves only with the visitor's scroll, only while the story is on screen.
- *
- * X1, effect 4 (wide screens with a mouse, PIN_MEDIA): the story is pinned instead. Its panel stays put (position:
- * sticky, set by the head script's mp-pin class before the first paint) while the page's own scroll moves through the
- * chapters one at a time; the rail and the dot follow. Native scroll speed: nothing takes over the scroll.
- *
- * Reduce motion: the rail is full, every chapter is lit, no dot, nothing pinned.
+ * Reduce motion: the rail is full, every chapter is lit, no dot.
  */
 export function StoryRail() {
   const ref = useRef<HTMLDivElement>(null);
@@ -29,36 +22,13 @@ export function StoryRail() {
       chs.forEach((c) => c.classList.add("is-on"));
       return;
     }
-    const root = document.documentElement;
-    const track = wrap.closest<HTMLElement>(".o-story"), pin = wrap.closest<HTMLElement>(".o-story-pin");
-    const wide = matchMedia(PIN_MEDIA);
-    const pinOn = () => !!track && !!pin && root.classList.contains("mp-4") && wide.matches;
     wrap.classList.add("is-live");
-    let raf = 0, vis = false, pinned = false;
-    const unpin = () =>
-      chs.forEach((c) => {
-        c.style.removeProperty("opacity");
-        c.style.removeProperty("transform");
-      });
+    let raf = 0, vis = false;
     const paint = () => {
       raf = 0;
-      if (pinned && track && pin) {
-        const r = track.getBoundingClientRect();
-        const st = pinnedState(trackProgress(r.top, r.height, parseFloat(getComputedStyle(pin).top) || 0, pin.offsetHeight), chs.length);
-        const f = st.s / Math.max(1, chs.length - 1);
-        // the dot moves by transform and the line scales: neither is a layout shift
-        rail.style.setProperty("--fill", `${(f * (rail.offsetHeight - 16)).toFixed(1)}px`);
-        rail.style.setProperty("--fillp", f.toFixed(4));
-        chs.forEach((c, i) => {
-          const k = st.cards[i];
-          c.style.opacity = k.opacity.toFixed(3);
-          c.style.transform = `translate3d(0, ${(k.lift * 46).toFixed(1)}px, 0) scale(${(1 - Math.abs(k.lift) * 0.04).toFixed(3)})`;
-          c.classList.toggle("is-on", i === Math.round(st.s));
-        });
-        return;
-      }
       const mid = window.innerHeight * 0.55, r = wrap.getBoundingClientRect();
       const p = Math.max(0, Math.min(1, (mid - r.top) / r.height));
+      // the dot moves by transform and the line scales: neither is a layout shift
       rail.style.setProperty("--fill", `${(p * (r.height - 16)).toFixed(1)}px`);
       rail.style.setProperty("--fillp", p.toFixed(4));
       chs.forEach((c) => c.classList.toggle("is-on", c.getBoundingClientRect().top < mid + 40));
@@ -66,31 +36,19 @@ export function StoryRail() {
     const on = () => {
       if (vis && !raf) raf = requestAnimationFrame(paint);
     };
-    const mode = () => {
-      const next = pinOn();
-      if (next !== pinned) {
-        pinned = next;
-        root.classList.toggle("mp-pin", pinned);
-        if (!pinned) unpin();
-      }
-      paint();
-    };
     const seen = new IntersectionObserver((es) => {
       vis = es[es.length - 1].isIntersecting;
       on();
     });
-    seen.observe(track ?? wrap);
+    seen.observe(wrap);
     window.addEventListener("scroll", on, { passive: true });
     window.addEventListener("resize", on);
-    wide.addEventListener("change", mode);
-    mode();
+    paint();
     return () => {
       seen.disconnect();
       window.removeEventListener("scroll", on);
       window.removeEventListener("resize", on);
-      wide.removeEventListener("change", mode);
       cancelAnimationFrame(raf);
-      unpin();
       wrap.classList.remove("is-live");
     };
   }, []);

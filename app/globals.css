@@ -665,17 +665,6 @@ html.mp-3 .pv .orbc{animation:mp-float linear both;animation-timeline:view();ani
 @keyframes mp-drift{from{translate:0 -12%}to{translate:0 12%}}
 @keyframes mp-float{from{translate:0 -60px}to{translate:0 60px}}
 
-/* 4 · the story pinned (wide screens with a mouse): its panel stays while the scroll moves through the chapters */
-html.mp-pin .pv .o-story{height:calc(100vh - 128px + 4 * 56vh)}
-html.mp-pin .pv .o-story-pin{position:sticky;top:96px;height:calc(100vh - 128px);display:flex;flex-direction:column}
-html.mp-pin .pv .o-story-pin .d-story{flex:1;min-height:0}
-html.mp-pin .pv .d-chs{position:relative;height:100%}
-html.mp-pin .pv .d-chp{position:absolute;left:0;right:0;top:50%;translate:0 -50%;will-change:opacity,transform}
-html.mp-pin .pv .d-chp:not(:first-child){opacity:0}
-html.mp-pin .pv .d-chp{grid-template-columns:minmax(0,1fr)}
-html.mp-pin .pv .d-chp h3{font-size:clamp(30px,3.4cqi,46px)}
-html.mp-pin .pv .d-chp p{font-size:18.5px}
-
 @media (prefers-reduced-motion:reduce){
 html .pv .mp-arm,html .pv .mp-split .mp-w{opacity:1!important;translate:none!important}
 html .pv .o-hi,html .pv .gal-fig img,html .pv .ba,html .pv .o-pools,html .pv .p-hire::before,html .pv .getit::before,html .pv .orbc{animation:none!important}

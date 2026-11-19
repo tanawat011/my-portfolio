@@ -3,7 +3,7 @@ import { clamp01, countAt, splitWords, staggerDelays } from "./math";
 
 /**
  * The scroll effects at run time (components/motion/config.ts says what each is). Behaviours starts this once per
- * page. Effect 4 lives in StoryRail (components/Motion.tsx), which owns the story's scroll already.
+ * page. The story's rail (StoryRail, components/Motion.tsx) moves with the scroll on its own, as in round 2.
  *
  * Text is never left hidden: only boxes still below the fold are ever armed, a scroll check and a timer reveal anything
  * the observer missed, and stopping puts everything back as React drew it.
@@ -21,7 +21,6 @@ export function startMotion(): Stop {
   const on = new Set(effectsOn(location.search, mq("(prefers-reduced-motion: reduce)")));
   const root = document.documentElement;
   for (const id of ALL) root.classList.toggle(`mp-${id}`, on.has(id));
-  if (!on.has(4)) root.classList.remove("mp-pin");
   const stops: Stop[] = [];
   if (on.has(1) || on.has(6)) stops.push(staged(on.has(1), on.has(6)));
   if ((on.has(2) || on.has(3)) && !supportsScrollTimeline()) stops.push(scrollFallback(on.has(2), on.has(3)));
@@ -88,14 +87,11 @@ function staged(fade: boolean, words: boolean): Stop {
   if (!("IntersectionObserver" in window)) return noop;
   const step = phone() ? 50 : 70;
   const below = (el: Element) => el.getBoundingClientRect().top >= viewH();
-  // the pinned story moves its own chapters (effect 4)
-  const pinned = document.documentElement.classList.contains("mp-pin");
-  const skip = (el: Element) => pinned && !!el.closest(".o-story-pin") && !el.matches(".o-story-h");
   const undo: Stop[] = [];
   const armed = new Set<HTMLElement>();
   const timers = new Set<number>();
 
-  const boxes = fade ? [...document.querySelectorAll<HTMLElement>(FADE)].filter((el) => !skip(el)) : [];
+  const boxes = fade ? [...document.querySelectorAll<HTMLElement>(FADE)] : [];
   const set = new Set(boxes);
   const insideBox = (el: HTMLElement) => {
     for (let up = el.parentElement; up; up = up.parentElement) if (set.has(up)) return true;

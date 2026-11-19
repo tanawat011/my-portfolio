@@ -145,3 +145,14 @@ Guards, the same as Studio's:
     all off (one frame over 25 ms in ~950).
 - Fixed on the way: the story rail's dot moved by changing `top`, which counted as layout shift (0.007–0.037). It
   now moves by transform, and the line scales.
+
+## Round 3c (19 Nov 2026)
+
+The owner, verbatim (through VTX Develop): "จุดในภาพอ่ะ ผมว่าทำแบบเดิมเถอะ 555 แม่งอารมเหมือนค้างเลื่อนไม่ไปอ่ะ / Package & Runtime
+เพิ่ม pnpm, brew ไปหน่อย", about the pinned "How I got here".
+
+- **Effect 4 is off here.** The story scrolls normally again with round 2's rail: the dot travels down as you read,
+  chapters at their natural spacing. The dot keeps the transform fix, so it's still no layout shift. Effects 1, 2, 3,
+  5 and 6 stay.
+- **Package & Runtime:** Git, npm, pnpm, Yarn, Bun, Homebrew.
+- The skills audit waits for his answer.
