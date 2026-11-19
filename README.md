@@ -1,83 +1,35 @@
-# 🌐 My Portfolio
+# tanawat.dev
 
-> *"I write code, break things, fix them, and ship it. Repeat."*
+Tanawat Pinthongpan's personal site: the story, the VTX family of desktop apps, four case pages, the resumes, and the way
+to hire. Direction D · Story, in VTX Studio's colours (graphite night, porcelain day, ice and periwinkle light).
+The owner's picks are in [docs/decisions.md](docs/decisions.md).
 
-Personal portfolio website built with modern web tech — and a little help from my AI friends 🤖
+- English at `/`, Thai at `/th` (two root layouts, one 404)
+- Static Next.js 15 (App Router), plain CSS in `app/globals.css`, no UI library
+- Fonts self-hosted by `next/font`: Plus Jakarta Sans, Kanit, Noto Sans Thai, JetBrains Mono
+- Visits counted with Umami (the VTX family's website, tag `portfolio`, only on tanawat.dev); no cookies
+- Security headers in `config/security.ts` (kit `web-checklist.md` § 4)
+- App screenshots are VTX Labs' own (real screens, made-up data), in `public/apps/shots`
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/tanawat011/my-portfolio)
-
-## ✨ Features
-
-- 🎨 Dark theme with glassmorphism & gradient effects
-- ⚡ Smooth scroll-triggered animations (Framer Motion)
-- 📱 Fully responsive (mobile → desktop)
-- 📄 Download CV button
-- 📊 GitHub Stats & Streak cards
-- 🎮 Fun Facts with developer humor
-- 🚀 Live project showcase
-- 🔗 Social links (GitHub, LinkedIn, Facebook, Steam, Telegram, Line, Email)
-
-## 🛠 Tech Stack
-
-| Category | Tech |
-|----------|------|
-| Framework | Next.js 15 (App Router) |
-| Language | TypeScript |
-| Styling | Tailwind CSS 4 |
-| Animations | Framer Motion 11 |
-| Deployment | Vercel |
-
-## 📁 Project Structure
-
-```
-├── app/
-│   ├── layout.tsx          # Root layout + SEO metadata
-│   ├── page.tsx            # Main page (all sections)
-│   └── globals.css         # Design tokens & global styles
-├── components/
-│   ├── Navbar.tsx           # Sticky glassmorphic navbar
-│   ├── Footer.tsx           # Social links & credits
-│   ├── ScrollToTop.tsx      # Floating scroll button
-│   ├── AnimatedSection.tsx  # Reusable scroll animation
-│   └── sections/
-│       ├── Hero.tsx         # Intro + CTA buttons
-│       ├── About.tsx        # Profile, abilities & skills
-│       ├── Portfolio.tsx    # GitHub projects
-│       ├── Showcase.tsx     # Live production projects
-│       ├── GitHubStats.tsx  # GitHub stats cards
-│       └── FunFacts.tsx     # Developer humor stats
-└── public/
-    ├── icons/               # SVG icons
-    ├── images/              # Profile image
-    └── resume.pdf           # Downloadable CV
-```
-
-## 🚀 Getting Started
+## Run it
 
 ```bash
-# Install dependencies
 bun install
-
-# Run dev server
-bun dev
+bun run build && bun run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+Then open http://localhost:3000. `bun run dev` works too. `bun test` checks that every figure on the page is true and
+that every file it points at exists.
 
-## 📦 Deploy
+## Where things are
 
-Push to `main` branch → Vercel auto-deploys. That's it. 🎯
+| | |
+|---|---|
+| `content/site.ts` | every word in English and Thai, the links, the figures |
+| `content/apps.ts` | the eleven apps, the four case pages, the before → after pairs |
+| `components/Home.tsx`, `CasePage.tsx` | the two page layouts |
+| `components/Motion.tsx` | the moving parts: the story rail, before → after, the gallery, the reading line |
+| `vendor/vtx-kit/analytics.ts` | the kit's analytics module, unchanged (`vendor/vtx-kit/MANIFEST`) |
+| `docs/redesign/round-1/` | the five directions the owner chose from |
 
-## 📄 CV Setup
-
-Place your resume PDF at `public/resume.pdf` — the download button in Hero links to it.
-
-## 🤝 Credits
-
-Built with ❤️ by [Tanawat Pinthongpan](https://github.com/tanawat011)
-
-AI-assisted development — because transparency is cool 🤖
-
-## 📝 License
-
-MIT
+Pushing `main` deploys on Vercel: push only on the owner's word.
