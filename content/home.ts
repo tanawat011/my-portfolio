@@ -57,6 +57,38 @@ export const ABILITIES: { icon: string; t: Text; d: Text }[] = [
 ];
 
 /**
+ * The core stack, above the skills cards (owner, 19 Nov 2026: "อยากให้เน้นเรื่องการที่ผมนั้นถนัด react, next.js, reactnative,
+ * nodejs, typescript, Flutter, Docker, NestJS, express, Tailwind, Ant Design, shadcn, Vitest, Supabase, Vercel, MongoDB,
+ * PostgreSQL, Claude Code, rust … บ่งบอกให้รู้ว่ามันเป็น stack ที่เราถนัดที่สุดในปัจจุบัน"). Exactly his 19, grouped; none added,
+ * none dropped. `icon`: a key of STACK_ICONS (content/stack-icons.ts). `also`: how the cards below spell it, so the same
+ * names carry the core mark there.
+ */
+export const CORE = {
+  k: "> stack --core",
+  h: { en: "Core stack: what I'm strongest in today", th: "Core stack ที่ถนัดที่สุดตอนนี้" },
+  p: {
+    en: "Everything below, I've shipped with. These are the ones I reach for first, and know best right now.",
+    th: "ข้างล่างคือทุกอย่างที่เคยใช้ส่งงาน ส่วนพวกนี้คือของที่หยิบมาใช้ก่อนเสมอ และถนัดที่สุดตอนนี้",
+  },
+  mark: { en: "The same ones carry a dot in the cards below.", th: "ตัวเดียวกันมีจุดกำกับในการ์ดข้างล่าง" },
+  credit: {
+    en: "Logos from Simple Icons (CC0); the Rust logo is the Rust Foundation's, CC BY-SA 4.0. Names and logos belong to their owners.",
+    th: "โลโก้จาก Simple Icons (CC0) ส่วนโลโก้ Rust เป็นของ Rust Foundation (CC BY-SA 4.0) ชื่อและโลโก้เป็นของเจ้าของแต่ละราย",
+  },
+  groups: [
+    { k: { en: "Languages", th: "ภาษา" }, items: [{ name: "TypeScript", icon: "typescript" }, { name: "Rust", icon: "rust" }] },
+    { k: { en: "Frontend", th: "Frontend" }, items: [{ name: "React", icon: "react" }, { name: "Next.js", icon: "nextdotjs" }, { name: "Tailwind CSS", icon: "tailwindcss", also: ["Tailwind"] }, { name: "Ant Design", icon: "antdesign" }, { name: "shadcn/ui", icon: "shadcnui" }] },
+    { k: { en: "Mobile", th: "มือถือ" }, items: [{ name: "React Native", icon: "react" }, { name: "Flutter", icon: "flutter" }] },
+    { k: { en: "Backend", th: "Backend" }, items: [{ name: "Node.js", icon: "nodedotjs" }, { name: "NestJS", icon: "nestjs" }, { name: "Express", icon: "express" }] },
+    { k: { en: "Data & cloud", th: "ข้อมูลและ cloud" }, items: [{ name: "PostgreSQL", icon: "postgresql" }, { name: "MongoDB", icon: "mongodb" }, { name: "Supabase", icon: "supabase" }, { name: "Vercel", icon: "vercel" }] },
+    { k: { en: "Tooling & AI", th: "เครื่องมือและ AI" }, items: [{ name: "Docker", icon: "docker" }, { name: "Vitest", icon: "vitest" }, { name: "Claude Code", icon: "claude" }] },
+  ] as { k: Text; items: { name: string; icon: string; also?: string[] }[] }[],
+};
+
+/** Every way a core item is spelled in the cards, longest first (so "React Native" wins over "React"). */
+export const CORE_NAMES = CORE.groups.flatMap((g) => g.items.flatMap((i) => [i.name, ...(i.also ?? [])])).sort((a, b) => b.length - a.length);
+
+/**
  * The old site's skills cards (About.tsx), regrouped by the skills audit (owner, 19 Nov 2026: "Skills OK" to VTX Develop's
  * S1–S12): a Backend & APIs card; GraphQL, NestJS and Node.js moved there; Nginx once, under Infra; WordPress as CMS;
  * Git with GitHub Actions; "LINE OA"; Current Stack a short summary; Testing, SQL and cargo added. Checked against his

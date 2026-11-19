@@ -1,9 +1,11 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import { APPS, hasCase, labsUrl } from "@/content/apps";
-import { ABILITIES, ABOUT, FUN, HERO, INSIDE, LIVE, PROJECTS, RESUME, TERM, TRUE_FACTS, UPTIME, VTX, WEAPONS } from "@/content/home";
+import { ABILITIES, ABOUT, CORE, CORE_NAMES, FUN, HERO, INSIDE, LIVE, PROJECTS, RESUME, TERM, TRUE_FACTS, UPTIME, VTX, WEAPONS } from "@/content/home";
 import { CVS, href, LINKS, STORY, STUDIO, T, WEB, yearsSince, type Lang } from "@/content/site";
 import CV_META from "@/content/cvs.json";
 import NIGHT from "@/content/night-commits.json";
+import { STACK_ICONS } from "@/content/stack-icons";
 import { repoFacts } from "@/lib/github";
 import { labsToolCount } from "@/lib/labs";
 import { nowShipping } from "@/lib/releases";
@@ -25,6 +27,24 @@ const DOTS = Array.from({ length: 40 }, (_, i) => ({
   de: seed(i * 17 + 4) * 2,
 }));
 const fill = (s: string, y: number) => s.replace("{y}", String(y));
+/**
+ * A card's list with the core stack's names marked (CORE_NAMES), so the cards agree with the core stack above them.
+ * Splits at commas outside brackets, so "Rust (tokio, sqlx)" is one item and marks "Rust".
+ */
+function markCore(v: string): React.ReactNode[] {
+  return v.split(/,\s*(?![^()]*\))/).flatMap((tok, i) => {
+    const hit = CORE_NAMES.find((n) => tok === n || tok.startsWith(`${n} `));
+    const item = hit ? (
+      <Fragment key={i}>
+        <span className="core">{hit}</span>
+        {tok.slice(hit.length)}
+      </Fragment>
+    ) : (
+      <Fragment key={i}>{tok}</Fragment>
+    );
+    return i ? [<Fragment key={`s${i}`}>, </Fragment>, item] : [item];
+  });
+}
 /** The resume the recruiters' card hands over: the full Modern one (all four are in #resume). */
 const HIRE_CV = CVS.find((c) => c.style === "Modern" && c.len === "full")!;
 
@@ -172,6 +192,38 @@ export async function Home({ lang }: { lang: Lang }) {
               </h3>
               <p>{ABOUT.weaponsSub[lang]}</p>
             </div>
+            {/* the core stack: his 19, ahead of everything else (content/home.ts, CORE) */}
+            <div className="o-core" aria-labelledby="core-h">
+              <div className="o-core-h rv">
+                <p className="o-mono">{CORE.k}</p>
+                <h4 id="core-h">{CORE.h[lang]}</h4>
+                <p>{CORE.p[lang]}</p>
+              </div>
+              <div className="o-core-gs">
+                {CORE.groups.map((g) => (
+                  <div className="o-core-g" key={g.k.en}>
+                    <p className="o-core-l">{g.k[lang]}</p>
+                    <ul>
+                      {g.items.map((it) => {
+                        const ic = STACK_ICONS[it.icon];
+                        const fill = (c: string) => (c === "ink" ? "var(--ink)" : `#${c}`);
+                        return (
+                          <li className="o-core-t" key={it.name} style={{ "--c": fill(ic.dark), "--cl": fill(ic.light) } as React.CSSProperties}>
+                            <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                              <path d={ic.path} />
+                            </svg>
+                            <span>{it.name}</span>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+              <p className="o-core-f">
+                <span className="o-core-dot">{CORE.mark[lang]}</span> {CORE.credit[lang]}
+              </p>
+            </div>
             <ul className="o-weap">
               {WEAPONS.map((w, i) => (
                 <li className="o-card hov rv" key={w.t.en} data-wide={w.wide ? "" : undefined} style={{ "--d": `${(i % 3) * 0.08}s` } as React.CSSProperties}>
@@ -181,7 +233,7 @@ export async function Home({ lang }: { lang: Lang }) {
                     {w.items.map((it) => (
                       <div key={it.k.en}>
                         <dt>{it.k[lang]}</dt>
-                        <dd>{it.v}</dd>
+                        <dd>{markCore(it.v)}</dd>
                       </div>
                     ))}
                   </dl>

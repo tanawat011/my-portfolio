@@ -32,7 +32,7 @@ export function startMotion(): Stop {
 
 /** What fades in: every old `.rv` box, except a section head, whose parts come in one by one instead. */
 const HEAD_BOXES = ".o-head, .o-weap-h, .o-story-h, .o-true-h";
-const FADE = `main .rv:not(${HEAD_BOXES}), main .o-head > :not(h2), main .o-weap-h > :not(h3), main .d-art > *, main .d-chp`;
+const FADE = `main .rv:not(${HEAD_BOXES}), main .o-head > :not(h2), main .o-weap-h > :not(h3), main .d-art > *, main .d-chp, main .o-core-l, main .o-core-t`;
 /** What comes in word by word: the section headings below the hero, and the case pages' section titles. */
 const HEADS = "main .o-head h2, main .o-weap-h h3, main .o-story-h, main .o-true-h, main .d-wh";
 

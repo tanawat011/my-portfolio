@@ -47,5 +47,6 @@ Vercel's build can't make these, so they are committed. Re-run the script when i
 | `python3 -I -B scripts/cv-meta.py` | `content/cvs.json`, `public/cv/*.jpg` | a resume PDF changes (a test fails until you do) |
 | `python3 -I -B scripts/night-commits.py <folder holding the VTX repos>` | `content/night-commits.json` | you want a fresh "after midnight" figure |
 | `bun scripts/brand-images.ts http://127.0.0.1:3123` | the share images and icons | the name, tagline, app count or look changes (needs the built site running) |
+| `node scripts/stack-icons.mjs <simple-icons package> [<tanawat011 repo>]` | `content/stack-icons.ts`, and the profile's `assets/stack/` badges | the core stack changes (untar `npm pack simple-icons` for the first argument) |
 
 Pushing `main` deploys on Vercel: push only on the owner's word.

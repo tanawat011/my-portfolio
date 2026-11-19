@@ -252,3 +252,24 @@ The owner, verbatim (through VTX Develop), on the card above: "เปลี่�
   this card. It's the clean card with its glow. components/HireTerm.tsx and its styles are removed.
 - The hero terminal's `sudo hire-me` stays playful but drops its "I'm serious 🙏" line, and its last link still
   lands on this card.
+
+## Core stack (19 Nov 2026)
+
+The owner, verbatim (through VTX Develop): "เรื่อง skill ที่โชว์น่ะดีแล้วนะครบครัน แต่ผมอยากให้เน้นเรื่องการที่ผมนั้นถนัด react,
+next.js, reactnative, nodejs, typescript, Flutter, Docker, NestJS, express, Tailwind, Ant Design, shadcn,Vitest,Supabase,
+Vercel,MongoDB,PostgreSQL,Claude Code, rust … บ่งบอกให้รู้ว่ามันเป็น stack ที่เราถนัดที่สุดในปัจจุบัน", for the portfolio and
+the GitHub profile.
+
+- A Core stack panel heads "My Weapons", ahead of the cards: "Core stack: what I'm strongest in today" / "Core stack
+  ที่ถนัดที่สุดตอนนี้". It holds exactly his 19, none added or dropped, as logo tiles in six groups: Languages, Frontend,
+  Mobile, Backend, Data & cloud, Tooling & AI. The cards below stay as they were, and every one of the 19 carries a dot
+  where the cards name it.
+- Logos come from Simple Icons 16.38.0, drawn inline (content/stack-icons.ts, made by scripts/stack-icons.mjs). Each
+  is in its brand colour, moved only as far as it takes to reach 3:1 on the tile in each theme. The near-black marks
+  (Next.js, Vercel, Express, shadcn/ui, Rust) take the theme's ink. React Native uses the React logo, which is its
+  own. Claude Code uses the Claude mark, nominatively.
+- Licences: Simple Icons is CC0, and so are 18 of the 19. The Rust logo is the Rust Foundation's, CC BY-SA 4.0,
+  credited under the panel. The profile's Rust badges are adaptations of it under the same licence (their NOTICE.md).
+- Motion: the group labels and tiles come in one by one (effect 1). Reduce motion: still.
+- On the GitHub profile, a matching `> stack --core` block after `> whoami`. Its badges are self-hosted SVGs
+  (assets/stack/, a dark and a light file each, through `<picture>`), not shields.io, which lacks some of these logos.
