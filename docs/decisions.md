@@ -88,7 +88,8 @@ The owner, verbatim (through VTX Develop): "X1 X2 X4 X6 X7 + F2 F3 F4 F5 / ai to
 Copilot, Gemini, GPT ไอ่พวกนี้ไม่น่าใช่ Models นะ เอาคำว่า Models ออกด้วย".
 
 - **AI card (X7):** one list, "What I actually use": Claude Code, Copilot, Gemini, GPT. The "Models" label is gone, and
-  so are Cursor and Antigravity. Dev Tools keeps them until he says otherwise.
+  so are Cursor and Antigravity. Asked about Dev Tools too, he said "เอาออกด้วย", so Dev Tools is VS Code, IntelliJ IDEA
+  and Xcode, and neither name appears anywhere on the site (round 1's unused STACK list went too).
 - **X1 (scroll effects like Studio's):** not built. It waits for his picks on Studio's motion preview.
 - **The hello_world terminal (X2):** `> hello_world_` is a button. Clicking it, or focusing it and typing, opens a small
   terminal over the hero, so nothing moves.

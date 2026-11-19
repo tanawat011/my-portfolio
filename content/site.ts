@@ -56,14 +56,6 @@ export const WEB = [
     line: { en: "Build a resume in your browser and export it as a PDF or PNG. Free, no account, and your CVs stay in your browser.", th: "สร้าง resume ในเบราว์เซอร์ แล้ว export เป็น PDF หรือ PNG ฟรี ไม่ต้องมีบัญชี และ CV อยู่ในเบราว์เซอร์ของคุณเท่านั้น" } },
 ] as const;
 
-export const STACK: { k: Text; v: string }[] = [
-  { k: { en: "Desktop", th: "เดสก์ท็อป" }, v: "Rust, Tauri 2, React, TypeScript" },
-  { k: { en: "Web", th: "เว็บ" }, v: "Next.js, React, Tailwind, shadcn/ui" },
-  { k: { en: "Data & infra", th: "ข้อมูลและ infra" }, v: "PostgreSQL, SQLite, Supabase, Vercel, Bun, Docker" },
-  { k: { en: "Also shipped", th: "เคยส่งงานด้วย" }, v: "Go, NestJS, Laravel, React Native, Flutter, Swift" },
-  { k: { en: "Every day", th: "ใช้ทุกวัน" }, v: "Claude, Gemini, GPT, Cursor" },
-];
-
 /** The story, four chapters. The middle years are not on the old site, so they carry no year (owner's call later). */
 export const STORY: { y: Text; h: Text; p: Text[] }[] = [
   { y: { en: "July 2017", th: "กรกฎาคม 2017" }, h: { en: "First job", th: "งานแรก" },

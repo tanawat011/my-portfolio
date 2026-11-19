@@ -140,9 +140,11 @@ test("round 3b: the AI card lists only what he really uses, with no Models label
   expect(ai.items.map((i) => i.v)).toEqual(["Claude Code, Copilot, Gemini, GPT"]);
   expect(JSON.stringify(WEAPONS)).not.toContain("Models");
   expect(JSON.stringify(ai)).not.toMatch(/Cursor|Antigravity|OpenClaw/);
-  // Dev Tools stays as round 3a left it, until he says otherwise
+  // and, his answer: "เอาออกด้วย": no Cursor or Antigravity anywhere, Dev Tools included
   const dev = WEAPONS.flatMap((w) => w.items).find((i) => i.k.en === "Dev Tools")!;
-  expect(dev.v).toBe("Antigravity, Cursor, VS Code, IntelliJ IDEA, Xcode");
+  expect(dev.v).toBe("VS Code, IntelliJ IDEA, Xcode");
+  const dir = join(import.meta.dir, "..", "content");
+  for (const f of readdirSync(dir)) expect([f, /\b(Cursor|Antigravity)\b/.test(readFileSync(join(dir, f), "utf8"))]).toEqual([f, false]);
 });
 
 test("round 3b: the true facts are measured, apart from the jokes, and publish only the aggregate", async () => {
