@@ -7,6 +7,7 @@ import { APPS, CASES, HOME_PAIRS } from "../content/apps";
 import { CVS, FIRST_JOB, STORY, T, WEB, href, yearsSince } from "../content/site";
 import { ANALYTICS, analyticsOn } from "../content/analytics";
 import { csp } from "../config/security";
+import { FUN } from "../content/home";
 
 const pub = (p: string) => join(import.meta.dir, "..", "public", p);
 
@@ -38,7 +39,7 @@ test("every app and web app has its icons", () => {
     expect(existsSync(pub(`vtx/${id}.png`))).toBe(true);
     expect(existsSync(pub(`vtx/96/${id}.png`))).toBe(true);
   }
-  expect(existsSync(pub("images/portrait.jpg"))).toBe(true);
+  expect(existsSync(pub("images/me-round.jpg"))).toBe(true);
 });
 
 test("10A: the four CV PDFs exist", () => {
@@ -93,4 +94,12 @@ test("8A: no Google Analytics left in the code, and no .env file", () => {
   walk(root);
   for (const f of files) expect([f, bad.test(readFileSync(f, "utf8"))]).toEqual([f, false]);
   expect(readdirSync(root).filter((n) => n.startsWith(".env"))).toEqual([]);
+});
+
+test("round 2: the jokes stay jokes, the real figures stay real, never mixed", () => {
+  expect(FUN.items.length).toBe(6);
+  const real = Object.values(T.proof).map((t) => t.en);
+  for (const f of FUN.items) for (const r of real) expect(f.l.en).not.toBe(r);
+  // the four real figures are computed from data, not typed in the jokes block
+  expect(FUN.items.map((f) => f.v.en)).toEqual(["∞", "9,999+", "0", "AI-assisted", "Too many", "∞"]);
 });

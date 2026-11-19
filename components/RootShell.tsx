@@ -3,6 +3,8 @@ import { T } from "@/content/site";
 import { fontVars } from "@/app/fonts";
 import { AnalyticsRoot } from "./AnalyticsRoot";
 import { Behaviours } from "./Behaviours";
+import { ScrollTop } from "./ScrollTop";
+import { FOOT } from "@/content/home";
 import { DEFAULT_THEME, themeScript } from "./theme-key";
 import "@/app/globals.css";
 
@@ -24,6 +26,7 @@ export function RootShell({ lang, children }: { lang: Lang; children: React.Reac
           </a>
           {children}
         </div>
+        <ScrollTop label={FOOT.top[lang]} />
         <Behaviours />
         <AnalyticsRoot />
       </body>

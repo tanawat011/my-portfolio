@@ -5,30 +5,30 @@ import type { Text } from "./site";
  * Case pages (5A): Fulmen, Lapis, Silva, Ignis. Every other app links to its page on VTX Labs.
  * Screens are Labs' own (real frontends, made-up data, already public) in public/apps/shots.
  */
-export interface App { id: string; name: string; el: Text; job: Text; line: Text; personal?: boolean }
+export interface App { id: string; name: string; el: Text; job: Text; line: Text; personal?: boolean; /** OKLCH hue of its element colour (the old site and Labs) */ hue: number }
 
 export const APPS: App[] = [
-  { id: "lapis", name: "Lapis", el: { en: "Stone", th: "หิน" }, job: { en: "Databases", th: "ฐานข้อมูล" },
+  { id: "lapis", hue: 273, name: "Lapis", el: { en: "Stone", th: "หิน" }, job: { en: "Databases", th: "ฐานข้อมูล" },
     line: { en: "PostgreSQL, MySQL / MariaDB, SQLite, SQL Server, MongoDB and Redis in one window. Every write is kept with the SQL that reverses it.", th: "PostgreSQL, MySQL / MariaDB, SQLite, SQL Server, MongoDB และ Redis ในหน้าต่างเดียว ทุกการแก้ข้อมูลเก็บ SQL ที่ย้อนกลับได้ไว้ด้วย" } },
-  { id: "fulmen", name: "Fulmen", el: { en: "Lightning", th: "สายฟ้า" }, job: { en: "APIs", th: "API" },
+  { id: "fulmen", hue: 288, name: "Fulmen", el: { en: "Lightning", th: "สายฟ้า" }, job: { en: "APIs", th: "API" },
     line: { en: "HTTP, GraphQL, WebSocket, gRPC, SSE and MCP. Requests leave from Rust, not a browser.", th: "HTTP, GraphQL, WebSocket, gRPC, SSE และ MCP ส่ง request จาก Rust ไม่ใช่จากเบราว์เซอร์" } },
-  { id: "silva", name: "Silva", el: { en: "Wood", th: "ไม้" }, job: { en: "Git", th: "Git" },
+  { id: "silva", hue: 148, name: "Silva", el: { en: "Wood", th: "ไม้" }, job: { en: "Git", th: "Git" },
     line: { en: "A Git graph where every action can be undone. Runs your own git, so hooks, LFS and signing behave as in your terminal.", th: "Git graph ที่ย้อนได้ทุกคำสั่ง ใช้ git ของคุณเอง hooks, LFS และการเซ็น commit จึงทำงานเหมือนใน terminal" } },
-  { id: "ventus", name: "Ventus", el: { en: "Wind", th: "ลม" }, job: { en: "SSH", th: "SSH" },
+  { id: "ventus", hue: 206, name: "Ventus", el: { en: "Wind", th: "ลม" }, job: { en: "SSH", th: "SSH" },
     line: { en: "Reads your ~/.ssh/config, known_hosts and agent, and checks the host key before sending anything.", th: "อ่าน ~/.ssh/config, known_hosts และ agent ของคุณ และตรวจ host key ก่อนส่งอะไรออกไป" } },
-  { id: "ignis", name: "Ignis", el: { en: "Fire", th: "ไฟ" }, job: { en: "Dev tools", th: "เครื่องมือ dev" },
+  { id: "ignis", hue: 35, name: "Ignis", el: { en: "Fire", th: "ไฟ" }, job: { en: "Dev tools", th: "เครื่องมือ dev" },
     line: { en: "Paste anything and it knows what it is: JSON, JWT, Base64, timestamps, cron, cURL. Nothing leaves your computer.", th: "วางอะไรก็ได้ มันรู้ว่าคืออะไร: JSON, JWT, Base64, timestamp, cron, cURL ข้อมูลไม่ออกจากเครื่อง" } },
-  { id: "aqua", name: "Aqua", el: { en: "Water", th: "น้ำ" }, job: { en: "Mac cleaning", th: "ล้างเครื่อง Mac" },
+  { id: "aqua", hue: 245, name: "Aqua", el: { en: "Water", th: "น้ำ" }, job: { en: "Mac cleaning", th: "ล้างเครื่อง Mac" },
     line: { en: "Knows a developer's disk: build folders, tool caches, simulators, Docker. Says why each item is safe to remove.", th: "รู้จักดิสก์ของ developer: build folder, cache ของเครื่องมือ, simulator, Docker และบอกว่าทำไมแต่ละอย่างลบได้" } },
-  { id: "cuprum", name: "Cuprum", el: { en: "Copper", th: "ทองแดง" }, job: { en: "Code editor", th: "โปรแกรมเขียนโค้ด" }, personal: true,
+  { id: "cuprum", hue: 54, name: "Cuprum", el: { en: "Copper", th: "ทองแดง" }, job: { en: "Code editor", th: "โปรแกรมเขียนโค้ด" }, personal: true,
     line: { en: "Traces where your data goes across a codebase, and opens a repo already knowing its stack.", th: "ไล่ดูว่าข้อมูลไหลไปไหนทั้ง codebase และเปิด repo มาก็รู้ stack ทันที" } },
-  { id: "lux", name: "Lux", el: { en: "Light", th: "แสง" }, job: { en: "Video", th: "วิดีโอ" }, personal: true,
+  { id: "lux", hue: 85, name: "Lux", el: { en: "Light", th: "แสง" }, job: { en: "Video", th: "วิดีโอ" }, personal: true,
     line: { en: "Short videos made from a script, with a live preview of every scene.", th: "ทำวิดีโอสั้นจากบท เห็นตัวอย่างทุกฉากสด ๆ" } },
-  { id: "mercurius", name: "Mercurius", el: { en: "Quicksilver", th: "ปรอท" }, job: { en: "Mail", th: "อีเมล" }, personal: true,
+  { id: "mercurius", hue: 262, name: "Mercurius", el: { en: "Quicksilver", th: "ปรอท" }, job: { en: "Mail", th: "อีเมล" }, personal: true,
     line: { en: "Every Gmail account in one inbox, stored on your Mac. A send is held for ten seconds, just in case.", th: "ทุกบัญชี Gmail ในกล่องเดียว เก็บไว้ใน Mac ส่งแล้วรอ 10 วินาที เผื่อเปลี่ยนใจ" } },
-  { id: "crystallum", name: "Crystallum", el: { en: "Crystal", th: "คริสตัล" }, job: { en: "Remote desktop", th: "รีโมตเดสก์ท็อป" }, personal: true,
+  { id: "crystallum", hue: 236, name: "Crystallum", el: { en: "Crystal", th: "คริสตัล" }, job: { en: "Remote desktop", th: "รีโมตเดสก์ท็อป" }, personal: true,
     line: { en: "Your Mac to a Windows PC. The PC's certificate is checked before you sign in.", th: "จาก Mac ไปเครื่อง Windows ตรวจใบรับรองของเครื่องก่อนเข้าสู่ระบบ" } },
-  { id: "ros", name: "Ros", el: { en: "Dew", th: "น้ำค้าง" }, job: { en: "Notes", th: "โน้ต" },
+  { id: "ros", hue: 172, name: "Ros", el: { en: "Dew", th: "น้ำค้าง" }, job: { en: "Notes", th: "โน้ต" },
     line: { en: "Notes as plain Markdown files in a folder you own. The other apps write into it.", th: "โน้ตเป็นไฟล์ Markdown ธรรมดาในโฟลเดอร์ของคุณ แอปอื่นในครอบครัวเขียนลงมาได้" } },
 ];
 
@@ -72,7 +72,7 @@ export const CASES: Case[] = [
   {
     id: "fulmen", runs: "macOS · Windows · Linux", state: "preview", pair: PAIRS.fulmen,
     title: { en: "Fulmen, an API client that sends from Rust", th: "Fulmen: API client ที่ส่ง request จาก Rust" },
-    stand: { en: "I test APIs every day, so I built the client I wanted. What it does, and what it replaced.", th: "ทดสอบ API ทุกวัน เลยทำ client แบบที่อยากใช้เอง นี่คือสิ่งที่มันทำ และสิ่งที่มันมาแทน" },
+    stand: { en: "I test APIs every day, and browsers kept saying no (hi, CORS). So I built my own, and it sends from Rust.", th: "ทดสอบ API ทุกวัน แล้วเบราว์เซอร์ก็ชอบปฏิเสธ (หวัดดี CORS) เลยทำเองซะ แล้วส่งจาก Rust ไปเลย" },
     why: [
       { en: "Requests leave from Rust, not a browser: no CORS, any header you like, and self-signed certificates work.", th: "request ออกจาก Rust ไม่ใช่จากเบราว์เซอร์: ไม่ติด CORS ใส่ header อะไรก็ได้ และใช้กับ certificate ที่เซ็นเองได้" },
       { en: "Collections, environments and history live in SQLite on your Mac, and a collection can sit in Git as YAML files. It grew from a request sender into flows, checks without a script, and <code>arccc run</code> for CI.", th: "collection, environment และประวัติเก็บใน SQLite บน Mac ของคุณ และเก็บ collection ใน Git เป็นไฟล์ YAML ได้ จากตัวส่ง request ธรรมดา มันโตมาเป็น flow, การตรวจคำตอบโดยไม่ต้องเขียน script และ <code>arccc run</code> สำหรับ CI" },
@@ -93,7 +93,7 @@ export const CASES: Case[] = [
   {
     id: "lapis", runs: "macOS · Windows · Linux", state: "preview", pair: PAIRS.lapis,
     title: { en: "Lapis, six databases in one window", th: "Lapis: database หกแบบในหน้าต่างเดียว" },
-    stand: { en: "I use a database client every day, so I built the one I wanted. What it does, and what it replaced.", th: "ใช้ database client ทุกวัน เลยทำตัวที่อยากใช้เอง นี่คือสิ่งที่มันทำ และสิ่งที่มันมาแทน" },
+    stand: { en: "Six databases, one window, and no more \"wait, what was the old value?\". I use a database client every day, so I built mine.", th: "database 6 แบบ หน้าต่างเดียว และไม่ต้องถามอีกแล้วว่า \"เมื่อกี้ค่าเดิมมันคืออะไรนะ\" ใช้ database client ทุกวัน เลยทำของตัวเอง" },
     why: [
       { en: "PostgreSQL, MySQL and MariaDB, SQLite, SQL Server, MongoDB and Redis in one window. Values are read and written byte for byte: a value Lapis cannot read exactly is refused, never shown wrong.", th: "PostgreSQL, MySQL และ MariaDB, SQLite, SQL Server, MongoDB และ Redis ในหน้าต่างเดียว อ่านและเขียนค่าตรงทุกไบต์: ค่าไหนที่ Lapis อ่านได้ไม่ตรง มันจะไม่แสดง ไม่ยอมแสดงผิด" },
       { en: "Edit data in a grid, and every write is kept with the SQL that reverses it. SSH tunnels check the host key first, and a PROD connection asks you to type its name before anything destructive.", th: "แก้ข้อมูลในตาราง และทุกการแก้เก็บ SQL ที่ย้อนกลับได้ไว้ SSH tunnel ตรวจ host key ก่อน และการเชื่อมต่อ PROD จะให้พิมพ์ชื่อก่อนทำอะไรที่ลบหรือทำลายข้อมูล" },
@@ -114,7 +114,7 @@ export const CASES: Case[] = [
   {
     id: "silva", runs: "macOS · Windows", state: "later", pair: PAIRS.silva,
     title: { en: "Silva, a Git client where every action can be undone", th: "Silva: Git client ที่ย้อนได้ทุกคำสั่ง" },
-    stand: { en: "I use Git all day, so I built the client I wanted: one where every action can be undone.", th: "ใช้ Git ทั้งวัน เลยทำ client แบบที่อยากใช้เอง: ทุกคำสั่งย้อนกลับได้" },
+    stand: { en: "I use Git all day, and everyone has a reset --hard story. So in Silva, every action can be undone.", th: "ใช้ Git ทั้งวัน และใคร ๆ ก็มีเรื่องเศร้ากับ reset --hard เลยทำให้ทุกคำสั่งใน Silva ย้อนกลับได้" },
     why: [
       { en: "It runs your own git, so hooks, LFS, commit signing and credential helpers behave as they do in your terminal. The Git console lists every command Silva runs, ready to copy.", th: "มันใช้ git ของคุณเอง hooks, LFS, การเซ็น commit และ credential helper จึงทำงานเหมือนใน terminal และ Git console แสดงทุกคำสั่งที่ Silva รัน ก๊อปไปใช้ต่อได้" },
       { en: "Every action can be undone, and discarded changes are kept. Blame, history across renames, a 3-way conflict editor, bisect, worktrees, and splitting a commit by file, hunk or line are all there.", th: "ทุกคำสั่งย้อนกลับได้ และของที่ทิ้งไปยังเก็บไว้ มี blame, ประวัติข้ามการเปลี่ยนชื่อไฟล์, ตัวแก้ conflict แบบ 3 ทาง, bisect, worktree และการแยก commit ทีละไฟล์ ทีละ hunk หรือทีละบรรทัด" },
@@ -135,7 +135,7 @@ export const CASES: Case[] = [
   {
     id: "ignis", runs: "macOS · Windows · Linux", state: "later", pair: PAIRS.ignis,
     title: { en: "Ignis, a toolbox that knows what you pasted", th: "Ignis: กล่องเครื่องมือที่รู้ว่าคุณวางอะไรลงไป" },
-    stand: { en: "I reach for small tools all day, so I put them in one app that never goes online.", th: "ใช้เครื่องมือเล็ก ๆ ทั้งวัน เลยรวมไว้ในแอปเดียวที่ไม่ออกเน็ตเลย" },
+    stand: { en: "I reach for small tools all day, and I'd rather not paste a real token into some random website. So they live in one app that never goes online.", th: "ใช้เครื่องมือเล็ก ๆ ทั้งวัน และไม่อยากวาง token จริงลงเว็บไหนก็ไม่รู้ เลยรวมไว้ในแอปเดียวที่ไม่ออกเน็ตเลย" },
     why: [
       { en: "Paste anything, and Ignis says what it is and opens the tool for it: JSON, JWT, Base64, timestamps, cron, cURL and more. Nothing leaves your computer, so a real token is safe to paste.", th: "วางอะไรก็ได้ Ignis บอกว่ามันคืออะไรแล้วเปิดเครื่องมือที่ใช้ให้: JSON, JWT, Base64, timestamp, cron, cURL และอีกหลายอย่าง ข้อมูลไม่ออกจากเครื่อง วาง token จริงได้อย่างสบายใจ" },
       { en: "A cURL command turns into code in 23 languages, with Open in Fulmen, and SQL opens in Lapis the same way. It also picks a colour or reads text anywhere on screen, and translates Thai and English offline.", th: "คำสั่ง cURL แปลงเป็นโค้ดได้ 23 ภาษา พร้อมปุ่มเปิดใน Fulmen และ SQL เปิดใน Lapis ได้แบบเดียวกัน ดูดสีหรืออ่านข้อความจากตรงไหนบนจอก็ได้ และแปลไทย อังกฤษแบบไม่ต้องต่อเน็ต" },

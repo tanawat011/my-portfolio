@@ -17,7 +17,7 @@ export function CasePage({ lang, c }: { lang: Lang; c: Case }) {
         <section className="p-sec" style={{ paddingTop: "clamp(40px,6cqi,88px)" }}>
           <div className="p-in">
             <article className="d-art">
-              <Link className="c-back" href={`${href(lang, "/")}#work`}>
+              <Link className="c-back" href={`${href(lang, "/")}#vtx`}>
                 <Arr c="←" /> {T.allWork[lang]}
               </Link>
               <p className="kick">
@@ -70,7 +70,7 @@ export function CasePage({ lang, c }: { lang: Lang; c: Case }) {
                 <img src={`/vtx/${c.id}.png`} alt="" width={132} height={132} loading="lazy" />
               </div>
               <div className="nextc">
-                <Link href={`${href(lang, "/")}#work`}>
+                <Link href={`${href(lang, "/")}#vtx`}>
                   <Arr c="←" /> {T.allWork[lang]}
                 </Link>
                 <Link href={href(lang, `/work/${next.id}`)}>

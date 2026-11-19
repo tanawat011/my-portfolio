@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 /**
- * Two small page-wide behaviours. Reveals: a .rv block rises 22 px once, the first time it scrolls into view (CSS only
- * arms it when the head script ran, and Reduce motion skips it). Cards: a .hov card's light edge turns with the pointer,
- * on devices that hover.
+ * Page-wide behaviours. Reveals: a .rv block fades up once, the first time it scrolls into view, as the old site's
+ * AnimatedSection did (CSS only arms it when the head script ran; Reduce motion skips it). The bar turns to glass on
+ * scroll; loops rest off screen. Cards: a .hov card's light edge turns with the pointer, on devices that hover.
  */
 export function Behaviours() {
   const path = usePathname();
@@ -24,10 +24,26 @@ export function Behaviours() {
           reveal.unobserve(en.target);
         }
       }),
-      { rootMargin: "0px 0px -6% 0px" },
+      { rootMargin: "0px 0px -80px 0px" },
     );
     items.forEach((el) => reveal.observe(el));
     return () => reveal.disconnect();
+  }, [path]);
+
+  useEffect(() => {
+    /* The bar is clear over the hero and turns to glass once you scroll (the old site's navbar). */
+    const nav = document.querySelector("[data-nav]");
+    const onScroll = () => nav?.classList.toggle("is-scrolled", window.scrollY > 50);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    /* Anything that loops (the hero's dots, the scroll cue, the live dot) rests while it is off screen. */
+    const loops = [...document.querySelectorAll<HTMLElement>("[data-loop]")];
+    const seen = new IntersectionObserver((es) => es.forEach((en) => en.target.classList.toggle("is-off", !en.isIntersecting)));
+    loops.forEach((el) => seen.observe(el));
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      seen.disconnect();
+    };
   }, [path]);
 
   useEffect(() => {

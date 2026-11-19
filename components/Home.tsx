@@ -1,55 +1,81 @@
 import Link from "next/link";
-import { APPS, HOME_PAIRS, hasCase, labsUrl } from "@/content/apps";
-import { CVS, href, LINKS, OSS, STACK, STORY, T, WEB, yearsSince, type Lang } from "@/content/site";
+import { APPS, hasCase, labsUrl } from "@/content/apps";
+import { ABILITIES, ABOUT, FUN, HERO, INSIDE, LIVE, PROJECTS, RESUME, UPTIME, VTX, WEAPONS } from "@/content/home";
+import { CVS, href, LINKS, STORY, T, WEB, yearsSince, type Lang } from "@/content/site";
 import { Band } from "./Band";
-import { Arr, Footer, Head, Nav } from "./Frame";
-import { BeforeAfter, StoryRail } from "./Motion";
+import { Arr, Footer, Nav, OldHead } from "./Frame";
+import { Icon } from "./Icons";
+import { StoryRail } from "./Motion";
 import { Shot } from "./Shot";
 
-/** The home page, direction D · Story: the person first, then the work, then the ways to go further. */
+/** The old site's drifting dots, placed by the same seeded formula it used (Hero.tsx), so they sit where they sat. */
+const seed = (n: number) => ((n * 9301 + 49297) % 233280) / 233280;
+const DOTS = Array.from({ length: 40 }, (_, i) => ({
+  left: seed(i * 3) * 100,
+  top: seed(i * 7 + 1) * 100,
+  o: seed(i * 11 + 2) * 0.4 + 0.1,
+  du: seed(i * 13 + 3) * 3 + 2,
+  de: seed(i * 17 + 4) * 2,
+}));
+const fill = (s: string, y: number) => s.replace("{y}", String(y));
+
+/**
+ * Round 2 (owner, 19 Nov 2026): the old site is the base, in G, in his own voice. Him first, the work as proof:
+ * hero → uptime (round 1's band and the real figures) → about (abilities, the round photo, round 1's story rail,
+ * the weapons) → the VTX family → resume → projects → live → fun facts (jokes only) → round 1's hire card.
+ */
 export function Home({ lang }: { lang: Lang }) {
-  const years = yearsSince();
-  const pairs = HOME_PAIRS.map((p) => ({ id: p.id, name: APPS.find((a) => a.id === p.id)!.name, cmd: p.cmd, shot: p.shot, before: p.before[lang], after: p.after[lang], cap: p.cap[lang], term: p.term }));
+  const y = yearsSince();
   return (
     <>
       <Nav lang={lang} path="/" />
       <main id="main">
-        <section className="d-hero" aria-labelledby="h1">
-          <div className="p-in">
-            <div className="d-name">
-              <span className="av" aria-hidden="true">
-                TP
+        <section className="o-hero" id="home" aria-labelledby="h1" data-loop>
+          <div className="o-pools" aria-hidden="true" />
+          <div className="o-pts" aria-hidden="true">
+            {DOTS.map((d, i) => (
+              <span key={i} style={{ left: `${d.left.toFixed(2)}%`, top: `${d.top.toFixed(2)}%`, "--o": d.o.toFixed(2), "--du": `${d.du.toFixed(2)}s`, "--de": `${d.de.toFixed(2)}s` } as React.CSSProperties} />
+            ))}
+          </div>
+          <div className="o-hi">
+            <p className="o-hello o-rise" style={{ "--d": "0s" } as React.CSSProperties}>
+              {"> "}
+              <span className="typ">hello_world</span>
+              <span className="car" aria-hidden="true">
+                _
               </span>
-              <span>
-                <b>Tanawat Pinthongpan</b>
-                {T.role[lang]}
-              </span>
-            </div>
-            <h1 className="d-h1" id="h1">
-              {T.h1a[lang]} <span>{T.h1b[lang]}</span>
+            </p>
+            <h1 className="o-name o-rise o-rise-h" id="h1" style={{ "--d": ".2s" } as React.CSSProperties}>
+              <span className="grad">Tanawat</span> Pinthongpan
             </h1>
-            <div className="d-row">
-              <div>
-                <p className="d-sub" dangerouslySetInnerHTML={{ __html: T.sub[lang] }} />
-                {T.subOther[lang] && (
-                  <p className="d-sub" lang="th">
-                    {T.subOther[lang]}
-                  </p>
-                )}
-              </div>
-              <div className="d-acts">
-                <a className="p-btn p-btn-ink" href="#about">
-                  {T.readStory[lang]} <Arr c="↓" />
-                </a>
-                <a className="p-btn p-btn-gh" href="#hire">
-                  {T.nav.hire[lang]}
-                </a>
-              </div>
+            <p className="o-tag o-rise" style={{ "--d": ".4s" } as React.CSSProperties}>
+              {HERO.tagline[lang]}
+            </p>
+            <p className="o-line o-rise" style={{ "--d": ".5s" } as React.CSSProperties} dangerouslySetInnerHTML={{ __html: fill(HERO.line[lang], y) }} />
+            <div className="o-acts o-rise" style={{ "--d": ".6s" } as React.CSSProperties}>
+              <a className="p-btn p-btn-ink" href="#vtx">
+                {HERO.vtx[lang]}
+              </a>
+              <a className="p-btn p-btn-gh" href="#about">
+                {HERO.who[lang]}
+              </a>
+              <a className="p-btn p-btn-gh o-cvbtn" href="#resume">
+                {HERO.cv[lang]}
+              </a>
             </div>
+          </div>
+          <a className="o-mouse" href="#uptime" aria-label={HERO.scroll[lang]}>
+            <i />
+          </a>
+        </section>
+
+        <section className="o-sec" id="uptime" aria-labelledby="up-h">
+          <div className="o-wrap">
+            <OldHead k={UPTIME.k} pre={UPTIME.pre[lang]} grad={UPTIME.grad[lang]} sub={UPTIME.sub[lang]} id="up-h" />
             <Band lang={lang} />
             <ul className="p-proof">
               <li>
-                <b>{years}</b>
+                <b>{y}</b>
                 <span>{T.proof.years[lang]}</span>
               </li>
               <li>
@@ -68,84 +94,176 @@ export function Home({ lang }: { lang: Lang }) {
           </div>
         </section>
 
-        <section className="p-sec" id="about" aria-labelledby="about-h">
-          <div className="p-in">
-            <Head k={T.aboutK[lang]} t={T.aboutT[lang]} h={T.aboutH[lang]} id="about-h" />
-            <div className="d-about">
-              <aside className="d-side rv">
-                <figure className="d-me">
+        <section className="o-sec o-alt" id="about" aria-labelledby="about-h">
+          <div className="o-wrap">
+            <OldHead pre={ABOUT.pre[lang]} grad={ABOUT.grad[lang]} id="about-h" />
+            <ul className="o-abil">
+              {ABILITIES.map((a, i) => (
+                <li className="o-card hov rv" key={a.icon} style={{ "--d": `${i * 0.1}s` } as React.CSSProperties}>
+                  <span className="o-ico">
+                    <Icon name={a.icon} />
+                  </span>
+                  <h3>{a.t[lang]}</h3>
+                  <p>{a.d[lang]}</p>
+                </li>
+              ))}
+            </ul>
+            <div className="o-about">
+              <aside className="o-me-card o-card rv">
+                <div className="o-me">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/portrait.jpg" width={430} height={538} alt={T.photo[lang]} loading="lazy" decoding="async" />
-                </figure>
-                <dl className="p-stack">
-                  {STACK.map((s) => (
-                    <div key={s.v}>
-                      <dt>{s.k[lang]}</dt>
-                      <dd>{s.v}</dd>
-                    </div>
-                  ))}
-                </dl>
+                  <img src="/images/me-round.jpg" width={352} height={352} alt={ABOUT.photo[lang]} loading="lazy" decoding="async" />
+                </div>
+                <h3>{ABOUT.hey[lang]}</h3>
+                <p dangerouslySetInnerHTML={{ __html: fill(ABOUT.p1[lang], y) }} />
+                <p>{ABOUT.p2[lang]}</p>
               </aside>
-              <div className="d-story">
-                <StoryRail />
-                <div className="d-chs">
-                  {STORY.map((c) => (
-                    <article className="d-chp" key={c.h.en}>
-                      <div>
-                        <span className="y">{c.y[lang]}</span>
-                        <h3>{c.h[lang]}</h3>
-                      </div>
-                      <div>
-                        {c.p.map((p) => (
-                          <p key={p.en}>{p[lang]}</p>
-                        ))}
-                      </div>
-                    </article>
-                  ))}
+              <div className="o-story">
+                <h3 className="o-story-h rv">{ABOUT.storyH[lang]}</h3>
+                <div className="d-story">
+                  <StoryRail />
+                  <div className="d-chs">
+                    {STORY.map((c) => (
+                      <article className="d-chp" key={c.h.en}>
+                        <div>
+                          <span className="y">{c.y[lang]}</span>
+                          <h3>{c.h[lang]}</h3>
+                        </div>
+                        <div>
+                          {c.p.map((p) => (
+                            <p key={p.en}>{p[lang]}</p>
+                          ))}
+                        </div>
+                      </article>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
+            <div className="o-weap-h rv">
+              <h3>
+                {ABOUT.weaponsPre[lang]} <span className="grad">{ABOUT.weaponsGrad[lang]}</span>
+              </h3>
+              <p>{ABOUT.weaponsSub[lang]}</p>
+            </div>
+            <ul className="o-weap">
+              {WEAPONS.map((w, i) => (
+                <li className="o-card hov rv" key={w.t.en} style={{ "--d": `${(i % 3) * 0.08}s` } as React.CSSProperties}>
+                  <h4>{w.t[lang]}</h4>
+                  <p className="d">{w.d[lang]}</p>
+                  <dl>
+                    {w.items.map((it) => (
+                      <div key={it.k.en}>
+                        <dt>{it.k[lang]}</dt>
+                        <dd>{it.v}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
-        <section className="p-sec flush" id="work" aria-labelledby="work-h">
-          <div className="p-in">
-            <Head
-              k={T.workK[lang]}
-              t={T.workT[lang]}
-              h={T.workH[lang]}
-              l={T.workL[lang]}
-              id="work-h"
-              more={
-                <a className="p-more" href={LINKS.labs}>
-                  {T.allLabs[lang]} <Arr c="↗" />
-                </a>
-              }
-            />
-            <ul className="d-fam rv">
-              {APPS.map((a) => {
+        <section className="o-sec o-vtx" id="vtx" aria-labelledby="vtx-h">
+          <div className="o-grid-bg" aria-hidden="true" />
+          <div className="o-wrap">
+            <OldHead k={VTX.k} pre={VTX.pre[lang]} grad={VTX.grad[lang]} post={VTX.post[lang]} sub={VTX.lead[lang]} id="vtx-h" />
+            <ul className="o-chips rv" aria-label="Stack">
+              {VTX.chips.map((c) => (
+                <li key={c}>{c}</li>
+              ))}
+            </ul>
+            <ul className="o-els">
+              {APPS.map((a, i) => {
                 const own = hasCase(a.id);
                 return (
-                  <li className={`d-fr${own ? " case" : ""}`} key={a.id}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={`/vtx/96/${a.id}.png`} alt="" width={40} height={40} loading="lazy" />
-                    <b>
-                      {a.name}
-                      {a.personal && <span className="tag">{T.personal[lang]}</span>}
-                    </b>
-                    <span className="m">
-                      {a.el[lang]} · {a.job[lang]}
-                    </span>
-                    <p>{a.line[lang]}</p>
-                    {own ? (
-                      <Link className="go stretch" href={href(lang, `/work/${a.id}`)} aria-label={`${a.name}: ${T.readCase[lang]}`}>
-                        →
-                      </Link>
-                    ) : (
-                      <a className="go stretch" href={labsUrl(a.id)} aria-label={`${a.name} ${T.onLabs[lang]}`}>
-                        ↗
+                  <li className="el-card rv" key={a.id} style={{ "--h": a.hue, "--d": `${(i % 3) * 0.08}s` } as React.CSSProperties}>
+                    <div className="el-top">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={`/vtx/96/${a.id}.png`} alt="" width={56} height={56} loading="lazy" className="el-icon" />
+                      <div>
+                        <h3>
+                          <span className="vtx">VTX</span>
+                          {a.name}
+                        </h3>
+                        <p className="el-text">
+                          {a.el[lang]} · {a.job[lang]}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="el-line">{a.line[lang]}</p>
+                    <div className="el-foot">
+                      {a.personal && <span className="el-chip">{VTX.personal[lang]}</span>}
+                      {own ? (
+                        <Link className="el-go stretch" href={href(lang, `/work/${a.id}`)}>
+                          {VTX.readCase[lang]} <Arr />
+                        </Link>
+                      ) : (
+                        <a className="el-go stretch" href={labsUrl(a.id)}>
+                          {VTX.onLabs[lang]} <Arr c="↗" />
+                        </a>
+                      )}
+                    </div>
+                  </li>
+                );
+              })}
+              <li className="el-card el-more rv" style={{ "--h": 265, "--d": ".16s" } as React.CSSProperties}>
+                <p className="o-mono">{VTX.moreK}</p>
+                <h3>{VTX.moreT[lang]}</h3>
+                <p className="el-line">{VTX.moreP[lang]}</p>
+                <a className="el-go stretch" href={LINKS.labs}>
+                  vtxlabs.app <Arr c="↗" />
+                </a>
+              </li>
+            </ul>
+            <div className="o-sub-head rv">
+              <h3>
+                {VTX.insidePre[lang]} <span className="grad">{VTX.insideGrad[lang]}</span> {VTX.insidePost[lang]}
+              </h3>
+              <p>{VTX.insideSub[lang]}</p>
+            </div>
+            <ul className="o-inside">
+              {INSIDE.map((x, i) => (
+                <li className="o-card hov rv" key={x.t.en} style={{ "--d": `${(i % 3) * 0.08}s` } as React.CSSProperties}>
+                  <p className="o-mono">{String(i + 1).padStart(2, "0")}</p>
+                  <h4>{x.t[lang]}</h4>
+                  <p>{x.b[lang]}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="o-sec o-alt" id="resume" aria-labelledby="cv-h">
+          <div className="o-wrap">
+            <OldHead pre={RESUME.pre[lang]} grad={RESUME.grad[lang]} sub={RESUME.sub[lang]} id="cv-h" />
+            <ul className="o-cv">
+              {CVS.map((c, i) => {
+                const it = RESUME.items[`${c.style}-${c.len}`];
+                return (
+                  <li className={`o-card hov rv cv-${i}`} key={c.pdf} style={{ "--d": `${i * 0.1}s` } as React.CSSProperties}>
+                    <i className="bar" aria-hidden="true" />
+                    <div className="cv-in">
+                      <div className="cv-t">
+                        <span className="emo" aria-hidden="true">
+                          {it.emoji}
+                        </span>
+                        <div>
+                          <h3>{c.style}</h3>
+                          <span>
+                            {T.cvLen[c.len][lang]} {RESUME.version[lang]}
+                          </span>
+                        </div>
+                      </div>
+                      <p>{it.d[lang]}</p>
+                      <a className="p-btn p-btn-gh p-btn-sm" href={encodeURI(c.pdf)} download data-count="cv" data-c-style={c.style.toLowerCase()} data-c-len={c.len}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <path d="M12 4v11m0 0-4-4m4 4 4-4M5 19h14" />
+                        </svg>
+                        {RESUME.dl[lang]}
                       </a>
-                    )}
+                    </div>
                   </li>
                 );
               })}
@@ -153,88 +271,96 @@ export function Home({ lang }: { lang: Lang }) {
           </div>
         </section>
 
-        <section className="p-sec flush" aria-labelledby="ba-h">
-          <div className="p-in">
-            <Head k={T.baK[lang]} t={T.baT[lang]} h={T.baH[lang]} l={T.baL[lang]} id="ba-h" />
-            <BeforeAfter pairs={pairs} pick={T.baPick[lang]} slider={T.baSlider[lang]} sizes="(min-width: 1240px) 1112px, 92vw" />
-          </div>
-        </section>
-
-        <section className="p-sec flush" aria-labelledby="web-h">
-          <div className="p-in">
-            <Head k={T.webK[lang]} t={T.webT[lang]} h={T.webH[lang]} id="web-h" />
-            <div className="p-web">
-              {WEB.map((w) => (
-                <article className="p-wcard cardb hov rv" key={w.id}>
-                  <figure>
-                    {w.shot ? (
-                      <Shot k={w.shot} alt={`${w.name}`} sizes="(min-width: 900px) 46vw, 100vw" className="shot" />
-                    ) : (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img className="logo" src={`/vtx/${w.id}.png`} alt="" width={256} height={256} loading="lazy" />
-                    )}
-                  </figure>
-                  <div className="tx">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={`/vtx/96/${w.id}.png`} alt="" width={40} height={40} loading="lazy" />
-                    <div>
-                      <h3>
-                        {w.name}
-                        <span className="p-live">{T.live[lang]}</span>
-                      </h3>
-                      <p>{w.line[lang]}</p>
+        <section className="o-sec" id="portfolio" aria-labelledby="pf-h">
+          <div className="o-wrap">
+            <OldHead pre={PROJECTS.pre[lang]} grad={PROJECTS.grad[lang]} sub={PROJECTS.sub[lang]} id="pf-h" />
+            <ul className="o-proj">
+              {PROJECTS.items.map((p, i) => (
+                <li className={`o-card hov rv pj-${i}`} key={p.repo} style={{ "--d": `${i * 0.12}s` } as React.CSSProperties}>
+                  <i className="bar" aria-hidden="true" />
+                  <div className="pj-in">
+                    <div className="pj-t">
+                      <span className="emo" aria-hidden="true">
+                        {p.emoji}
+                      </span>
+                      <h3>{p.name}</h3>
+                      <span className="pj-arr" aria-hidden="true">
+                        ↗
+                      </span>
                     </div>
+                    <p>{p.d[lang]}</p>
+                    <ul className="o-tags">
+                      {p.tags.map((t) => (
+                        <li key={t}>{t}</li>
+                      ))}
+                    </ul>
                   </div>
-                  <a className="stretch" href={w.url} aria-label={`${w.name}: ${w.host}`} />
-                </article>
-              ))}
-            </div>
-            <div className="p-oss rv">
-              <span>{T.oss[lang]}</span>
-              {OSS.map((o) => (
-                <a key={o.name} href={o.url}>
-                  {o.name}
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="p-sec flush" id="resume" aria-labelledby="cv-h">
-          <div className="p-in">
-            <Head k={T.cvK[lang]} t={T.cvT[lang]} h={T.cvH[lang]} l={T.cvL[lang]} id="cv-h" />
-            <ul className="p-cv">
-              {CVS.map((c) => (
-                <li className="p-cvc cardb hov rv" key={c.pdf}>
-                  <div className="sheet" aria-hidden="true">
-                    <i />
-                    <i />
-                    <i />
-                    <i style={{ width: "70%" }} />
-                    {c.len === "full" && (
-                      <>
-                        <i />
-                        <i style={{ width: "84%" }} />
-                      </>
-                    )}
-                  </div>
-                  <h3>
-                    {c.style} · {T.cvLen[c.len][lang]}
-                  </h3>
-                  <span>{T.cvX[c.len][lang]}</span>
-                  <nav aria-label={`${c.style} ${T.cvLen[c.len][lang]}`}>
-                    <a href={encodeURI(c.pdf)} data-count="cv" data-c-style={c.style.toLowerCase()} data-c-len={c.len}>
-                      {T.openPdf[lang]}
-                    </a>
-                  </nav>
+                  <a className="stretch" href={`${LINKS.github}/${p.repo}`} aria-label={`${p.name} on GitHub`} />
                 </li>
               ))}
             </ul>
           </div>
         </section>
 
-        <section className="p-sec flush" id="hire" aria-labelledby="hire-h">
-          <div className="p-in">
+        <section className="o-sec o-alt" id="showcase" aria-labelledby="live-h">
+          <div className="o-wrap">
+            <OldHead pre={LIVE.pre[lang]} grad={LIVE.grad[lang]} sub={LIVE.sub[lang]} id="live-h" />
+            <ul className="o-live">
+              {WEB.map((w, i) => (
+                <li className="o-card hov rv" key={w.id} style={{ "--d": `${i * 0.15}s` } as React.CSSProperties}>
+                  <figure>
+                    {w.shot ? (
+                      <Shot k={w.shot} alt={w.name} sizes="(min-width: 900px) 46vw, 100vw" className="shot" />
+                    ) : (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img className="logo" src={`/vtx/${w.id}.png`} alt="" width={256} height={256} loading="lazy" />
+                    )}
+                  </figure>
+                  <div className="lv-in">
+                    <div className="lv-t">
+                      <h3>{w.name}</h3>
+                      <span className="pj-arr" aria-hidden="true">
+                        ↗
+                      </span>
+                    </div>
+                    <p>{w.line[lang]}</p>
+                    <ul className="o-tags">
+                      {LIVE.tags[w.id].map((t) => (
+                        <li key={t}>{t}</li>
+                      ))}
+                    </ul>
+                    <p className="o-ping" data-loop>
+                      <i aria-hidden="true" />
+                      {LIVE.live[lang]} · {w.host}
+                    </p>
+                  </div>
+                  <a className="stretch" href={w.url} aria-label={`${w.name}: ${w.host}`} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="o-sec" id="fun" aria-labelledby="fun-h">
+          <div className="o-wrap">
+            <OldHead pre={FUN.pre[lang]} grad={FUN.grad[lang]} sub={FUN.sub[lang]} id="fun-h" />
+            <ul className="o-fun">
+              {FUN.items.map((f, i) => (
+                <li className="o-card hov rv" key={f.l.en} style={{ "--d": `${i * 0.08}s` } as React.CSSProperties}>
+                  <span className="emo" aria-hidden="true">
+                    {f.e}
+                  </span>
+                  <b className="grad">{f.v[lang]}</b>
+                  <h3>{f.l[lang]}</h3>
+                  <p>{f.d[lang]}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="o-sec flush" id="hire" aria-labelledby="hire-h">
+          <div className="o-wrap">
             <div className="p-hire rv">
               <div>
                 <h2 id="hire-h">{T.hireH[lang]}</h2>
