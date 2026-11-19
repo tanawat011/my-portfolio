@@ -1,0 +1,22 @@
+import { notFound } from "next/navigation";
+import { CasePage } from "@/components/CasePage";
+import { appById, CASES, caseById } from "@/content/apps";
+import { pageMeta } from "@/lib/meta";
+
+export const dynamicParams = false;
+export function generateStaticParams() {
+  return CASES.map((c) => ({ slug: c.id }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const c = caseById(slug);
+  return c ? pageMeta("th", `/work/${slug}`, appById(slug).name, c.stand.th) : {};
+}
+
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const c = caseById(slug);
+  if (!c) notFound();
+  return <CasePage lang="th" c={c} />;
+}
