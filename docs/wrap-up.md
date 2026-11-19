@@ -14,7 +14,7 @@ where things stand. The why behind each change is in [decisions.md](decisions.md
   - about, with the story rail;
   - My Weapons: the core stack (his 19, as logo tiles), then nine skills cards with core items marked;
   - the VTX family, with Now shipping read from the release repos' labs.json at build;
-  - resume, projects (GitHub facts at build), Live projects (Labs, CraftCV, and Studio "opening soon" with no link);
+  - resume, projects (GitHub facts at build), Live projects (Labs, CraftCV, and Studio "opening soon" with no link, until the next deploy);
   - Fun Facts (jokes, then four true);
   - the card for HR, recruiters and headhunters (plainly professional).
 - Scroll motion: Studio's effects 1, 2, 3, 5 and 6, none under Reduce motion. In-page links glide.
@@ -33,12 +33,14 @@ where things stand. The why behind each change is in [decisions.md](decisions.md
 - The snake: `.github/workflows/snake.yml` (Platane/snk, pinned) redraws it into the `output` branch on every push to
   `main` and daily. It's free on a public repo.
 
-## Local only
+## Local only (waiting for "deploy Portfolio")
 
-- This file. It's a docs-only commit; pushing it would rebuild production with no visible change, so it can ride
-  along with the next change.
+- VTX Studio is live at studio.vtxlabs.app (checked: 200, its own title and pitch), so it's a live card now: its link
+  (Thai `/`, English `/en`), its words, its home as the shot, and "3 web apps live today". The footer links it too,
+  and the story no longer says "opening soon".
+- This file.
 
-Nothing else is waiting: both repos match their remotes.
+The profile matches its remote.
 
 ## Waiting on the owner
 
@@ -47,18 +49,17 @@ Nothing else is waiting: both repos match their remotes.
 
 ## For later
 
-- **When Studio goes live:** move it from `STUDIO` into `WEB` (content/site.ts) with its link. "2 web apps live today"
-  then becomes 3 on its own.
 - **When Lapis, Fulmen, Silva and Ventus ask before checking for updates** (Labs's O1C): drop the update clause from
   the family's "No account. No cloud. No tracking." line (VTX.local in content/home.ts) and from the profile's
   matching line.
+- **Studio's shot** (public/apps/shots/studio-1-*) is its live home as of 19 Nov 2026. Retake it if the home changes a
+  lot.
 - **Hand-run figures:** "7 % of commits after midnight" comes from `scripts/night-commits.py`. The Labs count falls
   back to 85 (`LABS_TOOLS`) only if vtxlabs.app can't be read at build. Lapis's 142 GB was measured once.
 - **If the core stack changes:** edit `CORE` in content/home.ts, then run `scripts/stack-icons.mjs`. It rebuilds the
   portfolio's logo data and the profile's badges.
 - **Small leftovers, none urgent:**
   - The 404 page still shows the orb (Studio's motif, gone from the hire card).
-  - The story's last chapter still says Studio "will take client work" (a fact about Studio, kept on purpose).
   - `public/favicon_io/` holds the old site's unused icons.
   - ESLint isn't configured (`next lint` would ask).
   - The profile's `> weapons --history` keeps its own grouping, not the portfolio's audited one. Nothing in it is

@@ -230,11 +230,10 @@ export const PROJECTS = {
 export const LIVE = {
   pre: { en: "Live", th: "เปิดใช้" },
   grad: { en: "Projects", th: "อยู่จริง" },
-  sub: { en: "Things I built that are actually running in production 🚀 (and one opening soon)", th: "ของที่ทำแล้วรันอยู่บน production จริง ๆ 🚀 (กับอีกตัวที่กำลังจะเปิด)" },
+  sub: { en: "Things I built that are actually running in production 🚀", th: "ของที่ทำแล้วรันอยู่บน production จริง ๆ 🚀" },
   live: { en: "Live", th: "Live" },
   // studio: vtx-studio's package.json (Next.js 16, React 19, TypeScript, three.js for the orb on its home page)
   tags: { labs: ["Next.js", "React", "TypeScript", "Vercel"], craftcv: ["Next.js", "React", "TypeScript", "PDF"], studio: ["Next.js", "React", "TypeScript", "three.js"] } as Record<string, string[]>,
-  studioArt: { en: "VTX Studio's orb", th: "ลูกแก้วของ VTX Studio" },
 };
 
 /** Jokes, and only jokes: never a real figure in here, never a joke in the real row. */

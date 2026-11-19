@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import Link from "next/link";
 import { APPS, hasCase, labsUrl } from "@/content/apps";
 import { ABILITIES, ABOUT, CORE, CORE_NAMES, FUN, HERO, INSIDE, LIVE, PROJECTS, RESUME, TERM, TRUE_FACTS, UPTIME, VTX, WEAPONS } from "@/content/home";
-import { CVS, href, LINKS, STORY, STUDIO, T, WEB, yearsSince, type Lang } from "@/content/site";
+import { CVS, href, LINKS, STORY, T, WEB, yearsSince, type Lang } from "@/content/site";
 import CV_META from "@/content/cvs.json";
 import NIGHT from "@/content/night-commits.json";
 import { STACK_ICONS } from "@/content/stack-icons";
@@ -424,29 +424,9 @@ export async function Home({ lang }: { lang: Lang }) {
                       {LIVE.live[lang]} · {w.host}
                     </p>
                   </div>
-                  <a className="stretch" href={w.url} aria-label={`${w.name}: ${w.host}`} />
+                  <a className="stretch" href={lang === "en" && w.urlEn ? w.urlEn : w.url} aria-label={`${w.name}: ${w.host}`} />
                 </li>
               ))}
-              {/* Studio: opening soon, so no link and no address (content/site.ts, STUDIO) */}
-              <li className="o-card lv-soon rv" style={{ "--d": `${WEB.length * 0.15}s` } as React.CSSProperties}>
-                <figure>
-                  <div className="orbc" role="img" aria-label={LIVE.studioArt[lang]} />
-                </figure>
-                <div className="lv-in">
-                  <div className="lv-t">
-                    <h3>{STUDIO.name}</h3>
-                  </div>
-                  <p>{STUDIO.line[lang]}</p>
-                  <ul className="o-tags">
-                    {LIVE.tags[STUDIO.id].map((t) => (
-                      <li key={t}>{t}</li>
-                    ))}
-                  </ul>
-                  <p>
-                    <span className="p-soon">{T.soon[lang]}</span>
-                  </p>
-                </div>
-              </li>
             </ul>
           </div>
         </section>

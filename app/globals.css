@@ -170,7 +170,7 @@ background:var(--bg);color:var(--t2);font:400 16.5px/1.72 var(--fb);-webkit-font
 .pv .nextc img{width:36px;height:36px}
 .pv .nextc span{font-size:14px;font-weight:500;color:var(--mute)}
 
-/* hire: VTX Studio for client work, opening soon; email meanwhile */
+/* the card for HR, recruiters and headhunters */
 .pv .p-hire{position:relative;border-radius:34px;padding:clamp(38px,6.5cqi,92px) clamp(26px,6cqi,80px);background-color:var(--panel);background-image:radial-gradient(40% 70% at 84% 30%,rgba(124,200,255,.2),transparent 70%),radial-gradient(30% 50% at 70% 85%,rgba(142,151,255,.16),transparent 70%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),inset 0 1px 0 rgba(255,255,255,.08);display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:32px}
 .pv .p-hire h2{color:var(--panel-t);font-size:clamp(30px,4.3cqi,58px);line-height:1.15;letter-spacing:-.024em;max-width:13em}
 .pv .p-hire h2:lang(th){line-height:1.3}
@@ -686,12 +686,14 @@ html .pv .o-hi,html .pv .gal-fig img,html .pv .ba,html .pv .o-pools,html .pv .p-
 .pv .el-nope{margin-top:10px;font:500 12.5px/1.5 var(--fm);color:oklch(0.8 0.07 var(--h))}
 [data-theme=light] .pv .el-nope{color:oklch(0.45 0.1 var(--h))}
 
-/* Live projects: VTX Studio, opening soon. No link; its own orb, where the orb belongs. Across both columns. */
-.pv .o-live>li.lv-soon{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-.pv .lv-soon figure{aspect-ratio:16/9;height:100%;background:radial-gradient(55% 75% at 50% 50%,rgba(124,200,255,.16),transparent 70%),var(--panel)}
-.pv .lv-soon .orbc{width:clamp(96px,13cqi,150px)}
-.pv .lv-soon .lv-in{justify-content:center}
-.pv .lv-soon .o-tags{margin-top:0}
+/* Live projects: with an odd count, the last card runs across both columns, its shot beside its words (two columns
+   only; on phones every card is the same, shot on top) */
+@container (min-width:641px){
+.pv .o-live>li:last-child:nth-child(odd){grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.pv .o-live>li:last-child:nth-child(odd) figure{aspect-ratio:auto;height:100%}
+.pv .o-live>li:last-child:nth-child(odd) .lv-in{justify-content:center}
+.pv .o-live>li:last-child:nth-child(odd) .o-tags{margin-top:0}
+}
 
 @container (max-width:900px){
 .pv .o-notes{grid-template-columns:minmax(0,1fr);gap:14px}
@@ -699,7 +701,6 @@ html .pv .o-hi,html .pv .gal-fig img,html .pv .ba,html .pv .o-pools,html .pv .p-
 @container (max-width:640px){
 .pv .o-notes{margin-top:-12px}
 .pv .o-notes li{padding:18px 18px}
-.pv .o-live>li.lv-soon{display:flex}
 }
 
 /* The skills cards: nine. With three columns (wider than 1100 px) they sit three by three; with two, the AI card runs

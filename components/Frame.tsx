@@ -75,6 +75,7 @@ export function Footer({ lang }: { lang: Lang }) {
             <a href={`mailto:${LINKS.email}`}>Email</a>
             <a href={LINKS.line}>LINE</a>
             <a href={LINKS.labs}>VTX Labs</a>
+            <a href={lang === "en" ? LINKS.studioEn : LINKS.studio}>VTX Studio</a>
             <Link href={href(lang, "/privacy")}>{T.privacy[lang]}</Link>
           </nav>
         </div>

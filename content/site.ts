@@ -32,6 +32,9 @@ export const LINKS = {
   line: "https://line.me/ti/p/zl5L3eSW0B",
   labs: "https://vtxlabs.app",
   craftcv: "https://craftcv.vtxlabs.app",
+  // live 19 Nov 2026 (owner: "อย่าลืมเอา https://studio.vtxlabs.app/ ไปแปะใน port"); Thai at /, English at /en
+  studio: "https://studio.vtxlabs.app/",
+  studioEn: "https://studio.vtxlabs.app/en",
 } as const;
 
 /** 11A: the open-source boilerplates on GitHub (the old site's Portfolio section). */
@@ -48,34 +51,25 @@ export const CVS = [
   { style: "Minimal", len: "short", pdf: "/minimal short.pdf" },
 ] as const;
 
-/** The web apps that are live today (11A): VTX Labs and CraftCV. */
-export const WEB = [
+/**
+ * The web apps that are live today (11A): VTX Labs and CraftCV, and VTX Studio since 19 Nov 2026 (checked: 200, its own
+ * title and pitch, Thai at / and English at /en). `urlEn`: the English page, where it has its own. Its words are Studio's
+ * own pitch (its home and contact pages). The shot is its live home, dark and light, taken 19 Nov 2026.
+ */
+export const WEB: readonly { id: string; name: string; url: string; urlEn?: string; host: string; shot: string | null; line: Text }[] = [
   { id: "labs", name: "VTX Labs", url: LINKS.labs, host: "vtxlabs.app", shot: null,
     line: { en: "Free developer tools in the browser, and the whole VTX family in one place.", th: "เครื่องมือฟรีสำหรับ developer ที่ใช้ในเบราว์เซอร์ และแอปทั้งครอบครัว VTX ในที่เดียว" } },
   { id: "craftcv", name: "CraftCV", url: LINKS.craftcv, host: "craftcv.vtxlabs.app", shot: "craftcv-1",
     line: { en: "Build a resume in your browser and export it as a PDF or PNG. Free, no account, and your CVs stay in your browser.", th: "สร้าง resume ในเบราว์เซอร์ แล้ว export เป็น PDF หรือ PNG ฟรี ไม่ต้องมีบัญชี และ CV อยู่ในเบราว์เซอร์ของคุณเท่านั้น" } },
-] as const;
+  { id: "studio", name: "VTX Studio", url: LINKS.studio, urlEn: LINKS.studioEn, host: "studio.vtxlabs.app", shot: "studio-1",
+    line: { en: "Back-office systems, web apps, mobile apps and LINE bots for businesses, from design to handover with documentation. Reach it by email; LINE is coming.", th: "ระบบหลังบ้าน เว็บแอป แอปมือถือ และ LINE bot สำหรับธุรกิจ ตั้งแต่ออกแบบจนส่งมอบพร้อมเอกสาร ติดต่อทางอีเมล LINE เร็ว ๆ นี้" } },
+];
 
 /**
  * VTX Labs's tool count as last checked by hand (vtxlabs.app's home page: "85 free tools that run in your browser").
  * The page reads the live count while it's built (lib/labs.ts); this stands only when Labs can't be read.
  */
 export const LABS_TOOLS = { n: 85, asOf: "2026-11-19" } as const;
-
-/**
- * Opening soon (owner, 19 Nov 2026: "เราก็เอาโปรเจก Studio เราไปแปะใน Live Project เราก็ได้นี่ใช่มะ"). Studio has no
- * domain and nothing deployed yet, so it has no link and no address here until the day it goes live; then it moves
- * into WEB. Its words are the ones the hire card used for Studio until the card turned to recruiters (19 Nov 2026).
- * It is not counted among the web apps that are live.
- */
-export const STUDIO = {
-  id: "studio",
-  name: "VTX Studio",
-  line: {
-    en: "Client work: back offices, web apps, mobile apps and LINE bots, from a prototype you can click to a handover with documents.",
-    th: "รับงานลูกค้า: ระบบหลังบ้าน เว็บแอป แอปมือถือ และ LINE bot ตั้งแต่ prototype ที่กดลองได้จนส่งมอบพร้อมเอกสาร",
-  },
-} as const;
 
 /** The story, four chapters. The middle years are not on the old site, so they carry no year (owner's call later). */
 export const STORY: { y: Text; h: Text; p: Text[] }[] = [
@@ -86,7 +80,7 @@ export const STORY: { y: Text; h: Text; p: Text[] }[] = [
   { y: { en: "2026", th: "2026" }, h: { en: "VTX", th: "VTX" },
     p: [{ en: "I use a database client, an API client, Git, SSH and a dev toolbox every day. In 2026 I started building my own: eleven desktop apps in Rust + Tauri, each named after an element, sharing one kit.", th: "ทุกวันต้องใช้ database client, API client, Git, SSH และเครื่องมือ dev ปี 2026 เลยเริ่มทำของตัวเอง: แอป desktop 11 ตัวด้วย Rust + Tauri ตั้งชื่อตามธาตุ และใช้ kit ชุดเดียวกัน" }] },
   { y: { en: "now", th: "ตอนนี้" }, h: { en: "Labs, CraftCV, Studio", th: "Labs, CraftCV, Studio" },
-    p: [{ en: "VTX Labs puts the family and free web tools in one place, CraftCV builds resumes in the browser, and VTX Studio, opening soon, will take client work.", th: "VTX Labs รวมแอปทั้งครอบครัวกับเครื่องมือฟรีบนเว็บไว้ที่เดียว CraftCV สร้าง resume ในเบราว์เซอร์ และ VTX Studio ที่กำลังจะเปิด จะรับงานลูกค้า" },
+    p: [{ en: "VTX Labs puts the family and free web tools in one place, CraftCV builds resumes in the browser, and VTX Studio takes client work.", th: "VTX Labs รวมแอปทั้งครอบครัวกับเครื่องมือฟรีบนเว็บไว้ที่เดียว CraftCV สร้าง resume ในเบราว์เซอร์ และ VTX Studio รับงานลูกค้า" },
       { en: "AI is part of how I code, review and ship, every day.", th: "ใช้ AI ทุกวัน ทั้งเขียนโค้ด รีวิว และส่งงาน" }] },
 ];
 
@@ -120,7 +114,7 @@ export const T = {
     apps: { en: "desktop apps in Rust + Tauri, built solo", th: "แอป desktop ด้วย Rust + Tauri ทำคนเดียว" },
     // owner, 19 Nov 2026: a figure for the whole family, not one app (was "6 database engines in one window (Lapis)")
     tools: { en: "free tools on VTX Labs, all in your browser", th: "เครื่องมือฟรีบน VTX Labs ใช้ในเบราว์เซอร์ได้เลย" },
-    webs: { en: "web apps live today: VTX Labs, CraftCV", th: "เว็บแอปที่เปิดใช้อยู่: VTX Labs, CraftCV" },
+    webs: { en: "web apps live today: VTX Labs, CraftCV, VTX Studio", th: "เว็บแอปที่เปิดใช้อยู่: VTX Labs, CraftCV, VTX Studio" },
   },
   aboutK: { en: "story", th: "story" }, aboutT: { en: "About", th: "เกี่ยวกับ" }, aboutH: { en: "How I got here", th: "มาถึงตรงนี้ได้ยังไง" },
   photo: { en: "Tanawat, smiling, in glasses", th: "Tanawat ยิ้ม ใส่แว่น" },
@@ -160,7 +154,6 @@ export const T = {
   },
   hireFacts: { en: "Fullstack · {y} years · TypeScript & Rust · Thailand", th: "Fullstack · {y} ปี · TypeScript และ Rust · ประเทศไทย" },
   cvPdf: { en: "Resume (PDF)", th: "Resume (PDF)" },
-  soon: { en: "opening soon", th: "กำลังจะเปิด" },
   emailMe: { en: "Email me", th: "ส่งอีเมล" },
   privacy: { en: "Privacy", th: "ความเป็นส่วนตัว" },
   allWork: { en: "All work", th: "งานทั้งหมด" },

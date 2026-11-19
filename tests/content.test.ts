@@ -17,7 +17,8 @@ test("the figures row is true", () => {
   expect(yearsSince(FIRST_JOB, Date.UTC(2027, 6, 25))).toBe(10);
   expect(APPS.length).toBe(11);
   expect(APPS.filter((a) => a.personal).map((a) => a.id)).toEqual(["cuprum", "lux", "mercurius", "crystallum"]);
-  expect(WEB.map((w) => w.id)).toEqual(["labs", "craftcv"]);
+  expect(WEB.map((w) => w.id)).toEqual(["labs", "craftcv", "studio"]);
+  expect(T.proof.webs.en).toBe(`web apps live today: ${WEB.map((w) => w.name).join(", ")}`);
   // the third figure is Labs's tool count, for the whole family (lib/labs.ts), no longer Lapis's six engines
   expect(Object.keys(T.proof)).toEqual(["years", "apps", "tools", "webs"]);
   // "Six database engines, exactly" (What's inside): the six Lapis names, MySQL and MariaDB as one engine family
@@ -36,11 +37,12 @@ test("5A: four case pages, each with its screens, pair and icon on disk", () => 
   for (const p of HOME_PAIRS) expect(existsSync(pub(`apps/shots/${p.shot}-dark-800.webp`))).toBe(true);
 });
 
-test("every app and web app has its icons", () => {
-  for (const id of [...APPS.map((a) => a.id), ...WEB.map((w) => w.id)]) {
+test("every app has its icons, and every web app its icon or its screenshot", () => {
+  for (const id of [...APPS.map((a) => a.id), ...WEB.filter((w) => !w.shot).map((w) => w.id)]) {
     expect(existsSync(pub(`vtx/${id}.png`))).toBe(true);
     expect(existsSync(pub(`vtx/96/${id}.png`))).toBe(true);
   }
+  for (const w of WEB.filter((x) => x.shot)) for (const m of ["dark", "light"]) for (const n of [800, 1600]) expect(existsSync(pub(`apps/shots/${w.shot}-${m}-${n}.webp`))).toBe(true);
   expect(existsSync(pub("images/me-round.jpg"))).toBe(true);
 });
 
@@ -317,18 +319,19 @@ test("last notes: the family's honest lines stay true", async () => {
   expect(FOOT.ai.en).not.toContain("a little");
 });
 
-test("last notes: Studio is in Live projects as opening soon, with no link, and isn't counted as live", async () => {
-  const { STUDIO } = await import("../content/site");
+test("VTX Studio is live: a real card with its link, nothing left saying opening soon", async () => {
+  // owner, 19 Nov 2026: "อย่าลืมเอา https://studio.vtxlabs.app/ ไปแปะใน port" (checked live first: 200, its own title)
   const { LIVE } = await import("../content/home");
-  expect(WEB.map((w) => w.id)).not.toContain("studio");
-  expect("url" in STUDIO || "host" in STUDIO).toBe(false);
-  // the words the hire card used for Studio, before the card turned to recruiters
-  expect(STUDIO.line.en).toContain("back offices, web apps, mobile apps and LINE bots, from a prototype you can click to a handover with documents");
-  expect(LIVE.tags[STUDIO.id]).toEqual(["Next.js", "React", "TypeScript", "three.js"]);
-  const home = readFileSync(join(import.meta.dir, "..", "components/Home.tsx"), "utf8");
-  const card = home.slice(home.indexOf('className="o-card lv-soon'), home.indexOf('id="fun"'));
-  expect(card).not.toMatch(/href=|stretch/);
-  expect(card).toContain("T.soon[lang]");
+  const studio = WEB.find((w) => w.id === "studio")!;
+  expect(studio.url).toBe("https://studio.vtxlabs.app/");
+  expect(studio.urlEn).toBe("https://studio.vtxlabs.app/en");
+  expect(studio.host).toBe("studio.vtxlabs.app");
+  expect(studio.line.en).toContain("Back-office systems, web apps, mobile apps and LINE bots");
+  expect(LIVE.tags.studio).toEqual(["Next.js", "React", "TypeScript", "three.js"]);
+  const words = JSON.stringify([T, STORY, LIVE, WEB]);
+  expect(words).not.toMatch(/opening soon|กำลังจะเปิด|\(and one opening/);
+  const frame = readFileSync(join(import.meta.dir, "..", "components/Frame.tsx"), "utf8");
+  expect(frame).toContain("LINKS.studioEn : LINKS.studio");
 });
 
 test("last notes: links to a place on the page glide there, jump under Reduce motion, and move focus", () => {

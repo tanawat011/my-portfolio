@@ -283,3 +283,18 @@ The owner, verbatim (through VTX Develop), on the profile's `> weapons --current
   SQLite under Databases, Bun under Package & Runtime), except shadcn/ui, which joined Web → Styling. Nine cards now:
   three by three on wide screens. With two columns the AI card runs across the row, so the other eight pair up.
 - Profile: `> weapons --current` is gone. Tauri 2, SQLite and Bun were already in `> weapons --history`.
+
+## VTX Studio is live (19 Nov 2026)
+
+The owner, verbatim (through VTX Develop): "อย่าลืมเอา https://studio.vtxlabs.app/ ไปแปะใน port + labs นะครับ".
+
+- Checked first: studio.vtxlabs.app returns 200 with VTX Studio's own title and description, Thai at `/` and English at
+  `/en`.
+- Studio moves from the opening-soon card into `WEB`: a live card linking to its page in the reader's language. Its
+  words are its own pitch: back-office systems, web apps, mobile apps and LINE bots for businesses, from design to
+  handover with documentation; email now, LINE coming. Its shot is its live home, dark and light. The uptime figure
+  reads 3 web apps live (VTX Labs, CraftCV, VTX Studio), and the footer links it beside VTX Labs.
+- Nothing says "opening soon" any more: the live section's line and the story's last chapter changed with it. The
+  recruiters' card keeps no business pitch.
+- Three live cards: on two columns the third runs across both, its shot beside its words; on phones it's like the
+  others.
