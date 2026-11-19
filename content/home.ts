@@ -59,7 +59,8 @@ export const ABILITIES: { icon: string; t: Text; d: Text }[] = [
 /** The old site's skills cards, as they were (About.tsx). */
 export const WEAPONS: { t: Text; d: Text; items: { k: Text; v: string }[] }[] = [
   { t: { en: "AI — Always On", th: "AI เปิดตลอด" }, d: { en: "AI is part of my daily workflow — coding, reviewing, and shipping with it.", th: "AI อยู่ในงานทุกวัน ทั้งเขียนโค้ด รีวิว และส่งงาน" },
-    items: [{ k: { en: "Models", th: "โมเดล" }, v: "Claude, Gemini, GPT" }, { k: { en: "Tools", th: "เครื่องมือ" }, v: "Cursor, Antigravity" }] },
+    // Round 3b (owner): only what he really uses, and no "Models" label: "ไอ่พวกนี้ไม่น่าใช่ Models นะ"
+    items: [{ k: { en: "What I actually use", th: "ที่ใช้จริง ๆ" }, v: "Claude Code, Copilot, Gemini, GPT" }] },
   { t: { en: "Current Stack", th: "Stack ตอนนี้" }, d: { en: "My daily driver — what I'm actively building with right now. 🔥", th: "ของที่ขับทุกวัน กำลังสร้างด้วยอยู่ตอนนี้ 🔥" },
     items: [{ k: { en: "Desktop", th: "เดสก์ท็อป" }, v: "Rust, Tauri 2, React, TypeScript" }, { k: { en: "Web", th: "เว็บ" }, v: "Next.js, React, Tailwind, shadcn/ui" }, { k: { en: "Backend & Infra", th: "Backend และ Infra" }, v: "Supabase, PostgreSQL, SQLite, Vercel, Bun, Docker" }] },
   { t: { en: "Languages", th: "ภาษา" }, d: { en: "The weapons I fight with.", th: "อาวุธที่ใช้ออกรบ" },
@@ -88,6 +89,9 @@ export const VTX = {
     th: "ใช้เครื่องมือพวกนี้ทุกวัน เลยทำเองซะเลย แอป desktop 11 ตัวด้วย Rust + Tauri ตั้งชื่อตามธาตุ ทำคนเดียวทั้งหมด",
   },
   chips: ["Rust", "Tauri 2", "React", "TypeScript", "macOS first"],
+  /** X4: the newest public release, read from its labs.json when the site is built (lib/releases.ts) */
+  ship: { en: "Now shipping", th: "เพิ่งปล่อย" },
+  preview: { en: "Preview", th: "Preview" },
   personal: { en: "Personal build", th: "ทำไว้ใช้เอง" },
   readCase: { en: "Read the case", th: "อ่านเคส" },
   onLabs: { en: "On VTX Labs", th: "ดูบน VTX Labs" },
@@ -180,6 +184,67 @@ export const FUN = {
     { e: "🌙", v: { en: "Too many", th: "เยอะเกิน" }, l: { en: "Late night deploys", th: "deploy ตอนดึก" }, d: { en: "\"It works on my machine\"", th: "\"เครื่องผมรันได้นะ\"" } },
     { e: "🔄", v: { en: "∞", th: "∞" }, l: { en: "Times said \"one more fix\"", th: "พูดว่า \"แก้อีกนิดเดียว\"" }, d: { en: "3 hours later...", th: "3 ชั่วโมงต่อมา..." } },
   ],
+};
+
+/**
+ * Round 3b (F2–F5): four that are true, kept apart from the jokes above. The wording can joke; the numbers can't.
+ * The figures come from: F2, `du -sk src-tauri/target` in Lapis's repo on 19 Nov 2026, 149,201,132 KiB = 142 GiB,
+ * measured once; F3, vtx-kit's dark-theme rule (the strongest text sits at 84–90 % white; Silva and Ignis ~88,
+ * Ventus ~87); F4, APPS.length; F5, content/night-commits.json, written by scripts/night-commits.py.
+ */
+export const TRUE_FACTS = {
+  h: { en: "…and four that are actually true", th: "…กับอีก 4 ข้อที่จริงล้วน ๆ" },
+  stamp: { en: "true", th: "จริง" },
+  build: {
+    e: "📦", v: "142 GB",
+    l: { en: "Lapis's Rust build folder", th: "โฟลเดอร์ build ของ Lapis (Rust)" },
+    d: { en: "Just target/. Measured once, on 19 Nov 2026. My SSD would like a word.", th: "แค่ target/ อย่างเดียว วัดไว้ครั้งเดียวเมื่อ 19 พ.ย. 2026 SSD ผมขอคุยด้วยหน่อย" },
+  },
+  white: {
+    e: "🎨", v: "~88 %",
+    l: { en: "White, at the brightest", th: "ความขาวสูงสุด" },
+    d: { en: "The strongest text in my dark themes stops at about 88 % white. Tuned all day so your eyes don't burn.", th: "ตัวหนังสือที่สว่างสุดใน dark theme ของผมหยุดที่ขาวประมาณ 88 % นั่งปรับทั้งวัน ให้ตาคุณไม่ไหม้" },
+  },
+  elements: {
+    e: "🧪",
+    l: { en: "Apps named after elements", th: "แอปที่ตั้งชื่อตามธาตุ" },
+    d: { en: "Still missing one element: enough sleep.", th: "ยังขาดอยู่ธาตุเดียว: ธาตุนอนพอ" },
+  },
+  night: {
+    e: "🌙",
+    l: { en: "Of my commits land between midnight and 6 AM", th: "ของ commit ผมเกิดระหว่างเที่ยงคืนถึงตีหก" },
+    d: { en: "{n} commits across the VTX repos, as of {date}. The other ones aren't exactly early either.", th: "จาก {n} commit ใน repo ของ VTX ณ {date} ที่เหลือก็ใช่ว่าจะเช้านะ" },
+  },
+};
+
+/** X2: the terminal behind "> hello_world_". Commands are typed in English; what they print is in the page's language. */
+export const TERM = {
+  open: { en: "Open the terminal", th: "เปิด terminal" },
+  title: { en: "Terminal", th: "Terminal" },
+  input: { en: "Command", th: "คำสั่ง" },
+  close: { en: "Close the terminal", th: "ปิด terminal" },
+  hello: { en: "Welcome in. Type help, or just poke around.", th: "เข้ามาเลย พิมพ์ help หรือจะลองมั่ว ๆ ดูก็ได้" },
+  help: {
+    en: ["whoami        who's this guy", "ls apps       the VTX family", "cat resume    the PDFs", "sudo hire-me  you know you want to", "clear         wipe the screen", "exit          back to the page", "(there are a few more. no, I won't list them.)"],
+    th: ["whoami        หมอนี่คือใคร", "ls apps       ครอบครัว VTX", "cat resume    ไฟล์ PDF", "sudo hire-me  รู้นะว่าอยากกด", "clear         ล้างจอ", "exit          กลับไปที่หน้าเว็บ", "(มีคำสั่งลับอีกนิดหน่อย ไม่บอกหรอก)"],
+  },
+  whoami: {
+    en: ["Tanawat Pinthongpan", "Fullstack developer. I build the tools I use.", "{y} years of shipping web apps, since 2017.", "Lately: {n} desktop apps in Rust + Tauri, built solo."],
+    th: ["Tanawat Pinthongpan", "Fullstack developer ที่ทำเครื่องมือไว้ใช้เอง", "ทำเว็บแอปมา {y} ปี ตั้งแต่ 2017", "ช่วงนี้: แอป desktop {n} ตัวด้วย Rust + Tauri ทำคนเดียว"],
+  },
+  resume: { en: "Pick one. They're all me.", th: "เลือกเอาเลย ทุกไฟล์คือผม" },
+  pages: { en: "pages", th: "หน้า" },
+  hire: {
+    en: ["[sudo] password for recruiter: ********", "Access granted. Good choice. 🎉"],
+    th: ["[sudo] password for recruiter: ********", "ผ่าน! ตัดสินใจถูกแล้ว 🎉"],
+  },
+  hireCard: { en: "or jump to the hire card", th: "หรือไปที่การ์ดจ้างงาน" },
+  noSudo: { en: "hire-me: permission denied. Maybe try sudo?", th: "hire-me: permission denied ลอง sudo ดูสิ" },
+  coffee: { en: "☕ Brewing… done. That's ∞ + 1.", th: "☕ กำลังชง… เสร็จ นับเป็นแก้วที่ ∞ + 1" },
+  sleep: { en: "sleep: command not found. Still missing that element.", th: "sleep: command not found ยังหาธาตุนี้ไม่เจอ" },
+  rmrf: { en: "Nice try. This is a portfolio, not a playground. 😏", th: "เกือบไปละ นี่ portfolio นะ ไม่ใช่สนามเด็กเล่น 😏" },
+  vim: { en: "You're in vim now. Kidding. Type exit; it works here.", th: "เข้า vim แล้ว ล้อเล่น พิมพ์ exit ได้เลย ที่นี่ออกได้จริง" },
+  notFound: { en: "{c}: command not found. Try help.", th: "{c}: ไม่รู้จักคำสั่งนี้ ลอง help ดู" },
 };
 
 export const FOOT = {

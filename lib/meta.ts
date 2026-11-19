@@ -7,7 +7,8 @@ const DESC: Record<Lang, string> = {
   en: "Fullstack developer in Thailand. Web apps for teams since 2017; in 2026, the VTX family: eleven desktop apps in Rust + Tauri, built solo.",
   th: "Fullstack developer ในประเทศไทย ทำเว็บแอปให้ทีมมาตั้งแต่ 2017 ปี 2026 ทำครอบครัว VTX: แอป desktop 11 ตัวด้วย Rust + Tauri คนเดียว",
 };
-const OG = { url: "/images/og-image.png", width: 1200, height: 630, alt: `${NAME}, fullstack developer` };
+/** The share card, drawn in G by scripts/brand-images.ts (round 3b, X6). */
+const OG = (lang: Lang) => ({ url: `/images/share-${lang}.png`, width: 1200, height: 630, alt: lang === "th" ? `${NAME} fullstack developer ที่ทำเครื่องมือไว้ใช้เอง` : `${NAME}, fullstack developer. I build the tools I use.` });
 
 /** For both root layouts: the base the page metadata fills in. */
 export function rootMeta(lang: Lang): Metadata {
@@ -29,7 +30,7 @@ export function pageMeta(lang: Lang, path: string, title?: string, description?:
     title: title ?? { absolute: full },
     description: desc,
     alternates: { canonical: href(lang, path), languages: { en: href("en", path), th: href("th", path), "x-default": href("en", path) } },
-    openGraph: { type: "website", url: href(lang, path), siteName: NAME, title: full, description: desc, locale: lang === "th" ? "th_TH" : "en_US", images: [OG] },
-    twitter: { card: "summary_large_image", title: full, description: desc, images: [OG.url] },
+    openGraph: { type: "website", url: href(lang, path), siteName: NAME, title: full, description: desc, locale: lang === "th" ? "th_TH" : "en_US", images: [OG(lang)] },
+    twitter: { card: "summary_large_image", title: full, description: desc, images: [OG(lang).url] },
   };
 }

@@ -32,7 +32,19 @@ that every file it points at exists.
 | `components/Home.tsx`, `CasePage.tsx` | the two page layouts |
 | `components/Motion.tsx` | the moving parts: the story rail, before → after, the gallery, the reading line |
 | `components/Behaviours.tsx` | scroll reveals, the bar's glass, loops that rest off screen |
+| `components/Cards.tsx`, `HelloTerm.tsx` | the resume and project cards; the terminal behind `> hello_world_` |
+| `lib/github.ts`, `lib/releases.ts` | read at build time only: the project cards' GitHub facts, the "Now shipping" release |
 | `vendor/vtx-kit/analytics.ts` | the kit's analytics module, unchanged (`vendor/vtx-kit/MANIFEST`) |
 | `docs/redesign/round-1/` | the five directions the owner chose from |
+
+## Files made by hand on his Mac
+
+Vercel's build can't make these, so they are committed. Re-run the script when its input changes:
+
+| Script | Makes | When |
+|---|---|---|
+| `python3 -I -B scripts/cv-meta.py` | `content/cvs.json`, `public/cv/*.jpg` | a resume PDF changes (a test fails until you do) |
+| `python3 -I -B scripts/night-commits.py <folder holding the VTX repos>` | `content/night-commits.json` | you want a fresh "after midnight" figure |
+| `bun scripts/brand-images.ts http://127.0.0.1:3123` | the share images and icons | the name, tagline, app count or look changes (needs the built site running) |
 
 Pushing `main` deploys on Vercel: push only on the owner's word.

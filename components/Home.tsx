@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { APPS, hasCase, labsUrl } from "@/content/apps";
-import { ABILITIES, ABOUT, FUN, HERO, INSIDE, LIVE, PROJECTS, RESUME, UPTIME, VTX, WEAPONS } from "@/content/home";
+import { ABILITIES, ABOUT, FUN, HERO, INSIDE, LIVE, PROJECTS, RESUME, TERM, TRUE_FACTS, UPTIME, VTX, WEAPONS } from "@/content/home";
 import { CVS, href, LINKS, STORY, T, WEB, yearsSince, type Lang } from "@/content/site";
 import CV_META from "@/content/cvs.json";
+import NIGHT from "@/content/night-commits.json";
 import { repoFacts } from "@/lib/github";
+import { nowShipping } from "@/lib/releases";
 import { CvCard, PjCard, type CvVersion } from "./Cards";
 import { Band } from "./Band";
+import { HelloTerm, type TermWords } from "./HelloTerm";
 import { Arr, Footer, Nav, OldHead } from "./Frame";
 import { Icon } from "./Icons";
 import { StoryRail } from "./Motion";
@@ -32,7 +35,18 @@ const day = (iso: string, lang: Lang) =>
 
 export async function Home({ lang }: { lang: Lang }) {
   const y = yearsSince();
-  const facts = await Promise.all(PROJECTS.items.map((p) => repoFacts("tanawat011", p.repo)));
+  const [facts, shipping] = await Promise.all([Promise.all(PROJECTS.items.map((p) => repoFacts("tanawat011", p.repo))), nowShipping(APPS.map((a) => a.id))]);
+  const term = Object.fromEntries(Object.entries(TERM).map(([k, v]) => [k, v[lang]])) as unknown as TermWords;
+  const termCvs = (["Modern", "Minimal"] as const).flatMap((style) =>
+    (["full", "short"] as const).map((len) => ({ label: `${style} · ${RESUME.len[len][lang]}`, pdf: CVS.find((x) => x.style === style && x.len === len)!.pdf, pages: (CV_META as Record<string, { pages: number }>)[`${style}-${len}`].pages })),
+  );
+  const tf = TRUE_FACTS;
+  const trueFacts = [
+    { e: tf.build.e, v: tf.build.v, l: tf.build.l[lang], d: tf.build.d[lang] },
+    { e: tf.white.e, v: tf.white.v, l: tf.white.l[lang], d: tf.white.d[lang] },
+    { e: tf.elements.e, v: String(APPS.length), l: tf.elements.l[lang], d: tf.elements.d[lang] },
+    { e: tf.night.e, v: `${Math.round(NIGHT.pct)} %`, l: tf.night.l[lang], d: tf.night.d[lang].replace("{n}", NIGHT.commits.toLocaleString("en-US")).replace("{date}", day(NIGHT.asOf, lang)) },
+  ];
   const cvStyles = ["Modern", "Minimal"].map((style) => ({
     style,
     versions: (["full", "short"] as const).map((len): CvVersion => {
@@ -53,13 +67,7 @@ export async function Home({ lang }: { lang: Lang }) {
             ))}
           </div>
           <div className="o-hi">
-            <p className="o-hello o-rise" style={{ "--d": "0s" } as React.CSSProperties}>
-              {"> "}
-              <span className="typ">hello_world</span>
-              <span className="car" aria-hidden="true">
-                _
-              </span>
-            </p>
+            <HelloTerm w={term} years={y} apps={APPS.map((a) => ({ name: a.name, job: a.job[lang] }))} cvs={termCvs} email={LINKS.email} />
             <h1 className="o-name o-rise o-rise-h" id="h1" style={{ "--d": ".2s" } as React.CSSProperties}>
               <span className="grad">Tanawat</span> Pinthongpan
             </h1>
@@ -184,6 +192,26 @@ export async function Home({ lang }: { lang: Lang }) {
           <div className="o-grid-bg" aria-hidden="true" />
           <div className="o-wrap">
             <OldHead k={VTX.k} pre={VTX.pre[lang]} grad={VTX.grad[lang]} post={VTX.post[lang]} sub={VTX.lead[lang]} id="vtx-h" />
+            {shipping && (
+              <p className="o-ship rv">
+                <span className="o-ping" data-loop>
+                  <i aria-hidden="true" />
+                  {VTX.ship[lang]}
+                </span>
+                {shipping.map((s) => {
+                  const a = APPS.find((x) => x.id === s.id)!;
+                  return (
+                    <a key={s.id} href={labsUrl(s.id)} className="o-ship-app">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={`/vtx/96/${s.id}.png`} alt="" width={20} height={20} />
+                      <b>{a.name}</b> {s.version}
+                      {s.preview && <span className="p-soon">{VTX.preview[lang]}</span>}
+                    </a>
+                  );
+                })}
+                <time dateTime={shipping[0].date}>{day(shipping[0].date, lang)}</time>
+              </p>
+            )}
             <ul className="o-chips rv" aria-label="Stack">
               {VTX.chips.map((c) => (
                 <li key={c}>{c}</li>
@@ -339,6 +367,20 @@ export async function Home({ lang }: { lang: Lang }) {
                   <b className="grad">{f.v[lang]}</b>
                   <h3>{f.l[lang]}</h3>
                   <p>{f.d[lang]}</p>
+                </li>
+              ))}
+            </ul>
+            <h3 className="o-true-h rv">{TRUE_FACTS.h[lang]}</h3>
+            <ul className="o-fun o-true">
+              {trueFacts.map((f, i) => (
+                <li className="o-card hov rv" key={f.l} style={{ "--d": `${i * 0.08}s` } as React.CSSProperties}>
+                  <span className="o-stamp">✓ {TRUE_FACTS.stamp[lang]}</span>
+                  <span className="emo" aria-hidden="true">
+                    {f.e}
+                  </span>
+                  <b className="grad">{f.v}</b>
+                  <h4>{f.l}</h4>
+                  <p>{f.d}</p>
                 </li>
               ))}
             </ul>

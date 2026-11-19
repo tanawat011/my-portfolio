@@ -133,3 +133,84 @@ test("a reveal (.rv) element never gets a className that React changes later", (
     expect([f, dynamicRv.map((m) => m[1])]).toEqual([f, []]);
   }
 });
+
+test("round 3b: the AI card lists only what he really uses, with no Models label", async () => {
+  const { WEAPONS } = await import("../content/home");
+  const ai = WEAPONS[0];
+  expect(ai.items.map((i) => i.v)).toEqual(["Claude Code, Copilot, Gemini, GPT"]);
+  expect(JSON.stringify(WEAPONS)).not.toContain("Models");
+  expect(JSON.stringify(ai)).not.toMatch(/Cursor|Antigravity|OpenClaw/);
+  // Dev Tools stays as round 3a left it, until he says otherwise
+  const dev = WEAPONS.flatMap((w) => w.items).find((i) => i.k.en === "Dev Tools")!;
+  expect(dev.v).toBe("Antigravity, Cursor, VS Code, IntelliJ IDEA, Xcode");
+});
+
+test("round 3b: the true facts are measured, apart from the jokes, and publish only the aggregate", async () => {
+  const { TRUE_FACTS } = await import("../content/home");
+  const night = (await import("../content/night-commits.json")).default;
+  expect(Object.keys(night).sort()).toEqual(["asOf", "commits", "pct", "window"]);
+  expect(night.pct).toBeGreaterThan(0);
+  expect(night.pct).toBeLessThan(100);
+  expect(night.asOf).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+  expect(night.window).toBe("00:00-05:59");
+  // the app count and the night share are computed on the page, never typed into the copy
+  expect("v" in TRUE_FACTS.elements).toBe(false);
+  expect("v" in TRUE_FACTS.night).toBe(false);
+  expect(TRUE_FACTS.build.d.en).toContain("Measured once");
+  const jokes = FUN.items.map((f) => f.l.en);
+  for (const f of [TRUE_FACTS.build, TRUE_FACTS.white, TRUE_FACTS.elements, TRUE_FACTS.night]) expect(jokes).not.toContain(f.l.en);
+});
+
+test("round 3b: Now shipping reads labs.json and never guesses", async () => {
+  const { parseLabs, newest } = await import("../lib/releases");
+  const ok = { schema: 1, app: "lapis", version: "0.4.0", date: "2026-11-19", preview: true };
+  expect(parseLabs(ok, "lapis")).toEqual({ id: "lapis", version: "0.4.0", date: "2026-11-19", preview: true });
+  expect(parseLabs(ok, "fulmen")).toBeNull();
+  expect(parseLabs({ ...ok, schema: 2 }, "lapis")).toBeNull();
+  expect(parseLabs({ ...ok, version: "latest" }, "lapis")).toBeNull();
+  expect(parseLabs({ ...ok, date: "19 Nov" }, "lapis")).toBeNull();
+  expect(newest([])).toBeNull();
+  const a = { id: "lapis", version: "0.4.0", date: "2026-11-19", preview: true };
+  const b = { id: "fulmen", version: "0.58.0", date: "2026-11-19", preview: true };
+  const c = { id: "silva", version: "1.0.0", date: "2026-11-02", preview: false };
+  expect(newest([c, a, b])).toEqual([a, b]);
+});
+
+test("round 3b: the share images and icons are there, at their sizes", () => {
+  const png = (p: string) => {
+    const b = readFileSync(join(import.meta.dir, "..", p));
+    expect(b.subarray(1, 4).toString()).toBe("PNG");
+    return [b.readUInt32BE(16), b.readUInt32BE(20)];
+  };
+  expect(png("public/images/share-en.png")).toEqual([1200, 630]);
+  expect(png("public/images/share-th.png")).toEqual([1200, 630]);
+  expect(png("app/icon.png")).toEqual([192, 192]);
+  expect(png("app/apple-icon.png")).toEqual([180, 180]);
+  expect(png("public/apple-touch-icon.png")).toEqual([180, 180]);
+  const ico = readFileSync(join(import.meta.dir, "..", "app/favicon.ico"));
+  expect(ico.readUInt16LE(4)).toBe(3);
+  expect([0, 1, 2].map((i) => ico.readUInt8(6 + 16 * i))).toEqual([16, 32, 48]);
+  expect(readFileSync(join(import.meta.dir, "..", "lib/meta.ts"), "utf8")).toContain("/images/share-${lang}.png");
+});
+
+test("round 3b: one failed release read hides the whole strip; a 404 just means no release yet", async () => {
+  const { nowShipping } = await import("../lib/releases");
+  const real = globalThis.fetch;
+  const lapis = { schema: 1, app: "lapis", version: "0.4.0", date: "2026-11-19", preview: true };
+  const answer = (status: Record<string, number>) =>
+    (async (url: string) => {
+      const id = String(url).match(/vtx-(\w+)-release/)![1];
+      const code = status[id] ?? 404;
+      return new Response(code === 200 ? JSON.stringify(lapis) : "", { status: code });
+    }) as unknown as typeof fetch;
+  try {
+    globalThis.fetch = answer({ lapis: 200 });
+    expect(await nowShipping(["lapis", "fulmen", "silva"])).toEqual([{ id: "lapis", version: "0.4.0", date: "2026-11-19", preview: true }]);
+    globalThis.fetch = answer({ lapis: 200, fulmen: 503 });
+    expect(await nowShipping(["lapis", "fulmen", "silva"])).toBeNull();
+    globalThis.fetch = answer({});
+    expect(await nowShipping(["lapis", "fulmen"])).toBeNull();
+  } finally {
+    globalThis.fetch = real;
+  }
+});

@@ -567,3 +567,60 @@ background:var(--bg);color:var(--t2);font:400 16.5px/1.72 var(--fb);-webkit-font
 .pv .cvx-paper{margin-left:-66px}
 .pv .pjx-peek pre{font-size:12.5px}
 }
+
+/* ── Round 3b ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* X2: the terminal behind "> hello_world_" (components/HelloTerm.tsx). It opens over the hero, so nothing moves. */
+.pv .o-hello{position:relative;z-index:5}
+.pv .o-hello-btn{display:inline-block;min-height:32px;padding:4px 8px;margin:-4px -8px;border:0;border-radius:8px;background:none;font:inherit;letter-spacing:inherit;color:inherit;cursor:pointer;transition:background-color .2s var(--hov),text-shadow .2s var(--hov)}
+.pv .o-hello-btn:hover,.pv .o-hello-btn[aria-expanded=true]{background:rgba(142,151,255,.1);text-shadow:0 0 18px rgba(124,200,255,.55)}
+[data-theme=light] .pv .o-hello-btn:hover,[data-theme=light] .pv .o-hello-btn[aria-expanded=true]{background:rgba(79,90,224,.08);text-shadow:none}
+.pv .hterm{position:absolute;top:calc(100% + 14px);left:50%;width:min(560px,calc(100vw - 32px));transform:translateX(-50%);text-align:left;letter-spacing:0;border-radius:16px;background:var(--term);color:var(--term-t);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1),0 30px 80px -24px rgba(0,0,0,.7),0 0 0 1px rgba(124,200,255,.12);animation:hterm-in .28s var(--out) both;overflow:hidden}
+@keyframes hterm-in{from{opacity:0;transform:translateX(-50%) translateY(-8px) scale(.98)}}
+.pv .hterm-bar{display:flex;align-items:center;gap:7px;padding:8px 8px 8px 14px;border-bottom:1px solid rgba(255,255,255,.07);font:500 12px/1 var(--fm);color:#9aa0aa}
+.pv .hterm-bar i{width:10px;height:10px;border-radius:50%;background:#3a3f48}
+.pv .hterm-bar i:first-child{background:#ff6b6b}.pv .hterm-bar i:nth-child(2){background:#f5c451}.pv .hterm-bar i:nth-child(3){background:#4ade80}
+.pv .hterm-bar span{flex:1;margin-left:6px}
+.pv .hterm-x{width:32px;height:32px;border:0;border-radius:8px;background:none;color:#9aa0aa;font:400 20px/1 var(--fb);cursor:pointer}
+.pv .hterm-x:hover{background:rgba(255,255,255,.08);color:var(--term-t)}
+.pv .hterm-log{max-height:min(270px,42svh);overflow-y:auto;padding:14px 16px 4px;font:500 13px/1.7 var(--fm);overscroll-behavior:contain}
+.pv .tl{white-space:pre-wrap;overflow-wrap:anywhere}
+.pv .tl-cmd{color:var(--term-s)}
+.pv .tl-cmd span{color:var(--term-k)}
+.pv .tl-dim{color:#9aa0aa}
+.pv .tl-a a{color:var(--term-k);text-decoration:underline;text-decoration-color:rgba(124,200,255,.35);text-underline-offset:3px}
+.pv .tl-a a:hover{text-decoration-color:currentColor}
+.pv .tl:not(.tl-cmd){animation:tl-in .32s steps(16) both;animation-delay:calc(var(--i,0) * 70ms)}
+@keyframes tl-in{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.pv .hterm-in{display:flex;align-items:center;gap:10px;padding:6px 16px 14px;font:500 13px/1 var(--fm);color:var(--term-k)}
+.pv .hterm-in input{flex:1;min-width:0;min-height:36px;border:0;background:none;color:var(--term-s);font:500 16px/1.2 var(--fm);caret-color:var(--term-k);outline:none}
+.pv .hterm-in:focus-within{box-shadow:inset 0 2px 0 -1px rgba(124,200,255,.25)}
+
+/* X4: the newest VTX release, from its labs.json at build (lib/releases.ts) */
+.pv .o-ship{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 14px;width:fit-content;max-width:100%;margin:-24px auto 18px;padding:8px 16px;border-radius:999px;background:var(--card);box-shadow:inset 0 0 0 1px var(--edge),var(--hi);font-size:13.5px;color:var(--t2)}
+.pv .o-ship + .o-chips{margin-top:0}
+.pv .o-ship-app{display:inline-flex;align-items:center;gap:7px;min-height:32px;border-radius:8px;color:var(--t2)}
+.pv .o-ship-app img{border-radius:5px}
+.pv .o-ship-app b{font-weight:600;color:var(--ink)}
+.pv .o-ship-app:hover b{text-decoration:underline;text-underline-offset:3px}
+.pv .o-ship time{font:500 12.5px/1 var(--fm);color:var(--mute)}
+
+/* F2–F5: the four true ones, apart from the jokes */
+.pv .o-true-h{margin:clamp(40px,5cqi,56px) 0 18px;text-align:center;font:600 clamp(18px,2cqi,22px)/1.3 var(--fh);color:var(--t2)}
+.pv .o-true{grid-template-columns:repeat(4,minmax(0,1fr))}
+.pv .o-true li{position:relative;padding-top:30px}
+.pv .o-true h4{font-size:15px;margin-top:2px;line-height:1.35}
+.pv .o-true p{font-style:normal}
+.pv .o-stamp{position:absolute;top:12px;right:12px;padding:3px 8px;border-radius:999px;font:600 11px/1.2 var(--fm);letter-spacing:.04em;color:#4ade80;background:rgba(74,222,128,.1);box-shadow:inset 0 0 0 1px rgba(74,222,128,.25)}
+[data-theme=light] .pv .o-stamp{color:#15803d;background:rgba(21,128,61,.08);box-shadow:inset 0 0 0 1px rgba(21,128,61,.25)}
+
+@media (prefers-reduced-motion:reduce){
+.pv .hterm,.pv .tl:not(.tl-cmd){animation:none}
+.pv .o-hello-btn{transition:none}
+}
+@container (max-width:1100px){
+.pv .o-true{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@container (max-width:640px){
+.pv .hterm-log{font-size:12.5px}
+.pv .o-ship{border-radius:18px;margin-top:-16px}
+}

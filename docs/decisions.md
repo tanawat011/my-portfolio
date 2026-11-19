@@ -81,3 +81,38 @@ The owner, verbatim (through VTX Develop): "portfolio ตอนนี้แจ�
 - **Fixed in passing:** state toggles now use a data attribute, never the class list. React had been rewriting the class
   list of cards that fade in on scroll, so "Peek inside" and the case-page screenshot tabs made their own card vanish.
   A test now guards this.
+
+## Round 3b (19 Nov 2026)
+
+The owner, verbatim (through VTX Develop): "X1 X2 X4 X6 X7 + F2 F3 F4 F5 / ai tool ตอนนี้เอาแค่ที่เราใช้จริงดีกว่า / Claude Code,
+Copilot, Gemini, GPT ไอ่พวกนี้ไม่น่าใช่ Models นะ เอาคำว่า Models ออกด้วย".
+
+- **AI card (X7):** one list, "What I actually use": Claude Code, Copilot, Gemini, GPT. The "Models" label is gone, and
+  so are Cursor and Antigravity. Dev Tools keeps them until he says otherwise.
+- **X1 (scroll effects like Studio's):** not built. It waits for his picks on Studio's motion preview.
+- **The hello_world terminal (X2):** `> hello_world_` is a button. Clicking it, or focusing it and typing, opens a small
+  terminal over the hero, so nothing moves.
+  - `help`, `whoami`, `ls apps`, `cat resume`, `sudo hire-me`, `clear`, `exit`, and a few unlisted ones (`coffee`,
+    `sleep`, `rm -rf`, `vim`, `hire-me` without sudo).
+  - Everything it prints is real: his name, years and line, the eleven apps, the four PDFs, his email and the hire card.
+  - Esc, `exit`, × or a click elsewhere closes it, and focus returns to the button. ↑/↓ recall earlier commands.
+  - Under Reduce motion the replies appear at once.
+- **Now shipping (X4):** the newest release, from each `vtx-<app>-release` repo's labs.json.
+  - Read at build time through github.com's latest-download link: no API, no token, no call from the visitor.
+  - A 404 means no public release yet. Any other failure hides the strip, because a partial answer could show an
+    older release as the newest.
+  - When two apps ship the same day, both show (today: Lapis 0.4.0 and Fulmen 0.58.0, both 19 Nov 2026).
+- **Share image and icons (X6):** a 1200×630 card in English and in Thai: the hero's look, his name and line, three
+  plain facts and the round photo. The icon is "Ta" from the `<Ta />` logo, in G's gradient, as favicon.ico
+  (16/32/48), a 192 px icon and a 180 px Apple icon. `scripts/brand-images.ts` draws them with the site's own fonts.
+  Round 1's "TP" icon.svg and the old 640×640 og-image.png are gone.
+- **Four true Fun Facts (F2–F5),** in their own row, "…and four that are actually true", each stamped ✓ true. The six
+  jokes are untouched.
+  - **F2, 142 GB:** `du -sk` on Lapis's `src-tauri/target` on 19 Nov 2026 gave 149,201,132 KiB = 142 GiB. VTX Develop's
+    earlier reading was ~140. Labelled "measured once".
+  - **F3, ~88 %:** vtx-kit's dark-theme rule (strongest text at 84–90 % white; Silva and Ignis ~88, Ventus ~87).
+  - **F4, 11:** the app count, computed.
+  - **F5, 7 %:** share of his commits made between 00:00 and 05:59 in each commit's own local time.
+    - Measured by `scripts/night-commits.py` over every VTX repo on his Mac: non-merge commits on any branch, his
+      author name only (so "Claude"-authored commits are out), each counted once.
+    - 3,099 commits as of 19 Nov 2026. Only that aggregate is committed, in `content/night-commits.json`.
