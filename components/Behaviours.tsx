@@ -15,6 +15,31 @@ export function Behaviours() {
   useEffect(() => startMotion(), [path]);
 
   useEffect(() => {
+    /*
+     * A link to a place on this page glides there instead of jumping (owner, 19 Nov 2026, on the hero's buttons: "ปรับให้
+     * เป็นการกดแล้ว scroll ลงมา ไม่ใช่แว้บมาเลย"). The nav, the scroll cue, the skip link and the terminal's links too.
+     * scroll-padding-top (globals.css) keeps the place clear of the bar. The address gets its #part, as a jump would,
+     * and focus moves to the place, so Tab carries on from there. Reduce motion: the plain jump.
+     */
+    const onClick = (e: MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = (e.target as Element | null)?.closest?.("a[href]") as HTMLAnchorElement | null;
+      if (!a || (a.target && a.target !== "_self") || a.hasAttribute("download")) return;
+      const url = new URL(a.href, location.href);
+      if (!url.hash || url.origin !== location.origin || url.pathname !== location.pathname || url.search !== location.search) return;
+      const to = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+      if (!to) return;
+      e.preventDefault();
+      if (location.hash !== url.hash) history.pushState(history.state, "", url.hash);
+      to.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+      if (!to.hasAttribute("tabindex")) to.setAttribute("tabindex", "-1");
+      to.focus({ preventScroll: true });
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+
+  useEffect(() => {
     /* The bar is clear over the hero and turns to glass once you scroll (the old site's navbar). */
     const nav = document.querySelector("[data-nav]");
     const onScroll = () => nav?.classList.toggle("is-scrolled", window.scrollY > 50);

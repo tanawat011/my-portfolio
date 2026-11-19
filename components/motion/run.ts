@@ -201,7 +201,6 @@ function scrollFallback(zoom: boolean, depth: boolean): Stop {
     if (pools) items.push({ el: pools, props: ["translate"], set: (e) => (e.style.translate = `0 ${(clamp01(window.scrollY / viewH()) * 22).toFixed(2)}vh`) });
     for (const el of document.querySelectorAll<HTMLElement>("main .p-hire, main .getit"))
       items.push({ el, props: ["--mp-drift"], set: (e) => e.style.setProperty("--mp-drift", `${(-12 + 24 * cover(e)).toFixed(1)}%`) });
-    for (const el of document.querySelectorAll<HTMLElement>("main .orbc")) items.push({ el, props: ["translate"], set: (e) => (e.style.translate = `0 ${(-60 + 120 * cover(e)).toFixed(1)}px`) });
   }
   if (!items.length) return noop;
   let raf = 0;

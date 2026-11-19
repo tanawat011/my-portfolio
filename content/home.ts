@@ -93,6 +93,28 @@ export const VTX = {
   ship: { en: "Now shipping", th: "เพิ่งปล่อย" },
   preview: { en: "Preview", th: "Preview" },
   personal: { en: "Personal build", th: "ทำไว้ใช้เอง" },
+  // owner, 19 Nov 2026: "ถ้าอันไหนที่เราทำไว้ใช้เองไม่ได้แจก ก็แปะไปสักหน่อยให้รู้ว่าคุณไม่มีโอกาสได้ใช้หรอก 555". Labs says
+  // a personal build is not for sale, "maybe not for a long time" (vtx-labs content/apps.ts), hence "probably".
+  nope: { en: "Sorry, you'll probably never get to use this one 😏", th: "ไม่แจกนะจ๊ะ คงไม่มีโอกาสได้ใช้หรอก 😏" },
+  /**
+   * The owner: "อย่าลืมบอกหน่อยนะว่าทุกระบบ เรา offline แท้บ 100% ทุกอย่างอยู่ในเครื่องคุณเอง". In his spirit, but only what
+   * is true, as Labs words it from reading each app's code (vtx-labs content/offline.ts, 19 Nov 2026): no account, no
+   * cloud, no tracking; each app connects only to what you add or start (databases, servers, remotes, mail accounts,
+   * machines, the speed test); and Lapis, Fulmen, Silva and Ventus check for updates once a day, on by default, off
+   * in their settings. ⏳ When those four's releases ask before checking (Labs's O1C), drop the update clause; not before.
+   */
+  local: {
+    h: { en: "No account. No cloud. No tracking.", th: "ไม่มีบัญชี ไม่มี cloud ไม่มีการเก็บข้อมูล" },
+    p: {
+      en: "Everything they keep stays on your own machine, and they go online only for what you connect them to or ask them to do. The one extra: four of them check for updates once a day, and you can turn that off.",
+      th: "ทุกอย่างที่แอปเก็บอยู่ในเครื่องคุณเอง และต่อเน็ตเฉพาะสิ่งที่คุณสั่งเชื่อมหรือสั่งให้ทำเท่านั้น มีแค่อย่างเดียว: สี่ตัวเช็กอัปเดตวันละครั้ง ซึ่งปิดได้",
+    },
+  },
+  // the owner: "บอกไปสักหน่อยแล้วกันว่าใช้ AI ช่วยซะเยอะเลย 555 เราต้องยอมรับความจริงใจยุคใหม่นี้"
+  ai: {
+    h: { en: "Built with a LOT of AI help.", th: "ใช้ AI ช่วยเยอะมาก ๆ" },
+    p: { en: "Claude Code and friends. It's 2026, I'm not hiding it.", th: "Claude Code และผองเพื่อน ปี 2026 แล้ว ไม่ปิดบังหรอก" },
+  },
   readCase: { en: "Read the case", th: "อ่านเคส" },
   onLabs: { en: "On VTX Labs", th: "ดูบน VTX Labs" },
   moreK: "> open vtxlabs.app",
@@ -166,9 +188,11 @@ export const PROJECTS = {
 export const LIVE = {
   pre: { en: "Live", th: "เปิดใช้" },
   grad: { en: "Projects", th: "อยู่จริง" },
-  sub: { en: "Things I built that are actually running in production 🚀", th: "ของที่ทำแล้วรันอยู่บน production จริง ๆ 🚀" },
+  sub: { en: "Things I built that are actually running in production 🚀 (and one opening soon)", th: "ของที่ทำแล้วรันอยู่บน production จริง ๆ 🚀 (กับอีกตัวที่กำลังจะเปิด)" },
   live: { en: "Live", th: "Live" },
-  tags: { labs: ["Next.js", "React", "TypeScript", "Vercel"], craftcv: ["Next.js", "React", "TypeScript", "PDF"] } as Record<string, string[]>,
+  // studio: vtx-studio's package.json (Next.js 16, React 19, TypeScript, three.js for the orb on its home page)
+  tags: { labs: ["Next.js", "React", "TypeScript", "Vercel"], craftcv: ["Next.js", "React", "TypeScript", "PDF"], studio: ["Next.js", "React", "TypeScript", "three.js"] } as Record<string, string[]>,
+  studioArt: { en: "VTX Studio's orb", th: "ลูกแก้วของ VTX Studio" },
 };
 
 /** Jokes, and only jokes: never a real figure in here, never a joke in the real row. */
@@ -247,7 +271,19 @@ export const TERM = {
   notFound: { en: "{c}: command not found. Try help.", th: "{c}: ไม่รู้จักคำสั่งนี้ ลอง help ดู" },
 };
 
+/**
+ * The hire card's window, in place of the orb (owner, 19 Nov 2026: the orb "ไม่เกี่ยวกับเว็บเราอ่ะ", it's VTX Studio's,
+ * not this site's). His own hello_world terminal from the hero, running the easter egg's sudo hire-me (TERM.hire).
+ */
+export const HIRE_TERM = {
+  title: "hello_world",
+  cmd: "sudo hire-me",
+  pass: "[sudo] password for recruiter:",
+  ok: { en: "✓ Access granted. Let's talk.", th: "✓ ผ่าน! มาคุยงานกันเลย" },
+};
+
 export const FOOT = {
-  ai: { en: "Built with Next.js & a little help from my AI friends 🤖", th: "สร้างด้วย Next.js และเพื่อน AI อีกนิดหน่อย 🤖" },
+  // the owner, 19 Nov 2026: say it was a lot ("ใช้ AI ช่วยซะเยอะเลย")
+  ai: { en: "Built with Next.js & a lot of help from my AI friends 🤖", th: "สร้างด้วย Next.js และเพื่อน AI ช่วยเยอะมาก 🤖" },
   top: { en: "Back to top", th: "กลับขึ้นบนสุด" },
 };

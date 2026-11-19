@@ -7,9 +7,10 @@
  *
  *   1 fade and rise in stages (this replaces the old `.rv` reveal: one entrance, never two)
  *   2 zoom with scroll: the hero recedes as you leave it; the case pages' screens come up to size
- *   3 parallax: the light layers move slower than the page (off on phones)
+ *   3 parallax: the light layers move slower than the page (off on phones). The hire card's orb floated too, until
+ *     it gave way to his terminal (19 Nov 2026)
  *   (4, Studio's pinned scene, is not used here)
- *   5 the four real figures (9 / 11 / 6 / 2) count up once; never the Fun Facts
+ *   5 the four real figures (9 / 11 / 85 / 2) count up once; never the Fun Facts
  *   6 headings word by word; a Thai phrase (no spaces) stays one piece
  *
  * Reduce motion: none of it. Without script nothing is hidden: only the runtime ever hides anything, and only what is

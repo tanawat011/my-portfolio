@@ -18,7 +18,9 @@ test("the figures row is true", () => {
   expect(APPS.length).toBe(11);
   expect(APPS.filter((a) => a.personal).map((a) => a.id)).toEqual(["cuprum", "lux", "mercurius", "crystallum"]);
   expect(WEB.map((w) => w.id)).toEqual(["labs", "craftcv"]);
-  // "6 database engines": the six Lapis names, MySQL and MariaDB as one engine family
+  // the third figure is Labs's tool count, for the whole family (lib/labs.ts), no longer Lapis's six engines
+  expect(Object.keys(T.proof)).toEqual(["years", "apps", "tools", "webs"]);
+  // "Six database engines, exactly" (What's inside): the six Lapis names, MySQL and MariaDB as one engine family
   const lapis = APPS.find((a) => a.id === "lapis")!.line.en;
   for (const e of ["PostgreSQL", "MySQL / MariaDB", "SQLite", "SQL Server", "MongoDB", "Redis"]) expect(lapis).toContain(e);
 });
@@ -271,4 +273,82 @@ test("X1: count-up runs on the four real figures only, never on the Fun Facts", 
   const sel = src.match(/querySelectorAll<HTMLElement>\("([^"]+)"\)\]\.filter\(\(b\) => \/\^\\d\+\$\//)![1];
   expect(sel).toBe("main .p-proof b");
   expect(src.slice(src.indexOf("function counts()"))).not.toMatch(/o-fun|o-true/);
+});
+
+test("last notes: the third figure is VTX Labs's tool count, read from Labs, with the hand-checked count behind it", async () => {
+  const { parseToolCount, labsToolCount } = await import("../lib/labs");
+  const { LABS_TOOLS } = await import("../content/site");
+  // what vtxlabs.app's home page says (its description and its badge), 19 Nov 2026
+  expect(parseToolCount('<meta name="description" content="85 free tools that run in your browser: JSON, JWT, cURL, regex, colours, Thai text and more. No sign-up."/>')).toBe(85);
+  expect(parseToolCount('<span class="g-badge">91 free tools · no sign-up · runs in your browser</span>')).toBe(91);
+  expect(parseToolCount("<p>Free tools</p>")).toBeNull();
+  expect(parseToolCount("0 free tools")).toBeNull();
+  expect(LABS_TOOLS.n).toBe(85);
+  expect(LABS_TOOLS.asOf).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+  const real = globalThis.fetch;
+  try {
+    globalThis.fetch = (async () => new Response("<span>92 free tools · no sign-up</span>", { status: 200 })) as unknown as typeof fetch;
+    expect(await labsToolCount()).toBe(92);
+    globalThis.fetch = (async () => new Response("", { status: 503 })) as unknown as typeof fetch;
+    expect(await labsToolCount()).toBe(LABS_TOOLS.n);
+    globalThis.fetch = (async () => new Response("<h1>Labs</h1>", { status: 200 })) as unknown as typeof fetch;
+    expect(await labsToolCount()).toBe(LABS_TOOLS.n);
+    globalThis.fetch = (async () => {
+      throw new Error("offline");
+    }) as unknown as typeof fetch;
+    expect(await labsToolCount()).toBe(LABS_TOOLS.n);
+  } finally {
+    globalThis.fetch = real;
+  }
+});
+
+test("last notes: the family's honest lines stay true", async () => {
+  const { VTX, FOOT } = await import("../content/home");
+  // personal builds get his line; Labs says they're not for sale, "maybe not for a long time", hence "probably"
+  expect(VTX.nope.en).toContain("probably");
+  expect(VTX.nope.th).toContain("คง");
+  // never "100% offline": four apps check for updates once a day today (vtx-labs content/offline.ts, O1C pending)
+  for (const t of [VTX.local.h, VTX.local.p]) for (const l of ["en", "th"] as const) expect(t[l]).not.toMatch(/100|offline|ออฟไลน์/i);
+  expect(VTX.local.p.en).toContain("four of them check for updates once a day, and you can turn that off");
+  expect(VTX.local.p.th).toContain("สี่ตัวเช็กอัปเดตวันละครั้ง ซึ่งปิดได้");
+  // a lot of AI help, said plainly, here and in the footer
+  expect(VTX.ai.h.en).toContain("LOT");
+  expect(FOOT.ai.en).toContain("a lot of help");
+  expect(FOOT.ai.en).not.toContain("a little");
+});
+
+test("last notes: Studio is in Live projects as opening soon, with no link, and isn't counted as live", async () => {
+  const { STUDIO } = await import("../content/site");
+  const { LIVE } = await import("../content/home");
+  expect(WEB.map((w) => w.id)).not.toContain("studio");
+  expect("url" in STUDIO || "host" in STUDIO).toBe(false);
+  // the hire card's own words
+  expect(T.hireP.en).toContain("back offices, web apps, mobile apps and LINE bots, from a prototype you can click to a handover with documents");
+  expect(STUDIO.line.en).toContain("back offices, web apps, mobile apps and LINE bots, from a prototype you can click to a handover with documents");
+  expect(LIVE.tags[STUDIO.id]).toEqual(["Next.js", "React", "TypeScript", "three.js"]);
+  const home = readFileSync(join(import.meta.dir, "..", "components/Home.tsx"), "utf8");
+  const card = home.slice(home.indexOf('className="o-card lv-soon'), home.indexOf('id="fun"'));
+  expect(card).not.toMatch(/href=|stretch/);
+  expect(card).toContain("T.soon[lang]");
+});
+
+test("last notes: the hire card shows his terminal running the easter egg's sudo hire-me, not the orb", async () => {
+  const { HIRE_TERM, TERM } = await import("../content/home");
+  const home = readFileSync(join(import.meta.dir, "..", "components/Home.tsx"), "utf8");
+  const hire = home.slice(home.indexOf('id="hire"'));
+  expect(hire).toContain("<HireTerm");
+  expect(hire).not.toContain("orbc");
+  expect(HIRE_TERM.cmd).toBe("sudo hire-me");
+  expect(TERM.hire.en[0]).toContain(HIRE_TERM.pass);
+  // drawn finished: only script that has checked Reduce motion and the fold ever holds a line back
+  const src = readFileSync(join(import.meta.dir, "..", "components/HireTerm.tsx"), "utf8");
+  expect(src).toContain('matchMedia("(prefers-reduced-motion: reduce)")');
+  expect(src.indexOf("prefers-reduced-motion")).toBeLessThan(src.indexOf('dataset.play = "wait"'));
+});
+
+test("last notes: links to a place on the page glide there, jump under Reduce motion, and move focus", () => {
+  const src = readFileSync(join(import.meta.dir, "..", "components/Behaviours.tsx"), "utf8");
+  expect(src).toContain('behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"');
+  expect(src).toContain("to.focus({ preventScroll: true })");
+  expect(readFileSync(join(import.meta.dir, "..", "app/globals.css"), "utf8")).toMatch(/html\{scroll-padding-top:96px/);
 });

@@ -1,14 +1,16 @@
 import Link from "next/link";
 import { APPS, hasCase, labsUrl } from "@/content/apps";
-import { ABILITIES, ABOUT, FUN, HERO, INSIDE, LIVE, PROJECTS, RESUME, TERM, TRUE_FACTS, UPTIME, VTX, WEAPONS } from "@/content/home";
-import { CVS, href, LINKS, STORY, T, WEB, yearsSince, type Lang } from "@/content/site";
+import { ABILITIES, ABOUT, FUN, HERO, HIRE_TERM, INSIDE, LIVE, PROJECTS, RESUME, TERM, TRUE_FACTS, UPTIME, VTX, WEAPONS } from "@/content/home";
+import { CVS, href, LINKS, STORY, STUDIO, T, WEB, yearsSince, type Lang } from "@/content/site";
 import CV_META from "@/content/cvs.json";
 import NIGHT from "@/content/night-commits.json";
 import { repoFacts } from "@/lib/github";
+import { labsToolCount } from "@/lib/labs";
 import { nowShipping } from "@/lib/releases";
 import { CvCard, PjCard, type CvVersion } from "./Cards";
 import { Band } from "./Band";
 import { HelloTerm, type TermWords } from "./HelloTerm";
+import { HireTerm } from "./HireTerm";
 import { Arr, Footer, Nav, OldHead } from "./Frame";
 import { Icon } from "./Icons";
 import { StoryRail } from "./Motion";
@@ -35,7 +37,7 @@ const day = (iso: string, lang: Lang) =>
 
 export async function Home({ lang }: { lang: Lang }) {
   const y = yearsSince();
-  const [facts, shipping] = await Promise.all([Promise.all(PROJECTS.items.map((p) => repoFacts("tanawat011", p.repo))), nowShipping(APPS.map((a) => a.id))]);
+  const [facts, shipping, tools] = await Promise.all([Promise.all(PROJECTS.items.map((p) => repoFacts("tanawat011", p.repo))), nowShipping(APPS.map((a) => a.id)), labsToolCount()]);
   const term = Object.fromEntries(Object.entries(TERM).map(([k, v]) => [k, v[lang]])) as unknown as TermWords;
   const termCvs = (["Modern", "Minimal"] as const).flatMap((style) =>
     (["full", "short"] as const).map((len) => ({ label: `${style} · ${RESUME.len[len][lang]}`, pdf: CVS.find((x) => x.style === style && x.len === len)!.pdf, pages: (CV_META as Record<string, { pages: number }>)[`${style}-${len}`].pages })),
@@ -106,8 +108,8 @@ export async function Home({ lang }: { lang: Lang }) {
                 <span>{T.proof.apps[lang]}</span>
               </li>
               <li>
-                <b>6</b>
-                <span>{T.proof.engines[lang]}</span>
+                <b>{tools}</b>
+                <span>{T.proof.tools[lang]}</span>
               </li>
               <li>
                 <b>{WEB.length}</b>
@@ -217,6 +219,26 @@ export async function Home({ lang }: { lang: Lang }) {
                 <li key={c}>{c}</li>
               ))}
             </ul>
+            <ul className="o-notes">
+              <li className="o-card rv">
+                <span className="emo" aria-hidden="true">
+                  🔌
+                </span>
+                <div>
+                  <h3>{VTX.local.h[lang]}</h3>
+                  <p>{VTX.local.p[lang]}</p>
+                </div>
+              </li>
+              <li className="o-card rv" style={{ "--d": ".08s" } as React.CSSProperties}>
+                <span className="emo" aria-hidden="true">
+                  🤖
+                </span>
+                <div>
+                  <h3>{VTX.ai.h[lang]}</h3>
+                  <p>{VTX.ai.p[lang]}</p>
+                </div>
+              </li>
+            </ul>
             <ul className="o-els">
               {APPS.map((a, i) => {
                 const own = hasCase(a.id);
@@ -236,6 +258,7 @@ export async function Home({ lang }: { lang: Lang }) {
                       </div>
                     </div>
                     <p className="el-line">{a.line[lang]}</p>
+                    {a.personal && <p className="el-nope">{VTX.nope[lang]}</p>}
                     <div className="el-foot">
                       {a.personal && <span className="el-chip">{VTX.personal[lang]}</span>}
                       {own ? (
@@ -351,6 +374,26 @@ export async function Home({ lang }: { lang: Lang }) {
                   <a className="stretch" href={w.url} aria-label={`${w.name}: ${w.host}`} />
                 </li>
               ))}
+              {/* Studio: opening soon, so no link and no address (content/site.ts, STUDIO) */}
+              <li className="o-card lv-soon rv" style={{ "--d": `${WEB.length * 0.15}s` } as React.CSSProperties}>
+                <figure>
+                  <div className="orbc" role="img" aria-label={LIVE.studioArt[lang]} />
+                </figure>
+                <div className="lv-in">
+                  <div className="lv-t">
+                    <h3>{STUDIO.name}</h3>
+                  </div>
+                  <p>{STUDIO.line[lang]}</p>
+                  <ul className="o-tags">
+                    {LIVE.tags[STUDIO.id].map((t) => (
+                      <li key={t}>{t}</li>
+                    ))}
+                  </ul>
+                  <p>
+                    <span className="p-soon">{T.soon[lang]}</span>
+                  </p>
+                </div>
+              </li>
             </ul>
           </div>
         </section>
@@ -403,7 +446,7 @@ export async function Home({ lang }: { lang: Lang }) {
                 </div>
                 <span className="mail">{LINKS.email}</span>
               </div>
-              <div className="orbc" aria-hidden="true" />
+              <HireTerm title={HIRE_TERM.title} cmd={HIRE_TERM.cmd} pass={HIRE_TERM.pass} ok={HIRE_TERM.ok[lang]} />
             </div>
           </div>
         </section>

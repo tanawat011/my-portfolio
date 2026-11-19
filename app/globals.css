@@ -270,7 +270,7 @@ background:var(--bg);color:var(--t2);font:400 16.5px/1.72 var(--fb);-webkit-font
 .pv .d-chp{grid-template-columns:minmax(0,1fr)}
 .pv .feats{grid-template-columns:minmax(0,1fr)}
 .pv .p-hire,.pv .getit{grid-template-columns:minmax(0,1fr);border-radius:28px}
-.pv .p-hire .orbc{display:none}
+.pv .p-hire .htw{width:100%;max-width:420px}
 .pv .gal{grid-template-columns:minmax(0,1fr)}
 .pv .gal-tabs{display:flex;overflow-x:auto;gap:8px;padding-bottom:4px}
 .pv .gal-tab{flex:0 0 76%}
@@ -658,14 +658,72 @@ html.mp-3 .pv .p-hire::before,html.mp-3 .pv .getit::before{content:"";position:a
 @supports (animation-timeline:view()){
 html.mp-3 .pv .o-pools{animation:mp-sink linear both;animation-timeline:scroll(root);animation-range:0 100vh}
 html.mp-3 .pv .p-hire::before,html.mp-3 .pv .getit::before{animation:mp-drift linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
-html.mp-3 .pv .orbc{animation:mp-float linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
 }
 }
 @keyframes mp-sink{to{translate:0 22vh}}
 @keyframes mp-drift{from{translate:0 -12%}to{translate:0 12%}}
-@keyframes mp-float{from{translate:0 -60px}to{translate:0 60px}}
 
 @media (prefers-reduced-motion:reduce){
 html .pv .mp-arm,html .pv .mp-split .mp-w{opacity:1!important;translate:none!important}
-html .pv .o-hi,html .pv .gal-fig img,html .pv .ba,html .pv .o-pools,html .pv .p-hire::before,html .pv .getit::before,html .pv .orbc{animation:none!important}
+html .pv .o-hi,html .pv .gal-fig img,html .pv .ba,html .pv .o-pools,html .pv .p-hire::before,html .pv .getit::before{animation:none!important}
+}
+
+/* ── Last notes (owner, 19 Nov 2026) ─────────────────────────────────────────────────────────────────────────────── */
+/* An in-page link glides to its place and focus goes there (Behaviours); the place itself shows no ring. */
+.pv [tabindex="-1"]:focus{outline:none}
+
+/* The family: what they connect to, and the AI that helped (honest notes, under the stack) */
+.pv .o-notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:calc(-1 * clamp(16px,2.5cqi,28px)) 0 clamp(40px,5cqi,56px)}
+.pv .o-notes li{display:flex;align-items:flex-start;gap:16px;padding:20px 22px}
+.pv .o-notes .emo{font-size:26px;margin-top:2px}
+.pv .o-notes h3{font:600 16px/1.35 var(--fh);color:var(--ink)}
+.pv .o-notes p{margin-top:6px;font-size:14px;line-height:1.65;color:var(--mute)}
+/* a personal build says so, in his voice */
+.pv .el-nope{margin-top:10px;font:500 12.5px/1.5 var(--fm);color:oklch(0.8 0.07 var(--h))}
+[data-theme=light] .pv .el-nope{color:oklch(0.45 0.1 var(--h))}
+
+/* Live projects: VTX Studio, opening soon. No link; its own orb, where the orb belongs. Across both columns. */
+.pv .o-live>li.lv-soon{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.pv .lv-soon figure{aspect-ratio:16/9;height:100%;background:radial-gradient(55% 75% at 50% 50%,rgba(124,200,255,.16),transparent 70%),var(--panel)}
+.pv .lv-soon .orbc{width:clamp(96px,13cqi,150px)}
+.pv .lv-soon .lv-in{justify-content:center}
+.pv .lv-soon .o-tags{margin-top:0}
+
+/* The hire card's window: his hello_world terminal, typing sudo hire-me (components/HireTerm.tsx). Drawn finished;
+   it waits and types only when script has set data-play. */
+.pv .htw{width:clamp(270px,32cqi,380px);border-radius:16px;overflow:hidden;text-align:left;background:var(--term);color:var(--term-t);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1),0 30px 70px -28px rgba(0,0,0,.75),0 0 0 1px rgba(124,200,255,.12),0 0 90px -24px rgba(124,200,255,.3)}
+.pv .htw-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.07);font:500 12px/1 var(--fm);color:#9aa0aa}
+.pv .htw-bar i{width:10px;height:10px;border-radius:50%;background:#3a3f48}
+.pv .htw-bar i:first-child{background:#ff6b6b}.pv .htw-bar i:nth-child(2){background:#f5c451}.pv .htw-bar i:nth-child(3){background:#4ade80}
+.pv .htw-bar span{margin-left:6px}
+.pv .htw-body{padding:14px 16px 16px;font:500 13px/1.75 var(--fm)}
+.pv .htw-l{overflow-wrap:anywhere}
+.pv .htw-ps{color:var(--term-k)}
+.pv .htw-cmd{color:var(--term-s)}
+.pv .htw-2{color:#9aa0aa}
+.pv .htw-3{color:#4ade80;font-weight:600}
+.pv .htw-cmd,.pv .htw-pw{display:inline-block}
+.pv .htw-car{display:inline-block;width:.6em;height:1.15em;vertical-align:-.22em;background:var(--term-k);animation:o-blink 1s step-end infinite}
+.pv .htw[data-play] :is(.htw-cmd,.htw-pw){clip-path:inset(0 100% 0 0)}
+.pv .htw[data-play] :is(.htw-2,.htw-3,.htw-4){opacity:0}
+.pv .htw[data-play=go] .htw-cmd{animation:htw-type .9s steps(var(--n,12)) .4s forwards}
+.pv .htw[data-play=go] .htw-2{animation:htw-show 0s 1.5s forwards}
+.pv .htw[data-play=go] .htw-pw{animation:htw-type .5s steps(8) 1.75s forwards}
+.pv .htw[data-play=go] .htw-3{animation:htw-ok .45s cubic-bezier(.16,1,.3,1) 2.55s forwards}
+.pv .htw[data-play=go] .htw-4{animation:htw-show 0s 2.95s forwards}
+@keyframes htw-type{to{clip-path:inset(0 0 0 0)}}
+@keyframes htw-show{to{opacity:1}}
+@keyframes htw-ok{from{opacity:0;translate:0 4px}to{opacity:1;translate:0 0}}
+
+@media (prefers-reduced-motion:reduce){
+.pv .htw-car{animation:none}
+}
+@container (max-width:900px){
+.pv .o-notes{grid-template-columns:minmax(0,1fr);gap:14px}
+}
+@container (max-width:640px){
+.pv .o-notes{margin-top:-12px}
+.pv .o-notes li{padding:18px 18px}
+.pv .o-live>li.lv-soon{display:flex}
+.pv .p-hire .htw{margin-top:4px}
 }

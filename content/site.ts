@@ -56,6 +56,26 @@ export const WEB = [
     line: { en: "Build a resume in your browser and export it as a PDF or PNG. Free, no account, and your CVs stay in your browser.", th: "สร้าง resume ในเบราว์เซอร์ แล้ว export เป็น PDF หรือ PNG ฟรี ไม่ต้องมีบัญชี และ CV อยู่ในเบราว์เซอร์ของคุณเท่านั้น" } },
 ] as const;
 
+/**
+ * VTX Labs's tool count as last checked by hand (vtxlabs.app's home page: "85 free tools that run in your browser").
+ * The page reads the live count while it's built (lib/labs.ts); this stands only when Labs can't be read.
+ */
+export const LABS_TOOLS = { n: 85, asOf: "2026-11-19" } as const;
+
+/**
+ * Opening soon (owner, 19 Nov 2026: "เราก็เอาโปรเจก Studio เราไปแปะใน Live Project เราก็ได้นี่ใช่มะ"). Studio has no
+ * domain and nothing deployed yet, so it has no link and no address here until the day it goes live; then it moves
+ * into WEB. Its words are the hire card's (T.hireP). It is not counted among the web apps that are live.
+ */
+export const STUDIO = {
+  id: "studio",
+  name: "VTX Studio",
+  line: {
+    en: "Client work: back offices, web apps, mobile apps and LINE bots, from a prototype you can click to a handover with documents.",
+    th: "รับงานลูกค้า: ระบบหลังบ้าน เว็บแอป แอปมือถือ และ LINE bot ตั้งแต่ prototype ที่กดลองได้จนส่งมอบพร้อมเอกสาร",
+  },
+} as const;
+
 /** The story, four chapters. The middle years are not on the old site, so they carry no year (owner's call later). */
 export const STORY: { y: Text; h: Text; p: Text[] }[] = [
   { y: { en: "July 2017", th: "กรกฎาคม 2017" }, h: { en: "First job", th: "งานแรก" },
@@ -97,7 +117,8 @@ export const T = {
   proof: {
     years: { en: "years shipping web apps, since July 2017", th: "ปีที่ทำเว็บแอป ตั้งแต่กรกฎาคม 2017" },
     apps: { en: "desktop apps in Rust + Tauri, built solo", th: "แอป desktop ด้วย Rust + Tauri ทำคนเดียว" },
-    engines: { en: "database engines in one window (Lapis)", th: "database engine ในหน้าต่างเดียว (Lapis)" },
+    // owner, 19 Nov 2026: a figure for the whole family, not one app (was "6 database engines in one window (Lapis)")
+    tools: { en: "free tools on VTX Labs, all in your browser", th: "เครื่องมือฟรีบน VTX Labs ใช้ในเบราว์เซอร์ได้เลย" },
     webs: { en: "web apps live today: VTX Labs, CraftCV", th: "เว็บแอปที่เปิดใช้อยู่: VTX Labs, CraftCV" },
   },
   aboutK: { en: "story", th: "story" }, aboutT: { en: "About", th: "เกี่ยวกับ" }, aboutH: { en: "How I got here", th: "มาถึงตรงนี้ได้ยังไง" },

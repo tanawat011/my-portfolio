@@ -156,3 +156,47 @@ The owner, verbatim (through VTX Develop): "จุดในภาพอ่ะ �
   5 and 6 stay.
 - **Package & Runtime:** Git, npm, pnpm, Yarn, Bun, Homebrew.
 - The skills audit waits for his answer.
+
+## Last notes (19 Nov 2026)
+
+The owner, verbatim (through VTX Develop): "Portfolio ผมว่าน่าจะผ่านแล้วล่ะ / ภาพแรกปุ่มพวกนั้นปรับให้เป็นการกดแล้ว scroll ลงมา
+ไม่ใช่แว้บมาเลย / ภาพสองคือน่าจะต้องเป็นตัวเลขอื่นมีไม๊คับ ไม่เอาแบบเจาะจงระบบเดียวแบบนี้ / ภาพสาม ถ้าอันไหนที่เราทำไว้ใช้เองไม่ได้แจก
+ก็แปะไปสักหน่อยให้รู้ว่าคุณไม่มีโอกาสได้ใช้หรอก 555 และอย่าลืมบอกหน่อยนะว่าทุกระบบ เรา offline แท้บ 100% ทุกอย่างอยู่ในเครื่องคุณเอง
+และอีกเรื่องคือบอกไปสักหน่อยแล้วกันว่าใช้ AI ช่วยซะเยอะเลย 555 เราต้องยอมรับความจริงใจยุคใหม่นี้ / ภาพที่สี่คือเปลี่ยนไม๊
+มันไม่เกี่ยวกับเว็บเราอ่ะ / จริง ๆ คือเราก็เอาโปรเจก Studio เราไปแปะใน Live Project เราก็ได้นี่ใช่มะ"
+
+1. **In-page links glide.** The hero's three buttons, the nav, the scroll cue, the skip link and the terminal's
+   "hire card" link scroll smoothly to their place instead of jumping (components/Behaviours.tsx). The heading lands
+   below the glass bar (scroll-padding-top). The address gets its `#part`, Back returns, and focus moves to the
+   section, so Tab carries on from there. Reduce motion: the plain jump.
+2. **The third figure is VTX Labs's tool count (85),** "free tools on VTX Labs, all in your browser", in place of
+   "6 database engines in one window (Lapis)". It's read from vtxlabs.app's home page while the page is built
+   (lib/labs.ts), so it follows Labs. If Labs can't be read, the count last checked by hand stands (85, 19 Nov 2026,
+   `LABS_TOOLS`). It counts up like the other three.
+3. **The family:**
+   - Each personal build (Cuprum, Lux, Mercurius, Crystallum, as Labs lists them) says "Sorry, you'll probably never
+     get to use this one 😏" / "ไม่แจกนะจ๊ะ คงไม่มีโอกาสได้ใช้หรอก 😏". "Probably", because Labs says not for sale,
+     maybe not for a long time.
+   - Under the stack: "No account. No cloud. No tracking." He asked for "offline 100%", which isn't true today, so
+     it's worded the way Labs words it after reading each app's code (vtx-labs content/offline.ts). Everything they
+     keep stays on your machine; they go online only for what you connect them to or ask them to do; four of them
+     (Lapis, Fulmen, Silva, Ventus) check for updates once a day, which you can turn off. When those four's releases
+     ask first (Labs's O1C), drop that clause.
+   - Beside it: "Built with a LOT of AI help. Claude Code and friends. It's 2026, I'm not hiding it." The footer now
+     says "a lot of help from my AI friends".
+4. **The hire card's orb is gone** (it's VTX Studio's motif). In its place, his hello_world terminal types the easter
+   egg's `sudo hire-me` → "✓ Access granted. Let's talk." It's drawn finished and types once as the card comes into
+   view, only with script and without Reduce motion. On phones it sits under the email. The orb's parallax went with it.
+5. **VTX Studio in Live projects,** across both columns, marked "opening soon", with the hire card's words, its stack
+   from its package.json, and its own orb. No link and no address: it has no domain and nothing deployed yet. It
+   isn't counted in "2 web apps live today". The day it goes live it moves into `WEB`, with its link. The live
+   section's line adds "(and one opening soon)".
+
+Checked in headless Chrome on his Mac:
+- Smooth scroll on all three hero buttons, the nav and the scroll cue, in both languages. Keyboard (Enter, then Tab
+  lands inside the section), Back, and Reduce motion (at the place within 40 ms).
+- CLS while scrolling the whole page: 0 on desktop, 0.0008 on a phone. Frame time unchanged (~16.7 ms mean, with
+  everything on or off).
+- No console errors. No horizontal overflow at 1280 / 1024 / 768 / 390 in either theme. Nothing animates under Reduce
+  motion.
+
