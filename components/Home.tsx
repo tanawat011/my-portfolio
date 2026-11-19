@@ -2,6 +2,9 @@ import Link from "next/link";
 import { APPS, hasCase, labsUrl } from "@/content/apps";
 import { ABILITIES, ABOUT, FUN, HERO, INSIDE, LIVE, PROJECTS, RESUME, UPTIME, VTX, WEAPONS } from "@/content/home";
 import { CVS, href, LINKS, STORY, T, WEB, yearsSince, type Lang } from "@/content/site";
+import CV_META from "@/content/cvs.json";
+import { repoFacts } from "@/lib/github";
+import { CvCard, PjCard, type CvVersion } from "./Cards";
 import { Band } from "./Band";
 import { Arr, Footer, Nav, OldHead } from "./Frame";
 import { Icon } from "./Icons";
@@ -24,8 +27,20 @@ const fill = (s: string, y: number) => s.replace("{y}", String(y));
  * hero → uptime (round 1's band and the real figures) → about (abilities, the round photo, round 1's story rail,
  * the weapons) → the VTX family → resume → projects → live → fun facts (jokes only) → round 1's hire card.
  */
-export function Home({ lang }: { lang: Lang }) {
+const day = (iso: string, lang: Lang) =>
+  new Intl.DateTimeFormat(lang === "th" ? "th-TH-u-ca-gregory" : "en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }).format(new Date(`${iso}T00:00:00Z`));
+
+export async function Home({ lang }: { lang: Lang }) {
   const y = yearsSince();
+  const facts = await Promise.all(PROJECTS.items.map((p) => repoFacts("tanawat011", p.repo)));
+  const cvStyles = ["Modern", "Minimal"].map((style) => ({
+    style,
+    versions: (["full", "short"] as const).map((len): CvVersion => {
+      const c = CVS.find((x) => x.style === style && x.len === len)!, m = (CV_META as Record<string, { pages: number; bytes: number; made: string; thumb: string; w: number; h: number }>)[`${style}-${len}`];
+      return { len, label: RESUME.len[len][lang], quip: RESUME.quips[`${style}-${len}`][lang], pdf: c.pdf, thumb: m.thumb, w: m.w, h: m.h, pages: m.pages, size: `${Math.round(m.bytes / 1024)} KB`, made: day(m.made, lang),
+        alt: RESUME.preview[lang].replace("{s}", style).replace("{l}", RESUME.len[len][lang]) };
+    }),
+  }));
   return (
     <>
       <Nav lang={lang} path="/" />
@@ -238,35 +253,10 @@ export function Home({ lang }: { lang: Lang }) {
         <section className="o-sec o-alt" id="resume" aria-labelledby="cv-h">
           <div className="o-wrap">
             <OldHead pre={RESUME.pre[lang]} grad={RESUME.grad[lang]} sub={RESUME.sub[lang]} id="cv-h" />
-            <ul className="o-cv">
-              {CVS.map((c, i) => {
-                const it = RESUME.items[`${c.style}-${c.len}`];
-                return (
-                  <li className={`o-card hov rv cv-${i}`} key={c.pdf} style={{ "--d": `${i * 0.1}s` } as React.CSSProperties}>
-                    <i className="bar" aria-hidden="true" />
-                    <div className="cv-in">
-                      <div className="cv-t">
-                        <span className="emo" aria-hidden="true">
-                          {it.emoji}
-                        </span>
-                        <div>
-                          <h3>{c.style}</h3>
-                          <span>
-                            {T.cvLen[c.len][lang]} {RESUME.version[lang]}
-                          </span>
-                        </div>
-                      </div>
-                      <p>{it.d[lang]}</p>
-                      <a className="p-btn p-btn-gh p-btn-sm" href={encodeURI(c.pdf)} download data-count="cv" data-c-style={c.style.toLowerCase()} data-c-len={c.len}>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                          <path d="M12 4v11m0 0-4-4m4 4 4-4M5 19h14" />
-                        </svg>
-                        {RESUME.dl[lang]}
-                      </a>
-                    </div>
-                  </li>
-                );
-              })}
+            <ul className="o-cvx">
+              {cvStyles.map((c, i) => (
+                <CvCard key={c.style} i={i} style={c.style} blurb={RESUME.styles[c.style][lang]} versions={c.versions} lenLabel={RESUME.lenLabel[lang]} dl={RESUME.dl[lang]} pagesWord={RESUME.pages[lang]} sizeWord={lang === "th" ? "ขนาด" : "size"} madeWord={RESUME.made[lang]} />
+              ))}
             </ul>
           </div>
         </section>
@@ -274,29 +264,25 @@ export function Home({ lang }: { lang: Lang }) {
         <section className="o-sec" id="portfolio" aria-labelledby="pf-h">
           <div className="o-wrap">
             <OldHead pre={PROJECTS.pre[lang]} grad={PROJECTS.grad[lang]} sub={PROJECTS.sub[lang]} id="pf-h" />
-            <ul className="o-proj">
-              {PROJECTS.items.map((p, i) => (
-                <li className={`o-card hov rv pj-${i}`} key={p.repo} style={{ "--d": `${i * 0.12}s` } as React.CSSProperties}>
-                  <i className="bar" aria-hidden="true" />
-                  <div className="pj-in">
-                    <div className="pj-t">
-                      <span className="emo" aria-hidden="true">
-                        {p.emoji}
-                      </span>
-                      <h3>{p.name}</h3>
-                      <span className="pj-arr" aria-hidden="true">
-                        ↗
-                      </span>
-                    </div>
-                    <p>{p.d[lang]}</p>
-                    <ul className="o-tags">
-                      {p.tags.map((t) => (
-                        <li key={t}>{t}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <a className="stretch" href={`${LINKS.github}/${p.repo}`} aria-label={`${p.name} on GitHub`} />
+            <ul className="tagkey rv" aria-label={lang === "th" ? "สีของป้าย" : "Tag colours"}>
+              {(["lang", "framework", "data", "ops"] as const).map((k) => (
+                <li key={k} className={`t-${k}`}>
+                  {PROJECTS.kinds[k][lang]}
                 </li>
+              ))}
+            </ul>
+            <ul className="o-pjx">
+              {PROJECTS.items.map((p, i) => (
+                <PjCard
+                  key={p.repo}
+                  i={i}
+                  p={{
+                    name: p.name, repo: p.repo, mark: p.mark, url: `${LINKS.github}/${p.repo}`, d: p.d[lang], clone: `git clone ${LINKS.github}/${p.repo}.git`,
+                    tags: p.tags.map(([tt, kind]) => ({ t: tt, kind, kindLabel: PROJECTS.kinds[kind][lang] })),
+                    ...facts[i], pushed: facts[i].pushed ? day(facts[i].pushed!, lang) : undefined,
+                  }}
+                  w={{ updated: PROJECTS.updated[lang], stars: PROJECTS.stars[lang], open: PROJECTS.open[lang], copy: PROJECTS.copy[lang], copied: PROJECTS.copied[lang], peek: PROJECTS.peek[lang], close: PROJECTS.close[lang], langs: PROJECTS.langs[lang] }}
+                />
               ))}
             </ul>
           </div>

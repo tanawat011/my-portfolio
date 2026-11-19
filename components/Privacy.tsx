@@ -38,6 +38,8 @@ export function Privacy({ lang }: { lang: Lang }) {
             <ul>
               <li>{th ? "ฟอนต์ Plus Jakarta Sans, Kanit, Noto Sans Thai และ JetBrains Mono ใช้ SIL Open Font License 1.1" : "Fonts: Plus Jakarta Sans, Kanit, Noto Sans Thai and JetBrains Mono, under the SIL Open Font License 1.1."}</li>
               <li>{th ? "Next.js และ React ใช้ MIT License" : "Next.js and React, under the MIT License."}</li>
+              <li>{th ? "สัญลักษณ์ Go, Node.js และ NestJS จาก Simple Icons (CC0) เครื่องหมายเป็นของเจ้าของแต่ละราย ใช้เพื่อบอกว่าโปรเจกต์สร้างด้วยอะไร" : "The Go, Node.js and NestJS marks come from Simple Icons (CC0); the marks belong to their owners and only name what each project is built with."}</li>
+              <li>{th ? "ดาว ภาษา และโฟลเดอร์ของโปรเจกต์บน GitHub อ่านจาก GitHub ตอนสร้างเว็บ ไม่ใช่จากเบราว์เซอร์ของคุณ" : "The projects' stars, languages and folders are read from GitHub when the site is built, never from your browser."}</li>
             </ul>
             <h2>{th ? "ติดต่อ" : "Contact"}</h2>
             <p>

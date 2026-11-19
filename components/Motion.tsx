@@ -240,7 +240,7 @@ export function Gallery({ shots, app, label }: { shots: { k: string; t: string; 
   };
   return (
     <div className="gal">
-      <figure className={`gal-fig rv${swap ? " is-swap" : ""}`}>
+      <figure className="gal-fig rv" data-swap={swap ? "" : undefined}>
         <Shot key={cur.k} k={cur.k} alt={`${app}: ${cur.t}`} sizes="(min-width: 900px) 62vw, 100vw" />
       </figure>
       <div className="gal-tabs" role="group" aria-label={label}>

@@ -59,3 +59,25 @@ So the old site is the base again, in G's colours and type, with those three kep
 - **Fun Facts are back,** as the old jokes, only in their own block; the real figures stay computed and tested apart.
 - **Still out:** GitHub stats (round 1), the dead CraftCV view links (PDFs only), the "My Portfolio" card (11A), the
   "coming" web apps.
+
+## Round 3a (19 Nov 2026)
+
+The owner, verbatim (through VTX Develop): "portfolio ตอนนี้แจ่มเลย … ส่วน skill, ตั้งแต่มาอยู่ [ที่ทำงานปัจจุบัน] ก็ได้จับ java kotlin เพิ่มครับ
+ฝากใส่เพิ่มไปให้หน่อยนะ / เอา OpenClaw ออกไปซะ / Dev Tools แปะ vscode กับ intelij ไปด้วย / และไอ่กล่องในภาพนั่นทำให้มันดูน่าสนใจกว่านี้ได้ไม๊นะ".
+
+- **Skills:** Java and Kotlin join "Also speak". OpenClaw is gone from AI Tools. VS Code and IntelliJ IDEA join Dev
+  Tools. Nothing says where he uses them (the no-client-names rule still holds; the workplace is redacted from the quote).
+- **Resume box:** one card per style with a Full ⇄ Short switch. The paper is each PDF's real first page, and the sheets
+  behind it match its real page count; it lifts out of a sleeve on hover. Each card has a one-liner, plus the PDF's own
+  page count, size and creation date. `scripts/cv-meta.py` reads all of these from the PDFs, and a test fails if a PDF
+  changes without it being re-run.
+  - The preview is 240 px tall on purpose. At a readable size, page one shows his phone number and the names of past
+    employers and client products. The PDFs themselves still carry them, so that's the owner's call.
+  - The short versions are 2 pages, not one, so the old "One-page" label is gone.
+- **Projects box:** each card has its stack's mark (Simple Icons, CC0) and pills tinted by kind (language, framework,
+  data, auth & ops). GitHub's own stars, last push date and language bar are read at build time and once a day after,
+  never from the visitor's browser; anything that fails to load is left out. Each card also has a `git clone` line with
+  Copy, and a "Peek inside" panel showing the repo's real top-level folders.
+- **Fixed in passing:** state toggles now use a data attribute, never the class list. React had been rewriting the class
+  list of cards that fade in on scroll, so "Peek inside" and the case-page screenshot tabs made their own card vanish.
+  A test now guards this.

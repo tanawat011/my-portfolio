@@ -1,0 +1,42 @@
+{
+  "Modern-full": {
+    "pdf": "/Modern.pdf",
+    "pages": 3,
+    "bytes": 373766,
+    "made": "2026-03-17",
+    "sha256": "511afc879455abf4b3a0f58c59b4b6f0858c3a445e48c36eb0bbe8dd936df068",
+    "thumb": "/cv/modern-full.jpg",
+    "w": 169,
+    "h": 240
+  },
+  "Modern-short": {
+    "pdf": "/Modern Short.pdf",
+    "pages": 2,
+    "bytes": 318724,
+    "made": "2026-03-17",
+    "sha256": "ae881a99fed4f58069d771b09b39750ad1809b080bff91a9ae8ea09badfdc4c3",
+    "thumb": "/cv/modern-short.jpg",
+    "w": 169,
+    "h": 240
+  },
+  "Minimal-full": {
+    "pdf": "/minimal.pdf",
+    "pages": 3,
+    "bytes": 272691,
+    "made": "2026-03-17",
+    "sha256": "5de388f6e58ec95ba127d590df87bf82cd7133db512c161eb6da8648ac141648",
+    "thumb": "/cv/minimal-full.jpg",
+    "w": 169,
+    "h": 240
+  },
+  "Minimal-short": {
+    "pdf": "/minimal short.pdf",
+    "pages": 2,
+    "bytes": 218069,
+    "made": "2026-03-17",
+    "sha256": "88151f0b6538711e6ac9ef711f2700ffd6ffb44df2310ffb90010fcae1d4216b",
+    "thumb": "/cv/minimal-short.jpg",
+    "w": 169,
+    "h": 240
+  }
+}

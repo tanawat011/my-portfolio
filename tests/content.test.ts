@@ -103,3 +103,33 @@ test("round 2: the jokes stay jokes, the real figures stay real, never mixed", (
   // the four real figures are computed from data, not typed in the jokes block
   expect(FUN.items.map((f) => f.v.en)).toEqual(["∞", "9,999+", "0", "AI-assisted", "Too many", "∞"]);
 });
+
+test("round 3a: the resume cards' facts and previews come from the PDFs as they are now", async () => {
+  const meta = (await import("../content/cvs.json")).default as Record<string, { pdf: string; pages: number; bytes: number; sha256: string; thumb: string }>;
+  const { createHash } = await import("node:crypto");
+  expect(Object.keys(meta).sort()).toEqual(["Minimal-full", "Minimal-short", "Modern-full", "Modern-short"]);
+  for (const m of Object.values(meta)) {
+    const data = readFileSync(pub(m.pdf.slice(1)));
+    expect([m.pdf, createHash("sha256").update(data).digest("hex")]).toEqual([m.pdf, m.sha256]); // re-run scripts/cv-meta.py
+    expect(m.bytes).toBe(data.length);
+    expect(existsSync(pub(m.thumb.slice(1)))).toBe(true);
+    expect(m.pages).toBeGreaterThan(0);
+  }
+});
+
+test("round 3a: the skills he asked for", async () => {
+  const { WEAPONS } = await import("../content/home");
+  const all = JSON.stringify(WEAPONS);
+  expect(all).not.toContain("OpenClaw");
+  for (const s of ["Java", "Kotlin", "VS Code", "IntelliJ IDEA"]) expect(all).toContain(s);
+});
+
+test("a reveal (.rv) element never gets a className that React changes later", () => {
+  // Behaviours adds "is-in" to .rv elements by hand; if React rewrites that className (a state toggle), "is-in" is lost
+  // and the element fades back to opacity 0. Toggle state with a data attribute instead.
+  const dir = join(import.meta.dir, "..", "components");
+  for (const f of readdirSync(dir).filter((n) => n.endsWith(".tsx"))) {
+    const dynamicRv = [...readFileSync(join(dir, f), "utf8").matchAll(/className=\{`([^`]*)`\}/g)].filter((m) => /(^|\s)rv(\s|$|\$)/.test(m[1]) && /\$\{[^}]*\?/.test(m[1]));
+    expect([f, dynamicRv.map((m) => m[1])]).toEqual([f, []]);
+  }
+});

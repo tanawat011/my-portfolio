@@ -59,11 +59,11 @@ export const ABILITIES: { icon: string; t: Text; d: Text }[] = [
 /** The old site's skills cards, as they were (About.tsx). */
 export const WEAPONS: { t: Text; d: Text; items: { k: Text; v: string }[] }[] = [
   { t: { en: "AI — Always On", th: "AI เปิดตลอด" }, d: { en: "AI is part of my daily workflow — coding, reviewing, and shipping with it.", th: "AI อยู่ในงานทุกวัน ทั้งเขียนโค้ด รีวิว และส่งงาน" },
-    items: [{ k: { en: "Models", th: "โมเดล" }, v: "Claude, Gemini, GPT" }, { k: { en: "Tools", th: "เครื่องมือ" }, v: "OpenClaw, Cursor, Antigravity" }] },
+    items: [{ k: { en: "Models", th: "โมเดล" }, v: "Claude, Gemini, GPT" }, { k: { en: "Tools", th: "เครื่องมือ" }, v: "Cursor, Antigravity" }] },
   { t: { en: "Current Stack", th: "Stack ตอนนี้" }, d: { en: "My daily driver — what I'm actively building with right now. 🔥", th: "ของที่ขับทุกวัน กำลังสร้างด้วยอยู่ตอนนี้ 🔥" },
     items: [{ k: { en: "Desktop", th: "เดสก์ท็อป" }, v: "Rust, Tauri 2, React, TypeScript" }, { k: { en: "Web", th: "เว็บ" }, v: "Next.js, React, Tailwind, shadcn/ui" }, { k: { en: "Backend & Infra", th: "Backend และ Infra" }, v: "Supabase, PostgreSQL, SQLite, Vercel, Bun, Docker" }] },
   { t: { en: "Languages", th: "ภาษา" }, d: { en: "The weapons I fight with.", th: "อาวุธที่ใช้ออกรบ" },
-    items: [{ k: { en: "Primary", th: "หลัก" }, v: "TypeScript, Rust" }, { k: { en: "Also speak", th: "พูดได้อีก" }, v: "JavaScript, Go, Python, PHP, Swift, Dart" }, { k: { en: "Markup & Style", th: "Markup และ Style" }, v: "HTML5, CSS3" }] },
+    items: [{ k: { en: "Primary", th: "หลัก" }, v: "TypeScript, Rust" }, { k: { en: "Also speak", th: "พูดได้อีก" }, v: "JavaScript, Go, Java, Kotlin, Python, PHP, Swift, Dart" }, { k: { en: "Markup & Style", th: "Markup และ Style" }, v: "HTML5, CSS3" }] },
   { t: { en: "Desktop", th: "เดสก์ท็อป" }, d: { en: "Apps that live on your Mac, not in a tab. 🖥️", th: "แอปที่อยู่บน Mac ไม่ใช่ในแท็บเบราว์เซอร์ 🖥️" },
     items: [{ k: { en: "Core", th: "หลัก" }, v: "Tauri 2, Rust (tokio, sqlx), React" }, { k: { en: "Native bits", th: "ของ native" }, v: "Keychain, URL schemes, SSH, RDP, SwiftUI" }] },
   { t: { en: "Web Frameworks & UI", th: "เว็บและ UI" }, d: { en: "Building pixel-perfect UIs since forever.", th: "ไล่ pixel ให้ตรงมาตั้งแต่ไหนแต่ไร" },
@@ -75,7 +75,7 @@ export const WEAPONS: { t: Text; d: Text; items: { k: Text; v: string }[] }[] = 
   { t: { en: "Cloud & Platforms", th: "Cloud และ Platform" }, d: { en: "Deploying things to the cloud at 3 AM.", th: "deploy ขึ้น cloud ตอนตีสาม" },
     items: [{ k: { en: "Providers", th: "ผู้ให้บริการ" }, v: "GCP, Firebase, Supabase, Vercel" }, { k: { en: "Infra", th: "Infra" }, v: "Nginx, WordPress" }] },
   { t: { en: "DevOps & Tools", th: "DevOps และเครื่องมือ" }, d: { en: "The toolbox behind the scenes.", th: "กล่องเครื่องมือหลังบ้าน" },
-    items: [{ k: { en: "Containers", th: "Containers" }, v: "Docker, Nginx" }, { k: { en: "Package & Runtime", th: "Package และ Runtime" }, v: "Git, npm, Yarn, Bun" }, { k: { en: "Dev Tools", th: "Dev Tools" }, v: "Antigravity, Cursor, Xcode" }, { k: { en: "Services", th: "Services" }, v: "Sentry, Resend, ngrok, Line OA" }] },
+    items: [{ k: { en: "Containers", th: "Containers" }, v: "Docker, Nginx" }, { k: { en: "Package & Runtime", th: "Package และ Runtime" }, v: "Git, npm, Yarn, Bun" }, { k: { en: "Dev Tools", th: "Dev Tools" }, v: "Antigravity, Cursor, VS Code, IntelliJ IDEA, Xcode" }, { k: { en: "Services", th: "Services" }, v: "Sentry, Resend, ngrok, Line OA" }] },
 ];
 
 export const VTX = {
@@ -113,26 +113,48 @@ export const RESUME = {
   pre: { en: "My", th: "Resume" },
   grad: { en: "Resume", th: "ของผม" },
   sub: { en: "Pick a style, pick a length. Grab the PDF — your call. 🤙", th: "เลือกแบบ เลือกความยาว แล้วโหลด PDF ไปเลย ตามสะดวก 🤙" },
-  version: { en: "version", th: "" },
+  len: { full: { en: "Full", th: "เต็ม" }, short: { en: "Short", th: "สั้น" } },
+  lenLabel: { en: "Length", th: "ความยาว" },
   dl: { en: "Download PDF", th: "โหลด PDF" },
-  items: {
-    "Modern-full": { emoji: "📄", d: { en: "Detailed resume with complete work history, skills breakdown, and project highlights.", th: "resume แบบละเอียด ประวัติการทำงานครบ แยกทักษะ และงานเด่น" } },
-    "Modern-short": { emoji: "⚡", d: { en: "One-page summary — quick and clean overview of experience and skills.", th: "สรุปหน้าเดียว ดูประสบการณ์และทักษะได้ไวและสะอาดตา" } },
-    "Minimal-full": { emoji: "🧾", d: { en: "Clean, no-nonsense layout with all the details. Let the content do the talking.", th: "เลย์เอาต์เรียบ ไม่อ้อมค้อม รายละเอียดครบ ให้เนื้อหาพูดเอง" } },
-    "Minimal-short": { emoji: "📝", d: { en: "Ultra-compact. Just the highlights. Perfect for a quick scan.", th: "สั้นสุด ๆ เฉพาะไฮไลต์ เหมาะกับการกวาดตาดูเร็ว ๆ" } },
-  } as Record<string, { emoji: string; d: Text }>,
+  pages: { en: "pages", th: "หน้า" },
+  made: { en: "made", th: "ทำเมื่อ" },
+  preview: { en: "First page of the {s} resume, {l} version", th: "หน้าแรกของ resume แบบ {s} ฉบับ{l}" },
+  styles: {
+    Modern: { en: "Dark sidebar, a splash of green.", th: "แถบข้างสีเข้ม แต้มเขียวนิดหน่อย" },
+    Minimal: { en: "Black on white. Nothing else.", th: "ดำบนขาว แค่นั้นเลย" },
+  } as Record<string, Text>,
+  quips: {
+    "Modern-full": { en: "The director's cut. Every job, every stack, three pages of it.", th: "ฉบับ director's cut ครบทุกงาน ทุก stack จัดเต็มสามหน้า" },
+    "Modern-short": { en: "The trailer. Same story, one page less.", th: "ฉบับตัวอย่างหนัง เรื่องเดิม สั้นลงหนึ่งหน้า" },
+    "Minimal-full": { en: "All the details, none of the decoration.", th: "รายละเอียดครบ ไม่มีของตกแต่ง" },
+    "Minimal-short": { en: "For recruiters with a coffee in the other hand.", th: "สำหรับ HR ที่ถือกาแฟอยู่อีกมือ" },
+  } as Record<string, Text>,
 };
 
+/** Tags are checked against each repo (go.mod, package.json, prisma/schema.prisma), grouped by kind. */
+export type TagKind = "lang" | "framework" | "data" | "ops";
 export const PROJECTS = {
   pre: { en: "My", th: "โปรเจกต์" },
   grad: { en: "Projects", th: "ของผม" },
   sub: { en: "Open source, on GitHub. Clone away.", th: "Open source บน GitHub เอาไปใช้ได้เลย" },
+  kinds: { lang: { en: "language", th: "ภาษา" }, framework: { en: "framework", th: "framework" }, data: { en: "data", th: "ข้อมูล" }, ops: { en: "auth & ops", th: "auth และ ops" } } as Record<TagKind, Text>,
+  updated: { en: "Updated", th: "อัปเดต" },
+  stars: { en: "stars on GitHub", th: "ดาวบน GitHub" },
+  open: { en: "Open on GitHub", th: "เปิดบน GitHub" },
+  copy: { en: "Copy", th: "ก๊อป" },
+  copied: { en: "Copied", th: "ก๊อปแล้ว" },
+  peek: { en: "Peek inside", th: "แอบดูข้างใน" },
+  close: { en: "Close", th: "ปิด" },
+  langs: { en: "Languages", th: "ภาษาในโปรเจกต์" },
   items: [
-    { name: "Golang Boilerplate", repo: "golang-boilerplate", emoji: "🔷", tags: ["Go", "Gin", "GORM", "JWT", "Docker", "PostgreSQL"],
+    { name: "Golang Boilerplate", repo: "golang-boilerplate", mark: "go",
+      tags: [["Go", "lang"], ["Gin", "framework"], ["GORM", "data"], ["PostgreSQL", "data"], ["JWT", "ops"], ["Docker", "ops"]] as [string, TagKind][],
       d: { en: "Production-ready Go REST API boilerplate with Clean Architecture, Gin, GORM, JWT, and Docker.", th: "Go REST API boilerplate พร้อมใช้งานจริง Clean Architecture, Gin, GORM, JWT และ Docker" } },
-    { name: "Node.js Boilerplate", repo: "nodejs-boilerplate", emoji: "🟢", tags: ["TypeScript", "Express", "Prisma", "JWT", "Docker", "MySQL"],
+    { name: "Node.js Boilerplate", repo: "nodejs-boilerplate", mark: "node",
+      tags: [["TypeScript", "lang"], ["Express", "framework"], ["Prisma", "data"], ["MySQL", "data"], ["JWT", "ops"], ["Docker", "ops"]] as [string, TagKind][],
       d: { en: "Production-ready Node.js REST API boilerplate with TypeScript, Express, Prisma, JWT, and MySQL.", th: "Node.js REST API boilerplate พร้อมใช้งานจริง TypeScript, Express, Prisma, JWT และ MySQL" } },
-    { name: "NestJS Boilerplate", repo: "nestjs-boilerplate", emoji: "🔴", tags: ["NestJS", "TypeScript", "TypeORM", "PostgreSQL", "JWT", "Docker", "Swagger"],
+    { name: "NestJS Boilerplate", repo: "nestjs-boilerplate", mark: "nest",
+      tags: [["TypeScript", "lang"], ["NestJS", "framework"], ["TypeORM", "data"], ["PostgreSQL", "data"], ["JWT", "ops"], ["Swagger", "ops"], ["Docker", "ops"]] as [string, TagKind][],
       d: { en: "Production-ready NestJS 11 boilerplate with TypeORM, PostgreSQL, JWT auth, Swagger, and Docker.", th: "NestJS 11 boilerplate พร้อมใช้งานจริง TypeORM, PostgreSQL, JWT auth, Swagger และ Docker" } },
   ],
 };
