@@ -26,6 +26,8 @@ const DOTS = Array.from({ length: 40 }, (_, i) => ({
   de: seed(i * 17 + 4) * 2,
 }));
 const fill = (s: string, y: number) => s.replace("{y}", String(y));
+/** The resume the recruiters' card hands over: the full Modern one (all four are in #resume). */
+const HIRE_CV = CVS.find((c) => c.style === "Modern" && c.len === "full")!;
 
 /**
  * Round 2 (owner, 19 Nov 2026): the old site is the base, in G, in his own voice. Him first, the work as proof:
@@ -433,15 +435,21 @@ export async function Home({ lang }: { lang: Lang }) {
         <section className="o-sec flush" id="hire" aria-labelledby="hire-h">
           <div className="o-wrap">
             <div className="p-hire rv">
+              {/* for HR, recruiters and headhunters, not clients (content/site.ts, hireK) */}
               <div>
+                <p className="hire-k">{T.hireK[lang]}</p>
                 <h2 id="hire-h">{T.hireH[lang]}</h2>
                 <p>{T.hireP[lang]}</p>
+                <p className="hire-facts">{fill(T.hireFacts[lang], y)}</p>
                 <div className="acts">
-                  <span className="studio">
-                    VTX Studio <span className="p-soon">{T.soon[lang]}</span>
-                  </span>
                   <a className="p-btn p-btn-inv" href={`mailto:${LINKS.email}`}>
                     {T.emailMe[lang]} <Arr />
+                  </a>
+                  <a className="p-btn p-btn-ghd" href={LINKS.linkedin}>
+                    LinkedIn <Arr c="↗" />
+                  </a>
+                  <a className="p-btn p-btn-ghd" href={encodeURI(HIRE_CV.pdf)} download data-count="cv" data-c-style="modern" data-c-len="full">
+                    📄 {T.cvPdf[lang]}
                   </a>
                 </div>
                 <span className="mail">{LINKS.email}</span>

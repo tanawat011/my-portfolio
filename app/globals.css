@@ -176,8 +176,12 @@ background:var(--bg);color:var(--t2);font:400 16.5px/1.72 var(--fb);-webkit-font
 .pv .p-hire h2:lang(th){line-height:1.3}
 .pv .p-hire p{margin-top:14px;max-width:36em;color:var(--panel-m);font-size:17px}
 .pv .p-hire .acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;align-items:center}
-.pv .p-hire .studio{display:inline-flex;align-items:center;gap:12px;min-height:50px;padding:0 10px 0 22px;border-radius:999px;font:600 16px/1 var(--fh);color:#a3a9b3;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
-.pv .p-hire .p-soon{color:#a3a9b3;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+/* the card for HR, recruiters and headhunters: its panel is dark in both themes, so its own outline buttons are light */
+.pv .p-hire .hire-k{margin:0 0 14px;font:500 13.5px/1.4 var(--fm);color:#7cc8ff}
+.pv .p-hire .hire-facts{margin-top:14px;font:500 13.5px/1.5 var(--fm);color:#a3a9b3}
+.pv .p-btn-ghd{color:#f5f6f8;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+.pv .p-btn-ghd:hover{background-color:rgba(255,255,255,.08)}
+.pv .p-btn-ghd:focus-visible{outline-color:#f5f6f8}
 .pv .p-hire .mail{display:block;margin-top:14px;font:500 14px/1.4 var(--fm);color:#a3a9b3}
 .pv .orbc{position:relative;width:clamp(120px,18cqi,220px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 36% 30%,#3b3f49,#16181d 52%,#07080a);box-shadow:0 0 80px -10px rgba(124,200,255,.35),0 0 120px -30px rgba(142,151,255,.4)}
 .pv .orbc::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 200deg,#7cc8ff,#8e97ff,#eef5ff,#8e97ff,#7cc8ff);-webkit-mask-image:radial-gradient(circle at 46% 44%,transparent 46%,#000 74%);mask-image:radial-gradient(circle at 46% 44%,transparent 46%,#000 74%)}
@@ -271,6 +275,7 @@ background:var(--bg);color:var(--t2);font:400 16.5px/1.72 var(--fb);-webkit-font
 .pv .feats{grid-template-columns:minmax(0,1fr)}
 .pv .p-hire,.pv .getit{grid-template-columns:minmax(0,1fr);border-radius:28px}
 .pv .p-hire .htw{width:100%;max-width:420px}
+.pv .p-hire .acts .p-btn{flex:1 1 auto}
 .pv .gal{grid-template-columns:minmax(0,1fr)}
 .pv .gal-tabs{display:flex;overflow-x:auto;gap:8px;padding-bottom:4px}
 .pv .gal-tab{flex:0 0 76%}

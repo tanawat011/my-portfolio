@@ -322,8 +322,7 @@ test("last notes: Studio is in Live projects as opening soon, with no link, and 
   const { LIVE } = await import("../content/home");
   expect(WEB.map((w) => w.id)).not.toContain("studio");
   expect("url" in STUDIO || "host" in STUDIO).toBe(false);
-  // the hire card's own words
-  expect(T.hireP.en).toContain("back offices, web apps, mobile apps and LINE bots, from a prototype you can click to a handover with documents");
+  // the words the hire card used for Studio, before the card turned to recruiters
   expect(STUDIO.line.en).toContain("back offices, web apps, mobile apps and LINE bots, from a prototype you can click to a handover with documents");
   expect(LIVE.tags[STUDIO.id]).toEqual(["Next.js", "React", "TypeScript", "three.js"]);
   const home = readFileSync(join(import.meta.dir, "..", "components/Home.tsx"), "utf8");
@@ -351,4 +350,27 @@ test("last notes: links to a place on the page glide there, jump under Reduce mo
   expect(src).toContain('behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"');
   expect(src).toContain("to.focus({ preventScroll: true })");
   expect(readFileSync(join(import.meta.dir, "..", "app/globals.css"), "utf8")).toMatch(/html\{scroll-padding-top:96px/);
+});
+
+test("the hire card is for HR, recruiters and headhunters, with real links and no business pitch", async () => {
+  const { HIRE_TERM, TERM } = await import("../content/home");
+  // "ทำเป็นให้ HR, recruiter, hunter อะไรมาติดต่อผมดีกว่านะ ไม่ใช่ไปทำธุระกิจกับผม 555"
+  for (const l of ["en", "th"] as const) {
+    const card = [T.hireK[l], T.hireH[l], T.hireP[l], T.hireFacts[l], HIRE_TERM.ok[l]].join(" ");
+    expect(card).not.toMatch(/business|client|Studio|ธุรกิจ|ลูกค้า|คุยงาน/i);
+    expect(T.hireK[l]).toMatch(/HR/);
+    expect(T.hireK[l]).toMatch(/headhunter/);
+  }
+  // the joke, as he put it
+  expect(T.hireP.th).toContain("ตรงนี้ผมจริงจังนะ ช่วยรับผมไว้พิจารณาด้วยเถอะ");
+  expect(TERM.hire.th.join(" ")).toContain("ผมจริงจัง");
+  expect(TERM.hire.en[0]).toContain("recruiter");
+  const home = readFileSync(join(import.meta.dir, "..", "components/Home.tsx"), "utf8");
+  const hire = home.slice(home.indexOf('id="hire"'));
+  expect(hire).not.toContain("p-soon");
+  expect(hire).not.toContain("VTX Studio");
+  for (const a of ["mailto:${LINKS.email}", "LINKS.linkedin", "HIRE_CV.pdf"]) expect(hire).toContain(a);
+  // every number in the facts line is computed (years), and the resume it hands over exists
+  expect(T.hireFacts.en).toContain("{y}");
+  expect(existsSync(pub("Modern.pdf"))).toBe(true);
 });

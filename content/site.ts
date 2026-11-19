@@ -65,7 +65,8 @@ export const LABS_TOOLS = { n: 85, asOf: "2026-11-19" } as const;
 /**
  * Opening soon (owner, 19 Nov 2026: "เราก็เอาโปรเจก Studio เราไปแปะใน Live Project เราก็ได้นี่ใช่มะ"). Studio has no
  * domain and nothing deployed yet, so it has no link and no address here until the day it goes live; then it moves
- * into WEB. Its words are the hire card's (T.hireP). It is not counted among the web apps that are live.
+ * into WEB. Its words are the ones the hire card used for Studio until the card turned to recruiters (19 Nov 2026).
+ * It is not counted among the web apps that are live.
  */
 export const STUDIO = {
   id: "studio",
@@ -93,7 +94,7 @@ export const STORY: { y: Text; h: Text; p: Text[] }[] = [
 export const T = {
   skip: { en: "Skip to content", th: "ข้ามไปที่เนื้อหา" },
   home: { en: "Tanawat Pinthongpan, home", th: "Tanawat Pinthongpan หน้าแรก" },
-  nav: { work: { en: "Work", th: "งาน" }, about: { en: "About", th: "เกี่ยวกับ" }, resume: { en: "Resume", th: "Resume" }, hire: { en: "Work with me", th: "คุยงาน" } },
+  nav: { work: { en: "Work", th: "งาน" }, about: { en: "About", th: "เกี่ยวกับ" }, resume: { en: "Resume", th: "Resume" }, hire: { en: "For recruiters", th: "สำหรับ HR" } },
   langLink: { en: "TH", th: "EN" },
   langName: { en: "ภาษาไทย", th: "English" },
   theme: { en: "Switch light or dark", th: "สลับธีมสว่าง / มืด" },
@@ -145,11 +146,19 @@ export const T = {
     short: { en: "One page, just the highlights", th: "หน้าเดียว เฉพาะเรื่องสำคัญ" },
   },
   openPdf: { en: "Open the PDF", th: "เปิด PDF" },
-  hireH: { en: "Need something built for your business?", th: "อยากได้ระบบสำหรับธุรกิจของคุณ?" },
+  /**
+   * The hire card is for HR, recruiters and headhunters, not clients (owner, 19 Nov 2026: "ทำเป็นให้ HR, recruiter, hunter
+   * อะไรมาติดต่อผมดีกว่านะ ไม่ใช่ไปทำธุระกิจกับผม 555", with the joke "ตรงนี้ผมจริงจังนะช่วยรับผมไว้พิจารณาด้วยเถอะ"). Studio
+   * stays only as its card in Live projects.
+   */
+  hireK: { en: "> for HR, recruiters & headhunters", th: "> สำหรับ HR, recruiter และ headhunter" },
+  hireH: { en: "Hiring? I'm (seriously) listening.", th: "HR, recruiter, headhunter ทางนี้ครับ 👋" },
   hireP: {
-    en: "Client work will go through VTX Studio: back offices, web apps, mobile apps and LINE bots, from a prototype you can click to a handover with documents. It opens soon; until then, email me.",
-    th: "งานลูกค้าจะทำผ่าน VTX Studio: ระบบหลังบ้าน เว็บแอป แอปมือถือ และ LINE bot ตั้งแต่ prototype ที่กดลองได้จนส่งมอบพร้อมเอกสาร Studio กำลังจะเปิด ระหว่างนี้ทักทางอีเมลได้เลย",
+    en: "The rest of this page jokes around. This card doesn't: I'm serious here, so please consider me. 🙏",
+    th: "ส่วนอื่นของเว็บเล่นมุกได้ แต่ตรงนี้ผมจริงจังนะ ช่วยรับผมไว้พิจารณาด้วยเถอะ 🙏",
   },
+  hireFacts: { en: "Fullstack · {y} years · TypeScript & Rust · Thailand", th: "Fullstack · {y} ปี · TypeScript และ Rust · ประเทศไทย" },
+  cvPdf: { en: "Resume (PDF)", th: "Resume (PDF)" },
   soon: { en: "opening soon", th: "กำลังจะเปิด" },
   emailMe: { en: "Email me", th: "ส่งอีเมล" },
   privacy: { en: "Privacy", th: "ความเป็นส่วนตัว" },

@@ -200,3 +200,21 @@ Checked in headless Chrome on his Mac:
 - No console errors. No horizontal overflow at 1280 / 1024 / 768 / 390 in either theme. Nothing animates under Reduce
   motion.
 
+
+## The hire card is for recruiters (19 Nov 2026)
+
+The owner, verbatim (through VTX Develop): "ของ portfolio ตรงนี้ทำเป็นให้ HR, recruiter, hunter อะไรมาติดต่อผมดีกว่านะ
+ไม่ใช่ไปทำธุระกิจกับผม 555 / และกำกับแบบเล่นมุกไว้หน่อยอารมแบบ / ตรงนี้ผมจริงจังนะช่วยรับผมไว้พิจารณาด้วยเถอะ 5555555"
+
+- The card now speaks to HR, recruiters and headhunters. In English: "Hiring? I'm (seriously) listening." In Thai:
+  "HR, recruiter, headhunter ทางนี้ครับ 👋". Then the joke: the rest of the page jokes around, but here he's serious,
+  please consider him 🙏. A facts line: Fullstack · {years} · TypeScript & Rust · Thailand (the years are computed).
+- Actions: Email me (first), LinkedIn, and the full Modern resume PDF (counted like the resume cards' downloads). All
+  four PDFs stay in #resume.
+- No business pitch on the card: the VTX Studio "opening soon" pill and the client-work line are gone. Studio stays
+  as its card in Live projects, and the story's last chapter still says it will take client work, as a fact about
+  Studio.
+- The card's terminal: `sudo hire-me` → "[sudo] password for recruiter: ********" → "✓ Access granted. (I'm serious 🙏)"
+  / "✓ ผ่าน! (ผมจริงจังนะ 🙏)". The hero terminal's `sudo hire-me` adds "(No joke this time: I'm serious, please consider
+  me. 🙏)", and its last link, "or jump to the card for recruiters", glides to this card.
+- The hero buttons, the footer and the page description already spoke to readers, not clients, so they're unchanged.
