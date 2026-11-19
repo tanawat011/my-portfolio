@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { APPS, hasCase, labsUrl } from "@/content/apps";
-import { ABILITIES, ABOUT, FUN, HERO, HIRE_TERM, INSIDE, LIVE, PROJECTS, RESUME, TERM, TRUE_FACTS, UPTIME, VTX, WEAPONS } from "@/content/home";
+import { ABILITIES, ABOUT, FUN, HERO, INSIDE, LIVE, PROJECTS, RESUME, TERM, TRUE_FACTS, UPTIME, VTX, WEAPONS } from "@/content/home";
 import { CVS, href, LINKS, STORY, STUDIO, T, WEB, yearsSince, type Lang } from "@/content/site";
 import CV_META from "@/content/cvs.json";
 import NIGHT from "@/content/night-commits.json";
@@ -10,7 +10,6 @@ import { nowShipping } from "@/lib/releases";
 import { CvCard, PjCard, type CvVersion } from "./Cards";
 import { Band } from "./Band";
 import { HelloTerm, type TermWords } from "./HelloTerm";
-import { HireTerm } from "./HireTerm";
 import { Arr, Footer, Nav, OldHead } from "./Frame";
 import { Icon } from "./Icons";
 import { StoryRail } from "./Motion";
@@ -439,7 +438,7 @@ export async function Home({ lang }: { lang: Lang }) {
               <div>
                 <p className="hire-k">{T.hireK[lang]}</p>
                 <h2 id="hire-h">{T.hireH[lang]}</h2>
-                <p>{T.hireP[lang]}</p>
+                <p>{fill(T.hireP[lang], y)}</p>
                 <p className="hire-facts">{fill(T.hireFacts[lang], y)}</p>
                 <div className="acts">
                   <a className="p-btn p-btn-inv" href={`mailto:${LINKS.email}`}>
@@ -454,7 +453,6 @@ export async function Home({ lang }: { lang: Lang }) {
                 </div>
                 <span className="mail">{LINKS.email}</span>
               </div>
-              <HireTerm title={HIRE_TERM.title} cmd={HIRE_TERM.cmd} pass={HIRE_TERM.pass} ok={HIRE_TERM.ok[lang]} />
             </div>
           </div>
         </section>

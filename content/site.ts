@@ -148,14 +148,15 @@ export const T = {
   openPdf: { en: "Open the PDF", th: "เปิด PDF" },
   /**
    * The hire card is for HR, recruiters and headhunters, not clients (owner, 19 Nov 2026: "ทำเป็นให้ HR, recruiter, hunter
-   * อะไรมาติดต่อผมดีกว่านะ ไม่ใช่ไปทำธุระกิจกับผม 555", with the joke "ตรงนี้ผมจริงจังนะช่วยรับผมไว้พิจารณาด้วยเถอะ"). Studio
-   * stays only as its card in Live projects.
+   * อะไรมาติดต่อผมดีกว่านะ ไม่ใช่ไปทำธุระกิจกับผม 555"), and plainly professional: the rest of the site jokes, this card
+   * doesn't ("เอาที่จริงจังแบบจริงเลยเถอะ ติดเล่นไปหน่อย"). Real facts only; no stated preferences he hasn't given (remote,
+   * notice period, salary, "open to work"). Studio stays only as its card in Live projects.
    */
-  hireK: { en: "> for HR, recruiters & headhunters", th: "> สำหรับ HR, recruiter และ headhunter" },
-  hireH: { en: "Hiring? I'm (seriously) listening.", th: "HR, recruiter, headhunter ทางนี้ครับ 👋" },
+  hireK: { en: "For HR, recruiters and headhunters", th: "สำหรับ HR, recruiter และ headhunter" },
+  hireH: { en: "Hiring? Let's talk.", th: "สนใจร่วมงานกัน ติดต่อได้เลยครับ" },
   hireP: {
-    en: "The rest of this page jokes around. This card doesn't: I'm serious here, so please consider me. 🙏",
-    th: "ส่วนอื่นของเว็บเล่นมุกได้ แต่ตรงนี้ผมจริงจังนะ ช่วยรับผมไว้พิจารณาด้วยเถอะ 🙏",
+    en: "I've built web apps for teams for {y} years, as a developer, then senior, then lead, and now also build desktop apps in Rust + Tauri. If you're hiring for a fullstack role, I'd be glad to hear about it.",
+    th: "ทำเว็บแอปให้ทีมมา {y} ปี ตั้งแต่ developer, senior จนถึง lead และตอนนี้ทำแอป desktop ด้วย Rust + Tauri ถ้ากำลังมองหา fullstack developer ยินดีคุยรายละเอียดครับ",
   },
   hireFacts: { en: "Fullstack · {y} years · TypeScript & Rust · Thailand", th: "Fullstack · {y} ปี · TypeScript และ Rust · ประเทศไทย" },
   cvPdf: { en: "Resume (PDF)", th: "Resume (PDF)" },

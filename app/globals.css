@@ -274,7 +274,6 @@ background:var(--bg);color:var(--t2);font:400 16.5px/1.72 var(--fb);-webkit-font
 .pv .d-chp{grid-template-columns:minmax(0,1fr)}
 .pv .feats{grid-template-columns:minmax(0,1fr)}
 .pv .p-hire,.pv .getit{grid-template-columns:minmax(0,1fr);border-radius:28px}
-.pv .p-hire .htw{width:100%;max-width:420px}
 .pv .p-hire .acts .p-btn{flex:1 1 auto}
 .pv .gal{grid-template-columns:minmax(0,1fr)}
 .pv .gal-tabs{display:flex;overflow-x:auto;gap:8px;padding-bottom:4px}
@@ -694,35 +693,6 @@ html .pv .o-hi,html .pv .gal-fig img,html .pv .ba,html .pv .o-pools,html .pv .p-
 .pv .lv-soon .lv-in{justify-content:center}
 .pv .lv-soon .o-tags{margin-top:0}
 
-/* The hire card's window: his hello_world terminal, typing sudo hire-me (components/HireTerm.tsx). Drawn finished;
-   it waits and types only when script has set data-play. */
-.pv .htw{width:clamp(270px,32cqi,380px);border-radius:16px;overflow:hidden;text-align:left;background:var(--term);color:var(--term-t);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1),0 30px 70px -28px rgba(0,0,0,.75),0 0 0 1px rgba(124,200,255,.12),0 0 90px -24px rgba(124,200,255,.3)}
-.pv .htw-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.07);font:500 12px/1 var(--fm);color:#9aa0aa}
-.pv .htw-bar i{width:10px;height:10px;border-radius:50%;background:#3a3f48}
-.pv .htw-bar i:first-child{background:#ff6b6b}.pv .htw-bar i:nth-child(2){background:#f5c451}.pv .htw-bar i:nth-child(3){background:#4ade80}
-.pv .htw-bar span{margin-left:6px}
-.pv .htw-body{padding:14px 16px 16px;font:500 13px/1.75 var(--fm)}
-.pv .htw-l{overflow-wrap:anywhere}
-.pv .htw-ps{color:var(--term-k)}
-.pv .htw-cmd{color:var(--term-s)}
-.pv .htw-2{color:#9aa0aa}
-.pv .htw-3{color:#4ade80;font-weight:600}
-.pv .htw-cmd,.pv .htw-pw{display:inline-block}
-.pv .htw-car{display:inline-block;width:.6em;height:1.15em;vertical-align:-.22em;background:var(--term-k);animation:o-blink 1s step-end infinite}
-.pv .htw[data-play] :is(.htw-cmd,.htw-pw){clip-path:inset(0 100% 0 0)}
-.pv .htw[data-play] :is(.htw-2,.htw-3,.htw-4){opacity:0}
-.pv .htw[data-play=go] .htw-cmd{animation:htw-type .9s steps(var(--n,12)) .4s forwards}
-.pv .htw[data-play=go] .htw-2{animation:htw-show 0s 1.5s forwards}
-.pv .htw[data-play=go] .htw-pw{animation:htw-type .5s steps(8) 1.75s forwards}
-.pv .htw[data-play=go] .htw-3{animation:htw-ok .45s cubic-bezier(.16,1,.3,1) 2.55s forwards}
-.pv .htw[data-play=go] .htw-4{animation:htw-show 0s 2.95s forwards}
-@keyframes htw-type{to{clip-path:inset(0 0 0 0)}}
-@keyframes htw-show{to{opacity:1}}
-@keyframes htw-ok{from{opacity:0;translate:0 4px}to{opacity:1;translate:0 0}}
-
-@media (prefers-reduced-motion:reduce){
-.pv .htw-car{animation:none}
-}
 @container (max-width:900px){
 .pv .o-notes{grid-template-columns:minmax(0,1fr);gap:14px}
 }
@@ -730,7 +700,6 @@ html .pv .o-hi,html .pv .gal-fig img,html .pv .ba,html .pv .o-pools,html .pv .p-
 .pv .o-notes{margin-top:-12px}
 .pv .o-notes li{padding:18px 18px}
 .pv .o-live>li.lv-soon{display:flex}
-.pv .p-hire .htw{margin-top:4px}
 }
 
 /* Skills audit: with three columns the AI card runs across the row, so the other nine sit three by three; with two

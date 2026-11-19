@@ -237,3 +237,18 @@ The owner, verbatim (through VTX Develop): "Skills OK", to VTX Develop's twelve 
   Runtime.
 - Ten cards now. With three columns (wider than 1100 px) the AI card runs across the row, so the other nine sit three
   by three. With two columns, the ten pair up. On phones it's one column.
+
+## The recruiters' card, plainly professional (19 Nov 2026)
+
+The owner, verbatim (through VTX Develop), on the card above: "เปลี่ยนใหม่ครับ 555 เอาที่จริงจังแบบจริงเลยเถอะ ติดเล่นไปหน่อย".
+
+- The rest of the site keeps its playful voice; this card doesn't joke. In English: "For HR, recruiters and
+  headhunters" / "Hiring? Let's talk." In Thai: "สนใจร่วมงานกัน ติดต่อได้เลยครับ". The body sticks to real facts:
+  {years} building web apps for teams, as a developer, then senior, then lead, and now desktop apps in Rust + Tauri.
+  Then a neutral "If you're hiring for a fullstack role, I'd be glad to hear about it." No emoji, and no preference he
+  hasn't stated (remote, notice period, salary, "open to work").
+- The facts row, Email me, LinkedIn, the resume PDF and the address stay.
+- The card's terminal is gone: a `whoami` would only repeat the facts row, and typing is the play he wants out of
+  this card. It's the clean card with its glow. components/HireTerm.tsx and its styles are removed.
+- The hero terminal's `sudo hire-me` stays playful but drops its "I'm serious 🙏" line, and its last link still
+  lands on this card.

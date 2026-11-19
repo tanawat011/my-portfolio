@@ -331,20 +331,6 @@ test("last notes: Studio is in Live projects as opening soon, with no link, and 
   expect(card).toContain("T.soon[lang]");
 });
 
-test("last notes: the hire card shows his terminal running the easter egg's sudo hire-me, not the orb", async () => {
-  const { HIRE_TERM, TERM } = await import("../content/home");
-  const home = readFileSync(join(import.meta.dir, "..", "components/Home.tsx"), "utf8");
-  const hire = home.slice(home.indexOf('id="hire"'));
-  expect(hire).toContain("<HireTerm");
-  expect(hire).not.toContain("orbc");
-  expect(HIRE_TERM.cmd).toBe("sudo hire-me");
-  expect(TERM.hire.en[0]).toContain(HIRE_TERM.pass);
-  // drawn finished: only script that has checked Reduce motion and the fold ever holds a line back
-  const src = readFileSync(join(import.meta.dir, "..", "components/HireTerm.tsx"), "utf8");
-  expect(src).toContain('matchMedia("(prefers-reduced-motion: reduce)")');
-  expect(src.indexOf("prefers-reduced-motion")).toBeLessThan(src.indexOf('dataset.play = "wait"'));
-});
-
 test("last notes: links to a place on the page glide there, jump under Reduce motion, and move focus", () => {
   const src = readFileSync(join(import.meta.dir, "..", "components/Behaviours.tsx"), "utf8");
   expect(src).toContain('behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"');
@@ -352,27 +338,30 @@ test("last notes: links to a place on the page glide there, jump under Reduce mo
   expect(readFileSync(join(import.meta.dir, "..", "app/globals.css"), "utf8")).toMatch(/html\{scroll-padding-top:96px/);
 });
 
-test("the hire card is for HR, recruiters and headhunters, with real links and no business pitch", async () => {
-  const { HIRE_TERM, TERM } = await import("../content/home");
-  // "ทำเป็นให้ HR, recruiter, hunter อะไรมาติดต่อผมดีกว่านะ ไม่ใช่ไปทำธุระกิจกับผม 555"
+test("the hire card is for HR, recruiters and headhunters: plainly professional, real facts, real links", async () => {
+  const { TERM } = await import("../content/home");
+  // "ไม่ใช่ไปทำธุระกิจกับผม 555", then "เอาที่จริงจังแบบจริงเลยเถอะ ติดเล่นไปหน่อย"
   for (const l of ["en", "th"] as const) {
-    const card = [T.hireK[l], T.hireH[l], T.hireP[l], T.hireFacts[l], HIRE_TERM.ok[l]].join(" ");
+    const card = [T.hireK[l], T.hireH[l], T.hireP[l], T.hireFacts[l]].join(" ");
     expect(card).not.toMatch(/business|client|Studio|ธุรกิจ|ลูกค้า|คุยงาน/i);
+    // no joke, no emoji, no "(seriously)"
+    expect(card).not.toMatch(/\p{Extended_Pictographic}|seriously|joke|จริงจัง|มุก|555/u);
+    // no preferences he hasn't stated
+    expect(card).not.toMatch(/remote|onsite|on-site|notice|salary|open to work|ทำงานที่บ้าน|เงินเดือน/i);
     expect(T.hireK[l]).toMatch(/HR/);
-    expect(T.hireK[l]).toMatch(/headhunter/);
+    expect(T.hireP[l]).toContain("{y}");
   }
-  // the joke, as he put it
-  expect(T.hireP.th).toContain("ตรงนี้ผมจริงจังนะ ช่วยรับผมไว้พิจารณาด้วยเถอะ");
-  expect(TERM.hire.th.join(" ")).toContain("ผมจริงจัง");
-  expect(TERM.hire.en[0]).toContain("recruiter");
+  expect(T.hireH.en).toBe("Hiring? Let's talk.");
+  expect(T.hireH.th).toBe("สนใจร่วมงานกัน ติดต่อได้เลยครับ");
   const home = readFileSync(join(import.meta.dir, "..", "components/Home.tsx"), "utf8");
   const hire = home.slice(home.indexOf('id="hire"'));
-  expect(hire).not.toContain("p-soon");
-  expect(hire).not.toContain("VTX Studio");
-  for (const a of ["mailto:${LINKS.email}", "LINKS.linkedin", "HIRE_CV.pdf"]) expect(hire).toContain(a);
-  // every number in the facts line is computed (years), and the resume it hands over exists
-  expect(T.hireFacts.en).toContain("{y}");
+  expect(hire).not.toMatch(/p-soon|VTX Studio|HireTerm|orbc/);
+  for (const a of ["mailto:${LINKS.email}", "LINKS.linkedin", "HIRE_CV.pdf", "fill(T.hireP[lang], y)"]) expect(hire).toContain(a);
   expect(existsSync(pub("Modern.pdf"))).toBe(true);
+  // the hero easter egg can joke, and its last link lands on this card
+  expect(TERM.hire.en[0]).toContain("recruiter");
+  expect(TERM.hireCard.en).toContain("recruiters");
+  expect(JSON.stringify(TERM.hire)).not.toMatch(/จริงจัง|I'm serious/);
 });
 
 test("skills audit (S1–S12, his \"Skills OK\"): each skill in its right place, once where it should be", async () => {

@@ -269,8 +269,8 @@ export const TERM = {
   resume: { en: "Pick one. They're all me.", th: "เลือกเอาเลย ทุกไฟล์คือผม" },
   pages: { en: "pages", th: "หน้า" },
   hire: {
-    en: ["[sudo] password for recruiter: ********", "✓ Access granted. Good choice. 🎉", "(No joke this time: I'm serious, please consider me. 🙏)"],
-    th: ["[sudo] password for recruiter: ********", "✓ ผ่าน! ตัดสินใจถูกแล้ว 🎉", "(อันนี้ไม่ได้เล่นนะ ผมจริงจัง ช่วยรับไว้พิจารณาด้วยเถอะ 🙏)"],
+    en: ["[sudo] password for recruiter: ********", "✓ Access granted. Good choice. 🎉"],
+    th: ["[sudo] password for recruiter: ********", "✓ ผ่าน! ตัดสินใจถูกแล้ว 🎉"],
   },
   hireCard: { en: "or jump to the card for recruiters", th: "หรือไปที่การ์ดสำหรับ HR" },
   noSudo: { en: "hire-me: permission denied. Maybe try sudo?", th: "hire-me: permission denied ลอง sudo ดูสิ" },
@@ -279,18 +279,6 @@ export const TERM = {
   rmrf: { en: "Nice try. This is a portfolio, not a playground. 😏", th: "เกือบไปละ นี่ portfolio นะ ไม่ใช่สนามเด็กเล่น 😏" },
   vim: { en: "You're in vim now. Kidding. Type exit; it works here.", th: "เข้า vim แล้ว ล้อเล่น พิมพ์ exit ได้เลย ที่นี่ออกได้จริง" },
   notFound: { en: "{c}: command not found. Try help.", th: "{c}: ไม่รู้จักคำสั่งนี้ ลอง help ดู" },
-};
-
-/**
- * The recruiters' card's window, in place of the orb (owner, 19 Nov 2026: the orb "ไม่เกี่ยวกับเว็บเราอ่ะ", it's VTX Studio's,
- * not this site's). His own hello_world terminal from the hero, running the easter egg's sudo hire-me (TERM.hire).
- */
-export const HIRE_TERM = {
-  title: "hello_world",
-  cmd: "sudo hire-me",
-  pass: "[sudo] password for recruiter:",
-  // for recruiters (19 Nov 2026): "ตรงนี้ผมจริงจังนะ"
-  ok: { en: "✓ Access granted. (I'm serious 🙏)", th: "✓ ผ่าน! (ผมจริงจังนะ 🙏)" },
 };
 
 export const FOOT = {
