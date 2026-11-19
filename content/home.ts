@@ -95,20 +95,20 @@ export const CORE_NAMES = CORE.groups.flatMap((g) => g.items.flatMap((i) => [i.n
  * repos: Express and Gin in his boilerplates, Vitest in Labs, Studio and CraftCV, GitHub Actions in seven VTX repos,
  * Rust tests in the apps. RDP stays: Crystallum implements it (IronRDP, src-tauri/src/rdp.rs). Mobile no longer says
  * "ship to the App Store": nothing he has shows it (his resumes list React Native, Flutter and Swift, no store).
- * `wide`: the card runs across the row (the AI card, so the other nine sit three by three).
+ * The Current Stack card went once the core stack above the cards said it better (owner, 19 Nov 2026, on the profile's
+ * twin: "เราต้องเอาออกไม๊ ในเมื่อมี stack --core แล้วอ่ะ"); its other items were already in these cards, and shadcn/ui
+ * joined Styling. `wide`: the card runs across the row where the grid has two columns, so the other eight pair up.
  */
 export const WEAPONS: { t: Text; d: Text; items: { k: Text; v: string }[]; wide?: boolean }[] = [
   { t: { en: "AI — Always On", th: "AI เปิดตลอด" }, d: { en: "AI is part of my daily workflow — coding, reviewing, and shipping with it.", th: "AI อยู่ในงานทุกวัน ทั้งเขียนโค้ด รีวิว และส่งงาน" }, wide: true,
     // Round 3b (owner): only what he really uses, and no "Models" label: "ไอ่พวกนี้ไม่น่าใช่ Models นะ"
     items: [{ k: { en: "What I actually use", th: "ที่ใช้จริง ๆ" }, v: "Claude Code, Copilot, Gemini, GPT" }] },
-  { t: { en: "Current Stack", th: "Stack ตอนนี้" }, d: { en: "My daily driver — what I'm actively building with right now. 🔥", th: "ของที่ขับทุกวัน กำลังสร้างด้วยอยู่ตอนนี้ 🔥" },
-    items: [{ k: { en: "Desktop", th: "เดสก์ท็อป" }, v: "Rust + Tauri 2" }, { k: { en: "Web", th: "เว็บ" }, v: "Next.js, React, TypeScript, Tailwind, shadcn/ui" }, { k: { en: "Data & infra", th: "ข้อมูลและ infra" }, v: "PostgreSQL, SQLite, Supabase, Vercel, Bun, Docker" }] },
   { t: { en: "Languages", th: "ภาษา" }, d: { en: "The weapons I fight with.", th: "อาวุธที่ใช้ออกรบ" },
     items: [{ k: { en: "Primary", th: "หลัก" }, v: "TypeScript, Rust" }, { k: { en: "Also speak", th: "พูดได้อีก" }, v: "JavaScript, SQL, Go, Java, Kotlin, Python, PHP, Swift, Dart" }, { k: { en: "Markup & Style", th: "Markup และ Style" }, v: "HTML5, CSS3" }] },
   { t: { en: "Desktop", th: "เดสก์ท็อป" }, d: { en: "Apps that live on your Mac, not in a tab. 🖥️", th: "แอปที่อยู่บน Mac ไม่ใช่ในแท็บเบราว์เซอร์ 🖥️" },
     items: [{ k: { en: "Core", th: "หลัก" }, v: "Tauri 2, Rust (tokio, sqlx), React" }, { k: { en: "Native bits", th: "ของ native" }, v: "Keychain, URL schemes, SSH, RDP, SwiftUI" }] },
   { t: { en: "Web Frameworks & UI", th: "เว็บและ UI" }, d: { en: "Building pixel-perfect UIs since forever.", th: "ไล่ pixel ให้ตรงมาตั้งแต่ไหนแต่ไร" },
-    items: [{ k: { en: "Core", th: "หลัก" }, v: "Next.js, React" }, { k: { en: "Also used", th: "เคยใช้" }, v: "Laravel, RedwoodJS" }, { k: { en: "Styling", th: "Styling" }, v: "Tailwind, Bootstrap, DaisyUI, HeroUI, Ant Design" }] },
+    items: [{ k: { en: "Core", th: "หลัก" }, v: "Next.js, React" }, { k: { en: "Also used", th: "เคยใช้" }, v: "Laravel, RedwoodJS" }, { k: { en: "Styling", th: "Styling" }, v: "Tailwind, shadcn/ui, Bootstrap, DaisyUI, HeroUI, Ant Design" }] },
   { t: { en: "Backend & APIs", th: "Backend และ API" }, d: { en: "The part nobody sees, but everything calls.", th: "ส่วนที่ไม่มีใครเห็น แต่ทุกอย่างเรียกใช้" },
     items: [{ k: { en: "Core", th: "หลัก" }, v: "Node.js, NestJS, Express, Go (Gin)" }, { k: { en: "APIs & auth", th: "API และ auth" }, v: "REST, GraphQL, JWT" }] },
   { t: { en: "Mobile", th: "มือถือ" }, d: { en: "Cross-platform and native mobile apps.", th: "แอปมือถือ ทั้ง cross-platform และ native" },

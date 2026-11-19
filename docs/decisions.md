@@ -273,3 +273,13 @@ the GitHub profile.
 - Motion: the group labels and tiles come in one by one (effect 1). Reduce motion: still.
 - On the GitHub profile, a matching `> stack --core` block after `> whoami`. Its badges are self-hosted SVGs
   (assets/stack/, a dark and a light file each, through `<picture>`), not shields.io, which lacks some of these logos.
+
+## One stack block (19 Nov 2026)
+
+The owner, verbatim (through VTX Develop), on the profile's `> weapons --current`: "เราต้องเอาออกไม๊ ในเมื่อมี stack --core
+แล้วอ่ะ". So the core stack is the one prominent stack, on both.
+
+- Portfolio: the Current Stack card is gone. What only it named was already in the cards (Tauri 2 under Desktop,
+  SQLite under Databases, Bun under Package & Runtime), except shadcn/ui, which joined Web → Styling. Nine cards now:
+  three by three on wide screens. With two columns the AI card runs across the row, so the other eight pair up.
+- Profile: `> weapons --current` is gone. Tauri 2, SQLite and Bun were already in `> weapons --history`.
