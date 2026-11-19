@@ -38,3 +38,24 @@ flaky, and they count rather than show work); no section of past client or compa
 - **The middle years** (senior, lead) carry no year, because the old site gives none. Tell me the years to add them.
 - **Tailwind, framer-motion, next-themes and @next/third-parties** are removed; the old sections, icons and unused
   images are deleted (git keeps them).
+
+## Round 2 (19 Nov 2026)
+
+After running round 1, the owner, verbatim (through VTX Develop): "ผมว่าแบบเก่ายังดูน่าสนใจกว่าเยอะมาก ๆ เลยครับ … เอาจริง ๆ
+ผมยังชอบ hero แบบเดิมอยู่นะ … แต่ในของใหม่ผมชอบลูกเล่น timeline ที่มันเลื่อนตาม scroll นะ … Fun Facts ผมก็หายไปเลยแห้ะ
+ความกวนผมหายไปเลยอ่ะ … หลัก ๆ จุดที่ผมชอบ 3 ภาพหลังอ่ะ" (the band and figures, the scroll story, the hire card).
+
+So the old site is the base again, in G's colours and type, with those three kept:
+
+- **Hero:** the old one as it was: `<Ta />`, `> hello_world_` typed once, the name with "Tanawat" lit, the tagline, the
+  years line, the three buttons, the drifting dots and the scroll mouse. The dots and the mouse rest off screen and under
+  Reduce motion.
+- **Order:** hero → uptime (the band + the 9 / 11 / 6 / 2 row) → About This Guy (the four abilities, the round photo card,
+  the story rail, the weapons) → the VTX family (+ what's inside) → resume → projects → live projects → Fun Facts → hire.
+  About moved before VTX: the portfolio sells him first, the work is the proof.
+- **Photo:** round, like the old site, but a wider head-and-shoulders crop of the same photo (`me-round.jpg`); the old round
+  crop still showed the passer-by.
+- **Voice:** the old site's copy wherever it still holds, Thai written in the same tone; the case pages open playfully.
+- **Fun Facts are back,** as the old jokes, only in their own block; the real figures stay computed and tested apart.
+- **Still out:** GitHub stats (round 1), the dead CraftCV view links (PDFs only), the "My Portfolio" card (11A), the
+  "coming" web apps.

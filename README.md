@@ -1,8 +1,9 @@
 # tanawat.dev
 
-Tanawat Pinthongpan's personal site: the story, the VTX family of desktop apps, four case pages, the resumes, and the way
-to hire. Direction D · Story, in VTX Studio's colours (graphite night, porcelain day, ice and periwinkle light).
-The owner's picks are in [docs/decisions.md](docs/decisions.md).
+Tanawat Pinthongpan's personal site, "about this guy" first: the old site's hero, voice and Fun Facts, in VTX Studio's
+colours (graphite night, porcelain day, ice and periwinkle light), with a true-scale band of the years, a scroll-led story,
+the VTX family with four case pages, the resumes, and the way to hire. The owner's picks are in
+[docs/decisions.md](docs/decisions.md) (round 1, then round 2).
 
 - English at `/`, Thai at `/th` (two root layouts, one 404)
 - Static Next.js 15 (App Router), plain CSS in `app/globals.css`, no UI library
@@ -25,10 +26,12 @@ that every file it points at exists.
 
 | | |
 |---|---|
-| `content/site.ts` | every word in English and Thai, the links, the figures |
+| `content/home.ts` | the home page's words in English and Thai (his voice, the Fun Facts jokes) |
+| `content/site.ts` | shared words, the links, the real figures |
 | `content/apps.ts` | the eleven apps, the four case pages, the before → after pairs |
 | `components/Home.tsx`, `CasePage.tsx` | the two page layouts |
 | `components/Motion.tsx` | the moving parts: the story rail, before → after, the gallery, the reading line |
+| `components/Behaviours.tsx` | scroll reveals, the bar's glass, loops that rest off screen |
 | `vendor/vtx-kit/analytics.ts` | the kit's analytics module, unchanged (`vendor/vtx-kit/MANIFEST`) |
 | `docs/redesign/round-1/` | the five directions the owner chose from |
 
