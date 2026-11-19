@@ -732,3 +732,12 @@ html .pv .o-hi,html .pv .gal-fig img,html .pv .ba,html .pv .o-pools,html .pv .p-
 .pv .o-live>li.lv-soon{display:flex}
 .pv .p-hire .htw{margin-top:4px}
 }
+
+/* Skills audit: with three columns the AI card runs across the row, so the other nine sit three by three; with two
+   (up to 1100 px), the ten cards already pair up */
+@container (min-width:1101px){
+.pv .o-weap li[data-wide]{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);column-gap:28px;align-items:center}
+.pv .o-weap li[data-wide] h4,.pv .o-weap li[data-wide] .d{grid-column:1}
+.pv .o-weap li[data-wide] dl{grid-column:2;grid-row:1 / span 2;margin-top:0}
+}
+

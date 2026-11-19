@@ -218,3 +218,22 @@ The owner, verbatim (through VTX Develop): "ของ portfolio ตรงนี�
   / "✓ ผ่าน! (ผมจริงจังนะ 🙏)". The hero terminal's `sudo hire-me` adds "(No joke this time: I'm serious, please consider
   me. 🙏)", and its last link, "or jump to the card for recruiters", glides to this card.
 - The hero buttons, the footer and the page description already spoke to readers, not clients, so they're unchanged.
+
+## Skills audit, S1–S12 (19 Nov 2026)
+
+The owner, verbatim (through VTX Develop): "Skills OK", to VTX Develop's twelve proposals.
+
+- **S1, S2:** a Backend & APIs card: Node.js, NestJS, Express, Go (Gin); REST, GraphQL, JWT. NestJS, Node.js and
+  GraphQL left Web Frameworks & UI. Express and Gin are in his public boilerplates.
+- **S3:** Nginx once, under Cloud & Platforms → Infra. **S4:** WordPress on its own CMS line.
+- **S5:** Version control & CI: Git, GitHub Actions (seven VTX repos run workflows). **S6:** "LINE OA".
+- **S7:** Current Stack is a short summary: Rust + Tauri 2; Next.js, React, TypeScript, Tailwind, shadcn/ui;
+  PostgreSQL, SQLite, Supabase, Vercel, Bun, Docker. Nothing twice in the card, and not the Desktop card word for word.
+- **S8, kept:** RDP in "Native bits". Crystallum implements it (IronRDP, src-tauri/src/rdp.rs).
+- **S9, changed:** Mobile said "Apps that actually ship to the App Store." Nothing he has shows store releases (his
+  resumes list React Native, Flutter and Swift, with no App Store, Play Store or TestFlight), so it now says
+  "Cross-platform and native mobile apps." / "แอปมือถือ ทั้ง cross-platform และ native".
+- **S10:** Testing: Vitest (Labs, Studio, CraftCV), cargo test. **S11:** SQL in Languages. **S12:** cargo in Package &
+  Runtime.
+- Ten cards now. With three columns (wider than 1100 px) the AI card runs across the row, so the other nine sit three
+  by three. With two columns, the ten pair up. On phones it's one column.

@@ -175,7 +175,7 @@ export async function Home({ lang }: { lang: Lang }) {
             </div>
             <ul className="o-weap">
               {WEAPONS.map((w, i) => (
-                <li className="o-card hov rv" key={w.t.en} style={{ "--d": `${(i % 3) * 0.08}s` } as React.CSSProperties}>
+                <li className="o-card hov rv" key={w.t.en} data-wide={w.wide ? "" : undefined} style={{ "--d": `${(i % 3) * 0.08}s` } as React.CSSProperties}>
                   <h4>{w.t[lang]}</h4>
                   <p className="d">{w.d[lang]}</p>
                   <dl>

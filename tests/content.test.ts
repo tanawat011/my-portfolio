@@ -374,3 +374,34 @@ test("the hire card is for HR, recruiters and headhunters, with real links and n
   expect(T.hireFacts.en).toContain("{y}");
   expect(existsSync(pub("Modern.pdf"))).toBe(true);
 });
+
+test("skills audit (S1–S12, his \"Skills OK\"): each skill in its right place, once where it should be", async () => {
+  const { WEAPONS } = await import("../content/home");
+  const card = (t: string) => WEAPONS.find((w) => w.t.en === t)!;
+  const line = (t: string, k: string) => card(t).items.find((i) => i.k.en === k)?.v ?? "";
+  const words = (v: string) => v.split(/,\s*|\s\+\s/).map((x) => x.trim());
+  // S1, S2: a Backend & APIs card; NestJS, Node.js and GraphQL left Web
+  expect(words(line("Backend & APIs", "Core"))).toEqual(["Node.js", "NestJS", "Express", "Go (Gin)"]);
+  expect(words(line("Backend & APIs", "APIs & auth"))).toEqual(["REST", "GraphQL", "JWT"]);
+  expect(JSON.stringify(card("Web Frameworks & UI"))).not.toMatch(/NestJS|Node\.js|GraphQL/);
+  // S3, S4, S5, S6
+  expect(JSON.stringify(WEAPONS).match(/Nginx/g)?.length).toBe(1);
+  expect(line("Cloud & Platforms", "Infra")).toBe("Nginx");
+  expect(line("Cloud & Platforms", "CMS")).toBe("WordPress");
+  expect(line("DevOps & Tools", "Version control & CI")).toBe("Git, GitHub Actions");
+  expect(JSON.stringify(WEAPONS)).not.toContain("Line OA");
+  // S7: Current Stack is a summary with nothing twice, and not the Desktop card word for word
+  const now = card("Current Stack").items.flatMap((i) => words(i.v));
+  expect(new Set(now).size).toBe(now.length);
+  expect(line("Current Stack", "Desktop")).not.toBe(line("Desktop", "Core"));
+  // S8: RDP stays (Crystallum implements it); S9: no App Store claim
+  expect(line("Desktop", "Native bits")).toContain("RDP");
+  expect(JSON.stringify(card("Mobile"))).not.toMatch(/App Store|Play Store/);
+  // S10, S11, S12
+  expect(line("DevOps & Tools", "Testing")).toBe("Vitest, cargo test");
+  expect(words(line("Languages", "Also speak"))).toContain("SQL");
+  expect(words(line("DevOps & Tools", "Package & Runtime"))).toContain("cargo");
+  // ten cards: the AI one runs across the row, so the other nine sit three by three
+  expect(WEAPONS.length).toBe(10);
+  expect(WEAPONS.filter((w) => w.wide).map((w) => w.t.en)).toEqual(["AI — Always On"]);
+});

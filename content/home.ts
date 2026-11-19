@@ -56,27 +56,37 @@ export const ABILITIES: { icon: string; t: Text; d: Text }[] = [
     d: { en: "console.log is my debugger. Don't judge — it works.", th: "console.log คือ debugger ของผม อย่าตัดสิน มันใช้ได้จริง" } },
 ];
 
-/** The old site's skills cards, as they were (About.tsx). */
-export const WEAPONS: { t: Text; d: Text; items: { k: Text; v: string }[] }[] = [
-  { t: { en: "AI — Always On", th: "AI เปิดตลอด" }, d: { en: "AI is part of my daily workflow — coding, reviewing, and shipping with it.", th: "AI อยู่ในงานทุกวัน ทั้งเขียนโค้ด รีวิว และส่งงาน" },
+/**
+ * The old site's skills cards (About.tsx), regrouped by the skills audit (owner, 19 Nov 2026: "Skills OK" to VTX Develop's
+ * S1–S12): a Backend & APIs card; GraphQL, NestJS and Node.js moved there; Nginx once, under Infra; WordPress as CMS;
+ * Git with GitHub Actions; "LINE OA"; Current Stack a short summary; Testing, SQL and cargo added. Checked against his
+ * repos: Express and Gin in his boilerplates, Vitest in Labs, Studio and CraftCV, GitHub Actions in seven VTX repos,
+ * Rust tests in the apps. RDP stays: Crystallum implements it (IronRDP, src-tauri/src/rdp.rs). Mobile no longer says
+ * "ship to the App Store": nothing he has shows it (his resumes list React Native, Flutter and Swift, no store).
+ * `wide`: the card runs across the row (the AI card, so the other nine sit three by three).
+ */
+export const WEAPONS: { t: Text; d: Text; items: { k: Text; v: string }[]; wide?: boolean }[] = [
+  { t: { en: "AI — Always On", th: "AI เปิดตลอด" }, d: { en: "AI is part of my daily workflow — coding, reviewing, and shipping with it.", th: "AI อยู่ในงานทุกวัน ทั้งเขียนโค้ด รีวิว และส่งงาน" }, wide: true,
     // Round 3b (owner): only what he really uses, and no "Models" label: "ไอ่พวกนี้ไม่น่าใช่ Models นะ"
     items: [{ k: { en: "What I actually use", th: "ที่ใช้จริง ๆ" }, v: "Claude Code, Copilot, Gemini, GPT" }] },
   { t: { en: "Current Stack", th: "Stack ตอนนี้" }, d: { en: "My daily driver — what I'm actively building with right now. 🔥", th: "ของที่ขับทุกวัน กำลังสร้างด้วยอยู่ตอนนี้ 🔥" },
-    items: [{ k: { en: "Desktop", th: "เดสก์ท็อป" }, v: "Rust, Tauri 2, React, TypeScript" }, { k: { en: "Web", th: "เว็บ" }, v: "Next.js, React, Tailwind, shadcn/ui" }, { k: { en: "Backend & Infra", th: "Backend และ Infra" }, v: "Supabase, PostgreSQL, SQLite, Vercel, Bun, Docker" }] },
+    items: [{ k: { en: "Desktop", th: "เดสก์ท็อป" }, v: "Rust + Tauri 2" }, { k: { en: "Web", th: "เว็บ" }, v: "Next.js, React, TypeScript, Tailwind, shadcn/ui" }, { k: { en: "Data & infra", th: "ข้อมูลและ infra" }, v: "PostgreSQL, SQLite, Supabase, Vercel, Bun, Docker" }] },
   { t: { en: "Languages", th: "ภาษา" }, d: { en: "The weapons I fight with.", th: "อาวุธที่ใช้ออกรบ" },
-    items: [{ k: { en: "Primary", th: "หลัก" }, v: "TypeScript, Rust" }, { k: { en: "Also speak", th: "พูดได้อีก" }, v: "JavaScript, Go, Java, Kotlin, Python, PHP, Swift, Dart" }, { k: { en: "Markup & Style", th: "Markup และ Style" }, v: "HTML5, CSS3" }] },
+    items: [{ k: { en: "Primary", th: "หลัก" }, v: "TypeScript, Rust" }, { k: { en: "Also speak", th: "พูดได้อีก" }, v: "JavaScript, SQL, Go, Java, Kotlin, Python, PHP, Swift, Dart" }, { k: { en: "Markup & Style", th: "Markup และ Style" }, v: "HTML5, CSS3" }] },
   { t: { en: "Desktop", th: "เดสก์ท็อป" }, d: { en: "Apps that live on your Mac, not in a tab. 🖥️", th: "แอปที่อยู่บน Mac ไม่ใช่ในแท็บเบราว์เซอร์ 🖥️" },
     items: [{ k: { en: "Core", th: "หลัก" }, v: "Tauri 2, Rust (tokio, sqlx), React" }, { k: { en: "Native bits", th: "ของ native" }, v: "Keychain, URL schemes, SSH, RDP, SwiftUI" }] },
   { t: { en: "Web Frameworks & UI", th: "เว็บและ UI" }, d: { en: "Building pixel-perfect UIs since forever.", th: "ไล่ pixel ให้ตรงมาตั้งแต่ไหนแต่ไร" },
-    items: [{ k: { en: "Core", th: "หลัก" }, v: "Next.js, React, NestJS, Node.js" }, { k: { en: "Also used", th: "เคยใช้" }, v: "Laravel, RedwoodJS, GraphQL" }, { k: { en: "Styling", th: "Styling" }, v: "Tailwind, Bootstrap, DaisyUI, HeroUI, Ant Design" }] },
-  { t: { en: "Mobile", th: "มือถือ" }, d: { en: "Apps that actually ship to the App Store.", th: "แอปที่ขึ้น App Store ได้จริง" },
+    items: [{ k: { en: "Core", th: "หลัก" }, v: "Next.js, React" }, { k: { en: "Also used", th: "เคยใช้" }, v: "Laravel, RedwoodJS" }, { k: { en: "Styling", th: "Styling" }, v: "Tailwind, Bootstrap, DaisyUI, HeroUI, Ant Design" }] },
+  { t: { en: "Backend & APIs", th: "Backend และ API" }, d: { en: "The part nobody sees, but everything calls.", th: "ส่วนที่ไม่มีใครเห็น แต่ทุกอย่างเรียกใช้" },
+    items: [{ k: { en: "Core", th: "หลัก" }, v: "Node.js, NestJS, Express, Go (Gin)" }, { k: { en: "APIs & auth", th: "API และ auth" }, v: "REST, GraphQL, JWT" }] },
+  { t: { en: "Mobile", th: "มือถือ" }, d: { en: "Cross-platform and native mobile apps.", th: "แอปมือถือ ทั้ง cross-platform และ native" },
     items: [{ k: { en: "Cross-platform", th: "Cross-platform" }, v: "React Native, Flutter" }, { k: { en: "Native", th: "Native" }, v: "Swift" }] },
   { t: { en: "Databases & ORM", th: "Database และ ORM" }, d: { en: "Where the data lives (and sometimes dies).", th: "ที่ที่ข้อมูลอาศัยอยู่ (และบางทีก็ตายไป)" },
     items: [{ k: { en: "SQL", th: "SQL" }, v: "PostgreSQL, MySQL, MariaDB, SQL Server, SQLite" }, { k: { en: "NoSQL & Cache", th: "NoSQL และ Cache" }, v: "MongoDB, Redis" }, { k: { en: "ORM", th: "ORM" }, v: "Prisma, TypeORM" }] },
   { t: { en: "Cloud & Platforms", th: "Cloud และ Platform" }, d: { en: "Deploying things to the cloud at 3 AM.", th: "deploy ขึ้น cloud ตอนตีสาม" },
-    items: [{ k: { en: "Providers", th: "ผู้ให้บริการ" }, v: "GCP, Firebase, Supabase, Vercel" }, { k: { en: "Infra", th: "Infra" }, v: "Nginx, WordPress" }] },
+    items: [{ k: { en: "Providers", th: "ผู้ให้บริการ" }, v: "GCP, Firebase, Supabase, Vercel" }, { k: { en: "Infra", th: "Infra" }, v: "Nginx" }, { k: { en: "CMS", th: "CMS" }, v: "WordPress" }] },
   { t: { en: "DevOps & Tools", th: "DevOps และเครื่องมือ" }, d: { en: "The toolbox behind the scenes.", th: "กล่องเครื่องมือหลังบ้าน" },
-    items: [{ k: { en: "Containers", th: "Containers" }, v: "Docker, Nginx" }, { k: { en: "Package & Runtime", th: "Package และ Runtime" }, v: "Git, npm, pnpm, Yarn, Bun, Homebrew" }, { k: { en: "Dev Tools", th: "Dev Tools" }, v: "VS Code, IntelliJ IDEA, Xcode" }, { k: { en: "Services", th: "Services" }, v: "Sentry, Resend, ngrok, Line OA" }] },
+    items: [{ k: { en: "Containers", th: "Containers" }, v: "Docker" }, { k: { en: "Version control & CI", th: "Version control และ CI" }, v: "Git, GitHub Actions" }, { k: { en: "Package & Runtime", th: "Package และ Runtime" }, v: "npm, pnpm, Yarn, Bun, cargo, Homebrew" }, { k: { en: "Testing", th: "Testing" }, v: "Vitest, cargo test" }, { k: { en: "Dev Tools", th: "Dev Tools" }, v: "VS Code, IntelliJ IDEA, Xcode" }, { k: { en: "Services", th: "Services" }, v: "Sentry, Resend, ngrok, LINE OA" }] },
 ];
 
 export const VTX = {
