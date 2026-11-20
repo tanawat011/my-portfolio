@@ -5,17 +5,16 @@ where things stand. The why behind each change is in [decisions.md](decisions.md
 
 ## Live
 
-**tanawat.dev**: my-portfolio `main` at the Studio card (`ddc6430`) and this doc, deployed by Vercel's git
-integration (production only).
+**tanawat.dev**: my-portfolio `main`, deployed by Vercel's git integration (production only).
 
 - English at `/`, Thai at `/th`, four case pages each (Fulmen, Lapis, Silva, Ignis), privacy, a 404.
 - The page, top to bottom:
   - the hero with the `> hello_world_` terminal (easter egg; `sudo hire-me` lands on the recruiters' card);
-  - uptime with four real figures (9 years, 11 apps, 85 Labs tools read from vtxlabs.app at build, 3 web apps live);
+  - uptime with four real figures (9 years, 11 apps, 85 Labs tools read from vtxlabs.app at build, 4 web apps live);
   - about, with the story rail;
   - My Weapons: the core stack (his 19, as logo tiles), then nine skills cards with core items marked;
   - the VTX family, with Now shipping read from the release repos' labs.json at build;
-  - resume, projects (GitHub facts at build), Live projects (VTX Labs, CraftCV and VTX Studio, each linked);
+  - resume, projects (GitHub facts at build), Live projects (VTX Labs, CraftCV, VTX Studio and Mindloop, each linked);
   - Fun Facts (jokes, then four true);
   - the card for HR, recruiters and headhunters (plainly professional).
 - Scroll motion: Studio's effects 1, 2, 3, 5 and 6, none under Reduce motion. In-page links glide.
@@ -39,7 +38,8 @@ integration (production only).
 Nothing: both repos match their remotes.
 
 VTX Studio went live at studio.vtxlabs.app on 19 Nov 2026 and joined the live cards the same day: its link (Thai `/`,
-English `/en`), its words, its home as the shot, "3 web apps live today", and a footer link.
+English `/en`), its words, its home as the shot, and a footer link. Mindloop (mindloop.vtxlabs.app, Thai only) joined
+on 20 Nov 2026: one lesson open and nine coming, as its own home says; its source stays private, so no repo link.
 
 ## Waiting on the owner
 
@@ -51,8 +51,8 @@ English `/en`), its words, its home as the shot, "3 web apps live today", and a 
 - **When Lapis, Fulmen, Silva and Ventus ask before checking for updates** (Labs's O1C): drop the update clause from
   the family's "No account. No cloud. No tracking." line (VTX.local in content/home.ts) and from the profile's
   matching line.
-- **Studio's shot** (public/apps/shots/studio-1-*) is its live home as of 19 Nov 2026. Retake it if the home changes a
-  lot.
+- **Studio's and Mindloop's shots** (public/apps/shots/studio-1-*, mindloop-1-*) are their live homes as of 19 and 20
+  Nov 2026. Retake them if a home changes a lot. Mindloop's card says one lesson; update it as lessons open.
 - **Hand-run figures:** "7 % of commits after midnight" comes from `scripts/night-commits.py`. The Labs count falls
   back to 85 (`LABS_TOOLS`) only if vtxlabs.app can't be read at build. Lapis's 142 GB was measured once.
 - **If the core stack changes:** edit `CORE` in content/home.ts, then run `scripts/stack-icons.mjs`. It rebuilds the

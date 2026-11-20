@@ -233,7 +233,8 @@ export const LIVE = {
   sub: { en: "Things I built that are actually running in production 🚀", th: "ของที่ทำแล้วรันอยู่บน production จริง ๆ 🚀" },
   live: { en: "Live", th: "Live" },
   // studio: vtx-studio's package.json (Next.js 16, React 19, TypeScript, three.js for the orb on its home page)
-  tags: { labs: ["Next.js", "React", "TypeScript", "Vercel"], craftcv: ["Next.js", "React", "TypeScript", "PDF"], studio: ["Next.js", "React", "TypeScript", "three.js"] } as Record<string, string[]>,
+  // mindloop: vtx-mindloop's package.json (Next.js 16, TypeScript, ts-fsrs) and its own Canvas 2D star map
+  tags: { labs: ["Next.js", "React", "TypeScript", "Vercel"], craftcv: ["Next.js", "React", "TypeScript", "PDF"], studio: ["Next.js", "React", "TypeScript", "three.js"], mindloop: ["Next.js", "TypeScript", "Canvas 2D", "ts-fsrs"] } as Record<string, string[]>,
 };
 
 /** Jokes, and only jokes: never a real figure in here, never a joke in the real row. */

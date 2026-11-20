@@ -17,7 +17,7 @@ test("the figures row is true", () => {
   expect(yearsSince(FIRST_JOB, Date.UTC(2027, 6, 25))).toBe(10);
   expect(APPS.length).toBe(11);
   expect(APPS.filter((a) => a.personal).map((a) => a.id)).toEqual(["cuprum", "lux", "mercurius", "crystallum"]);
-  expect(WEB.map((w) => w.id)).toEqual(["labs", "craftcv", "studio"]);
+  expect(WEB.map((w) => w.id)).toEqual(["labs", "craftcv", "studio", "mindloop"]);
   expect(T.proof.webs.en).toBe(`web apps live today: ${WEB.map((w) => w.name).join(", ")}`);
   // the third figure is Labs's tool count, for the whole family (lib/labs.ts), no longer Lapis's six engines
   expect(Object.keys(T.proof)).toEqual(["years", "apps", "tools", "webs"]);
@@ -422,3 +422,20 @@ test("core stack: exactly his 19, each with its logo, each also marked in the ca
   // they come in one by one with effect 1, so Reduce motion keeps them still
   expect(readFileSync(join(import.meta.dir, "..", "components/motion/run.ts"), "utf8")).toContain("main .o-core-t");
 });
+
+test("Mindloop is live: a card with its link, described as it is (one lesson, nine coming)", async () => {
+  // owner, 20 Nov 2026: "เสร็จ deploy แล้วไปแปะใน portfolio labs ได้เลยคับ" (checked live first: 200, its own title)
+  const { LIVE } = await import("../content/home");
+  const m = WEB.find((w) => w.id === "mindloop")!;
+  expect(m.url).toBe("https://mindloop.vtxlabs.app/");
+  expect(m.urlEn).toBeUndefined(); // Thai only: /en is a 404
+  expect(m.line.en).toContain("The first lesson");
+  expect(m.line.en).toContain("nine more topics are coming");
+  expect(m.line.th).toContain("อีก 9 หัวข้อกำลังตามมา");
+  // no claims it doesn't make: it counts visits (Umami) and keeps progress in the browser
+  for (const l of ["en", "th"] as const) expect(m.line[l]).not.toMatch(/no tracking|offline|ไม่มีการเก็บข้อมูล|ออฟไลน์/i);
+  expect(LIVE.tags.mindloop).toEqual(["Next.js", "TypeScript", "Canvas 2D", "ts-fsrs"]);
+  // its repo is private: no source link anywhere
+  expect(JSON.stringify(WEB)).not.toMatch(/github\.com\/[^"]*mindloop/i);
+});
+

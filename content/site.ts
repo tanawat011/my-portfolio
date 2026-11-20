@@ -35,6 +35,8 @@ export const LINKS = {
   // live 19 Nov 2026 (owner: "อย่าลืมเอา https://studio.vtxlabs.app/ ไปแปะใน port"); Thai at /, English at /en
   studio: "https://studio.vtxlabs.app/",
   studioEn: "https://studio.vtxlabs.app/en",
+  // live 20 Nov 2026 (owner: "เสร็จ deploy แล้วไปแปะใน portfolio labs ได้เลยคับ"); Thai only
+  mindloop: "https://mindloop.vtxlabs.app/",
 } as const;
 
 /** 11A: the open-source boilerplates on GitHub (the old site's Portfolio section). */
@@ -52,9 +54,10 @@ export const CVS = [
 ] as const;
 
 /**
- * The web apps that are live today (11A): VTX Labs and CraftCV, and VTX Studio since 19 Nov 2026 (checked: 200, its own
- * title and pitch, Thai at / and English at /en). `urlEn`: the English page, where it has its own. Its words are Studio's
- * own pitch (its home and contact pages). The shot is its live home, dark and light, taken 19 Nov 2026.
+ * The web apps that are live today (11A): VTX Labs and CraftCV, VTX Studio since 19 Nov 2026 (checked: 200, its own
+ * title and pitch, Thai at / and English at /en) and Mindloop since 20 Nov 2026 (checked: 200, its own title; Thai only).
+ * `urlEn`: the English page, where it has its own. Studio's words are its own pitch (its home and contact pages);
+ * Mindloop's are what its home says: one lesson open, nine coming. Each shot is the app's live home, dark and light.
  */
 export const WEB: readonly { id: string; name: string; url: string; urlEn?: string; host: string; shot: string | null; line: Text }[] = [
   { id: "labs", name: "VTX Labs", url: LINKS.labs, host: "vtxlabs.app", shot: null,
@@ -63,6 +66,8 @@ export const WEB: readonly { id: string; name: string; url: string; urlEn?: stri
     line: { en: "Build a resume in your browser and export it as a PDF or PNG. Free, no account, and your CVs stay in your browser.", th: "สร้าง resume ในเบราว์เซอร์ แล้ว export เป็น PDF หรือ PNG ฟรี ไม่ต้องมีบัญชี และ CV อยู่ในเบราว์เซอร์ของคุณเท่านั้น" } },
   { id: "studio", name: "VTX Studio", url: LINKS.studio, urlEn: LINKS.studioEn, host: "studio.vtxlabs.app", shot: "studio-1",
     line: { en: "Back-office systems, web apps, mobile apps and LINE bots for businesses, from design to handover with documentation. Reach it by email; LINE is coming.", th: "ระบบหลังบ้าน เว็บแอป แอปมือถือ และ LINE bot สำหรับธุรกิจ ตั้งแต่ออกแบบจนส่งมอบพร้อมเอกสาร ติดต่อทางอีเมล LINE เร็ว ๆ นี้" } },
+  { id: "mindloop", name: "Mindloop", url: LINKS.mindloop, host: "mindloop.vtxlabs.app", shot: "mindloop-1",
+    line: { en: "A Thai-first site for relearning full-stack fundamentals through animations you can play with, plus spaced-repetition review (FSRS). The first lesson, load balancing with stateless and stateful servers, is up; nine more topics are coming.", th: "เว็บทบทวนพื้นฐาน fullstack ด้วยภาพที่ขยับและลองเล่นได้ พร้อมการทบทวนแบบเว้นระยะ (FSRS) ตอนนี้เปิดบทแรกแล้ว: Load balancer กับ stateless / stateful อีก 9 หัวข้อกำลังตามมา" } },
 ];
 
 /**
@@ -114,7 +119,7 @@ export const T = {
     apps: { en: "desktop apps in Rust + Tauri, built solo", th: "แอป desktop ด้วย Rust + Tauri ทำคนเดียว" },
     // owner, 19 Nov 2026: a figure for the whole family, not one app (was "6 database engines in one window (Lapis)")
     tools: { en: "free tools on VTX Labs, all in your browser", th: "เครื่องมือฟรีบน VTX Labs ใช้ในเบราว์เซอร์ได้เลย" },
-    webs: { en: "web apps live today: VTX Labs, CraftCV, VTX Studio", th: "เว็บแอปที่เปิดใช้อยู่: VTX Labs, CraftCV, VTX Studio" },
+    webs: { en: "web apps live today: VTX Labs, CraftCV, VTX Studio, Mindloop", th: "เว็บแอปที่เปิดใช้อยู่: VTX Labs, CraftCV, VTX Studio, Mindloop" },
   },
   aboutK: { en: "story", th: "story" }, aboutT: { en: "About", th: "เกี่ยวกับ" }, aboutH: { en: "How I got here", th: "มาถึงตรงนี้ได้ยังไง" },
   photo: { en: "Tanawat, smiling, in glasses", th: "Tanawat ยิ้ม ใส่แว่น" },

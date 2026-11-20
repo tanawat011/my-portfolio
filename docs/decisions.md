@@ -298,3 +298,18 @@ The owner, verbatim (through VTX Develop): "อย่าลืมเอา https
   recruiters' card keeps no business pitch.
 - Three live cards: on two columns the third runs across both, its shot beside its words; on phones it's like the
   others.
+
+## Mindloop is live (20 Nov 2026)
+
+The owner, verbatim (through VTX Develop): "ถ้าขอให้ทำเลยได้ปะ version แรกนี้ แล้วขึ้นเลย และเสร็จ deploy แล้วไปแปะใน
+portfolio labs ได้เลยคับ".
+
+- Checked first: mindloop.vtxlabs.app returns 200 with its own title. It's Thai only (`/en` is a 404), so both pages
+  link to it as it is.
+- It joins the live web apps beside VTX Studio, in the same style. Its words are what its home says: a Thai-first
+  site for relearning full-stack fundamentals through animations you can play with, plus spaced-repetition review
+  (FSRS); one lesson open (load balancing, stateless / stateful), nine more topics coming. No "no tracking" claim (it
+  counts visits with Umami), and no source link (its repo is private). Its tags come from its package.json. The shot
+  is its live home, dark and light.
+- 4 web apps live: VTX Labs, CraftCV, VTX Studio, Mindloop. Four cards make an even 2×2 grid, so Studio is a regular
+  card again.
