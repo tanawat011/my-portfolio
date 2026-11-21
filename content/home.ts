@@ -59,8 +59,8 @@ export const ABILITIES: { icon: string; t: Text; d: Text }[] = [
 /**
  * The core stack, above the skills cards (owner, 19 Nov 2026: "อยากให้เน้นเรื่องการที่ผมนั้นถนัด react, next.js, reactnative,
  * nodejs, typescript, Flutter, Docker, NestJS, express, Tailwind, Ant Design, shadcn, Vitest, Supabase, Vercel, MongoDB,
- * PostgreSQL, Claude Code, rust … บ่งบอกให้รู้ว่ามันเป็น stack ที่เราถนัดที่สุดในปัจจุบัน"). Exactly his 19, grouped; none added,
- * none dropped. `icon`: a key of STACK_ICONS (content/stack-icons.ts). `also`: how the cards below spell it, so the same
+ * PostgreSQL, Claude Code, rust … บ่งบอกให้รู้ว่ามันเป็น stack ที่เราถนัดที่สุดในปัจจุบัน"), then Java and Kotlin (21 Nov 2026:
+ * "ฝากใส่ skill core เพิ่มไปหน่อยครับ java kotlin"). Exactly his 21, grouped; none added, none dropped. `icon`: a key of STACK_ICONS (content/stack-icons.ts). `also`: how the cards below spell it, so the same
  * names carry the core mark there.
  */
 export const CORE = {
@@ -72,11 +72,11 @@ export const CORE = {
   },
   mark: { en: "The same ones carry a dot in the cards below.", th: "ตัวเดียวกันมีจุดกำกับในการ์ดข้างล่าง" },
   credit: {
-    en: "Logos from Simple Icons (CC0); the Rust logo is the Rust Foundation's, CC BY-SA 4.0. Names and logos belong to their owners.",
-    th: "โลโก้จาก Simple Icons (CC0) ส่วนโลโก้ Rust เป็นของ Rust Foundation (CC BY-SA 4.0) ชื่อและโลโก้เป็นของเจ้าของแต่ละราย",
+    en: "Logos from Simple Icons (CC0); the Rust logo is the Rust Foundation's, CC BY-SA 4.0. Java has no logo free to use, so its tile shows a plain cup. Names and logos belong to their owners.",
+    th: "โลโก้จาก Simple Icons (CC0) ส่วนโลโก้ Rust เป็นของ Rust Foundation (CC BY-SA 4.0) Java ไม่มีโลโก้ที่ใช้ได้อิสระ จึงใช้รูปแก้วกาแฟธรรมดาแทน ชื่อและโลโก้เป็นของเจ้าของแต่ละราย",
   },
   groups: [
-    { k: { en: "Languages", th: "ภาษา" }, items: [{ name: "TypeScript", icon: "typescript" }, { name: "Rust", icon: "rust" }] },
+    { k: { en: "Languages", th: "ภาษา" }, items: [{ name: "TypeScript", icon: "typescript" }, { name: "Rust", icon: "rust" }, { name: "Java", icon: "java-cup" }, { name: "Kotlin", icon: "kotlin" }] },
     { k: { en: "Frontend", th: "Frontend" }, items: [{ name: "React", icon: "react" }, { name: "Next.js", icon: "nextdotjs" }, { name: "Tailwind CSS", icon: "tailwindcss", also: ["Tailwind"] }, { name: "Ant Design", icon: "antdesign" }, { name: "shadcn/ui", icon: "shadcnui" }] },
     { k: { en: "Mobile", th: "มือถือ" }, items: [{ name: "React Native", icon: "react" }, { name: "Flutter", icon: "flutter" }] },
     { k: { en: "Backend", th: "Backend" }, items: [{ name: "Node.js", icon: "nodedotjs" }, { name: "NestJS", icon: "nestjs" }, { name: "Express", icon: "express" }] },
@@ -104,7 +104,7 @@ export const WEAPONS: { t: Text; d: Text; items: { k: Text; v: string }[]; wide?
     // Round 3b (owner): only what he really uses, and no "Models" label: "ไอ่พวกนี้ไม่น่าใช่ Models นะ"
     items: [{ k: { en: "What I actually use", th: "ที่ใช้จริง ๆ" }, v: "Claude Code, Copilot, Gemini, GPT" }] },
   { t: { en: "Languages", th: "ภาษา" }, d: { en: "The weapons I fight with.", th: "อาวุธที่ใช้ออกรบ" },
-    items: [{ k: { en: "Primary", th: "หลัก" }, v: "TypeScript, Rust" }, { k: { en: "Also speak", th: "พูดได้อีก" }, v: "JavaScript, SQL, Go, Java, Kotlin, Python, PHP, Swift, Dart" }, { k: { en: "Markup & Style", th: "Markup และ Style" }, v: "HTML5, CSS3" }] },
+    items: [{ k: { en: "Primary", th: "หลัก" }, v: "TypeScript, Rust, Java, Kotlin" }, { k: { en: "Also speak", th: "พูดได้อีก" }, v: "JavaScript, SQL, Go, Python, PHP, Swift, Dart" }, { k: { en: "Markup & Style", th: "Markup และ Style" }, v: "HTML5, CSS3" }] },
   { t: { en: "Desktop", th: "เดสก์ท็อป" }, d: { en: "Apps that live on your Mac, not in a tab. 🖥️", th: "แอปที่อยู่บน Mac ไม่ใช่ในแท็บเบราว์เซอร์ 🖥️" },
     items: [{ k: { en: "Core", th: "หลัก" }, v: "Tauri 2, Rust (tokio, sqlx), React" }, { k: { en: "Native bits", th: "ของ native" }, v: "Keychain, URL schemes, SSH, RDP, SwiftUI" }] },
   { t: { en: "Web Frameworks & UI", th: "เว็บและ UI" }, d: { en: "Building pixel-perfect UIs since forever.", th: "ไล่ pixel ให้ตรงมาตั้งแต่ไหนแต่ไร" },

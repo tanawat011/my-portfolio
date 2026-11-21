@@ -313,3 +313,13 @@ portfolio labs ได้เลยคับ".
   is its live home, dark and light.
 - 4 web apps live: VTX Labs, CraftCV, VTX Studio, Mindloop. Four cards make an even 2×2 grid, so Studio is a regular
   card again.
+
+## Java and Kotlin in the core stack (21 Nov 2026)
+
+The owner, verbatim (through VTX Develop): "port + github pro ฝากใส่ skill core เพิ่มไปหน่อยครับ java kotlin".
+
+- The core stack's Languages group is now TypeScript, Rust, Java, Kotlin: his 21. In the Languages card they move from
+  "Also speak" to "Primary", so they're listed once, with the core dot.
+- Kotlin's tile is its logo from Simple Icons. Java has no logo free to use: Oracle's isn't in Simple Icons, and
+  OpenJDK's Duke carries its own licence. Its tile is a plain cup drawn for it (scripts/stack-icons.mjs, DRAWN), and
+  the credit line says so. Same on the GitHub profile.

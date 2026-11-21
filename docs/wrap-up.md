@@ -13,7 +13,7 @@ deployed by hand, on the owner's word (see the README).
   - the hero with the `> hello_world_` terminal (easter egg; `sudo hire-me` lands on the recruiters' card);
   - uptime with four real figures (9 years, 11 apps, 85 Labs tools read from vtxlabs.app at build, 4 web apps live);
   - about, with the story rail;
-  - My Weapons: the core stack (his 19, as logo tiles), then nine skills cards with core items marked;
+  - My Weapons: the core stack (his 21, as logo tiles), then nine skills cards with core items marked;
   - the VTX family, with Now shipping read from the release repos' labs.json at build;
   - resume, projects (GitHub facts at build), Live projects (VTX Labs, CraftCV, VTX Studio and Mindloop, each linked);
   - Fun Facts (jokes, then four true);
@@ -27,7 +27,7 @@ deployed by hand, on the owner's word (see the README).
 
 - The Orbit banner (dark / light), then:
   - `> whoami`;
-  - `> stack --core`, his 19 as self-hosted badges;
+  - `> stack --core`, his 21 as self-hosted badges;
   - `> ls ~/vtx`, the family with its icons;
   - `> ai --always-on`, `> weapons --history`, `> stats --honest`;
   - `> git log --shadow`, the snake.

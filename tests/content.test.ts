@@ -399,20 +399,22 @@ test("skills audit (S1–S12, his \"Skills OK\"): each skill in its right place,
   expect(WEAPONS.filter((w) => w.wide).map((w) => w.t.en)).toEqual(["AI — Always On"]);
 });
 
-test("core stack: exactly his 19, each with its logo, each also marked in the cards below", async () => {
+test("core stack: exactly his 21, each with its logo, each also marked in the cards below", async () => {
   const { CORE, CORE_NAMES, WEAPONS } = await import("../content/home");
   const { STACK_ICONS } = await import("../content/stack-icons");
   const names = CORE.groups.flatMap((g) => g.items.map((i) => i.name));
   // his words: react, next.js, reactnative, nodejs, typescript, Flutter, Docker, NestJS, express, Tailwind, Ant Design,
-  // shadcn, Vitest, Supabase, Vercel, MongoDB, PostgreSQL, Claude Code, rust (none added, none dropped)
-  expect([...names].sort()).toEqual(["Ant Design", "Claude Code", "Docker", "Express", "Flutter", "MongoDB", "NestJS", "Next.js", "Node.js", "PostgreSQL", "React", "React Native", "Rust", "Supabase", "Tailwind CSS", "TypeScript", "Vercel", "Vitest", "shadcn/ui"]);
+  // shadcn, Vitest, Supabase, Vercel, MongoDB, PostgreSQL, Claude Code, rust; then "java kotlin" (none added, none dropped)
+  expect([...names].sort()).toEqual(["Ant Design", "Claude Code", "Docker", "Express", "Flutter", "Java", "Kotlin", "MongoDB", "NestJS", "Next.js", "Node.js", "PostgreSQL", "React", "React Native", "Rust", "Supabase", "Tailwind CSS", "TypeScript", "Vercel", "Vitest", "shadcn/ui"]);
   for (const g of CORE.groups) for (const i of g.items) {
     const ic = STACK_ICONS[i.icon];
     expect([i.name, !!ic?.path]).toEqual([i.name, true]);
     for (const c of [ic.dark, ic.light]) expect(c === "ink" || /^[0-9A-F]{6}$/.test(c)).toBe(true);
   }
-  // the one logo that isn't CC0 is credited where it's shown
-  expect(Object.values(STACK_ICONS).filter((i) => i.license !== "CC0-1.0").map((i) => i.title)).toEqual(["Rust"]);
+  // the one logo that isn't CC0 is credited where it's shown; Java's tile is a plain cup drawn here, said so too
+  expect(Object.values(STACK_ICONS).filter((i) => i.license !== "CC0-1.0" && i.license !== "drawn-here").map((i) => i.title)).toEqual(["Rust"]);
+  expect(Object.values(STACK_ICONS).filter((i) => i.license === "drawn-here").map((i) => i.title)).toEqual(["Java"]);
+  expect(CORE.credit.en).toContain("Java has no logo free to use");
   expect(CORE.credit.en).toContain("Rust Foundation");
   expect(CORE.credit.en).toContain("CC BY-SA 4.0");
   // every one of the 19 shows up, marked, somewhere in the skills cards (the same split and match as Home.tsx)
