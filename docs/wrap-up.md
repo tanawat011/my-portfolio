@@ -5,7 +5,8 @@ where things stand. The why behind each change is in [decisions.md](decisions.md
 
 ## Live
 
-**tanawat.dev**: my-portfolio `main`, deployed by Vercel's git integration (production only).
+**tanawat.dev**: my-portfolio `main`. Since 21 Nov 2026 a push deploys nothing (`vercel.json`); production is
+deployed by hand, on the owner's word (see the README).
 
 - English at `/`, Thai at `/th`, four case pages each (Fulmen, Lapis, Silva, Ignis), privacy, a 404.
 - The page, top to bottom:

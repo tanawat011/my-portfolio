@@ -49,4 +49,7 @@ Vercel's build can't make these, so they are committed. Re-run the script when i
 | `bun scripts/brand-images.ts http://127.0.0.1:3123` | the share images and icons | the name, tagline, app count or look changes (needs the built site running) |
 | `node scripts/stack-icons.mjs <simple-icons package> [<tanawat011 repo>]` | `content/stack-icons.ts`, and the profile's `assets/stack/` badges | the core stack changes (untar `npm pack simple-icons` for the first argument) |
 
-Pushing `main` deploys on Vercel: push only on the owner's word.
+Deploys happen by hand, on the owner's word only. `vercel.json` turns Vercel's git auto-deploy off
+(`git.deploymentEnabled: false`, as on Studio, Mindloop, Labs and CraftCV), so pushing `main` deploys nothing. To
+deploy: push the commit, then create a production deployment of it, either through the Vercel API from the pushed
+commit or in the Vercel dashboard under Deployments → Create Deployment.
