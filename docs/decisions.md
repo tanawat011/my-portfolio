@@ -342,3 +342,17 @@ pass; no push and no deploy today, local commits only.
   Canonical + hreflang, metadataBase, sitemap (12) and robots were already right. `tests/seo.test.ts`.
 - Proven: `bun test` 31, tsc, build, `next start` in headless Chrome (no console errors, 0 cookies, only
   cloud.umami.is), kit `web-check.mjs --pages 40` critical 0 high 0. Not pushed, not deployed.
+
+## Feedback (25 Nov 2026)
+
+The owner, 23 Nov 2026: "เราควรต้องมีช่องทางให้ส่ง feedback นะ"; 25 Nov, via VTX Develop: his email for now, no form, no
+backend; no push and no deploy today, local commits only.
+
+- "Feedback" / "ส่งความเห็น" at the end of the footer's links: a plain `mailto:` to `LINKS.email` with only a subject,
+  `[tanawat.dev] Feedback: <path>` / `[tanawat.dev] ความเห็น: /th<path>`, the path without query or hash
+  (`content/site.ts` `feedbackMailto`; each page passes its own path to `Footer`). No body, no Umami event. The footer's
+  plain "Email" link stays as it was; no line was added to the hire card (it is for hiring).
+- Privacy (both languages): "A message you send me" adds that an email from the Feedback link names the page in its
+  subject; kept until you ask, as before.
+- Proven: `bun test` 32, tsc, build, `next start` in headless Chrome (no console errors on 7 pages, every subject right
+  in both languages), kit `web-check.mjs --pages 40` critical 0 high 0. Not pushed, not deployed.
