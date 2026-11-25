@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { CasePage } from "@/components/CasePage";
-import { appById, CASES, caseById } from "@/content/apps";
+import { CASES, caseById } from "@/content/apps";
 import { pageMeta } from "@/lib/meta";
 
 export const dynamicParams = false;
@@ -11,7 +11,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const c = caseById(slug);
-  return c ? pageMeta("th", `/work/${slug}`, appById(slug).name, c.stand.th) : {};
+  return c ? pageMeta("th", `/work/${slug}`, c.title.th, c.stand.th) : {};
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
