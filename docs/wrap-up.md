@@ -49,19 +49,16 @@ on 20 Nov 2026: one lesson open and nine coming, as its own home says; its sourc
 
 ## For later
 
-- **When Lapis, Fulmen, Silva and Ventus ask before checking for updates** (Labs's O1C): drop the update clause from
-  the family's "No account. No cloud. No tracking." line (VTX.local in content/home.ts) and from the profile's
-  matching line.
-- **Studio's and Mindloop's shots** (public/apps/shots/studio-1-*, mindloop-1-*) are their live homes as of 19 and 20
-  Nov 2026. Retake them if a home changes a lot. Mindloop's card says one lesson; update it as lessons open.
+- ✅ 25 Nov 2026: the update clause is gone from the family line (content/home.ts) and the profile — all four apps ask
+  before checking since their 19 Nov releases.
+- **Studio's and Mindloop's shots** (public/apps/shots/studio-1-*, mindloop-1-*) were retaken from the live homes on
+  25 Nov 2026 (1280 × 800 at 1.25, dark and light; light set through each site's own theme key). Mindloop's home grows
+  as lessons open: retake when it changes a lot. Its card now names lessons instead of a count, so it doesn't go stale.
 - **Hand-run figures:** "7 % of commits after midnight" comes from `scripts/night-commits.py`. The Labs count falls
   back to 85 (`LABS_TOOLS`) only if vtxlabs.app can't be read at build. Lapis's 142 GB was measured once.
 - **If the core stack changes:** edit `CORE` in content/home.ts, then run `scripts/stack-icons.mjs`. It rebuilds the
   portfolio's logo data and the profile's badges.
-- **Small leftovers, none urgent:**
-  - The 404 page still shows the orb (Studio's motif, gone from the hire card).
-  - `public/favicon_io/` holds the old site's unused icons.
-  - ESLint isn't configured (`next lint` would ask).
+- **Small leftovers, none urgent** (25 Nov 2026: the 404 orb, `public/favicon_io/` and the missing ESLint config are done — `bun run lint` runs ESLint with eslint.config.mjs):
   - The profile's `> weapons --history` keeps its own grouping, not the portfolio's audited one. Nothing in it is
     false.
 - **GitHub schedules:** a scheduled workflow on a repo with no activity for 60 days gets paused by GitHub. Any push to

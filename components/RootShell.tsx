@@ -16,6 +16,8 @@ import "@/app/globals.css";
 export function RootShell({ lang, children }: { lang: Lang; children: React.ReactNode }) {
   return (
     <html lang={lang} className={fontVars} data-theme={DEFAULT_THEME} suppressHydrationWarning>
+      {/* An App Router root layout writes <head> itself; next/head is the Pages Router's. The rule is for that. */}
+      {/* eslint-disable-next-line @next/next/no-head-element */}
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

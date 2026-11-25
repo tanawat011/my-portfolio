@@ -17,7 +17,6 @@ export default function GlobalNotFound() {
         <div className="pv">
           <main className="nf">
             <div>
-              <div className="orbc" aria-hidden="true" />
               <p className="p-eye" style={{ justifyContent: "center" }}>
                 <span className="p-k">404</span>tanawat.dev
               </p>
