@@ -30,12 +30,16 @@ export function csp({ dev = false }: { dev?: boolean } = {}): string {
 type Header = { key: string; value: string };
 type Rule = { source: string; headers: Header[] };
 
-/** The rules for next.config.ts headers(). Vercel adds HSTS itself. */
+/**
+ * The rules for next.config.ts headers(). Vercel sends HSTS on its own without includeSubDomains; ours
+ * replaces it with the same two years plus every subdomain (no preload: that is a list one cannot leave quickly).
+ */
 export function securityHeaders(dev: boolean): Rule[] {
   return [
     {
       source: "/(.*)",
       headers: [
+        ...(dev ? [] : [{ key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" }]),
         { key: "Content-Security-Policy", value: csp({ dev }) },
         { key: "X-Frame-Options", value: "DENY" },
         { key: "X-Content-Type-Options", value: "nosniff" },
