@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FOOT } from "@/content/home";
-import { href, LINKS, NAME, otherLang, T, type Lang } from "@/content/site";
+import { feedbackMailto, href, LINKS, NAME, otherLang, T, type Lang } from "@/content/site";
 import { MenuButton } from "./MenuButton";
 import { ThemeButton } from "./ThemeButton";
 
@@ -56,8 +56,8 @@ export function Nav({ lang, path }: { lang: Lang; path: string }) {
   );
 }
 
-/** Round 1's footer, which the owner kept, with the old logo and the old AI line. */
-export function Footer({ lang }: { lang: Lang }) {
+/** Round 1's footer, which the owner kept, with the old logo and the old AI line; Feedback names the page (`path`) it is on. */
+export function Footer({ lang, path }: { lang: Lang; path: string }) {
   return (
     <footer className="p-ft">
       <div className="p-in">
@@ -77,6 +77,7 @@ export function Footer({ lang }: { lang: Lang }) {
             <a href={LINKS.labs}>VTX Labs</a>
             <a href={lang === "en" ? LINKS.studioEn : LINKS.studio}>VTX Studio</a>
             <Link href={href(lang, "/privacy")}>{T.privacy[lang]}</Link>
+            <a href={feedbackMailto(lang, path)}>{T.feedback[lang]}</a>
           </nav>
         </div>
         <p className="p-ft-ai">{FOOT.ai[lang]}</p>

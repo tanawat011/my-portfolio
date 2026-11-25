@@ -489,7 +489,7 @@ export async function Home({ lang }: { lang: Lang }) {
           </div>
         </section>
       </main>
-      <Footer lang={lang} />
+      <Footer lang={lang} path="/" />
     </>
   );
 }

@@ -441,3 +441,15 @@ test("Mindloop is live: a card with its link, described as it is (one lesson, ni
   expect(JSON.stringify(WEB)).not.toMatch(/github\.com\/[^"]*mindloop/i);
 });
 
+
+test("the footer's Feedback link: a mailto whose subject names the site and the page, in the page's language (owner, 23 Nov 2026)", async () => {
+  const { feedbackMailto, pagePath, LINKS } = await import("../content/site");
+  expect(feedbackMailto("en", "/work/lapis")).toBe(`mailto:${LINKS.email}?subject=%5Btanawat.dev%5D%20Feedback%3A%20%2Fwork%2Flapis`);
+  const th = new URL(feedbackMailto("th", "/privacy?x=1#y"));
+  expect([...th.searchParams.keys()]).toEqual(["subject"]);
+  expect(th.searchParams.get("subject")).toBe("[tanawat.dev] ความเห็น: /th/privacy");
+  expect(new URL(feedbackMailto("th", "/")).searchParams.get("subject")).toBe("[tanawat.dev] ความเห็น: /th");
+  expect(pagePath("")).toBe("/");
+  // every page that draws the footer passes its own path
+  for (const f of ["Home", "CasePage", "Privacy"]) expect(readFileSync(join(import.meta.dir, "..", "components", `${f}.tsx`), "utf8")).toMatch(/<Footer lang=\{lang\} path=/);
+});

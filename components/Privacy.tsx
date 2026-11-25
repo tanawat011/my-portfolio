@@ -52,7 +52,7 @@ function En() {
         </li>
         <li>
           <b>A message you send me.</b> By email or LINE, I receive what you write with your address or LINE name. <i>Kept:</i> in my {gmail ? "Gmail" : "email"} inbox or
-          my LINE chats until you ask me to delete it.
+          my LINE chats until you ask me to delete it. An email from the Feedback link also names, in its subject, the page you were on.
         </li>
       </ul>
 
@@ -166,7 +166,7 @@ function Th() {
         </li>
         <li>
           <b>ข้อความที่คุณส่งมา</b> ทางอีเมลหรือ LINE ผมได้รับสิ่งที่คุณเขียนพร้อมอีเมลหรือชื่อ LINE ของคุณ <i>เก็บนานแค่ไหน:</i> อยู่ใน{gmail ? "กล่อง Gmail" : "กล่องอีเมล"}
-          หรือแชต LINE ของผม จนกว่าคุณจะขอให้ลบ
+          หรือแชต LINE ของผม จนกว่าคุณจะขอให้ลบ อีเมลจากลิงก์ส่งความเห็นจะมีหน้าที่คุณเปิดอยู่ในหัวเรื่องด้วย
         </li>
       </ul>
 
@@ -274,7 +274,7 @@ export function Privacy({ lang }: { lang: Lang }) {
           </div>
         </section>
       </main>
-      <Footer lang={lang} />
+      <Footer lang={lang} path="/privacy" />
     </>
   );
 }

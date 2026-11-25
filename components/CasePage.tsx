@@ -84,7 +84,7 @@ export function CasePage({ lang, c }: { lang: Lang; c: Case }) {
           </div>
         </section>
       </main>
-      <Footer lang={lang} />
+      <Footer lang={lang} path={`/work/${c.id}`} />
     </>
   );
 }

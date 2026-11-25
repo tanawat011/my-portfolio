@@ -19,6 +19,19 @@ export function href(lang: Lang, path = "/"): string {
   if (lang === "en") return path;
   return path === "/" ? "/th" : `/th${path}`;
 }
+/** The page's path alone: never what follows ? or #. */
+export const pagePath = (path: string) => path.split(/[?#]/)[0] || "/";
+
+/**
+ * The footer's Feedback link (the owner, 23 Nov 2026: "เราควรต้องมีช่องทางให้ส่ง feedback นะ"; 25 Nov: his email for now):
+ * a plain mailto whose subject names the site and the page, in the page's language, e.g. "[tanawat.dev] Feedback:
+ * /work/lapis" or "[tanawat.dev] ความเห็น: /th/work/lapis". No form, no backend, no body, no Umami event.
+ * `path` is the page's own path (English); the Thai page's address is made from it.
+ */
+export function feedbackMailto(lang: Lang, path: string): string {
+  const word = lang === "th" ? "ความเห็น" : "Feedback";
+  return `mailto:${LINKS.email}?subject=${encodeURIComponent(`[tanawat.dev] ${word}: ${pagePath(href(lang, path))}`)}`;
+}
 /** The same page in the other language. */
 export function otherLang(lang: Lang): Lang {
   return lang === "en" ? "th" : "en";
@@ -160,6 +173,7 @@ export const T = {
   hireFacts: { en: "Fullstack · {y} years · TypeScript & Rust · Thailand", th: "Fullstack · {y} ปี · TypeScript และ Rust · ประเทศไทย" },
   cvPdf: { en: "Resume (PDF)", th: "Resume (PDF)" },
   emailMe: { en: "Email me", th: "ส่งอีเมล" },
+  feedback: { en: "Feedback", th: "ส่งความเห็น" },
   privacy: { en: "Privacy", th: "ความเป็นส่วนตัว" },
   allWork: { en: "All work", th: "งานทั้งหมด" },
   next: { en: "Next", th: "ถัดไป" },
