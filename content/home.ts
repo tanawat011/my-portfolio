@@ -224,6 +224,17 @@ export const PROJECTS = {
     { name: "NestJS Boilerplate", repo: "nestjs-boilerplate", mark: "nest",
       tags: [["TypeScript", "lang"], ["NestJS", "framework"], ["TypeORM", "data"], ["PostgreSQL", "data"], ["JWT", "ops"], ["Swagger", "ops"], ["Docker", "ops"]] as [string, TagKind][],
       d: { en: "Production-ready NestJS 11 boilerplate with TypeORM, PostgreSQL, JWT auth, Swagger, and Docker.", th: "NestJS 11 boilerplate พร้อมใช้งานจริง TypeORM, PostgreSQL, JWT auth, Swagger และ Docker" } },
+    // The two libraries (25 Nov 2026): on GitHub only, not on npm (the owner's call). Tags from each repo: package.json,
+    // NOTICE.md (langslip's key tables are Unicode CLDR's, its Thai words ICU's), src/decimal.ts (thai2num's BigInt).
+    // Test tools are left off: the only fitting kind would be "auth & ops".
+    { name: "langslip", repo: "langslip", mark: "ts",
+      tags: [["TypeScript", "lang"], ["Unicode CLDR", "data"], ["ICU word list", "data"]] as [string, TagKind][],
+      d: { en: "Forgot to switch the keyboard? l;ylfu → สวัสดี. Fixes text typed on the wrong layout, Thai ⇄ English, only the parts that are wrong: links, code and real English words stay as they are. No dependencies, with a CLI.",
+        th: "ลืมเปลี่ยนภาษา? l;ylfu → สวัสดี แก้ข้อความที่พิมพ์ผิดแป้น ไทย ⇄ อังกฤษ เฉพาะช่วงที่ผิด ลิงก์ โค้ด และคำอังกฤษจริงไม่โดนแตะ ไม่มี dependency มี CLI ให้ด้วย" } },
+    { name: "thai2num", repo: "thai2num", mark: "ts",
+      tags: [["TypeScript", "lang"], ["BigInt", "lang"]] as [string, TagKind][],
+      d: { en: "Reads Thai number words back into exact numbers: baht and satang, spoken forms like สองพันห้า, and ร้อยกว่า as a range, never a made-up figure. Finds numbers in running text too.",
+        th: "อ่านตัวเลขที่เขียนเป็นคำไทยกลับเป็นตัวเลขเป๊ะ ๆ ทั้งบาทและสตางค์ ภาษาพูดอย่าง สองพันห้า ส่วน ร้อยกว่า ได้เป็นช่วง ไม่มั่วเลขขึ้นมาเอง หาตัวเลขในข้อความยาว ๆ ได้ด้วย" } },
   ],
 };
 

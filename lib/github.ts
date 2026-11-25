@@ -11,7 +11,7 @@ export interface RepoFacts {
 }
 
 /** GitHub's own language colours (linguist), so the bar reads like the one on GitHub. */
-const LANG_COLOR: Record<string, string> = { Go: "#00ADD8", TypeScript: "#3178c6", JavaScript: "#f1e05a", Dockerfile: "#384d54", Shell: "#89e051", Makefile: "#427819" };
+const LANG_COLOR: Record<string, string> = { Go: "#00ADD8", TypeScript: "#3178c6", JavaScript: "#f1e05a", Dockerfile: "#384d54", Shell: "#89e051", Makefile: "#427819", Swift: "#F05138", HTML: "#e34c26" };
 
 async function get<T>(path: string): Promise<T | null> {
   try {

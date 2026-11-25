@@ -309,10 +309,12 @@ test("last notes: the family's honest lines stay true", async () => {
   // personal builds get his line; Labs says they're not for sale, "maybe not for a long time", hence "probably"
   expect(VTX.nope.en).toContain("probably");
   expect(VTX.nope.th).toContain("คง");
-  // never "100% offline": four apps check for updates once a day today (vtx-labs content/offline.ts, O1C pending)
+  // never "100% offline"; since kit 0.30 (releases from 19 Nov 2026) the apps ASK before an update check, so the line
+  // says they go online only for what they are connected to or asked to do (25 Nov 2026)
   for (const t of [VTX.local.h, VTX.local.p]) for (const l of ["en", "th"] as const) expect(t[l]).not.toMatch(/100|offline|ออฟไลน์/i);
-  expect(VTX.local.p.en).toContain("four of them check for updates once a day, and you can turn that off");
-  expect(VTX.local.p.th).toContain("สี่ตัวเช็กอัปเดตวันละครั้ง ซึ่งปิดได้");
+  expect(VTX.local.p.en).toContain("they go online only for what you connect them to or ask them to do");
+  expect(VTX.local.p.th).toContain("ต่อเน็ตเฉพาะสิ่งที่คุณสั่งเชื่อมหรือสั่งให้ทำเท่านั้น");
+  for (const l of ["en", "th"] as const) expect(VTX.local.p[l]).not.toMatch(/once a day|วันละครั้ง/);
   // a lot of AI help, said plainly, here and in the footer
   expect(VTX.ai.h.en).toContain("LOT");
   expect(FOOT.ai.en).toContain("a lot of help");
@@ -425,15 +427,16 @@ test("core stack: exactly his 21, each with its logo, each also marked in the ca
   expect(readFileSync(join(import.meta.dir, "..", "components/motion/run.ts"), "utf8")).toContain("main .o-core-t");
 });
 
-test("Mindloop is live: a card with its link, described as it is (one lesson, nine coming)", async () => {
+test("Mindloop is live: a card with its link, described as it is (lessons named, no count to go stale)", async () => {
   // owner, 20 Nov 2026: "เสร็จ deploy แล้วไปแปะใน portfolio labs ได้เลยคับ" (checked live first: 200, its own title)
   const { LIVE } = await import("../content/home");
   const m = WEB.find((w) => w.id === "mindloop")!;
   expect(m.url).toBe("https://mindloop.vtxlabs.app/");
-  expect(m.urlEn).toBeUndefined(); // Thai only: /en is a 404
-  expect(m.line.en).toContain("The first lesson");
-  expect(m.line.en).toContain("nine more topics are coming");
-  expect(m.line.th).toContain("อีก 9 หัวข้อกำลังตามมา");
+  expect(m.urlEn).toBeUndefined(); // English at /, Thai at /th since 25 Nov 2026: the one link is the English home
+  expect(m.line.en).toContain("The lessons so far run from HTTP");
+  expect(m.line.en).toContain("more topics are on the way");
+  expect(m.line.th).toContain("ยังมีหัวข้ออื่นตามมาอีก");
+  for (const l of ["en", "th"] as const) expect(m.line[l]).not.toMatch(/\b\d+ (lessons|more)\b|อีก \d+ หัวข้อ/); // no count
   // no claims it doesn't make: it counts visits (Umami) and keeps progress in the browser
   for (const l of ["en", "th"] as const) expect(m.line[l]).not.toMatch(/no tracking|offline|ไม่มีการเก็บข้อมูล|ออฟไลน์/i);
   expect(LIVE.tags.mindloop).toEqual(["Next.js", "TypeScript", "Canvas 2D", "ts-fsrs"]);
@@ -452,4 +455,15 @@ test("the footer's Feedback link: a mailto whose subject names the site and the 
   expect(pagePath("")).toBe("/");
   // every page that draws the footer passes its own path
   for (const f of ["Home", "CasePage", "Privacy"]) expect(readFileSync(join(import.meta.dir, "..", "components", `${f}.tsx`), "utf8")).toMatch(/<Footer lang=\{lang\} path=/);
+});
+
+
+test("My Projects: the three boilerplates, then the two libraries (owner, 25 Nov 2026) — on GitHub, never said to be on npm", async () => {
+  const { PROJECTS } = await import("../content/home");
+  const { MARKS } = await import("../content/marks");
+  expect(PROJECTS.items.map((p) => p.repo)).toEqual(["golang-boilerplate", "nodejs-boilerplate", "nestjs-boilerplate", "langslip", "thai2num"]);
+  for (const p of PROJECTS.items) {
+    expect(MARKS[p.mark]).toBeDefined();
+    for (const l of ["en", "th"] as const) expect(p.d[l]).not.toMatch(/npm/i);
+  }
 });

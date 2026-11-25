@@ -53,7 +53,7 @@ export const LINKS = {
 } as const;
 
 /** 11A: the open-source boilerplates on GitHub (the old site's Portfolio section). */
-export const OSS = ["golang-boilerplate", "nodejs-boilerplate", "nestjs-boilerplate"].map((n) => ({ name: n, url: `${LINKS.github}/${n}` }));
+export const OSS = ["golang-boilerplate", "nodejs-boilerplate", "nestjs-boilerplate", "langslip", "thai2num"].map((n) => ({ name: n, url: `${LINKS.github}/${n}` }));
 
 /**
  * 10A: the four CVs (the old site's Resume section). Only the PDFs: the old "view online" links on CraftCV return 404
