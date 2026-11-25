@@ -245,7 +245,8 @@ export const LIVE = {
   live: { en: "Live", th: "Live" },
   // studio: vtx-studio's package.json (Next.js 16, React 19, TypeScript, three.js for the orb on its home page)
   // mindloop: vtx-mindloop's package.json (Next.js 16, TypeScript, ts-fsrs) and its own Canvas 2D star map
-  tags: { labs: ["Next.js", "React", "TypeScript", "Vercel"], craftcv: ["Next.js", "React", "TypeScript", "PDF"], studio: ["Next.js", "React", "TypeScript", "three.js"], mindloop: ["Next.js", "TypeScript", "Canvas 2D", "ts-fsrs"] } as Record<string, string[]>,
+  // files: vtx-files's package.json (Next.js 16, React 19, TypeScript, pdf-lib + pdfjs-dist for the PDF tools)
+  tags: { labs: ["Next.js", "React", "TypeScript", "Vercel"], craftcv: ["Next.js", "React", "TypeScript", "PDF"], studio: ["Next.js", "React", "TypeScript", "three.js"], mindloop: ["Next.js", "TypeScript", "Canvas 2D", "ts-fsrs"], files: ["Next.js", "React", "TypeScript", "pdf-lib"] } as Record<string, string[]>,
 };
 
 /** Jokes, and only jokes: never a real figure in here, never a joke in the real row. */

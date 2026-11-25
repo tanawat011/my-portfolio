@@ -17,7 +17,7 @@ test("the figures row is true", () => {
   expect(yearsSince(FIRST_JOB, Date.UTC(2027, 6, 25))).toBe(10);
   expect(APPS.length).toBe(11);
   expect(APPS.filter((a) => a.personal).map((a) => a.id)).toEqual(["cuprum", "lux", "mercurius", "crystallum"]);
-  expect(WEB.map((w) => w.id)).toEqual(["labs", "craftcv", "studio", "mindloop"]);
+  expect(WEB.map((w) => w.id)).toEqual(["labs", "craftcv", "studio", "mindloop", "files"]); // every live web (owner, 26 Nov 2026: only My Projects is picked)
   expect(T.proof.webs.en).toBe(`web apps live today: ${WEB.map((w) => w.name).join(", ")}`);
   // the third figure is Labs's tool count, for the whole family (lib/labs.ts), no longer Lapis's six engines
   expect(Object.keys(T.proof)).toEqual(["years", "apps", "tools", "webs"]);
@@ -466,4 +466,18 @@ test("My Projects: the three boilerplates, then the two libraries (owner, 25 Nov
     expect(MARKS[p.mark]).toBeDefined();
     for (const l of ["en", "th"] as const) expect(p.d[l]).not.toMatch(/npm/i);
   }
+});
+
+test("VTX Files is live: its own card, described as it is (files are not uploaded), every other section unpicked (owner, 26 Nov 2026)", async () => {
+  const { LIVE } = await import("../content/home");
+  const f = WEB.find((w) => w.id === "files")!;
+  expect(f.url).toBe("https://files.vtxlabs.app/");
+  expect(f.host).toBe("files.vtxlabs.app");
+  expect(f.line.en).toContain("are not uploaded");
+  expect(f.line.th).toContain("ไม่ถูกอัปโหลด");
+  // no claims it doesn't make: it counts visits (Umami), so never "no tracking" / "offline"
+  for (const l of ["en", "th"] as const) expect(f.line[l]).not.toMatch(/no tracking|offline|ไม่มีการเก็บข้อมูล|ออฟไลน์/i);
+  expect(LIVE.tags.files).toEqual(["Next.js", "React", "TypeScript", "pdf-lib"]);
+  // its repo is private: no source link anywhere
+  expect(JSON.stringify(WEB)).not.toMatch(/github\.com\/[^"]*vtx-files/i);
 });
