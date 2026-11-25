@@ -323,3 +323,22 @@ The owner, verbatim (through VTX Develop): "port + github pro ฝากใส่
 - Kotlin's tile is its logo from Simple Icons. Java has no logo free to use: Oracle's isn't in Simple Icons, and
   OpenJDK's Duke carries its own licence. Its tile is a plain cup drawn for it (scripts/stack-icons.mjs, DRAWN), and
   the credit line says so. Same on the GitHub profile.
+
+## Privacy in the owner's pattern, and an SEO pass (25 Nov 2026)
+
+The owner, via VTX Develop: the privacy page on bologu.com/privacy's structure (never its text), and an honest SEO
+pass; no push and no deploy today, local commits only.
+
+- **Privacy** (`components/Privacy.tsx`, both languages, in his "I" / "ผม" as the rest of the site, effective
+  25 November 2026): a promise first, then 7 numbered parts: who runs it (him, in Thailand; the site's own email) ·
+  what is collected and how long (Vercel's logs and Umami's counts linked to their own policies, the theme until you
+  clear the site's data, a message until you ask) · what for, each with its legal basis · who else sees what (Vercel,
+  Umami Cloud, Google for Gmail: US companies; LINE without a country, it has a company in Thailand too; the links out)
+  · what I don't do · PDPA rights, an answer within 30 days, the PDPC · changes announced here with a new date first.
+  The Credits stay at the end. Every sentence checked against the code (list in the file).
+- **SEO:** the privacy pages get their own description (they fell back to the home page's); the case pages are titled
+  by their own case title ("Lapis, six databases in one window") instead of the app's name alone; Person JSON-LD on
+  both home pages (name, address, role, the photo the page shows, GitHub and LinkedIn; no address, phone or employer).
+  Canonical + hreflang, metadataBase, sitemap (12) and robots were already right. `tests/seo.test.ts`.
+- Proven: `bun test` 31, tsc, build, `next start` in headless Chrome (no console errors, 0 cookies, only
+  cloud.umami.is), kit `web-check.mjs --pages 40` critical 0 high 0. Not pushed, not deployed.
