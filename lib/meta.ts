@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { href, NAME, SITE_URL, type Lang } from "@/content/site";
+import { href, LINKS, NAME, SITE_URL, type Lang } from "@/content/site";
 
 export const viewport: Viewport = { themeColor: "#0b0c0f", colorScheme: "dark light", width: "device-width", initialScale: 1 };
 
@@ -34,3 +34,26 @@ export function pageMeta(lang: Lang, path: string, title?: string, description?:
     twitter: { card: "summary_large_image", title: full, description: desc, images: [OG(lang).url] },
   };
 }
+
+/**
+ * Who the site is about, for search engines (SEO pass, 25 Nov 2026): name, address, role, the photo the page shows, and
+ * the two work profiles the footer links. Nothing else: no address, no phone, no employer, no rating.
+ */
+export function personLd(lang: Lang) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: NAME,
+    url: `${SITE_URL}${href(lang, "/") === "/" ? "" : href(lang, "/")}`,
+    jobTitle: "Fullstack developer",
+    description: DESC[lang],
+    image: `${SITE_URL}/images/me-round.jpg`,
+    sameAs: [LINKS.github, LINKS.linkedin],
+  };
+}
+
+/** The privacy page's description, in each language (it fell back to the home page's, so two pages said the same). */
+export const PRIVACY_DESC: Record<Lang, string> = {
+  en: "What tanawat.dev keeps and who sees it: no accounts, no forms, no cookies; visits counted without cookies; your rights under Thailand's PDPA.",
+  th: "tanawat.dev เก็บอะไรและใครเห็นบ้าง: ไม่มีบัญชี ไม่มีฟอร์ม ไม่ใช้ cookie นับคนเข้าโดยไม่ใช้ cookie และสิทธิ์ของคุณตาม PDPA",
+};
