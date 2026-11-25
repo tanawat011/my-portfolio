@@ -142,14 +142,14 @@ export const VTX = {
    * The owner: "อย่าลืมบอกหน่อยนะว่าทุกระบบ เรา offline แท้บ 100% ทุกอย่างอยู่ในเครื่องคุณเอง". In his spirit, but only what
    * is true, as Labs words it from reading each app's code (vtx-labs content/offline.ts, 19 Nov 2026): no account, no
    * cloud, no tracking; each app connects only to what you add or start (databases, servers, remotes, mail accounts,
-   * machines, the speed test); and Lapis, Fulmen, Silva and Ventus check for updates once a day, on by default, off
-   * in their settings. ⏳ When those four's releases ask before checking (Labs's O1C), drop the update clause; not before.
+   * machines, the speed test). Lapis, Fulmen, Silva and Ventus check for updates only after asking first (kit 0.30's
+   * consent card, in every release since 19 Nov 2026), so the update clause is gone (25 Nov 2026).
    */
   local: {
     h: { en: "No account. No cloud. No tracking.", th: "ไม่มีบัญชี ไม่มี cloud ไม่มีการเก็บข้อมูล" },
     p: {
-      en: "Everything they keep stays on your own machine, and they go online only for what you connect them to or ask them to do. The one extra: four of them check for updates once a day, and you can turn that off.",
-      th: "ทุกอย่างที่แอปเก็บอยู่ในเครื่องคุณเอง และต่อเน็ตเฉพาะสิ่งที่คุณสั่งเชื่อมหรือสั่งให้ทำเท่านั้น มีแค่อย่างเดียว: สี่ตัวเช็กอัปเดตวันละครั้ง ซึ่งปิดได้",
+      en: "Everything they keep stays on your own machine, and they go online only for what you connect them to or ask them to do.",
+      th: "ทุกอย่างที่แอปเก็บอยู่ในเครื่องคุณเอง และต่อเน็ตเฉพาะสิ่งที่คุณสั่งเชื่อมหรือสั่งให้ทำเท่านั้น",
     },
   },
   // the owner: "บอกไปสักหน่อยแล้วกันว่าใช้ AI ช่วยซะเยอะเลย 555 เราต้องยอมรับความจริงใจยุคใหม่นี้"

@@ -68,9 +68,9 @@ export const CVS = [
 
 /**
  * The web apps that are live today (11A): VTX Labs and CraftCV, VTX Studio since 19 Nov 2026 (checked: 200, its own
- * title and pitch, Thai at / and English at /en) and Mindloop since 20 Nov 2026 (checked: 200, its own title; Thai only).
+ * title and pitch, Thai at / and English at /en) and Mindloop since 20 Nov 2026 (checked: 200, its own title; English at / and Thai at /th since 25 Nov 2026).
  * `urlEn`: the English page, where it has its own. Studio's words are its own pitch (its home and contact pages);
- * Mindloop's are what its home says: one lesson open, nine coming. Each shot is the app's live home, dark and light.
+ * Mindloop's line names lessons, not a count, so it doesn't go stale as lessons open (10 open on 25 Nov 2026). Each shot is the app's live home, dark and light.
  */
 export const WEB: readonly { id: string; name: string; url: string; urlEn?: string; host: string; shot: string | null; line: Text }[] = [
   { id: "labs", name: "VTX Labs", url: LINKS.labs, host: "vtxlabs.app", shot: null,
@@ -80,7 +80,7 @@ export const WEB: readonly { id: string; name: string; url: string; urlEn?: stri
   { id: "studio", name: "VTX Studio", url: LINKS.studio, urlEn: LINKS.studioEn, host: "studio.vtxlabs.app", shot: "studio-1",
     line: { en: "Back-office systems, web apps, mobile apps and LINE bots for businesses, from design to handover with documentation. Reach it by email; LINE is coming.", th: "ระบบหลังบ้าน เว็บแอป แอปมือถือ และ LINE bot สำหรับธุรกิจ ตั้งแต่ออกแบบจนส่งมอบพร้อมเอกสาร ติดต่อทางอีเมล LINE เร็ว ๆ นี้" } },
   { id: "mindloop", name: "Mindloop", url: LINKS.mindloop, host: "mindloop.vtxlabs.app", shot: "mindloop-1",
-    line: { en: "A Thai-first site for relearning full-stack fundamentals through animations you can play with, plus spaced-repetition review (FSRS). The first lesson, load balancing with stateless and stateful servers, is up; nine more topics are coming.", th: "เว็บทบทวนพื้นฐาน fullstack ด้วยภาพที่ขยับและลองเล่นได้ พร้อมการทบทวนแบบเว้นระยะ (FSRS) ตอนนี้เปิดบทแรกแล้ว: Load balancer กับ stateless / stateful อีก 9 หัวข้อกำลังตามมา" } },
+    line: { en: "Relearn full-stack fundamentals through animations you can play with, plus spaced-repetition review (FSRS), in English and Thai. The lessons so far run from HTTP and the event loop to load balancing, VMs vs containers and OOP; more topics are on the way.", th: "เว็บทบทวนพื้นฐาน fullstack ด้วยภาพที่ขยับและลองเล่นได้ พร้อมการทบทวนแบบเว้นระยะ (FSRS) มีทั้งไทยและอังกฤษ ตอนนี้มีตั้งแต่ HTTP, event loop ไปจนถึง load balancer, VM กับ container และ OOP แล้วยังมีหัวข้ออื่นตามมาอีก" } },
 ];
 
 /**
