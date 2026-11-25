@@ -481,3 +481,14 @@ test("VTX Files is live: its own card, described as it is (files are not uploade
   // its repo is private: no source link anywhere
   expect(JSON.stringify(WEB)).not.toMatch(/github\.com\/[^"]*vtx-files/i);
 });
+
+test("Silva is a preview download since 0.12.0 (owner, 26 Nov 2026): its case page names only what the Free download does, and marks Pro as later", async () => {
+  const { CASES } = await import("../content/apps");
+  const c = CASES.find((x) => x.id === "silva")!;
+  expect(c.state).toBe("preview");
+  // what the Free build does not have (vtx-fluxck docs/editions.md 1A) is never said as if it were in the download
+  const pro = /bisect|worktree|split|แยก commit|3-way|3 ทาง|⚠/i;
+  for (const w of c.why) for (const l of ["en", "th"] as const) expect(w[l]).not.toMatch(/bisect|worktree|splitting|แยก commit/i);
+  for (const s of c.shots) if (pro.test(s.x.en)) { expect(s.x.en).toContain("A Pro feature, coming later."); expect(s.x.th).toContain("ฟีเจอร์ Pro ที่จะมาทีหลัง"); }
+  for (const f of c.feats) if (/bisect|worktree/i.test(f.en)) { expect(f.en).toMatch(/^Coming later in Pro:/); expect(f.th).toMatch(/^จะมาทีหลังในตัว Pro:/); }
+});

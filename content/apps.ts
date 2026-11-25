@@ -112,24 +112,25 @@ export const CASES: Case[] = [
     ],
   },
   {
-    id: "silva", runs: "macOS · Windows", state: "later", pair: PAIRS.silva,
+    id: "silva", runs: "macOS · Windows", state: "preview", pair: PAIRS.silva,
     title: { en: "Silva, a Git client where every action can be undone", th: "Silva: Git client ที่ย้อนได้ทุกคำสั่ง" },
     stand: { en: "I use Git all day, and everyone has a reset --hard story. So in Silva, every action can be undone.", th: "ใช้ Git ทั้งวัน และใคร ๆ ก็มีเรื่องเศร้ากับ reset --hard เลยทำให้ทุกคำสั่งใน Silva ย้อนกลับได้" },
     why: [
       { en: "It runs your own git, so hooks, LFS, commit signing and credential helpers behave as they do in your terminal. The Git console lists every command Silva runs, ready to copy.", th: "มันใช้ git ของคุณเอง hooks, LFS, การเซ็น commit และ credential helper จึงทำงานเหมือนใน terminal และ Git console แสดงทุกคำสั่งที่ Silva รัน ก๊อปไปใช้ต่อได้" },
-      { en: "Every action can be undone, and discarded changes are kept. Blame, history across renames, a 3-way conflict editor, bisect, worktrees, and splitting a commit by file, hunk or line are all there.", th: "ทุกคำสั่งย้อนกลับได้ และของที่ทิ้งไปยังเก็บไว้ มี blame, ประวัติข้ามการเปลี่ยนชื่อไฟล์, ตัวแก้ conflict แบบ 3 ทาง, bisect, worktree และการแยก commit ทีละไฟล์ ทีละ hunk หรือทีละบรรทัด" },
+      { en: "Every action can be undone, and discarded changes are kept. Blame, history across renames, staging single lines, and conflicts settled block by block are all there.", th: "ทุกคำสั่งย้อนกลับได้ และของที่ทิ้งไปยังเก็บไว้ มี blame, ประวัติข้ามการเปลี่ยนชื่อไฟล์, stage ทีละบรรทัด และแก้ conflict ทีละช่วง" },
     ],
     pull: { en: "Every action can be undone.", th: "ทุกคำสั่งย้อนกลับได้" },
     shots: [
       { k: "silva-1", t: { en: "The commit graph", th: "Commit graph" }, x: { en: "Branches, tags and commits in one view. Pick a commit to see who made it, what it changed, and what you can do with it.", th: "branch, tag และ commit ในมุมมองเดียว เลือก commit แล้วเห็นว่าใครทำ เปลี่ยนอะไร และทำอะไรต่อได้บ้าง" } },
       { k: "silva-2", t: { en: "Stage single lines", th: "Stage ทีละบรรทัด" }, x: { en: "Pick lines in the diff and stage, stash or discard only those. The Git console below lists every git command Silva ran.", th: "เลือกบรรทัดใน diff แล้ว stage, stash หรือทิ้งเฉพาะบรรทัดนั้น Git console ด้านล่างแสดงทุกคำสั่ง git ที่ Silva รัน" } },
-      { k: "silva-3", t: { en: "Conflicts before you merge", th: "เห็น conflict ก่อน merge" }, x: { en: "A ⚠ on a branch means it would conflict. Silva names the files and offers Compare, Merge or Rebase.", th: "⚠ บน branch แปลว่าจะ conflict Silva บอกชื่อไฟล์ และให้เลือก Compare, Merge หรือ Rebase" } },
+      { k: "silva-3", t: { en: "Conflicts before you merge", th: "เห็น conflict ก่อน merge" }, x: { en: "A ⚠ on a branch means it would conflict. Silva names the files and offers Compare, Merge or Rebase. A Pro feature, coming later.", th: "⚠ บน branch แปลว่าจะ conflict Silva บอกชื่อไฟล์ และให้เลือก Compare, Merge หรือ Rebase เป็นฟีเจอร์ Pro ที่จะมาทีหลัง" } },
     ],
     feats: [
       { en: "<b>Every action can be undone,</b> and discarded changes are kept.", th: "<b>ทุกคำสั่งย้อนกลับได้</b> และของที่ทิ้งไปยังเก็บไว้" },
       { en: "Runs your own git, so hooks, LFS, commit signing and credential helpers behave as they do in your terminal.", th: "ใช้ git ของคุณเอง hooks, LFS, การเซ็น commit และ credential helper จึงทำงานเหมือนใน terminal" },
       { en: "The Git console lists every command Silva runs, <b>ready to copy</b>.", th: "Git console แสดงทุกคำสั่งที่ Silva รัน <b>ก๊อปไปใช้ได้</b>" },
-      { en: "Blame, history across renames, a 3-way conflict editor, bisect, worktrees, and splitting a commit by file, hunk or line.", th: "blame, ประวัติข้ามการเปลี่ยนชื่อไฟล์, ตัวแก้ conflict แบบ 3 ทาง, bisect, worktree และแยก commit ทีละไฟล์ hunk หรือบรรทัด" },
+      { en: "Blame, history across renames, and conflicts settled block by block: this side, that side, both, or the base.", th: "blame, ประวัติข้ามการเปลี่ยนชื่อไฟล์ และแก้ conflict ทีละช่วง เลือกฝั่งนี้ ฝั่งนั้น ทั้งสองฝั่ง หรือ base" },
+      { en: "Coming later in Pro: bisect, worktrees, splitting a commit, and typing your own result in the 3-way editor.", th: "จะมาทีหลังในตัว Pro: bisect, worktree, แยก commit และพิมพ์ผลลัพธ์เองในตัวแก้ conflict แบบ 3 ทาง" },
     ],
   },
   {
