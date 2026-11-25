@@ -73,7 +73,7 @@ export const CVS = [
  * Mindloop's line names lessons, not a count, so it doesn't go stale as lessons open (10 open on 25 Nov 2026). Each shot is the app's live home, dark and light.
  */
 export const WEB: readonly { id: string; name: string; url: string; urlEn?: string; host: string; shot: string | null; line: Text }[] = [
-  { id: "labs", name: "VTX Labs", url: LINKS.labs, host: "vtxlabs.app", shot: null,
+  { id: "labs", name: "VTX Labs", url: LINKS.labs, host: "vtxlabs.app", shot: "labs-1",
     line: { en: "Free developer tools in the browser, and the whole VTX family in one place.", th: "เครื่องมือฟรีสำหรับ developer ที่ใช้ในเบราว์เซอร์ และแอปทั้งครอบครัว VTX ในที่เดียว" } },
   { id: "craftcv", name: "CraftCV", url: LINKS.craftcv, host: "craftcv.vtxlabs.app", shot: "craftcv-1",
     line: { en: "Build a resume in your browser and export it as a PDF or PNG. Free, no account, and your CVs stay in your browser.", th: "สร้าง resume ในเบราว์เซอร์ แล้ว export เป็น PDF หรือ PNG ฟรี ไม่ต้องมีบัญชี และ CV อยู่ในเบราว์เซอร์ของคุณเท่านั้น" } },
